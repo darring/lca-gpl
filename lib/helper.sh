@@ -11,3 +11,5 @@ elif [ -f "/etc/redhat-release" ]; then
 elif [ -f "/etc/novell-release" ]; then
     IS_SLES=yes
 fi
+
+# vim:set ai et sts=4 sw=4 tw=80:

@@ -42,3 +42,5 @@ if [ "$TMP_DIR" = "" ]; then
     TMP_DIR="/tmp/clientagent."
     TMP_DIR=${TMP_DIR}$(date +%j%H%M%S)
 fi
+
+# vim:set ai et sts=4 sw=4 tw=80:

@@ -157,3 +157,5 @@ add_user_if_not_exist
 # FIXME TODO
 
 echo "clientagent installed successfully"
+
+# vim:set ai et sts=4 sw=4 tw=80:
