@@ -7,6 +7,15 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+type hg &> /dev/null || { 
+        echo "Mercurial is required in order for clientagent to auto-update" >&2
+        echo "Please install Mercurial (it is probably available in your" >&2
+        echo "distribution, but if not, get it here http://mercurial.selenic.com/)" >&2
+        echo "and try this install again." >&2
+        exit 1
+}
+
+
 . lib/helper.sh
 . lib/globals.sh
 
@@ -66,6 +75,7 @@ BIN_DIR=$INSTALL_DIR/bin
 LIB_DIR=$INSTALL_DIR/lib
 DOC_DIR=$INSTALL_DIR/doc
 TOOL_DIR=$INSTALL_DIR/tools
+HOME_DIR=$INSTALL_DIR/home
 
 # Our user and group will be eil.eil
 USER=eil
@@ -124,6 +134,7 @@ mkdir -p $BIN_DIR
 mkdir -p $LIB_DIR
 mkdir -p $DOC_DIR
 mkdir -p $TOOL_DIR
+mkdir -p $HOME_DIR
 
 # Install the libs
 cp -fr lib/globals.sh $LIB_DIR/.
@@ -141,3 +152,8 @@ chmod a+x $BIN_DIR/$EXEC
 
 # Set up the users
 add_user_if_not_exist
+
+# Set up the binaries to SETUID as the user
+# FIXME TODO
+
+echo "clientagent installed successfully"

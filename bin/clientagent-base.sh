@@ -13,8 +13,31 @@
 
 unset DEBUG || true
 
+# We use /opt for our installation location to adhere to LSB Linux
+# Filesystem Hierarchy Standards (this gives us maximum compatibility
+# across the various distros we aim to support).
+BASE_DIR=/opt
 
+# Intel has a registered provider name with the LSB
+LANANA=$BASE_DIR/intel
 
+# We want to have our own sub-directory under that specific to the
+# EIL namespace, additionally, we want our client agent to live there.
+INSTALL_DIR=$LANANA/eil/clientagent
+
+EXEC=clientagent-base.sh
+
+BIN_DIR=$INSTALL_DIR/bin
+LIB_DIR=$INSTALL_DIR/lib
+DOC_DIR=$INSTALL_DIR/doc
+TOOL_DIR=$INSTALL_DIR/tools
+HOME_DIR=$INSTALL_DIR/home
+
+# Load our libraries
+. $LIB_DIR/helper.sh
+. $LIB_DIR/globals.sh
+
+# Set up our temp files and interfaces
 if [ "$TMP_DIR" = "" ]; then
     TMP_DIR="/tmp/clientagent."
     TMP_DIR=${TMP_DIR}$(date +%j%H%M%S)
