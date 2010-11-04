@@ -21,14 +21,16 @@ add_user_if_not_exist() {
             /usr/sbin/groupadd -f $GID
         fi
         
+    fi
+    
     /bin/egrep -i "^$UID" /etc/passwd > /dev/null
     if [ $? -ne 0 ]; then
         # User does not exist, add them
         if [ -n "$IS_SLES" ]; then
-            /usr/sbin/useradd -d /dev/null -c eil_client /
+            /usr/sbin/useradd -d /dev/null -c eil_client \
                 -s /bin/false -g $GID $UID
         else
-            /usr/sbin/useradd -d /dev/null -c eil_client /
+            /usr/sbin/useradd -d /dev/null -c eil_client \
                 -s /dev/null -g $GID -M $UID
         fi
     fi
@@ -57,6 +59,8 @@ LANANA=$BASE_DIR/intel
 # We want to have our own sub-directory under that specific to the
 # EIL namespace, additionally, we want our client agent to live there.
 INSTALL_DIR=$LANANA/eil/clientagent
+
+EXEC=clientagent-base.sh
 
 BIN_DIR=$INSTALL_DIR/bin
 LIB_DIR=$INSTALL_DIR/lib
@@ -92,7 +96,7 @@ if [ $# != 0 ] ; then
                 rmdir $TOOL_DIR
                 
                 # purge the bin
-                rm -f $BIN_DIR/.
+                rm -f $BIN_DIR/*
                 rmdir $BIN_DIR
                 
                 # purge the main directory
@@ -122,15 +126,15 @@ mkdir -p $DOC_DIR
 mkdir -p $TOOL_DIR
 
 # Install the libs
-cp -fr libs/globals.sh $LIB_DIR/.
+cp -fr lib/globals.sh $LIB_DIR/.
 
 # Install the tools
 
 # Install the docs
 
 # Install the binaries
-cp -fr bin/clientagent-bin.sh $BIN_DIR/.
-chmod a+x $BIN_DIR/clientagent-bin.sh
+cp -fr bin/$EXEC $BIN_DIR/.
+chmod a+x $BIN_DIR/$EXEC
 
 # Set up the rc files
 # FIXME TODO
