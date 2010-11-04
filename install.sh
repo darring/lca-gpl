@@ -2,16 +2,48 @@
 
 # Install script for clientagent-base.sh suite
 
+if [ "$(id -u)" != "0" ]; then
+    echo "This install script must be run as root!"
+    exit 1
+fi
+
 . lib/helper.sh
+. lib/globals.sh
 
 # Functions used by the install script
 add_user_if_not_exist() {
-  /bin/egrep  -i "^$@" /etc/passwd > /dev/null
-  if [ $? -eq 0 ]; then
-    # User exists
-  else
-    # User does not exist
-  fi
+    /bin/egrep -i "^$GID" /etc/group > /dev/null
+    if [ $? -ne 0 ]; then
+        # Group does not exist, add it
+        if [ -n "$IS_SLES" ]; then
+            /usr/sbin/groupadd $GID
+        else
+            /usr/sbin/groupadd -f $GID
+        fi
+        
+    /bin/egrep -i "^$UID" /etc/passwd > /dev/null
+    if [ $? -ne 0 ]; then
+        # User does not exist, add them
+        if [ -n "$IS_SLES" ]; then
+            /usr/sbin/useradd -d /dev/null -c eil_client /
+                -s /bin/false -g $GID $UID
+        else
+            /usr/sbin/useradd -d /dev/null -c eil_client /
+                -s /dev/null -g $GID -M $UID
+        fi
+    fi
+}
+
+del_user_if_exist() {
+    /bin/egrep -i "^$UID" /etc/passwd > /dev/null
+    if [ $? -eq 0 ]; then
+        /usr/sbin/userdel -f $UID
+    fi
+    
+    /bin/egrep -i "^$GID" /etc/group > /dev/null
+    if [ $? -eq 0 ]; then
+        /usr/sbin/groupdel $GID
+    fi
 }
 
 # We use /opt for our installation location to adhere to LSB Linux
@@ -48,14 +80,27 @@ if [ $# != 0 ] ; then
             -p)
                 # FIXME TODO
                 # purge the libs
+                rm -f $LIB_DIR/*
+                rmdir $LIB_DIR
                 
                 # purge the docs
+                rm -f $DOC_DIR/*
+                rmdir $DOC_DIR
                 
                 # purge the tools
+                rm -f $TOOL_DIR/*
+                rmdir $TOOL_DIR
                 
                 # purge the bin
+                rm -f $BIN_DIR/.
+                rmdir $BIN_DIR
+                
+                # purge the main directory
+                rm -f $INSTALL_DIR/*
+                rmdir $INSTALL_DIR
                 
                 # purge the users
+                del_user_if_exist
                 
                 # purge the rc files
                 
@@ -91,3 +136,4 @@ chmod a+x $BIN_DIR/clientagent-bin.sh
 # FIXME TODO
 
 # Set up the users
+add_user_if_not_exist

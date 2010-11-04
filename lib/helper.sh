@@ -4,8 +4,7 @@
 # running in bash, we can't *really* use anything more advanced.
 unset IS_RHEL IS_DEB IS_SLES IS_ESX IS_XEN || true
 
-if [ -f "/etc/debian_version" ];
-then
+if [ -f "/etc/debian_version" ]; then
     IS_DEB=yes
 elif [ -f "/etc/redhat-release" ];
     IS_RHEL=yes
