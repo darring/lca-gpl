@@ -36,11 +36,43 @@ HOME_DIR=$INSTALL_DIR/home
 # Load our libraries
 . $LIB_DIR/helper.sh
 . $LIB_DIR/globals.sh
+. $LIB_DIR/dispatcer.sh
 
 # Set up our temp files and interfaces
 if [ "$TMP_DIR" = "" ]; then
     TMP_DIR="/tmp/clientagent."
     TMP_DIR=${TMP_DIR}$(date +%j%H%M%S)
 fi
+
+if [ ! -f "$STANDARD_LOG_FILE" ]; then
+    touch $STANDARD_LOG_FILE
+fi
+
+if [ ! -f "$ERROR_LOG_FILE" ]; then
+    touch $ERROR_LOG_FILE
+fi
+
+if [ ! -d "$COMMAND_DIR" ]; then
+    mkdir -p $COMMAND_DIR
+    if [ ! -d "$COMMAND_DIR" ]; then
+        echo "Cannot create command directory $COMMAND_DIR!"
+        echo "Check permissions and installation!"
+        exit 1
+    fi
+fi
+
+# Process commands in the command directory, sleep if nothing is there
+while true; do
+    # Get the available commands
+    COMMANDS=`ls -t $COMMAND_DIR`
+    for COMMAND in $COMMANDS;
+    do
+        # Process them, if there are any
+        process_command $COMMAND
+    done
+    
+    # Sleep for 30 seconds
+    sleep 30
+done
 
 # vim:set ai et sts=4 sw=4 tw=80:
