@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Client agent base dispatcer (Bash prototype)
 # --------------------------------------------
@@ -32,6 +32,7 @@ LIB_DIR=$INSTALL_DIR/lib
 DOC_DIR=$INSTALL_DIR/doc
 TOOL_DIR=$INSTALL_DIR/tools
 HOME_DIR=$INSTALL_DIR/home
+SCRIPTS_DIR=$INSTALL_DIR/scripts
 
 # Load our libraries
 . $LIB_DIR/helper.sh

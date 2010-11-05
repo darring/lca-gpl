@@ -41,6 +41,14 @@ EOF
 #
 # If uid.gid are "*.*", then they are setuid/setguid to whatever the UID
 # and GID of the client agent dispatch (as detailed in globals.sh).
+#
+# NOTE: IF the UID and GID DO NOT EXIST, they WILL be created! However,
+# if the client agent is un-installed they WILL NOT BE REMOVED! This
+# cannot be helped due to the fact we are using bash and have no way to
+# handle such complicated record-keeping! What this means is that care
+# must be given to make sure you get the UID/GID correct! If you are
+# trying to use a UID/GID that should be present on the system, then
+# you MUST make sure you have them spelled correctly!
 
 # The SOURCE_SCRIPTS is the master list of the *real* scripts to
 # install. These are the actual coded scripts that reside in the

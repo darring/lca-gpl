@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Install script for clientagent-base.sh suite
 
@@ -93,6 +93,7 @@ LIB_DIR=$INSTALL_DIR/lib
 DOC_DIR=$INSTALL_DIR/doc
 TOOL_DIR=$INSTALL_DIR/tools
 HOME_DIR=$INSTALL_DIR/home
+SCRIPTS_DIR=$INSTALL_DIR/scripts
 
 if [ $# != 0 ] ; then
     while true ; do
@@ -117,7 +118,11 @@ if [ $# != 0 ] ; then
                 # purge the tools
                 rm -f $TOOL_DIR/*
                 rmdir $TOOL_DIR
-                
+
+                # purge the scripts directory
+                rm -f $SCRIPTS_DIR/*
+                rmdir $SCRIPTS_DIR
+
                 # purge the bin
                 rm -f $BIN_DIR/*
                 rmdir $BIN_DIR
@@ -125,7 +130,7 @@ if [ $# != 0 ] ; then
                 # purge the main directory
                 rm -f $INSTALL_DIR/*
                 rmdir $INSTALL_DIR
-                
+                                
                 # purge the users
                 del_user_if_exist
                 
@@ -148,6 +153,7 @@ mkdir -p $LIB_DIR
 mkdir -p $DOC_DIR
 mkdir -p $TOOL_DIR
 mkdir -p $HOME_DIR
+mkdir -p $SCRIPTS_DIR
 
 # Set up the users
 add_user_if_not_exist
@@ -185,6 +191,22 @@ do
     chmod u+s ${BIN_DIR}/${EXEC_FILE}
     chmod g+s ${BIN_DIR}/${EXEC_FILE}    
 done
+
+# Install the scripts
+# - Start with the source scripts
+for SCRIPT_LINE in $SOURCE_SCRIPTS
+do
+    LARR=( `echo "$SCRIPT_LINE" | tr ':' '\n' ` )
+    
+    cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
+    if[ "${LARR[0]}" -eq "*.*" ]; then
+        # Make it owned by the same owner as client agent dispatcher
+    else
+        # Make it owned by the user specified
+    fi
+done
+
+# - Now do the linked scripts
 
 # Set up the rc files
 # FIXME TODO
