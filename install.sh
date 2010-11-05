@@ -40,7 +40,7 @@ EOF
 
 # Functions used by the install script
 add_user_if_not_exist() {
-    /bin/egrep -i "^$GID" /etc/group > /dev/null
+    egrep -i "^$GID" /etc/group > /dev/null
     if [ $? -ne 0 ]; then
         # Group does not exist, add it
         if [ -n "$IS_SLES" ]; then
@@ -51,7 +51,7 @@ add_user_if_not_exist() {
         
     fi
     
-    /bin/egrep -i "^$UID" /etc/passwd > /dev/null
+    egrep -i "^$UID" /etc/passwd > /dev/null
     if [ $? -ne 0 ]; then
         # User does not exist, add them
         if [ -n "$IS_SLES" ]; then
@@ -65,12 +65,12 @@ add_user_if_not_exist() {
 }
 
 del_user_if_exist() {
-    /bin/egrep -i "^$UID" /etc/passwd > /dev/null
+    egrep -i "^$UID" /etc/passwd > /dev/null
     if [ $? -eq 0 ]; then
         /usr/sbin/userdel -f $UID
     fi
     
-    /bin/egrep -i "^$GID" /etc/group > /dev/null
+    egrep -i "^$GID" /etc/group > /dev/null
     if [ $? -eq 0 ]; then
         /usr/sbin/groupdel $GID
     fi

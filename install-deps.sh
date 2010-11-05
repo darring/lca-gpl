@@ -25,3 +25,4 @@ ALL_DOCS=$(cat <<EOF
 
 EOF
 )
+

@@ -18,7 +18,25 @@ find_specific_debian() {
 # Given that we are running a RedHat-derived distribution, find the
 # specific RedHat variant we are running.
 find_specific_redhat() {
-    
+    # Check for RHEL
+    egrep -i "red hat enterprise" /etc/redhat-release > /dev/null
+    if [ $? -ne 0 ]; then
+        # Okay, let's see if we're CentOS
+        egrep -i "centos" /etc/redhat-release > /dev/null
+        if [ $? -ne 0 ]; then
+            # Hmm, we don't know what to do here... Perhaps we should
+            # exit with failure
+            echo "ERROR! Unsupported Red Hat derivative!"
+            echo "Check /etc/redhat-release for more information!"
+            exit 1
+        else
+            # We're CentOS
+            PLATFORM_NAME="centos"
+        fi
+    else
+        # We're RHEL
+        PLATFORM_NAME="rhel"
+    fi
 }
 
 # Given that we are running a SuSE-derived distribution, find the
