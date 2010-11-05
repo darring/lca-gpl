@@ -26,3 +26,47 @@ ALL_DOCS=$(cat <<EOF
 EOF
 )
 
+# For the scripts, we have to get a bit creative...
+# Our format is:
+#  uid.gid:script_name
+#
+# The reason for this is because *some* of these scripts will have to be
+# run as different users depending upon what it is they are doing (for
+# example, rebooting will require 'root' permissions, modifying SAMBA
+# settings may require a SAMBA user, etc.)
+#
+# When the script is installed, it will be setuid and setgid to the
+# uid and gid detailed here to ensure that it runs with the appropriate
+# permissions.
+#
+# If uid.gid are "*.*", then they are setuid/setguid to whatever the UID
+# and GID of the client agent dispatch (as detailed in globals.sh).
+
+# The SOURCE_SCRIPTS is the master list of the *real* scripts to
+# install. These are the actual coded scripts that reside in the
+# scripts/ directory.
+SOURCE_SCRIPTS=$(cat <<EOF
+
+EOF
+)
+
+# The LINKED_SCRIPTS is a different list from the SOURCE_SCRIPTS.
+# Sometimes, a script will remain the same across multiple platforms,
+# but because we do not want to duplicate our code (thus having
+# multiple locations to maintain the same identical code), we will
+# instead hard link our secondary platform scripts to those scripts on
+# the other platforms. This gives us the true platform agnostism we
+# desire, without the messiness of dealing with duplicated code.
+#
+# The format of this variable is as follows:
+#  linked_script_name:source_script_name
+#
+# Where:
+#  linked_script_name is the intended hard link for the secondary
+#           platform.
+#  source_script_name is the original script_name as detailed in
+#           SOURCE_SCRIPTS above.
+LINKED_SCRIPTS=$(cat <<EOF
+
+EOF
+)
