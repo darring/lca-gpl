@@ -8,16 +8,35 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 type hg &> /dev/null || { 
-        echo "Mercurial is required in order for clientagent to auto-update" >&2
-        echo "Please install Mercurial (it is probably available in your" >&2
-        echo "distribution, but if not, get it here http://mercurial.selenic.com/)" >&2
-        echo "and try this install again." >&2
-        exit 1
+    type wget &> /dev/null || {
+        type curl &> /dev/null || {
+            cat <<EOF
+One of the following programs are required by the clientagent dispatcher
+in order for its auto-update/auto-patch features to work:
+    * Mercurial (http://mercurial.selenic.com/)
+    * wget (http://www.gnu.org/software/wget/)
+    * curl (http://curl.haxx.se/)
+    
+Each should be available in any modern Linux distribution, and it is up
+to you to determine which to use.
+
+The preferred program is "Mercurial" as it allows for *both* auto-
+updating and auto-patching, however, it has the most dependencies and
+may not be easy to install on some of the more thin Linux installs.
+
+Both wget and curl can do auto-update, but cannot do auto-patching.
+EOF
+            exit 1
+        }
+    }
 }
 
 
 . lib/helper.sh
 . lib/globals.sh
+
+# Parse the install dependency file
+. install-deps.sh
 
 # Functions used by the install script
 add_user_if_not_exist() {
@@ -69,8 +88,6 @@ LANANA=$BASE_DIR/intel
 # EIL namespace, additionally, we want our client agent to live there.
 INSTALL_DIR=$LANANA/eil/clientagent
 
-EXEC=clientagent-base.sh
-
 BIN_DIR=$INSTALL_DIR/bin
 LIB_DIR=$INSTALL_DIR/lib
 DOC_DIR=$INSTALL_DIR/doc
@@ -118,7 +135,7 @@ if [ $# != 0 ] ; then
                 
                 # purge the rc files
                 
-                echo "clientagent-base.sh purged"
+                echo "clientagent dispatcher purged"
                 exit 0
                 ;;
             *)
@@ -136,26 +153,46 @@ mkdir -p $DOC_DIR
 mkdir -p $TOOL_DIR
 mkdir -p $HOME_DIR
 
+# Set up the users
+add_user_if_not_exist
+
 # Install the libs
-cp -fr lib/globals.sh $LIB_DIR/.
+for LIB_FILE in $ALL_LIBS
+do
+    cp -fr lib/${LIB_FILE} $LIB_DIR/.
+done
+
+# Install the scripts
+# FIXME TODO
 
 # Install the tools
+for TOOL_FILE in $ALL_TOOLS
+do
+    cp -fr tools/${TOOL_FILE} $TOOL_DIR/.
+    chmod a+x ${TOOL_DIR}/${TOOL_FILE}
+done
 
 # Install the docs
+for DOC_FILE in $ALL_DOCS
+do
+    cp -fr docs/${DOC_FILE} $DOC_DIR/.
+done
 
 # Install the binaries
-cp -fr bin/$EXEC $BIN_DIR/.
-chmod a+x $BIN_DIR/$EXEC
+for EXEC_FILE in $ALL_EXECS
+do
+    cp -fr bin/$EXEC_FILE $BIN_DIR/.
+    # Set up the binaries to SETUID as the user
+    chown ${UID}.${GID} ${BIN_DIR}/${EXEC_FILE}
+    chmod a+x ${BIN_DIR}/${EXEC_FILE}
+    # SETUID/SETGID the binaries
+    chmod u+s ${BIN_DIR}/${EXEC_FILE}
+    chmod g+s ${BIN_DIR}/${EXEC_FILE}    
+done
 
 # Set up the rc files
 # FIXME TODO
 
-# Set up the users
-add_user_if_not_exist
-
-# Set up the binaries to SETUID as the user
-# FIXME TODO
-
-echo "clientagent installed successfully"
+echo "clientagent dispatcher installed successfully"
 
 # vim:set ai et sts=4 sw=4 tw=80:

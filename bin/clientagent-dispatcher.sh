@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Client agent base (Bash prototype)
-# ----------------------------------
+# Client agent base dispatcer (Bash prototype)
+# --------------------------------------------
 # This base takes commands that have already been parsed by another
 # application and executes them based up certain criteria. It is
 # intended to be fairly lean and require a minimal amount of external
