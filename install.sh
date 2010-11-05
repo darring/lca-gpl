@@ -40,26 +40,35 @@ EOF
 
 # Functions used by the install script
 add_user_if_not_exist() {
-    egrep -i "^$GID" /etc/group > /dev/null
+    local LGID=$2
+    local LUID=$1
+    if [ -z "$1" ]; then
+        # If called with no parameters, we use the
+        # defaults
+        LUID=$UID
+        LGID=$GID
+    fi
+    
+    egrep -i "^$LGID" /etc/group > /dev/null
     if [ $? -ne 0 ]; then
         # Group does not exist, add it
         if [ -n "$IS_SLES" ]; then
-            /usr/sbin/groupadd $GID
+            /usr/sbin/groupadd $LGID
         else
-            /usr/sbin/groupadd -f $GID
+            /usr/sbin/groupadd -f $LGID
         fi
         
     fi
     
-    egrep -i "^$UID" /etc/passwd > /dev/null
+    egrep -i "^$LUID" /etc/passwd > /dev/null
     if [ $? -ne 0 ]; then
         # User does not exist, add them
         if [ -n "$IS_SLES" ]; then
             /usr/sbin/useradd -d /dev/null -c eil_client \
-                -s /bin/false -g $GID $UID
+                -s /bin/false -g $LGID $LUID
         else
             /usr/sbin/useradd -d /dev/null -c eil_client \
-                -s /dev/null -g $GID -M $UID
+                -s /dev/null -g $LGID -M $LUID
         fi
     fi
 }
@@ -201,9 +210,15 @@ do
     cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
     if[ "${LARR[0]}" -eq "*.*" ]; then
         # Make it owned by the same owner as client agent dispatcher
+        chown ${UID}.${GID} ${SCRIPTS_DIR}/${LARR[1]}
     else
         # Make it owned by the user specified
+        chown ${LARR[0]} ${SCRIPTS_DIR}/${LARR[1]}
     fi
+    
+    # SETUID/SETGID
+    chmod u+s ${SCRIPTS_DIR}/${LARR[1]}
+    chmod g+s ${SCRIPTS_DIR}/${LARR[1]}
 done
 
 # - Now do the linked scripts
