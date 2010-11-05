@@ -94,10 +94,6 @@ DOC_DIR=$INSTALL_DIR/doc
 TOOL_DIR=$INSTALL_DIR/tools
 HOME_DIR=$INSTALL_DIR/home
 
-# Our user and group will be eil.eil
-USER=eil
-GROUP=eil
-
 if [ $# != 0 ] ; then
     while true ; do
         case "$1" in
