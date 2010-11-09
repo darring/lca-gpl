@@ -49,4 +49,20 @@ int main(int argc, char *argv[])
         // TODO - Log failure
         exit(EXIT_FAILURE);
     }
+
+    // TODO - Change to working directory
+    // should be determined by a helper script from the dispatcher
+
+    // File descriptors are a security hazard in a daemon
+    close(STDIN_FILENO);
+    close(STDOUT_FILENO);
+    close(STDERR_FILENO);
+
+    // TODO - Any initialization will go here
+
+    // Main loop
+    while (1) {
+        // TODO - Our logic here
+        sleep(30); // TODO - Our sleep
+    }
 }
