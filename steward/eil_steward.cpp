@@ -20,3 +20,7 @@
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 
+main()
+{
+    WSHttpBinding_USCOREIEILClientOperationsProxy service;
+}
