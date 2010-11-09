@@ -1,0 +1,48 @@
+The eil_steward component of the Linux Client Agent is built utilizing
+gSOAP (http://gsoap2.sourceforge.net/). gSOAP has a number of different
+licensing considerations.[a]
+
+1) gSOAP is distributed under The GNU General Public License.
+
+    All of gSOAP is available under The GPL, which means anyone is legally
+    allowed to create derived applications from gSOAP and distributed them
+    under the same license (GPL).
+
+2) Specific sub-components of gSOAP are also licensed under the gSOAP
+ Public License 1.3, which is based on the Mozilla Public License 1.1.
+
+    The gSOAP Public License is a permissive license[b] and allows total
+    re-licensing freedom with regards to derivative works. The gSOAP
+    Public License covers all sub-components of gSOAP not covered by part
+    "3' below.
+
+3) Specific sub-components of gSOAP are also licensed under the gSOAP
+ Commercial License.
+
+    The gSOAP Commercial License "is for use with the wsdl2h WSDL parser,
+    UDDI code, and sample applications which are only licensed under the
+    GPL or the gSOAP Commercial License"[c].
+
+----
+
+We use code which is generated with the wsdl2h parser, so we will be
+bound by licensing considerations "1" and "3" above.
+
+However, we do *not* need to redistribute our software under the GPL,
+nor do we need to apply for a gSOAP Commercial License provided that we
+do one thing.
+
+The GPL *only* requires GPL-compliance in the event that we release a
+modified version of a GPL-derived application publically. If we use the
+modified version internally, we are not required to release our source[d].
+
+So, provided that we are careful and *only* utilize the eil_steward
+internally inside Intel, we will not be required by the GPL requirements
+to make our source public.
+
+[a] See http://olex.openlogic.com/package_versions/doc/1787/30
+[b] See http://en.wikipedia.org/wiki/Permissive_free_software_licence
+[c] See https://fossbazaar.org/content/gsoap-licensing-case-study
+[d] For more information, read the full text of the GPL, or see this FAQ
+    entry here
+    http://www.gnu.org/licenses/gpl-faq.html#GPLRequireSourcePostedPublic
