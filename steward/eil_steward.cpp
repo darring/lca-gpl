@@ -22,5 +22,31 @@
 
 int main(int argc, char *argv[])
 {
+    // The Client Operations Proxy for talking to CCMS
     WSHttpBinding_USCOREIEILClientOperationsProxy service;
+
+    pid_t pid;
+
+    // Since we're a daemon, let's start by forking from parent
+    pid = fork();
+    if (pid < 0) {
+        exit(EXIT_FAILURE);
+    }
+
+    // Exit if we have an acceptable pid
+    if (pid > 0) {
+        exit(EXIT_SUCCESS);
+    }
+
+    // File mode mask so we can have full access
+    umask(0);
+
+    // TODO - Logging?
+
+    // Obtain a new session ID for child process
+    sid = setsid();
+    if (sid < 0) {
+        // TODO - Log failure
+        exit(EXIT_FAILURE);
+    }
 }
