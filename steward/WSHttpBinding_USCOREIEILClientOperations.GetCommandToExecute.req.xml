@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns3="http://schemas.microsoft.com/2003/10/Serialization/"
+ xmlns:ns4="http://schemas.datacontract.org/2004/07/EILClientManagmentService"
+ xmlns:ns5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+ xmlns:ns1="http://tempuri.org/">
+ <SOAP-ENV:Body>
+   <ns1:GetCommandToExecute>
+    <ns1:ctx>
+     <ns4:mContext>
+      <ns5:string></ns5:string>
+     </ns4:mContext>
+     <ns4:mList>
+      <ns5:string></ns5:string>
+     </ns4:mList>
+     <ns4:mParams>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+     </ns4:mParams>
+     <ns4:mType>ANY</ns4:mType>
+    </ns1:ctx>
+   </ns1:GetCommandToExecute>
+
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
