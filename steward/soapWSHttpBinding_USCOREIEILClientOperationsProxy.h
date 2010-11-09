@@ -18,11 +18,13 @@ class SOAP_CMAC WSHttpBinding_USCOREIEILClientOperationsProxy : public soap
 	/// Constructor with engine input+output mode control
 	WSHttpBinding_USCOREIEILClientOperationsProxy(soap_mode iomode);
 	/// Constructor with engine input and output mode control
-	WSHttpBinding_USCOREIEILClientOperationsProxy(soap_mode imode, soap_mode omode);
+	WSHttpBinding_USCOREIEILClientOperationsProxy(
+            soap_mode imode, soap_mode omode);
 	/// Destructor frees deserialized data
 	virtual	~WSHttpBinding_USCOREIEILClientOperationsProxy();
 	/// Initializer used by constructor
-	virtual	void WSHttpBinding_USCOREIEILClientOperationsProxy_init(soap_mode imode, soap_mode omode);
+	virtual	void WSHttpBinding_USCOREIEILClientOperationsProxy_init(
+            soap_mode imode, soap_mode omode);
 	/// Disables and removes SOAP Header from message
 	virtual	void soap_noheader();
 	/// Get SOAP Fault structure (NULL when absent)
@@ -32,12 +34,20 @@ class SOAP_CMAC WSHttpBinding_USCOREIEILClientOperationsProxy : public soap
 	/// Get SOAP Fault detail as string (NULL when absent)
 	virtual	const char *soap_fault_detail();
 	/// Web service operation 'GetCommandToExecute' (return error code or SOAP_OK)
-	virtual	int GetCommandToExecute(_ns1__GetCommandToExecute *ns1__GetCommandToExecute, _ns1__GetCommandToExecuteResponse *ns1__GetCommandToExecuteResponse);
+	virtual	int GetCommandToExecute(
+        _ns1__GetCommandToExecute *ns1__GetCommandToExecute,
+        _ns1__GetCommandToExecuteResponse *ns1__GetCommandToExecuteResponse);
 	/// Web service operation 'UpdateCommandStatus' (return error code or SOAP_OK)
-	virtual	int UpdateCommandStatus(_ns1__UpdateCommandStatus *ns1__UpdateCommandStatus, _ns1__UpdateCommandStatusResponse *ns1__UpdateCommandStatusResponse);
+	virtual	int UpdateCommandStatus(
+        _ns1__UpdateCommandStatus *ns1__UpdateCommandStatus,
+        _ns1__UpdateCommandStatusResponse *ns1__UpdateCommandStatusResponse);
 	/// Web service operation 'GetCommandStatus' (return error code or SOAP_OK)
-	virtual	int GetCommandStatus(_ns1__GetCommandStatus *ns1__GetCommandStatus, _ns1__GetCommandStatusResponse *ns1__GetCommandStatusResponse);
+	virtual	int GetCommandStatus(
+        _ns1__GetCommandStatus *ns1__GetCommandStatus,
+        _ns1__GetCommandStatusResponse *ns1__GetCommandStatusResponse);
 	/// Web service operation 'InitiateClientCommands' (return error code or SOAP_OK)
-	virtual	int InitiateClientCommands(_ns1__InitiateClientCommands *ns1__InitiateClientCommands, _ns1__InitiateClientCommandsResponse *ns1__InitiateClientCommandsResponse);
+	virtual	int InitiateClientCommands(
+        _ns1__InitiateClientCommands *ns1__InitiateClientCommands,
+        _ns1__InitiateClientCommandsResponse *ns1__InitiateClientCommandsResponse);
 };
 #endif
