@@ -35,8 +35,8 @@ fi
 # UID/GID settings
 ###################
 
-UID="eil"
-GID="eil"
+INSTALL_UID="eil"
+INSTALL_GID="eil"
 
 ####################################
 # Basic logging and error reporting

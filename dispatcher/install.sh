@@ -45,8 +45,8 @@ add_user_if_not_exist() {
     if [ -z "$1" ]; then
         # If called with no parameters, we use the
         # defaults
-        LUID=$UID
-        LGID=$GID
+        LUID=$INSTALL_UID
+        LGID=$INSTALL_GID
     fi
 
     egrep -i "^$LGID" /etc/group > /dev/null
@@ -74,14 +74,14 @@ add_user_if_not_exist() {
 }
 
 del_user_if_exist() {
-    egrep -i "^$UID" /etc/passwd > /dev/null
+    egrep -i "^$INSTALL_UID" /etc/passwd > /dev/null
     if [ $? -eq 0 ]; then
-        /usr/sbin/userdel -f $UID
+        /usr/sbin/userdel -f $INSTALL_UID
     fi
 
-    egrep -i "^$GID" /etc/group > /dev/null
+    egrep -i "^$INSTALL_GID" /etc/group > /dev/null
     if [ $? -eq 0 ]; then
-        /usr/sbin/groupdel $GID
+        /usr/sbin/groupdel $INSTALL_GID
     fi
 }
 

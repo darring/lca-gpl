@@ -217,7 +217,7 @@ if [ -n "$DUMP_ERRLOG" ]; then
 fi
 
 if [ -n "$DUMP_GID" ]; then
-    trace "$GID"
+    trace "$INSTALL_GID"
 fi
 
 if [ -n "$DUMP_HOME" ]; then
@@ -245,5 +245,5 @@ if [ -n "$DUMP_TOOL" ]; then
 fi
 
 if [ -n "$DUMP_UID" ]; then
-    trace "$UID"
+    trace "$INSTALL_UID"
 fi
