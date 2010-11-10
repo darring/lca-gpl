@@ -141,7 +141,7 @@ if [ $# != 0 ] ; then
                 rmdir $BIN_DIR
 
                 # purge the main directory
-                rm -f $INSTALL_DIR/*
+                rm -fr $INSTALL_DIR/*
                 rmdir $INSTALL_DIR
 
                 # purge the users
@@ -207,9 +207,6 @@ done
 for SCRIPT_LINE in $SOURCE_SCRIPTS
 do
     LARR=( `echo "$SCRIPT_LINE" | tr ':' '\n' ` )
-
-    echo "${LARR[0]}"
-    echo "${LARR[1]}"
 
     cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
     if [ "${LARR[0]}" = "*.*" ]; then

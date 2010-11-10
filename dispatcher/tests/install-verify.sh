@@ -19,7 +19,7 @@ oneTimeSetUp()
     BOOTSTRAP_DIR=$TMP_DIR
     export BOOTSTRAP_DIR
     cd ../
-    #bash install.sh
+    bash install.sh
 
     cd tests/
 }
@@ -32,7 +32,7 @@ oneTimeTearDown()
     BOOTSTRAP_DIR=$TMP_DIR
     export BOOTSTRAP_DIR
     cd ../
-    #bash install.sh -p
+    bash install.sh -p
 
     cd tests/
 }
