@@ -208,8 +208,11 @@ for SCRIPT_LINE in $SOURCE_SCRIPTS
 do
     LARR=( `echo "$SCRIPT_LINE" | tr ':' '\n' ` )
 
+    echo "${LARR[0]}"
+    echo "${LARR[1]}"
+
     cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
-    if[ "${LARR[0]}" -eq "*.*" ]; then
+    if [ "${LARR[0]}" = "*.*" ]; then
         # Make it owned by the same owner as client agent dispatcher
         chown ${UID}.${GID} ${SCRIPTS_DIR}/${LARR[1]}
     else
