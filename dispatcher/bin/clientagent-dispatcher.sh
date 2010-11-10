@@ -71,7 +71,7 @@ while true; do
         # Process them, if there are any
         process_command $COMMAND
     done
-    
+
     # Sleep for 30 seconds
     sleep 30
 done

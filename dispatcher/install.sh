@@ -16,7 +16,7 @@ in order for its auto-update/auto-patch features to work:
     * Mercurial (http://mercurial.selenic.com/)
     * wget (http://www.gnu.org/software/wget/)
     * curl (http://curl.haxx.se/)
-    
+
 Each should be available in any modern Linux distribution, and it is up
 to you to determine which to use.
 
@@ -48,7 +48,7 @@ add_user_if_not_exist() {
         LUID=$UID
         LGID=$GID
     fi
-    
+
     egrep -i "^$LGID" /etc/group > /dev/null
     if [ $? -ne 0 ]; then
         # Group does not exist, add it
@@ -57,9 +57,9 @@ add_user_if_not_exist() {
         else
             /usr/sbin/groupadd -f $LGID
         fi
-        
+
     fi
-    
+
     egrep -i "^$LUID" /etc/passwd > /dev/null
     if [ $? -ne 0 ]; then
         # User does not exist, add them
@@ -78,7 +78,7 @@ del_user_if_exist() {
     if [ $? -eq 0 ]; then
         /usr/sbin/userdel -f $UID
     fi
-    
+
     egrep -i "^$GID" /etc/group > /dev/null
     if [ $? -eq 0 ]; then
         /usr/sbin/groupdel $GID
@@ -119,11 +119,11 @@ if [ $# != 0 ] ; then
                 # purge the libs
                 rm -f $LIB_DIR/*
                 rmdir $LIB_DIR
-                
+
                 # purge the docs
                 rm -f $DOC_DIR/*
                 rmdir $DOC_DIR
-                
+
                 # purge the tools
                 rm -f $TOOL_DIR/*
                 rmdir $TOOL_DIR
@@ -135,16 +135,16 @@ if [ $# != 0 ] ; then
                 # purge the bin
                 rm -f $BIN_DIR/*
                 rmdir $BIN_DIR
-                
+
                 # purge the main directory
                 rm -f $INSTALL_DIR/*
                 rmdir $INSTALL_DIR
-                                
+
                 # purge the users
                 del_user_if_exist
-                
+
                 # purge the rc files
-                
+
                 echo "clientagent dispatcher purged"
                 exit 0
                 ;;
@@ -206,7 +206,7 @@ done
 for SCRIPT_LINE in $SOURCE_SCRIPTS
 do
     LARR=( `echo "$SCRIPT_LINE" | tr ':' '\n' ` )
-    
+
     cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
     if[ "${LARR[0]}" -eq "*.*" ]; then
         # Make it owned by the same owner as client agent dispatcher
@@ -215,7 +215,7 @@ do
         # Make it owned by the user specified
         chown ${LARR[0]} ${SCRIPTS_DIR}/${LARR[1]}
     fi
-    
+
     # SETUID/SETGID
     chmod u+s ${SCRIPTS_DIR}/${LARR[1]}
     chmod g+s ${SCRIPTS_DIR}/${LARR[1]}
