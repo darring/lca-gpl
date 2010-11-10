@@ -29,7 +29,6 @@ else
     INSTALL_DIR=$BOOTSTRAP_DIR
 fi
 
-
 EXEC=clientagent-base.sh
 
 BIN_DIR=$INSTALL_DIR/bin
