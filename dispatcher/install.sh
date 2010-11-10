@@ -195,8 +195,8 @@ for EXEC_FILE in $ALL_EXECS
 do
     cp -fr bin/$EXEC_FILE $BIN_DIR/.
     # Set up the binaries to SETUID as the user
-    chown ${UID}.${GID} ${BIN_DIR}/${EXEC_FILE}
-    chmod a+x ${BIN_DIR}/${EXEC_FILE}
+    chown ${INSTALL_UID}.${INSTALL_GID} ${BIN_DIR}/${EXEC_FILE}
+    chmod 774 ${BIN_DIR}/${EXEC_FILE}
     # SETUID/SETGID the binaries
     chmod u+s ${BIN_DIR}/${EXEC_FILE}
     chmod g+s ${BIN_DIR}/${EXEC_FILE}
@@ -211,7 +211,7 @@ do
     cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
     if [ "${LARR[0]}" = "*.*" ]; then
         # Make it owned by the same owner as client agent dispatcher
-        chown ${UID}.${GID} ${SCRIPTS_DIR}/${LARR[1]}
+        chown ${INSTALL_UID}.${INSTALL_GID} ${SCRIPTS_DIR}/${LARR[1]}
     else
         # Make it owned by the user specified
         chown ${LARR[0]} ${SCRIPTS_DIR}/${LARR[1]}
