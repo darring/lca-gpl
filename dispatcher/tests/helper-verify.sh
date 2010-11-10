@@ -49,4 +49,69 @@ testBase()
         "${BASE_DIR}" "${base_test}"
 }
 
+testInstall()
+{
+    local install_test=`${TOOL_DIR}/clientagent-helper.sh --install`
+
+    assertEquals "Install directory error!" \
+        "${INSTALL_DIR}" "${install_test}"
+}
+
+testBin()
+{
+    local bin_test=`${TOOL_DIR}/clientagent-helper.sh --bin`
+
+    assertEquals "Binary directory error!" \
+        "${BIN_DIR}" "${bin_test}"
+}
+
+testLib()
+{
+    local lib_test=`${TOOL_DIR}/clientagent-helper.sh --lib`
+
+    assertEquals "Library directory error!" \
+        "${LIB_DIR}" "${lib_test}"
+}
+
+testDoc()
+{
+    local doc_test=`${TOOL_DIR}/clientagent-helper.sh --doc`
+
+    assertEquals "Documentation directory error!" \
+        "${DOC_DIR}" "${doc_test}"
+}
+
+testTool()
+{
+    local tool_test=`${TOOL_DIR}/clientagent-helper.sh --tool`
+
+    assertEquals "Tool directory error!" \
+        "${TOOL_DIR}" "${tool_test}"
+}
+
+testHome()
+{
+    local home_test=`${TOOL_DIR}/clientagent-helper.sh --home`
+
+    assertEquals "Home directory error!" \
+        "${HOME_DIR}" "${home_test}"
+}
+
+testScripts()
+{
+    local scripts_test=`${TOOL_DIR}/clientagent-helper.sh --scripts`
+
+    assertEquals "Scripts directory error!" \
+        "${SCRIPTS_DIR}" "${scripts_test}"
+}
+
+testComdir()
+{
+    local comdir_test=`${TOOL_DIR}/clientagent-helper.sh --comdir`
+
+    assertEquals "Command directory error!" \
+        "${COMMAND_DIR}" "${comdir_test}"
+}
+
+
 . /usr/share/shunit2/shunit2
