@@ -10,6 +10,10 @@
 # that changing it involves updating simple bash scripts and will not
 # require a recompile of the steward agent.
 
+unset DUMP_BASE DUMP_INSTALL DUMP_BIN DUMP_LIB DUMP_DOC || true
+unset DUMP_TOOL DUMP_HOME DUMP_SCRIPTS DUMP_COMDIR DUMP_UID || true
+unset DUMP_GID DUMP_STDLOG DUMP_CCMSLOG DUMP_ERRLOG TMPFILE || true
+
 PROGNAME=${0##*/}
 
 # Set up the installation directories
@@ -38,7 +42,7 @@ SCRIPTS_DIR=$INSTALL_DIR/scripts
 usage()
 {
     cat <<EOF
-Usage: $PROGNAME [OPTION]
+Usage: $PROGNAME [OPTION] TMPFILE
 Where [OPTION] is one of the following
 
     --base          Returns the base directory used by client agent
@@ -104,61 +108,61 @@ while [ $1 != -- ]; do
     case "$1" in
         ## Directory options
         --base)
-            echo "${BASE_DIR}"
+            DUMP_BASE=yes
             shift
             ;;
         --install)
-            echo "${INSTALL_DIR}"
+            DUMP_INSTALL=yes
             shift
             ;;
         --bin)
-            echo "${BIN_DIR}"
+            DUMP_BIN=yes
             shift
             ;;
         --lib)
-            echo "${LIB_DIR}"
+            DUMP_LIB=yes
             shift
             ;;
         --doc)
-            echo "${DOC_DIR}"
+            DUMP_DOC=yes
             shift
             ;;
         --tool)
-            echo "${TOOL_DIR}"
+            DUMP_TOOL=yes
             shift
             ;;
         --home)
-            echo "${HOME_DIR}"
+            DUMP_HOME=yes
             shift
             ;;
         --scripts)
-            echo "${SCRIPTS_DIR}"
+            DUMP_SCRIPTS=yes
             shift
             ;;
         --comdir)
-            echo "${COMMAND_DIR}"
+            DUMP_COMDIR=yes
             shift
             ;;
         ## UID/GID options
         --uid)
-            echo "${UID}"
+            DUMP_UID=yes
             shift
             ;;
         --gid)
-            echo "${GID}"
+            DUMP_GID=yes
             shift
             ;;
         ## Log options
         --stdlog)
-            echo "${STANDARD_LOG_FILE}"
+            DUMP_STDLOG=yes
             shift
             ;;
         --ccmslog)
-            echo "${CCMS_LOG_FILE}"
+            DUMP_CCMSLOG=yes
             shift
             ;;
         --errlog)
-            echo "${ERROR_LOG_FILE}"
+            DUMP_ERRLOG=yes
             shift
             ;;
         *)
@@ -167,3 +171,75 @@ while [ $1 != -- ]; do
     esac
 done
 shift
+
+if [ -n "$1" ]; then
+    TMPFILE=$1
+fi
+
+# Define our trace function
+trace () {
+    if [ -n "$TMPFILE" ]; then
+        echo "$*" >> ${TMPFILE}
+    else
+        echo "$*"
+    fi
+}
+
+# This is only ugly because we want to allow for stacked options, I'm
+# not 100% sold that we should allow for this, but may as well since it's
+# a minimal effort- Sam
+if [ -n "$DUMP_BASE" ]; then
+    trace "$BASE_DIR"
+fi
+
+if [ -n "$DUMP_BIN" ]; then
+    trace "$BIN_DIR"
+fi
+
+if [ -n "$DUMP_CCMSLOG" ]; then
+    trace "$CCMS_LOG_FILE"
+fi
+
+if [ -n "$DUMP_COMDIR" ]; then
+    trace "$COMMAND_DIR"
+fi
+
+if [ -n "$DUMP_DOC" ]; then
+    trace "$DOC_DIR"
+fi
+
+if [ -n "$DUMP_ERRLOG" ]; then
+    trace "$ERROR_LOG_FILE"
+fi
+
+if [ -n "$DUMP_GID" ]; then
+    trace "$GID"
+fi
+
+if [ -n "$DUMP_HOME" ]; then
+    trace "$HOME_DIR"
+fi
+
+if [ -n "$DUMP_INSTALL" ]; then
+    trace "$INSTALL_DIR"
+fi
+
+if [ -n "$DUMP_LIB" ]; then
+    trace "$LIB_DIR"
+fi
+
+if [ -n "$DUMP_SCRIPTS" ]; then
+    trace "$SCRIPTS_DIR"
+fi
+
+if [ -n "$DUMP_STDLOG" ]; then
+    trace "$STANDARD_LOG_FILE"
+fi
+
+if [ -n "$DUMP_TOOL" ]; then
+    trace "$TOOL_DIR"
+fi
+
+if [ -n "$DUMP_UID" ]; then
+    trace "$UID"
+fi
