@@ -16,7 +16,8 @@ oneTimeSetUp()
 
     BOOTSTRAP_DIR=$TMP_DIR
     export BOOTSTRAP_DIR
-    ../install.sh
+    cd ../
+    sh install.sh
 
     # Install to tmp directory
     # TODO

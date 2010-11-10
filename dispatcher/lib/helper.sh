@@ -42,7 +42,8 @@ find_specific_redhat() {
 # Given that we are running a SuSE-derived distribution, find the
 # specific SuSE variant we are running.
 find_specific_suse() {
-
+    # TODO - Right now we don't do much of anything here
+    PLATFORM_NAME="suse"
 }
 
 if [ -f "/etc/debian_version" ]; then

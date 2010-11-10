@@ -36,7 +36,7 @@ EOF
 . lib/globals.sh
 
 # Parse the install dependency file
-. install-deps.sh
+. ./install-deps.sh
 
 # Functions used by the install script
 add_user_if_not_exist() {
