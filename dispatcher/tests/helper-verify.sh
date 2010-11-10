@@ -40,6 +40,47 @@ oneTimeTearDown()
 # Our actual unit tests
 #######################
 
+# Test the log file and uid/gid outputs
+testStdlog()
+{
+    local _test=`${TOOL_DIR}/clientagent-helper.sh --stdlog`
+
+    assertEquals "Standard log file error!" \
+        "${STANDARD_LOG_FILE}" "${_test}"
+}
+
+testCCMSlog()
+{
+    local _test=`${TOOL_DIR}/clientagent-helper.sh --ccmslog`
+
+    assertEquals "CCMS log file error!" \
+        "${CCMS_LOG_FILE}" "${_test}"
+}
+
+testErrlog()
+{
+    local _test=`${TOOL_DIR}/clientagent-helper.sh --errlog`
+
+    assertEquals "Error log file error!" \
+        "${ERROR_LOG_FILE}" "${_test}"
+}
+
+testUID()
+{
+    local _test=`${TOOL_DIR}/clientagent-helper.sh --uid`
+
+    assertEquals "Unexpected install UID!" \
+        "${INSTALL_UID}" "${_test}"
+}
+
+testGID()
+{
+    local _test=`${TOOL_DIR}/clientagent-helper.sh --gid`
+
+    assertEquals "Unexpected install GID!" \
+        "${INSTALL_GID}" "${_test}"
+}
+
 # Test each of the directory outputs
 testBase()
 {
