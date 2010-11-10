@@ -95,7 +95,12 @@ LANANA=$BASE_DIR/intel
 
 # We want to have our own sub-directory under that specific to the
 # EIL namespace, additionally, we want our client agent to live there.
-INSTALL_DIR=$LANANA/eil/clientagent
+if [ "$BOOTSTRAP_DIR" = "" ]; then
+    INSTALL_DIR=$LANANA/eil/clientagent
+else
+    INSTALL_DIR=$BOOTSTRAP_DIR
+fi
+
 
 BIN_DIR=$INSTALL_DIR/bin
 LIB_DIR=$INSTALL_DIR/lib
