@@ -16,7 +16,7 @@ EOF
 
 # The tools to install
 ALL_TOOLS=$(cat <<EOF
-
+clientagent-helper.sh
 EOF
 )
 

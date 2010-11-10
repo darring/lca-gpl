@@ -85,7 +85,7 @@ EOF
 }
 
 # Parse command line.
-TEMP=$(getopt -n "$PROGNAME" \
+TEMP=$(getopt -n "$PROGNAME" --options h \
 --longoptions base,\
 install,\
 bin,\

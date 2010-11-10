@@ -9,33 +9,44 @@
 oneTimeSetUp()
 {
     # Obtain a tmp directory to install to
-    # TODO
     TMP_DIR="/tmp/clientagent."
     TMP_DIR=${TMP_DIR}$(date +%j%H%M%S)
     mkdir -p ${TMP_DIR}
 
+    # Install to tmp directory
     BOOTSTRAP_DIR=$TMP_DIR
     export BOOTSTRAP_DIR
     cd ../
     bash install.sh
 
-    # Install to tmp directory
-    # TODO
+    cd tests/
+
+    . ../lib/globals.sh
 }
 
 # Tear down our environment
 oneTimeTearDown()
 {
     # Clean up tmp directory
-    # TODO
-    echo "Test"
+    BOOTSTRAP_DIR=$TMP_DIR
+    export BOOTSTRAP_DIR
+    cd ../
+    bash install.sh -p
+
+    cd tests/
 }
 
+#######################
 # Our actual unit tests
-# TODO
+#######################
 
-#. /usr/share/shunit2/shunit2
+# Test each of the directory outputs
+testBase()
+{
+    local base_test=`${TOOL_DIR}/clientagent-helper.sh --base`
 
-oneTimeSetUp
+    assertEquals "Base directory error!" \
+        "${BASE_DIR}" "${base_test}"
+}
 
-echo $TMP_DIR
+. /usr/share/shunit2/shunit2

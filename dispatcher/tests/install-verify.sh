@@ -10,7 +10,6 @@
 oneTimeSetUp()
 {
     # Obtain a tmp directory to install to
-    # TODO
     TMP_DIR="/tmp/clientagent."
     TMP_DIR=${TMP_DIR}$(date +%j%H%M%S)
     mkdir -p ${TMP_DIR}
@@ -28,7 +27,6 @@ oneTimeSetUp()
 oneTimeTearDown()
 {
     # Clean up tmp directory
-    # TODO
     BOOTSTRAP_DIR=$TMP_DIR
     export BOOTSTRAP_DIR
     cd ../
