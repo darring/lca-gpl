@@ -202,7 +202,7 @@ do
     chmod a+x ${BIN_DIR}/${EXEC_FILE}
     # SETUID/SETGID the binaries
     chmod u+s ${BIN_DIR}/${EXEC_FILE}
-    chmod g+s ${BIN_DIR}/${EXEC_FILE}    
+    chmod g+s ${BIN_DIR}/${EXEC_FILE}
 done
 
 # Install the scripts

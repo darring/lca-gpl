@@ -54,7 +54,7 @@ EOF
 # install. These are the actual coded scripts that reside in the
 # scripts/ directory.
 SOURCE_SCRIPTS=$(cat <<EOF
-
+root.eil:reboot
 EOF
 )
 
@@ -75,6 +75,9 @@ EOF
 #  source_script_name is the original script_name as detailed in
 #           SOURCE_SCRIPTS above.
 LINKED_SCRIPTS=$(cat <<EOF
-
+ubuntu_reboot:reboot
+rhel_reboot:reboot
+suse_reboot:reboot
+centos_reboot:reboot
 EOF
 )
