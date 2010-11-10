@@ -177,9 +177,6 @@ do
     cp -fr lib/${LIB_FILE} $LIB_DIR/.
 done
 
-# Install the scripts
-# FIXME TODO
-
 # Install the tools
 for TOOL_FILE in $ALL_TOOLS
 do
