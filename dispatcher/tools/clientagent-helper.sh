@@ -33,6 +33,8 @@ TOOL_DIR=$INSTALL_DIR/tools
 HOME_DIR=$INSTALL_DIR/home
 SCRIPTS_DIR=$INSTALL_DIR/scripts
 
+. ${LIB_DIR}/globals.sh
+
 usage()
 {
     cat <<EOF
@@ -92,5 +94,76 @@ ccmslog,\
 errlog -- $*)
 
 if [ $? -ne 0 ]; then
+    usage
     die "Error while parsing options"
 fi
+
+eval set -- "$TEMP"
+
+while [ $1 != -- ]; do
+    case "$1" in
+        ## Directory options
+        --base)
+            echo "${BASE_DIR}"
+            shift
+            ;;
+        --install)
+            echo "${INSTALL_DIR}"
+            shift
+            ;;
+        --bin)
+            echo "${BIN_DIR}"
+            shift
+            ;;
+        --lib)
+            echo "${LIB_DIR}"
+            shift
+            ;;
+        --doc)
+            echo "${DOC_DIR}"
+            shift
+            ;;
+        --tool)
+            echo "${TOOL_DIR}"
+            shift
+            ;;
+        --home)
+            echo "${HOME_DIR}"
+            shift
+            ;;
+        --scripts)
+            echo "${SCRIPTS_DIR}"
+            shift
+            ;;
+        --comdir)
+            echo "${COMMAND_DIR}"
+            shift
+            ;;
+        ## UID/GID options
+        --uid)
+            echo "${UID}"
+            shift
+            ;;
+        --gid)
+            echo "${GID}"
+            shift
+            ;;
+        ## Log options
+        --stdlog)
+            echo "${STANDARD_LOG_FILE}"
+            shift
+            ;;
+        --ccmslog)
+            echo "${CCMS_LOG_FILE}"
+            shift
+            ;;
+        --errlog)
+            echo "${ERROR_LOG_FILE}"
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+shift
