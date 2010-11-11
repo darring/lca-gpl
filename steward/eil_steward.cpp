@@ -50,17 +50,17 @@ int main(int argc, char *argv[])
 
     // Obtain the CCMS log file
     if ( !(logPipe = (FILE*)popen(command,"r")) )
-    {  // If fpipe is NULL
+    {  // If logPipi is NULL
         perror("Problems with pipe to clientagent-helper.sh");
         exit(1);
     }
 
     while (fgets(logFile, sizeof logFile, logPipe))
     {
+        // May be silly to have a loop that does nothing, but
+        // we really only expect one result from this pipe
     }
     pclose(logPipe);
-
-    // Open our CCMS log file for appending, creating if it is not there
 
     // Obtain a new session ID for child process
     sid = setsid();

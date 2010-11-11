@@ -5,4 +5,8 @@ class StewardLogger
         StewardLogger(char *logFile, int verbosity);
 
         ~StewardLogger();
+
+        bool BeginLogging();
+
+        bool EndLogging();
 }
