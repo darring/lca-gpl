@@ -61,4 +61,13 @@ testGroupWasAdded()
     fi
 }
 
+# Test that the clientagent-helper script was actually installed and works
+testClienthelperInstall()
+{
+    local _test=`/usr/bin/clientagent-helper.sh --uid`
+
+    assertEquals "Client Agent Helper not in excpected location!" \
+        "${INSTALL_UID}" "${_test}"
+}
+
 . /usr/share/shunit2/shunit2
