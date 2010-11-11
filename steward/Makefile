@@ -3,7 +3,6 @@
 include ../Globals.mk
 
 
-
 clean:
 	@echo Cleaning the build environment
 	@rm -f *~ *.o *.so core core.*
