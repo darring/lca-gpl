@@ -4,7 +4,13 @@
    Basic logging class for the EIL Linux Client Agent Steward
  */
 
+// Constants
+
+//! Maximum length of the log line
+#define LOG_LINE_LENGTH 512
+
 #include <stdio.h>
+#include <time.h>
 
 //! Logger for the EIL Client Agent Steward
 class StewardLogger
@@ -14,6 +20,7 @@ class StewardLogger
         char *logFilename;
         bool isLogging = false;
         FILE *logPipe;
+        char logLine[LOG_LINE_LENGTH];
     public:
         //! Constructor for the EIL Client Agent Steward Logger
         /*
@@ -104,5 +111,20 @@ class StewardLogger
          */
         bool LogEntry(char *text)
         {
+            if(isLogging)
+            {
+                if( !(sprintf(
+                    logLine, LOG_LINE_LENGTH,
+                    "%s : %s", ctime(null), text)) )
+                {
+                    perror("Log entry too long! '%s'", text);
+                    return false;
+                }
+
+                fputs(logLine, logFile);
+                return true;
+            } else {
+                return false;
+            }
         }
 }

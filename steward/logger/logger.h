@@ -9,4 +9,8 @@ class StewardLogger
         bool BeginLogging();
 
         bool EndLogging();
+
+        bool InLoggingSession();
+
+        bool LogEntry(char *text);
 }
