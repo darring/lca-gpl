@@ -16,7 +16,6 @@
 class StewardLogger
 {
     private:
-        int verbose = 0;
         char *logFilename;
         bool isLogging = false;
         FILE *logPipe;
@@ -27,9 +26,8 @@ class StewardLogger
          *  \param logFile is a character string which details the path to the log file
          *  \param verbosity is an integer determining the default verbosity of the logger (0 is default, 9 is max)
          */
-        StewardLogger(char *logFile, int verbosity)
+        StewardLogger(char *logFile)
         {
-            verbose = verbosity;
             logFilename = logFile;
 
             isLogging = false;
@@ -126,5 +124,20 @@ class StewardLogger
             } else {
                 return false;
             }
+        }
+
+        //! Quickly log an entry
+        /*
+         * Call this when you wish to quickly log an entry without having
+         * to call begin/end. Note that this does NOT eliminate the steps
+         * required to enable logging, it simply masks them. This log
+         * method should only be used when a quick one-liner is to be
+         * logged, not when there are extended log entries to be written.
+         */
+        void QuickLog(char *text)
+        {
+            BeginLogging();
+            LogEntry(text);
+            EndLogging();
         }
 }

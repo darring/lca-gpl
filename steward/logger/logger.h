@@ -1,3 +1,6 @@
+/*
+ * StewardLogger header
+ */
 
 class StewardLogger
 {
@@ -13,4 +16,6 @@ class StewardLogger
         bool InLoggingSession();
 
         bool LogEntry(char *text);
+
+        void QuickLog(char *text);
 }

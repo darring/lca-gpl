@@ -19,8 +19,12 @@
 
 #include <stdio.h>
 
+// Nasty gSOAP bindings
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
+
+// Various helper libraris
+#include "logger/logger.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +37,9 @@ int main(int argc, char *argv[])
     // We assume an upper limit of 256 characters for full path plus
     // filename, perhaps this is bad?
     char logFile[256];
+
+    // The Client Operations Proxy for talking to CCMS
+    WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -62,10 +69,13 @@ int main(int argc, char *argv[])
     }
     pclose(logPipe);
 
+    StewardLogger logger(logFile);
+
     // Obtain a new session ID for child process
     sid = setsid();
     if (sid < 0) {
-        // TODO - Log failure
+        logger.QuickLog(
+            "Could not obtain new session ID for child process");
         exit(EXIT_FAILURE);
     }
 
@@ -79,12 +89,13 @@ int main(int argc, char *argv[])
 
     // TODO - Any initialization will go here
 
-    // The Client Operations Proxy for talking to CCMS
-    WSHttpBinding_USCOREIEILClientOperationsProxy service;
-
     // Main loop
     while (1) {
+        logger.BeginLogging();
+        logger.LogEntry("Starting Linux Client Agent");
         // TODO - Our logic here
+
+        logger.EndLogging();
         sleep(30); // TODO - Our sleep
     }
 }
