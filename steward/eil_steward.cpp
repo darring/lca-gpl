@@ -34,9 +34,6 @@ int main(int argc, char *argv[])
     // filename, perhaps this is bad?
     char logFile[256];
 
-    // The Client Operations Proxy for talking to CCMS
-    WSHttpBinding_USCOREIEILClientOperationsProxy service;
-
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
     if (pid < 0) {
@@ -81,6 +78,9 @@ int main(int argc, char *argv[])
     close(STDERR_FILENO);
 
     // TODO - Any initialization will go here
+
+    // The Client Operations Proxy for talking to CCMS
+    WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     // Main loop
     while (1) {
