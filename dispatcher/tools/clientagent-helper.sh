@@ -84,6 +84,11 @@ If ran without any options, this usage text will be displayed.
 EOF
 }
 
+if [ "$1" = "" ]; then
+    usage
+    exit 0
+fi
+
 # Parse command line.
 TEMP=$(getopt -n "$PROGNAME" --options h \
 --longoptions base,\
@@ -102,8 +107,9 @@ ccmslog,\
 errlog -- $*)
 
 if [ $? -ne 0 ]; then
+    echo "Error while parsing options!"
     usage
-    die "Error while parsing options"
+    exit 1
 fi
 
 eval set -- "$TEMP"
@@ -168,6 +174,10 @@ while [ $1 != -- ]; do
         --errlog)
             DUMP_ERRLOG=yes
             shift
+            ;;
+        -h)
+            usage
+            exit 0
             ;;
         *)
             break
