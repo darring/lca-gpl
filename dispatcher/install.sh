@@ -129,6 +129,10 @@ if [ $# != 0 ] ; then
                 rmdir $DOC_DIR
 
                 # purge the tools
+                for TOOL_LINK in $LINKED_TOOLS
+                do
+                    unlink /usr/bin/${TOOL_LINK}
+                done
                 rm -f $TOOL_DIR/*
                 rmdir $TOOL_DIR
 
@@ -182,6 +186,12 @@ for TOOL_FILE in $ALL_TOOLS
 do
     cp -fr tools/${TOOL_FILE} $TOOL_DIR/.
     chmod a+x ${TOOL_DIR}/${TOOL_FILE}
+done
+
+# Set up the linked tools
+for TOOL_LINK in $LINKED_TOOLS
+do
+    ln -s ${TOOL_DIR}/${TOOL_LINK} /usr/bin/${TOOL_LINK}
 done
 
 # Install the docs

@@ -20,6 +20,16 @@ clientagent-helper.sh
 EOF
 )
 
+# Linked tools
+# The following tools are ones which should be made available in some
+# sort of system-wide fashion based upon the distribution we are using.
+# This way, these tools can be accessed regardless of *where* the real
+# install is.
+LINKED_TOOLS=$(cat <<EOF
+clientagent-helper.sh
+EOF
+)
+
 # The docs to install
 ALL_DOCS=$(cat <<EOF
 
