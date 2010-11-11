@@ -17,15 +17,25 @@
  *
  */
 
+#include <stdio.h>
+
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 
 int main(int argc, char *argv[])
 {
+    // Misc variables to be used by the daemon
+    pid_t pid;
+    FILE *logPipe;
+
+    // The CCMS log related variables
+    char *ccmsLogCommand="/usr/bin/clientagent-helper.sh --ccmslog";
+    // We assume an upper limit of 256 characters for full path plus
+    // filename, perhaps this is bad?
+    char logFile[256];
+
     // The Client Operations Proxy for talking to CCMS
     WSHttpBinding_USCOREIEILClientOperationsProxy service;
-
-    pid_t pid;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -41,7 +51,19 @@ int main(int argc, char *argv[])
     // File mode mask so we can have full access
     umask(0);
 
-    // TODO - Logging?
+    // Obtain the CCMS log file
+    if ( !(logPipe = (FILE*)popen(command,"r")) )
+    {  // If fpipe is NULL
+        perror("Problems with pipe to clientagent-helper.sh");
+        exit(1);
+    }
+
+    while (fgets(logFile, sizeof logFile, logPipe))
+    {
+    }
+    pclose(logPipe);
+
+    // Open our CCMS log file for appending, creating if it is not there
 
     // Obtain a new session ID for child process
     sid = setsid();

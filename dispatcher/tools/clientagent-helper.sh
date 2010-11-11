@@ -193,9 +193,9 @@ fi
 # Define our trace function
 trace () {
     if [ -n "$TMPFILE" ]; then
-        echo "$*" >> ${TMPFILE}
+        echo -n "$*" >> ${TMPFILE}
     else
-        echo "$*"
+        echo -n "$*"
     fi
 }
 
