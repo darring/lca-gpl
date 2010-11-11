@@ -85,6 +85,30 @@ del_user_if_exist() {
     fi
 }
 
+uninstall_everything() {
+    # uninstall the libs
+    rm -f $LIB_DIR/*
+
+    # uninstall the docs
+    rm -f $DOC_DIR/*
+
+    # uninstall the tools
+    for TOOL_LINK in $LINKED_TOOLS
+    do
+        unlink /usr/bin/${TOOL_LINK}
+    done
+    rm -f $TOOL_DIR/*
+
+    # uninstall the scripts
+    rm -f $SCRIPTS_DIR/*
+
+    # uninstall the bin
+    rm -f $BIN_DIR/*
+
+    # uninstall the rc files
+    # TODO
+}
+
 # We use /opt for our installation location to adhere to LSB Linux
 # Filesystem Hierarchy Standards (this gives us maximum compatibility
 # across the various distros we aim to support).
@@ -114,34 +138,32 @@ if [ $# != 0 ] ; then
             -h)
                 echo "install.sh"
                 echo "----------"
-                echo "Run with no arguments to install software"
-                echo "Run with '-p' to purge/remove old software"
+                echo "Run with no arguments to install software."
+                echo "Run with '-u' to uninstall old software without"
+                echo "      purging log files or directory structure."
+                echo "Run with '-p' to purge/remove old software."
+                exit 0
+                ;;
+            -u)
+                uninstall_everything
+                echo "clientagent dispatcher uninstalled"
                 exit 0
                 ;;
             -p)
-                # FIXME TODO
+                uninstall_everything
                 # purge the libs
-                rm -f $LIB_DIR/*
                 rmdir $LIB_DIR
 
                 # purge the docs
-                rm -f $DOC_DIR/*
                 rmdir $DOC_DIR
 
                 # purge the tools
-                for TOOL_LINK in $LINKED_TOOLS
-                do
-                    unlink /usr/bin/${TOOL_LINK}
-                done
-                rm -f $TOOL_DIR/*
                 rmdir $TOOL_DIR
 
                 # purge the scripts directory
-                rm -f $SCRIPTS_DIR/*
                 rmdir $SCRIPTS_DIR
 
                 # purge the bin
-                rm -f $BIN_DIR/*
                 rmdir $BIN_DIR
 
                 # purge the main directory
@@ -152,6 +174,7 @@ if [ $# != 0 ] ; then
                 del_user_if_exist
 
                 # purge the rc files
+                # TODO
 
                 echo "clientagent dispatcher purged"
                 exit 0
