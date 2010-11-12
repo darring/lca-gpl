@@ -56,7 +56,7 @@ class StewardLogger
         bool BeginLogging()
         {
             if(!isLogging) {
-                if ( !logPipe = (FILE*)fopen(logFilename, "a+") )
+                if ( !(logPipe = (FILE*)fopen(logFilename, "a+")) )
                 {
                     perror("Problems opening CCMS log file for appending!");
                     return false;
@@ -81,7 +81,7 @@ class StewardLogger
         {
             if(isLogging)
             {
-                close(logPipe);
+                fclose(logPipe);
                 isLogging = false;
 
                 return true;
@@ -112,15 +112,16 @@ class StewardLogger
         {
             if(isLogging)
             {
-                if( !(sprintf(
+                if( !(snprintf(
                     logLine, LOG_LINE_LENGTH,
-                    "%s : %s", ctime(null), text)) )
+                    "%s : %s", ctime(NULL), text)) )
                 {
-                    perror("Log entry too long! '%s'", text);
+                    perror("Log entry too long!");
+                    perror(text);
                     return false;
                 }
 
-                fputs(logLine, logFile);
+                fputs(logLine, logPipe);
                 return true;
             } else {
                 return false;
