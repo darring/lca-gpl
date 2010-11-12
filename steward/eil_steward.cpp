@@ -23,8 +23,8 @@
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 
-// Various helper libraris
-#include "logger/logger.h"
+// Various helper libraries
+#include "logger.h"
 
 int main(int argc, char *argv[])
 {
