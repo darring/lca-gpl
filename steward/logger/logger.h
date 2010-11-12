@@ -18,6 +18,9 @@ class StewardLogger
         bool isLogging;
         FILE *logPipe;
         char logLine[LOG_LINE_LENGTH];
+        time_t timer;
+        struct tm *ts;
+        char timeStamp[80];
     public:
         //! Constructor for the EIL Client Agent Steward Logger
         /*

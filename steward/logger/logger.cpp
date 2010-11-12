@@ -65,9 +65,13 @@ bool StewardLogger::LogEntry(char *text)
 {
     if(isLogging)
     {
+        timer = time(NULL);
+        ts = localtime(&timer);
+        strftime(timeStamp, sizeof(timeStamp),
+                 "%Y-%m-%d %H:%M:%S %Z", ts);
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
-            "%s : %s", ctime(NULL), text)) )
+            "%s : %s\n", timeStamp, text)) )
         {
             perror("Log entry too long!");
             perror(text);
