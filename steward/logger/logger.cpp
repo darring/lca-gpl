@@ -142,4 +142,4 @@ class StewardLogger
             LogEntry(text);
             EndLogging();
         }
-}
+};
