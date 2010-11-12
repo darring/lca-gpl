@@ -875,7 +875,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE___ns1__GetCommandToExecute
-#define SOAP_TYPE___ns1__GetCommandToExecute (86)
+#define SOAP_TYPE___ns1__GetCommandToExecute (116)
 /* Operation wrapper: */
 struct __ns1__GetCommandToExecute
 {
@@ -885,7 +885,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE___ns1__UpdateCommandStatus
-#define SOAP_TYPE___ns1__UpdateCommandStatus (90)
+#define SOAP_TYPE___ns1__UpdateCommandStatus (120)
 /* Operation wrapper: */
 struct __ns1__UpdateCommandStatus
 {
@@ -895,7 +895,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE___ns1__GetCommandStatus
-#define SOAP_TYPE___ns1__GetCommandStatus (94)
+#define SOAP_TYPE___ns1__GetCommandStatus (124)
 /* Operation wrapper: */
 struct __ns1__GetCommandStatus
 {
@@ -905,7 +905,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE___ns1__InitiateClientCommands
-#define SOAP_TYPE___ns1__InitiateClientCommands (98)
+#define SOAP_TYPE___ns1__InitiateClientCommands (128)
 /* Operation wrapper: */
 struct __ns1__InitiateClientCommands
 {
@@ -915,7 +915,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (99)
+#define SOAP_TYPE_SOAP_ENV__Header (129)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
@@ -927,7 +927,7 @@ private:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (100)
+#define SOAP_TYPE_SOAP_ENV__Code (130)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -938,7 +938,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (102)
+#define SOAP_TYPE_SOAP_ENV__Detail (132)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -950,7 +950,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (105)
+#define SOAP_TYPE_SOAP_ENV__Reason (135)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -960,7 +960,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (106)
+#define SOAP_TYPE_SOAP_ENV__Fault (136)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -1043,6 +1043,156 @@ typedef std::string ns3__duration;
 #ifndef SOAP_TYPE_ns3__guid
 #define SOAP_TYPE_ns3__guid (65)
 typedef std::string ns3__guid;
+#endif
+
+#ifndef SOAP_TYPE__ns3__anyType
+#define SOAP_TYPE__ns3__anyType (83)
+typedef xsd__anyType _ns3__anyType;
+#endif
+
+#ifndef SOAP_TYPE__ns3__anyURI
+#define SOAP_TYPE__ns3__anyURI (84)
+typedef std::string _ns3__anyURI;
+#endif
+
+#ifndef SOAP_TYPE__ns3__base64Binary
+#define SOAP_TYPE__ns3__base64Binary (85)
+typedef xsd__base64Binary _ns3__base64Binary;
+#endif
+
+#ifndef SOAP_TYPE__ns3__boolean
+#define SOAP_TYPE__ns3__boolean (86)
+typedef bool _ns3__boolean;
+#endif
+
+#ifndef SOAP_TYPE__ns3__byte
+#define SOAP_TYPE__ns3__byte (87)
+typedef char _ns3__byte;
+#endif
+
+#ifndef SOAP_TYPE__ns3__dateTime
+#define SOAP_TYPE__ns3__dateTime (88)
+typedef time_t _ns3__dateTime;
+#endif
+
+#ifndef SOAP_TYPE__ns3__decimal
+#define SOAP_TYPE__ns3__decimal (89)
+typedef std::string _ns3__decimal;
+#endif
+
+#ifndef SOAP_TYPE__ns3__double
+#define SOAP_TYPE__ns3__double (90)
+typedef double _ns3__double;
+#endif
+
+#ifndef SOAP_TYPE__ns3__float
+#define SOAP_TYPE__ns3__float (91)
+typedef float _ns3__float;
+#endif
+
+#ifndef SOAP_TYPE__ns3__int
+#define SOAP_TYPE__ns3__int (92)
+typedef int _ns3__int;
+#endif
+
+#ifndef SOAP_TYPE__ns3__long
+#define SOAP_TYPE__ns3__long (93)
+typedef LONG64 _ns3__long;
+#endif
+
+#ifndef SOAP_TYPE__ns3__QName
+#define SOAP_TYPE__ns3__QName (94)
+typedef std::string _ns3__QName;
+#endif
+
+#ifndef SOAP_TYPE__ns3__short
+#define SOAP_TYPE__ns3__short (95)
+typedef short _ns3__short;
+#endif
+
+#ifndef SOAP_TYPE__ns3__string
+#define SOAP_TYPE__ns3__string (96)
+typedef std::string _ns3__string;
+#endif
+
+#ifndef SOAP_TYPE__ns3__unsignedByte
+#define SOAP_TYPE__ns3__unsignedByte (97)
+typedef unsigned char _ns3__unsignedByte;
+#endif
+
+#ifndef SOAP_TYPE__ns3__unsignedInt
+#define SOAP_TYPE__ns3__unsignedInt (98)
+typedef unsigned int _ns3__unsignedInt;
+#endif
+
+#ifndef SOAP_TYPE__ns3__unsignedLong
+#define SOAP_TYPE__ns3__unsignedLong (99)
+typedef ULONG64 _ns3__unsignedLong;
+#endif
+
+#ifndef SOAP_TYPE__ns3__unsignedShort
+#define SOAP_TYPE__ns3__unsignedShort (100)
+typedef unsigned short _ns3__unsignedShort;
+#endif
+
+#ifndef SOAP_TYPE__ns3__char
+#define SOAP_TYPE__ns3__char (101)
+typedef int _ns3__char;
+#endif
+
+#ifndef SOAP_TYPE__ns3__duration
+#define SOAP_TYPE__ns3__duration (102)
+typedef std::string _ns3__duration;
+#endif
+
+#ifndef SOAP_TYPE__ns3__guid
+#define SOAP_TYPE__ns3__guid (103)
+typedef std::string _ns3__guid;
+#endif
+
+#ifndef SOAP_TYPE__ns3__FactoryType
+#define SOAP_TYPE__ns3__FactoryType (104)
+typedef std::string _ns3__FactoryType;
+#endif
+
+#ifndef SOAP_TYPE__ns3__Id
+#define SOAP_TYPE__ns3__Id (105)
+typedef std::string _ns3__Id;
+#endif
+
+#ifndef SOAP_TYPE__ns3__Ref
+#define SOAP_TYPE__ns3__Ref (106)
+typedef std::string _ns3__Ref;
+#endif
+
+#ifndef SOAP_TYPE__ns4__MachineContext
+#define SOAP_TYPE__ns4__MachineContext (107)
+typedef ns4__MachineContext _ns4__MachineContext;
+#endif
+
+#ifndef SOAP_TYPE__ns4__MachineType
+#define SOAP_TYPE__ns4__MachineType (108)
+typedef enum ns4__MachineType _ns4__MachineType;
+#endif
+
+#ifndef SOAP_TYPE__ns4__EILCommand
+#define SOAP_TYPE__ns4__EILCommand (109)
+typedef ns4__EILCommand _ns4__EILCommand;
+#endif
+
+#ifndef SOAP_TYPE__ns4__EILCommandStatus
+#define SOAP_TYPE__ns4__EILCommandStatus (110)
+typedef enum ns4__EILCommandStatus _ns4__EILCommandStatus;
+#endif
+
+#ifndef SOAP_TYPE__ns5__ArrayOfstring
+#define SOAP_TYPE__ns5__ArrayOfstring (111)
+typedef ns5__ArrayOfstring _ns5__ArrayOfstring;
+#endif
+
+#ifndef SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring
+#define SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring (112)
+typedef ns5__ArrayOfKeyValueOfstringstring _ns5__ArrayOfKeyValueOfstringstring;
 #endif
 
 

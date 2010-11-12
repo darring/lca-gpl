@@ -47,10 +47,8 @@ int main(int argc, char *argv[])
     // filename, perhaps this is bad?
     char logFile[256];
 
-    // The Client Operations Proxy for talking to CCMS
-    WSHttpBinding_USCOREIEILClientOperationsProxy service;
-    _ns1__GetCommandToExecute *commandToExec;
-    _ns1__GetCommandToExecuteResponse *commandToExecResp;
+    // Our various SOAP/WSDL/CCMS related items
+    struct soap soap;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -102,6 +100,7 @@ int main(int argc, char *argv[])
     close(STDERR_FILENO);
 
     // TODO - Any initialization will go here
+    soap_init(&soap); // initialize runtime environment
 
     // Main loop
     while (1) {
@@ -109,23 +108,18 @@ int main(int argc, char *argv[])
         logger.LogEntry("Starting Linux Client Agent activity");
         // TODO - Our logic here
 
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring kvp;
-        kvp.Key = &string("HOST_NAME");
-        kvp.Value = &string(hostname);
-
-        //service.GetCommandToExecute.ctx.mParams[0] = kvp;
-
-        op_codes = service.GetCommandToExecute(
-            commandToExec, commandToExecResp);
-
-        if(op_codes == SOAP_OK) {
-            logger.LogEntry("Got SOAP_OK");
-        } else {
-            logger.LogEntry("Got an Error!");
-        }
+        // Generate a command to execute out instance which has proper
+        // credentials
+        _ns1__GetCommandToExecute gcte_out(&soap);
+        gcte_out.ctx.mParams
 
         logger.LogEntry("Sleeping for 30 seconds");
         logger.EndLogging();
         sleep(30); // TODO - Our sleep
+        // TODO signal to interrupt and break from this loop
     }
+
+    soap_destroy(&soap); // remove deserialized class instances (C++ only)
+    soap_end(&soap); // clean up and remove deserialized data
+    soap_done(&soap); // detach environment (last use and no longer in scope)
 }
