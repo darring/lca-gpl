@@ -18,6 +18,10 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
+#include <string>
+
+#define HOSTNAME_LEN 50
 
 // Nasty gSOAP bindings
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
@@ -26,11 +30,16 @@
 // Various helper libraries
 #include "logger.h"
 
+using namespace std;
+
 int main(int argc, char *argv[])
 {
     // Misc variables to be used by the daemon
     pid_t pid, sid;
     FILE *logPipe;
+    int op_codes;
+
+    char hostname[HOSTNAME_LEN];
 
     // The CCMS log related variables
     char ccmsLogCommand[]="/usr/bin/clientagent-helper.sh --ccmslog";
@@ -40,6 +49,8 @@ int main(int argc, char *argv[])
 
     // The Client Operations Proxy for talking to CCMS
     WSHttpBinding_USCOREIEILClientOperationsProxy service;
+    _ns1__GetCommandToExecute *commandToExec;
+    _ns1__GetCommandToExecuteResponse *commandToExecResp;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -79,6 +90,9 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
+    // Obtain our hostname information for the first time
+    gethostname(hostname, HOSTNAME_LEN);
+
     // TODO - Change to working directory
     // should be determined by a helper script from the dispatcher
 
@@ -92,9 +106,25 @@ int main(int argc, char *argv[])
     // Main loop
     while (1) {
         logger.BeginLogging();
-        logger.LogEntry("Starting Linux Client Agent");
+        logger.LogEntry("Starting Linux Client Agent activity");
         // TODO - Our logic here
 
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring kvp;
+        kvp.Key = &string("HOST_NAME");
+        kvp.Value = &string(hostname);
+
+        //service.GetCommandToExecute.ctx.mParams[0] = kvp;
+
+        op_codes = service.GetCommandToExecute(
+            commandToExec, commandToExecResp);
+
+        if(op_codes == SOAP_OK) {
+            logger.LogEntry("Got SOAP_OK");
+        } else {
+            logger.LogEntry("Got an Error!");
+        }
+
+        logger.LogEntry("Sleeping for 30 seconds");
         logger.EndLogging();
         sleep(30); // TODO - Our sleep
     }
