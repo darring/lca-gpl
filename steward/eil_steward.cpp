@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     FILE *logPipe;
 
     // The CCMS log related variables
-    char *ccmsLogCommand="/usr/bin/clientagent-helper.sh --ccmslog";
+    char ccmsLogCommand[]="/usr/bin/clientagent-helper.sh --ccmslog";
     // We assume an upper limit of 256 characters for full path plus
     // filename, perhaps this is bad?
     char logFile[256];
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     umask(0);
 
     // Obtain the CCMS log file
-    if ( !(logPipe = (FILE*)popen(command,"r")) )
+    if ( !(logPipe = (FILE*)popen(ccmsLogCommand,"r")) )
     {  // If logPipi is NULL
         perror("Problems with pipe to clientagent-helper.sh");
         exit(1);

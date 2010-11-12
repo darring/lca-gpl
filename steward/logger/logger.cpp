@@ -11,13 +11,14 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
 
 //! Logger for the EIL Client Agent Steward
 class StewardLogger
 {
     private:
         char *logFilename;
-        bool isLogging = false;
+        bool isLogging;
         FILE *logPipe;
         char logLine[LOG_LINE_LENGTH];
     public:
@@ -41,7 +42,7 @@ class StewardLogger
                 // TODO close out logging
             }
 
-            close(logPipe);
+            fclose(logPipe);
         }
 
         //! Begin a logging session

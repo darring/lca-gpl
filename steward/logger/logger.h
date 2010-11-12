@@ -2,6 +2,9 @@
  * StewardLogger header
  */
 
+#ifndef logger_H
+#define logger_H
+
 class StewardLogger
 {
     public:
@@ -18,4 +21,6 @@ class StewardLogger
         bool LogEntry(char *text);
 
         void QuickLog(char *text);
-}
+};
+
+#endif
