@@ -3,5 +3,5 @@
 CC=gcc
 CPP=g++
 
-CFLAGS=-c -Wall
-CP_FLAGS=-c -Wall
+CFLAGS=-c -Wall -Wno-write-strings
+CP_FLAGS=-c -Wall -Wno-write-strings

@@ -29,7 +29,7 @@
 int main(int argc, char *argv[])
 {
     // Misc variables to be used by the daemon
-    pid_t pid;
+    pid_t pid, sid;
     FILE *logPipe;
 
     // The CCMS log related variables
