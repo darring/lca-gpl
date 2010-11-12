@@ -2,6 +2,18 @@
 
 include ../Globals.mk
 
+SOURCES=eil_steward.cpp logger/logger.cpp lib_soap/soapC.cpp \
+	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.cpp
+
+HEADERS=logger/logger.h lib_soap/soapH.h \
+	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
+	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
+
+INCLUDES=-I./logger/ -I./lib_soap/
+
+eil_steward.o: $(SOURCES) $(HEADERS)
+	$(CPP) $(CP_FLAGS) $(INCLUDES) $(SOURCES)
+
 clean:
 	@echo Cleaning the build environment
 	@rm -f *~ *.o *.so core core.*
