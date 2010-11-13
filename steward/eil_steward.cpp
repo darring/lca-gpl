@@ -26,6 +26,7 @@
 // Nasty gSOAP bindings
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
+#include "soapH.h"
 
 // Various helper libraries
 #include "logger.h"
@@ -122,7 +123,7 @@ int main(int argc, char *argv[])
 
         // Generate a command to execute out instance which has proper
         // credentials
-        _ns1__GetCommandToExecute gcte_out;
+        //_ns1__GetCommandToExecute gcte_out;
         logger.QuickLog("ping1");
         _ns1__GetCommandToExecuteResponse *commandToExecResp;
         logger.QuickLog("ping2");
@@ -139,11 +140,20 @@ int main(int argc, char *argv[])
         logger.QuickLog("ping7");
         kvpa.KeyValueOfstringstring = kvp;
         logger.QuickLog("ping8");
-        gcte_out.ctx->mParams = &kvpa;
+        //gcte_out.ctx->mParams = &kvpa;
         logger.QuickLog("ping9");
 
+        _ns1__GetCommandToExecute gcte(
+            &soap, ns4__MachineContext(
+                ns5__ArrayOfstring,
+                ns5__ArrayOfstring,
+                kvpa,
+                ns4__MachineType__ANY
+                )
+            );
+
         op_codes = service.GetCommandToExecute(
-            &gcte_out, commandToExecResp);
+            &gcte, commandToExecResp);
         logger.QuickLog("ping10");
         //logger.LogEntry("Sleeping for 30 seconds");
         //logger.EndLogging();
