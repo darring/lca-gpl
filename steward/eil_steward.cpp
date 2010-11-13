@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
 
     // Our various SOAP/WSDL/CCMS related items
     struct soap soap;
+    WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -80,6 +81,8 @@ int main(int argc, char *argv[])
 
     StewardLogger logger(logFile);
 
+    logger.QuickLog("Startup daemon");
+
     // Obtain a new session ID for child process
     sid = setsid();
     if (sid < 0) {
@@ -88,8 +91,12 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
+    logger.QuickLog("New Session ID obtained");
+
     // Obtain our hostname information for the first time
     gethostname(hostname, HOSTNAME_LEN);
+
+    logger.QuickLog("Hostname obtained");
 
     // TODO - Change to working directory
     // should be determined by a helper script from the dispatcher
@@ -99,22 +106,47 @@ int main(int argc, char *argv[])
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
+    logger.QuickLog("STD i/o closed");
+
     // TODO - Any initialization will go here
     soap_init(&soap); // initialize runtime environment
 
+    logger.QuickLog("gSOAP initialized");
+
     // Main loop
     while (1) {
-        logger.BeginLogging();
-        logger.LogEntry("Starting Linux Client Agent activity");
+        //logger.BeginLogging();
+        //logger.LogEntry("Starting Linux Client Agent activity");
+        logger.QuickLog("ping0");
         // TODO - Our logic here
 
         // Generate a command to execute out instance which has proper
         // credentials
-        _ns1__GetCommandToExecute gcte_out(&soap);
-        gcte_out.ctx.mParams
+        _ns1__GetCommandToExecute gcte_out;
+        logger.QuickLog("ping1");
+        _ns1__GetCommandToExecuteResponse *commandToExecResp;
+        logger.QuickLog("ping2");
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring kvp[1];
+        logger.QuickLog("ping3");
+        kvp[0].Key = &string("HOST_NAME");
+        logger.QuickLog("ping4");
+        kvp[0].Value = &string("LENM58P-Ubuntu01"); // FIXME
+        logger.QuickLog("ping5");
 
-        logger.LogEntry("Sleeping for 30 seconds");
-        logger.EndLogging();
+        _ns5__ArrayOfKeyValueOfstringstring kvpa;
+        logger.QuickLog("ping6");
+        kvpa.__sizeKeyValueOfstringstring=1;
+        logger.QuickLog("ping7");
+        kvpa.KeyValueOfstringstring = kvp;
+        logger.QuickLog("ping8");
+        gcte_out.ctx->mParams = &kvpa;
+        logger.QuickLog("ping9");
+
+        op_codes = service.GetCommandToExecute(
+            &gcte_out, commandToExecResp);
+        logger.QuickLog("ping10");
+        //logger.LogEntry("Sleeping for 30 seconds");
+        //logger.EndLogging();
         sleep(30); // TODO - Our sleep
         // TODO signal to interrupt and break from this loop
     }
