@@ -9,6 +9,7 @@ WSHttpBinding_USCOREIEILClientOperations.GetCommandStatus.req.xml
 WSHttpBinding_USCOREIEILClientOperations.GetCommandStatus.res.xml
 WSHttpBinding_USCOREIEILClientOperations.GetCommandToExecute.req.xml
 soapC.cpp
+soapC.co
 WSHttpBinding_USCOREIEILClientOperations.GetCommandToExecute.res.xml
 soapH.h
 WSHttpBinding_USCOREIEILClientOperations.InitiateClientCommands.req.xml
@@ -44,8 +45,12 @@ do
     echo "${LINE}" >> typemap.dat
 done
 
-wsdl2h -g -c -s -o EILClientOps.h "http://10.10.0.20/CCMS/EILClientOperationsService.svc?wsdl"
+#wsdl2h -g -c -s -o EILClientOps.h "http://10.10.0.20/CCMS/EILClientOperationsService.svc?wsdl"
 
-soapcpp2 -i -C -c -I /usr/include/gsoap/ EILClientOps.h
+#soapcpp2 -i -C -c -I /usr/include/gsoap/ EILClientOps.h
+
+wsdl2h -g -f -o EILClientOps.h "http://10.10.0.20/CCMS/EILClientOperationsService.svc?wsdl"
+
+soapcpp2 -i -C -I /usr/include/gsoap/ EILClientOps.h
 
 echo "gSOAP files reconstructed"

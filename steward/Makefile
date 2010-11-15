@@ -2,7 +2,7 @@
 
 include ../Globals.mk
 
-SOURCES=eil_steward.cpp logger/logger.cpp lib_soap/soapC.c
+SOURCES=eil_steward.cpp logger/logger.cpp lib_soap/soapC.cpp
 
 HEADERS=logger/logger.h lib_soap/soapH.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap

@@ -118,43 +118,49 @@ int main(int argc, char *argv[])
     while (1) {
         //logger.BeginLogging();
         //logger.LogEntry("Starting Linux Client Agent activity");
-        logger.QuickLog("ping0");
+        logger.QuickLog(hostname);
         // TODO - Our logic here
 
-        // Generate a command to execute out instance which has proper
-        // credentials
-        //_ns1__GetCommandToExecute gcte_out;
+        // Set up our hostname
+        // Start out at the lowest possible data type
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring i1;
+
         logger.QuickLog("ping1");
-        //_ns1__GetCommandToExecuteResponse *commandToExecResp;
+        i1.Key = &std::string("HOST_NAME");
         logger.QuickLog("ping2");
-        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring kvp[1];
+        i1.Value= &std::string("LENM58P-Ubuntu01");
+
         logger.QuickLog("ping3");
-        //kvp[0].Key = &string("HOST_NAME");
+        // Move up one data type
+        ns5__ArrayOfKeyValueOfstringstring k1;
         logger.QuickLog("ping4");
-        //kvp[0].Value = &string("LENM58P-Ubuntu01"); // FIXME
+        k1.__sizeKeyValueOfstringstring = 1;
         logger.QuickLog("ping5");
-
-        //_ns5__ArrayOfKeyValueOfstringstring kvpa;
+        k1.KeyValueOfstringstring = &i1;
         logger.QuickLog("ping6");
-        //kvpa.__sizeKeyValueOfstringstring=1;
+
+        // Now, up to the machine context
+        ns4__MachineContext ctx;
         logger.QuickLog("ping7");
-        //kvpa.KeyValueOfstringstring = kvp;
+        ctx.soap_default(&soap);
         logger.QuickLog("ping8");
-        //gcte_out.ctx->mParams = &kvpa;
+        ctx.mParams = &k1;
+
         logger.QuickLog("ping9");
-
-        //_ns1__GetCommandToExecute gcte(
-            //&soap, ns4__MachineContext(
-                //ns5__ArrayOfstring,
-                //ns5__ArrayOfstring,
-                //kvpa,
-                //ns4__MachineType__ANY
-                //)
-            //);
-
-        //op_codes = service.GetCommandToExecute(
-            //&gcte, commandToExecResp);
+        // Now, up to the get command to execute class
+        _ns1__GetCommandToExecute getCommand;
         logger.QuickLog("ping10");
+        getCommand.ctx = &ctx;
+        logger.QuickLog("ping11");
+        getCommand.soap_serialize(&soap);
+        logger.QuickLog("ping12");
+        soap_begin_send(&soap);
+        logger.QuickLog("ping13");
+        getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
+        logger.QuickLog("ping14");
+        soap_end_send(&soap);
+        logger.QuickLog("ping15");
+
         //logger.LogEntry("Sleeping for 30 seconds");
         //logger.EndLogging();
         sleep(30); // TODO - Our sleep
