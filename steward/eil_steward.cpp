@@ -24,7 +24,7 @@
 #define HOSTNAME_LEN 50
 
 // Nasty gSOAP bindings
-#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
+//#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "soapH.h"
 
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     // Misc variables to be used by the daemon
     pid_t pid, sid;
     FILE *logPipe;
-    int op_codes;
+    //int op_codes;
 
     char hostname[HOSTNAME_LEN];
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
     // Our various SOAP/WSDL/CCMS related items
     struct soap soap;
-    WSHttpBinding_USCOREIEILClientOperationsProxy service;
+    //WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -125,35 +125,35 @@ int main(int argc, char *argv[])
         // credentials
         //_ns1__GetCommandToExecute gcte_out;
         logger.QuickLog("ping1");
-        _ns1__GetCommandToExecuteResponse *commandToExecResp;
+        //_ns1__GetCommandToExecuteResponse *commandToExecResp;
         logger.QuickLog("ping2");
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring kvp[1];
+        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring kvp[1];
         logger.QuickLog("ping3");
-        kvp[0].Key = &string("HOST_NAME");
+        //kvp[0].Key = &string("HOST_NAME");
         logger.QuickLog("ping4");
-        kvp[0].Value = &string("LENM58P-Ubuntu01"); // FIXME
+        //kvp[0].Value = &string("LENM58P-Ubuntu01"); // FIXME
         logger.QuickLog("ping5");
 
-        _ns5__ArrayOfKeyValueOfstringstring kvpa;
+        //_ns5__ArrayOfKeyValueOfstringstring kvpa;
         logger.QuickLog("ping6");
-        kvpa.__sizeKeyValueOfstringstring=1;
+        //kvpa.__sizeKeyValueOfstringstring=1;
         logger.QuickLog("ping7");
-        kvpa.KeyValueOfstringstring = kvp;
+        //kvpa.KeyValueOfstringstring = kvp;
         logger.QuickLog("ping8");
         //gcte_out.ctx->mParams = &kvpa;
         logger.QuickLog("ping9");
 
-        _ns1__GetCommandToExecute gcte(
-            &soap, ns4__MachineContext(
-                ns5__ArrayOfstring,
-                ns5__ArrayOfstring,
-                kvpa,
-                ns4__MachineType__ANY
-                )
-            );
+        //_ns1__GetCommandToExecute gcte(
+            //&soap, ns4__MachineContext(
+                //ns5__ArrayOfstring,
+                //ns5__ArrayOfstring,
+                //kvpa,
+                //ns4__MachineType__ANY
+                //)
+            //);
 
-        op_codes = service.GetCommandToExecute(
-            &gcte, commandToExecResp);
+        //op_codes = service.GetCommandToExecute(
+            //&gcte, commandToExecResp);
         logger.QuickLog("ping10");
         //logger.LogEntry("Sleeping for 30 seconds");
         //logger.EndLogging();
