@@ -24,7 +24,7 @@
 #define HOSTNAME_LEN 50
 
 // Nasty gSOAP bindings
-//#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
+#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "soapH.h"
 
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     // Misc variables to be used by the daemon
     pid_t pid, sid;
     FILE *logPipe;
-    //int op_codes;
+    int op_codes;
 
     char hostname[HOSTNAME_LEN];
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
     // Our various SOAP/WSDL/CCMS related items
     struct soap soap;
-    //WSHttpBinding_USCOREIEILClientOperationsProxy service;
+    WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -154,11 +154,25 @@ int main(int argc, char *argv[])
         logger.QuickLog("ping11");
         getCommand.soap_serialize(&soap);
         logger.QuickLog("ping12");
-        soap_begin_send(&soap);
+        //soap_begin_send(&soap);
         logger.QuickLog("ping13");
-        getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
+        //getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
+        _ns1__GetCommandToExecuteResponse response;
+        op_codes = service.GetCommandToExecute(
+            &getCommand, &response);
         logger.QuickLog("ping14");
-        soap_end_send(&soap);
+        //soap_end_send(&soap);
+
+        if(op_codes == SOAP_OK)
+            logger.QuickLog("SOAP_OK");
+        else if (op_codes == SOAP_MUSTUNDERSTAND)
+            logger.QuickLog("SOAP_MUSTUNDERSTAND");
+        else {
+            logger.QuickLog("ERROR!");
+            char str[20];
+            snprintf(str, 20, "%d", op_codes);
+            logger.QuickLog(str);
+        }
         logger.QuickLog("ping15");
 
         //logger.LogEntry("Sleeping for 30 seconds");

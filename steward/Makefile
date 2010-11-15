@@ -2,12 +2,15 @@
 
 include ../Globals.mk
 
-SOURCES=eil_steward.cpp logger/logger.cpp lib_soap/soapC.cpp
+SOURCES=eil_steward.cpp logger/logger.cpp lib_soap/soapC.cpp \
+	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.cpp
 
 HEADERS=logger/logger.h lib_soap/soapH.h \
+	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
 OBJECTS=logger.o soapC.o \
+	soapWSHttpBinding_USCOREIEILClientOperationsProxy.o \
 	eil_steward.o
 
 INCLUDES=-I./logger/ -I./lib_soap/
