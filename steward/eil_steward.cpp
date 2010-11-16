@@ -126,17 +126,33 @@ int main(int argc, char *argv[])
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring i1;
 
         logger.QuickLog("ping1");
-        i1.Key = &std::string("HOST_NAME");
+        std::string kn = std::string("HOST_NAME");
+        i1.Key = &kn;
         logger.QuickLog("ping2");
-        i1.Value= &std::string("LENM58P-Ubuntu01");
+        std::string hn = std::string(hostname);
+        i1.Value= &hn;
+
+        // Set up our order num
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring on;
+        logger.QuickLog("on create");
+        std::string onumkey = std::string("ORDER_NUM");
+        on.Key = &onumkey;
+        logger.QuickLog("add key");
+        std::string onumval = std::string("1");
+        on.Value = &onumval;
+        logger.QuickLog("add value");
+
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
+        ar[0] = i1;
+        ar[1] = on;
 
         logger.QuickLog("ping3");
         // Move up one data type
         ns5__ArrayOfKeyValueOfstringstring k1;
         logger.QuickLog("ping4");
-        k1.__sizeKeyValueOfstringstring = 1;
+        k1.__sizeKeyValueOfstringstring = 2;
         logger.QuickLog("ping5");
-        k1.KeyValueOfstringstring = &i1;
+        k1.KeyValueOfstringstring = &ar[0];
         logger.QuickLog("ping6");
 
         // Now, up to the machine context
@@ -156,7 +172,7 @@ int main(int argc, char *argv[])
         logger.QuickLog("ping12");
         //soap_begin_send(&soap);
         logger.QuickLog("ping13");
-        //getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
+        //op_codes = getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
         _ns1__GetCommandToExecuteResponse response;
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
@@ -165,6 +181,10 @@ int main(int argc, char *argv[])
 
         if(op_codes == SOAP_OK)
             logger.QuickLog("SOAP_OK");
+        else if (op_codes == SOAP_EOF)
+            logger.QuickLog("SOAP_EOF");
+        else if (op_codes == SOAP_SVR_FAULT)
+            logger.QuickLog("SOAP_SVR_FAULT");
         else if (op_codes == SOAP_MUSTUNDERSTAND)
             logger.QuickLog("SOAP_MUSTUNDERSTAND");
         else {
