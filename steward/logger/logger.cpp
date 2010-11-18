@@ -87,7 +87,18 @@ bool StewardLogger::LogEntry(char *text)
 
 void StewardLogger::QuickLog(char *text)
 {
-    BeginLogging();
-    LogEntry(text);
-    EndLogging();
+    if(isLogging) {
+        // If we are already logging, then we must do the logical thing for
+        // a quick log function, and that is:
+        // - Log our entry
+        // - Flush the cache
+        // - Begin logging again, thus restoring state
+        LogEntry(text);
+        EndLogging();
+        BeginLogging();
+    } else {
+        BeginLogging();
+        LogEntry(text);
+        EndLogging();
+    }
 }
