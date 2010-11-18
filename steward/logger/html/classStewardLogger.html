@@ -87,6 +87,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="memdoc">
 
 <p>Constructor for the EIL Client Agent Steward Logger. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>logFile</em>&nbsp;</td><td>is a character string which details the path to the log file </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -126,6 +132,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="memdoc">
 
 <p>Begin a logging session. </p>
+<p>Call this when you are ready to begin logging. The logger will prepare the log file and put itself in a state where future writes can be made.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -145,6 +153,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="memdoc">
 
 <p>End a logging session. </p>
+<p>Call this when you are ready to end a logging session. Note that you should not call this unless you are currently logging, e.g., unless you have previously called <a class="el" href="classStewardLogger.html#ad57f004a8807d46d719ff9e97b631bfb" title="Begin a logging session.">BeginLogging()</a>.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -164,6 +174,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="memdoc">
 
 <p>Determine if we are in a logging session or not. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if we are currently in a logging session, false if not </dd></dl>
 
 </div>
 </div>
@@ -184,6 +195,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="memdoc">
 
 <p>Log an entry. </p>
+<p>Called when you wish to log an entry. Note that you should only call this during a logging session (between calls to <a class="el" href="classStewardLogger.html#ad57f004a8807d46d719ff9e97b631bfb" title="Begin a logging session.">BeginLogging()</a> and <a class="el" href="classStewardLogger.html#a743821f9acfce328903821e863c27332" title="End a logging session.">EndLogging()</a>). If in doubt, consult <a class="el" href="classStewardLogger.html#adeacf019f403943ed0d24ccbda2ed93f" title="Determine if we are in a logging session or not.">InLoggingSession()</a>.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if entry was successful, false if not. </dd></dl>
 
 </div>
 </div>
@@ -204,6 +217,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="memdoc">
 
 <p>Quickly log an entry. </p>
+<p>Call this when you wish to quickly log an entry without having to call begin/end. Note that this does NOT eliminate the steps required to enable logging, it simply masks them. This log method should only be used when a quick one-liner is to be logged, not when there are extended log entries to be written. </p>
 
 </div>
 </div>
@@ -226,7 +240,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Nov 18 13:43:39 2010 for EILClientAgentLoggerClass by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Nov 18 14:05:28 2010 for EILClientAgentLoggerClass by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
