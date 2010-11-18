@@ -6,8 +6,9 @@
 
 #include "stewardService.h"
 
-StewardService::StewardService()
+StewardService::StewardService(StewardLogger *myLogger)
 {
+    logger = myLogger
     // Initialize our soap runtime environment
     soap_init(&soap);
 }

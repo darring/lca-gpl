@@ -25,13 +25,13 @@ class StewardService
     private:
         struct soap soap;
         WSHttpBinding_USCOREIEILClientOperationsProxy service;
-        StewardLogger logger;
+        StewardLogger *logger;
     public:
         //! Constructor for the Steward service wrapper
         /*!
          * \param myLogger is the logger instance we should use.
          */
-        StewardService(StewardLogger myLogger);
+        StewardService(StewardLogger *myLogger);
         
         //! Destructor for the Steward service wrapper
         ~StewardService();
