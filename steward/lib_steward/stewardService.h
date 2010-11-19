@@ -22,8 +22,8 @@ class WSHttpBinding_USCOREIEILClientOperationsProxy;
 class StewardService
 {
     private:
-        struct soap soap;
-        WSHttpBinding_USCOREIEILClientOperationsProxy service;
+        struct soap *soap;
+        WSHttpBinding_USCOREIEILClientOperationsProxy *service;
         StewardLogger *logger;
         int op_codes;
     public:
@@ -46,7 +46,7 @@ class StewardService
          * \return Command type (or error if an error occured)
          *
          */
-        Command QueryForClientCommands(
+        CommandIssued QueryForClientCommands(
             char *hostname,
             char *order_num,
             MachineType mType);

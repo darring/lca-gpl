@@ -14,21 +14,22 @@
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
+    //struct soap soap;
     logger = myLogger;
     // Initialize our soap runtime environment
-    soap_init(&soap);
+    soap_init(soap);
     
-    logger.QuickLog("StewardService> gSOAP initialized");
+    logger->QuickLog("StewardService> gSOAP initialized");
 }
 
 StewardService::~StewardService()
 {
-    soap_destroy(&soap); // remove deserialized class instances (C++ only)
-    soap_end(&soap); // clean up and remove deserialized data
-    soap_done(&soap); // detach environment (last use and no longer in scope)
+    soap_destroy(soap); // remove deserialized class instances (C++ only)
+    soap_end(soap); // clean up and remove deserialized data
+    soap_done(soap); // detach environment (last use and no longer in scope)
 }
 
-Command StewardService::QueryForClientCommands(
+CommandIssued StewardService::QueryForClientCommands(
             char *hostname,
             char *order_num,
             MachineType mType)
@@ -72,7 +73,7 @@ Command StewardService::QueryForClientCommands(
       Now, up to the machine context
     */
     ns4__MachineContext ctx;
-    ctx.soap_default(&soap); // Must set our soap instance
+    ctx.soap_default(soap); // Must set our soap instance
     ctx.mParams = &k1;
     
     /*
@@ -80,9 +81,10 @@ Command StewardService::QueryForClientCommands(
     */
     _ns1__GetCommandToExecute getCommand;
     getCommand.ctx = &ctx;
-    getCommand.soap_serialize(&soap); // Serialize with our soap instance
+    getCommand.soap_serialize(soap); // Serialize with our soap instance
     _ns1__GetCommandToExecuteResponse response;
-    op_codes = service.GetCommandToExecute(
+    op_codes = service->GetCommandToExecute(
         &getCommand, &response);
 
+    return COMMAND_ERROR;
 }

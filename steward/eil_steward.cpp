@@ -20,6 +20,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #define HOSTNAME_LEN 50
 
@@ -40,7 +43,7 @@ int main(int argc, char *argv[])
     // Misc variables to be used by the daemon
     pid_t pid, sid;
     FILE *logPipe;
-    int op_codes;
+    //int op_codes;
 
     char hostname[HOSTNAME_LEN];
 
@@ -124,76 +127,76 @@ int main(int argc, char *argv[])
 
         // Set up our hostname
         // Start out at the lowest possible data type
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring i1;
+        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring i1;
 
         logger.QuickLog("ping1");
-        std::string kn = std::string("HOST_NAME");
-        i1.Key = &kn;
+        //std::string kn = std::string("HOST_NAME");
+        //i1.Key = &kn;
         logger.QuickLog("ping2");
-        std::string hn = std::string(hostname);
-        i1.Value= &hn;
+        //std::string hn = std::string(hostname);
+        //i1.Value= &hn;
 
         // Set up our order num
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring on;
+        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring on;
         logger.QuickLog("on create");
-        std::string onumkey = std::string("ORDER_NUM");
-        on.Key = &onumkey;
+        //std::string onumkey = std::string("ORDER_NUM");
+        //on.Key = &onumkey;
         logger.QuickLog("add key");
-        std::string onumval = std::string("1");
-        on.Value = &onumval;
+        //std::string onumval = std::string("1");
+        //on.Value = &onumval;
         logger.QuickLog("add value");
 
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
-        ar[0] = i1;
-        ar[1] = on;
+        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
+        //ar[0] = i1;
+        //ar[1] = on;
 
         logger.QuickLog("ping3");
         // Move up one data type
-        ns5__ArrayOfKeyValueOfstringstring k1;
+        //ns5__ArrayOfKeyValueOfstringstring k1;
         logger.QuickLog("ping4");
-        k1.__sizeKeyValueOfstringstring = 2;
+        //k1.__sizeKeyValueOfstringstring = 2;
         logger.QuickLog("ping5");
-        k1.KeyValueOfstringstring = &ar[0];
+        //k1.KeyValueOfstringstring = &ar[0];
         logger.QuickLog("ping6");
 
         // Now, up to the machine context
-        ns4__MachineContext ctx;
+        //ns4__MachineContext ctx;
         logger.QuickLog("ping7");
-        ctx.soap_default(&soap);
+        //ctx.soap_default(&soap);
         logger.QuickLog("ping8");
-        ctx.mParams = &k1;
+        //ctx.mParams = &k1;
 
         logger.QuickLog("ping9");
         // Now, up to the get command to execute class
-        _ns1__GetCommandToExecute getCommand;
+        //_ns1__GetCommandToExecute getCommand;
         logger.QuickLog("ping10");
-        getCommand.ctx = &ctx;
+        //getCommand.ctx = &ctx;
         logger.QuickLog("ping11");
-        getCommand.soap_serialize(&soap);
+        //getCommand.soap_serialize(&soap);
         logger.QuickLog("ping12");
         //soap_begin_send(&soap);
         logger.QuickLog("ping13");
         //op_codes = getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
-        _ns1__GetCommandToExecuteResponse response;
-        op_codes = service.GetCommandToExecute(
-            &getCommand, &response);
+        //_ns1__GetCommandToExecuteResponse response;
+        //op_codes = service.GetCommandToExecute(
+        //    &getCommand, &response);
         logger.QuickLog("ping14");
         //soap_end_send(&soap);
 
-        if(op_codes == SOAP_OK)
-            logger.QuickLog("SOAP_OK");
-        else if (op_codes == SOAP_EOF)
-            logger.QuickLog("SOAP_EOF");
-        else if (op_codes == SOAP_SVR_FAULT)
-            logger.QuickLog("SOAP_SVR_FAULT");
-        else if (op_codes == SOAP_MUSTUNDERSTAND)
-            logger.QuickLog("SOAP_MUSTUNDERSTAND");
-        else {
-            logger.QuickLog("ERROR!");
-            char str[20];
-            snprintf(str, 20, "%d", op_codes);
-            logger.QuickLog(str);
-        }
+        //if(op_codes == SOAP_OK)
+        //    logger.QuickLog("SOAP_OK");
+        //else if (op_codes == SOAP_EOF)
+        //    logger.QuickLog("SOAP_EOF");
+        //else if (op_codes == SOAP_SVR_FAULT)
+        //    logger.QuickLog("SOAP_SVR_FAULT");
+        //else if (op_codes == SOAP_MUSTUNDERSTAND)
+        //    logger.QuickLog("SOAP_MUSTUNDERSTAND");
+        //else {
+        //    logger.QuickLog("ERROR!");
+        //    char str[20];
+        //    snprintf(str, 20, "%d", op_codes);
+        //    logger.QuickLog(str);
+        //}
         logger.QuickLog("ping15");
 
         //logger.LogEntry("Sleeping for 30 seconds");
@@ -202,7 +205,7 @@ int main(int argc, char *argv[])
         // TODO signal to interrupt and break from this loop
     }
 
-    soap_destroy(&soap); // remove deserialized class instances (C++ only)
-    soap_end(&soap); // clean up and remove deserialized data
-    soap_done(&soap); // detach environment (last use and no longer in scope)
+    //soap_destroy(&soap); // remove deserialized class instances (C++ only)
+    //soap_end(&soap); // clean up and remove deserialized data
+    //soap_done(&soap); // detach environment (last use and no longer in scope)
 }

@@ -5,9 +5,9 @@
 /*!
  * STUB FIXME
  */
-enum Command
+enum CommandIssued
 {
-    ERROR
+    COMMAND_ERROR
     // FIXME 
 };
 
