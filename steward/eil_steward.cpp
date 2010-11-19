@@ -23,13 +23,15 @@
 
 #define HOSTNAME_LEN 50
 
+/*
 // Nasty gSOAP bindings
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
-#include "soapH.h"
+#include "soapH.h"*/
 
 // Various helper libraries
 #include "logger.h"
+#include "stewardService.h"
 
 using namespace std;
 
@@ -49,8 +51,8 @@ int main(int argc, char *argv[])
     char logFile[256];
 
     // Our various SOAP/WSDL/CCMS related items
-    struct soap soap;
-    WSHttpBinding_USCOREIEILClientOperationsProxy service;
+    //struct soap soap;
+    //WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -110,10 +112,9 @@ int main(int argc, char *argv[])
     logger.QuickLog("STD i/o closed");
 
     // TODO - Any initialization will go here
-    soap_init(&soap); // initialize runtime environment
-
-    logger.QuickLog("gSOAP initialized");
-
+    // Set up our steward service
+    StewardService service(&logger);
+    
     // Main loop
     while (1) {
         //logger.BeginLogging();
