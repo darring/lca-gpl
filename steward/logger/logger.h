@@ -11,11 +11,11 @@
 
 // Constants
 
-//! Maximum length of the log line
-#define LOG_LINE_LENGTH 512
-
 #ifndef logger_H
 #define logger_H
+
+//! Maximum length of the log line
+#define LOG_LINE_LENGTH 512
 
 //! Logger for the EIL Client Agent Steward
 class StewardLogger

@@ -13,12 +13,8 @@
 #ifndef stewardService_H
 #define stewardService_H
 
-#include "logger.h"
-
-// Nasty gSOAP bindings
-#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
-#include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
-#include "soapH.h"
+class StewardLogger;
+class WSHttpBinding_USCOREIEILClientOperationsProxy;
 
 class StewardService
 {
@@ -35,8 +31,6 @@ class StewardService
         
         //! Destructor for the Steward service wrapper
         ~StewardService();
-        
-        
-}
+};
 
 #endif

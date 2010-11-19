@@ -2,19 +2,19 @@
 
 include ../Globals.mk
 
-SOURCES=eil_steward.cpp logger/logger.cpp lib_soap/soapC.cpp \
+SOURCES=eil_steward.cpp lib_soap/soapC.cpp \
+	logger/logger.cpp lib_steward/stewardService.cpp \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.cpp \
-	lib_steward/stewardService.cpp
 
 HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
-OBJECTS=logger.o soapC.o lib_steward/stewardService.o \
+OBJECTS=logger.o soapC.o stewardService.o \
 	soapWSHttpBinding_USCOREIEILClientOperationsProxy.o \
 	eil_steward.o
 
-INCLUDES=-I./logger/ -I./lib_soap/
+INCLUDES=-I./logger/ -I./lib_soap/ -I./lib_steward/
 
 eil_steward: $(OBJECTS)
 	$(CPP) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
