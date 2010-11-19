@@ -25,6 +25,7 @@ class StewardService
         struct soap soap;
         WSHttpBinding_USCOREIEILClientOperationsProxy service;
         StewardLogger *logger;
+        int op_codes;
     public:
         //! Constructor for the Steward service wrapper
         /*!
