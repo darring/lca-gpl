@@ -7,7 +7,10 @@
  xmlns:ns3="http://schemas.microsoft.com/2003/10/Serialization/"
  xmlns:ns4="http://schemas.datacontract.org/2004/07/EILClientManagmentService"
  xmlns:ns5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
- xmlns:ns1="http://tempuri.org/">
+ xmlns:ns1="http://tempuri.org/"
+ xmlns:t="http://tempuri.org/t.xsd">
+ <SOAP-ENV:Header>
+ </SOAP-ENV:Header>
  <SOAP-ENV:Body>
    <ns1:GetCommandStatus>
     <ns1:ctx>

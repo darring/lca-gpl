@@ -25,6 +25,10 @@ class SOAP_CMAC WSHttpBinding_USCOREIEILClientOperationsProxy : public soap
 	virtual	void WSHttpBinding_USCOREIEILClientOperationsProxy_init(soap_mode imode, soap_mode omode);
 	/// Disables and removes SOAP Header from message
 	virtual	void soap_noheader();
+	/// Put SOAP Header in message
+	virtual	void soap_header(char *t__Action, char *t__MessageID, char *t__To);
+	/// Get SOAP Header structure (NULL when absent)
+	virtual	const SOAP_ENV__Header *soap_header();
 	/// Get SOAP Fault structure (NULL when absent)
 	virtual	const SOAP_ENV__Fault *soap_fault();
 	/// Get SOAP Fault string (NULL when absent)

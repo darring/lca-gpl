@@ -855,3 +855,13 @@ int __ns1__InitiateClientCommands(
 );
 
 /* End of EILClientOps.h */
+struct SOAP_ENV__Header
+{
+   char *t__Action;
+   mustUnderstand char *t__MessageID;
+   mustUnderstand char *t__To;
+   struct t__ReplyTo
+   {
+      char *t__Address;
+   };
+};

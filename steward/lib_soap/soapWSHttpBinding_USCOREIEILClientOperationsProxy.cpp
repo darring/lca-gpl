@@ -33,6 +33,7 @@ void WSHttpBinding_USCOREIEILClientOperationsProxy::WSHttpBinding_USCOREIEILClie
 	{"ns4", "http://schemas.datacontract.org/2004/07/EILClientManagmentService", NULL, NULL},
 	{"ns5", "http://schemas.microsoft.com/2003/10/Serialization/Arrays", NULL, NULL},
 	{"ns1", "http://tempuri.org/", NULL, NULL},
+	{"t", "http://tempuri.org/t.xsd", NULL, NULL},
 	{NULL, NULL, NULL, NULL}
 };
 	if (!this->namespaces)
@@ -44,6 +45,17 @@ WSHttpBinding_USCOREIEILClientOperationsProxy::~WSHttpBinding_USCOREIEILClientOp
 
 void WSHttpBinding_USCOREIEILClientOperationsProxy::soap_noheader()
 {	header = NULL;
+}
+
+void WSHttpBinding_USCOREIEILClientOperationsProxy::soap_header(char *t__Action, char *t__MessageID, char *t__To)
+{	::soap_header(this);
+	this->header->t__Action = t__Action;
+	this->header->t__MessageID = t__MessageID;
+	this->header->t__To = t__To;
+}
+
+const SOAP_ENV__Header *WSHttpBinding_USCOREIEILClientOperationsProxy::soap_header()
+{	return this->header;
 }
 
 const SOAP_ENV__Fault *WSHttpBinding_USCOREIEILClientOperationsProxy::soap_fault()

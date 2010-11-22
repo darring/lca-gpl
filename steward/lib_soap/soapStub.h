@@ -914,20 +914,30 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE_t__ReplyTo
+#define SOAP_TYPE_t__ReplyTo (130)
+/* t:ReplyTo */
+struct t__ReplyTo
+{
+public:
+	char *t__Address;	/* optional element of type xsd:string */
+};
+#endif
+
 #ifndef SOAP_TYPE_SOAP_ENV__Header
 #define SOAP_TYPE_SOAP_ENV__Header (129)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
-#ifdef WITH_NOEMPTYSTRUCT
-private:
-	char dummy;	/* dummy member to enable compilation */
-#endif
+public:
+	char *t__Action;	/* optional element of type xsd:string */
+	char *t__MessageID;	/* mustUnderstand */
+	char *t__To;	/* mustUnderstand */
 };
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (130)
+#define SOAP_TYPE_SOAP_ENV__Code (131)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -938,7 +948,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (132)
+#define SOAP_TYPE_SOAP_ENV__Detail (133)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -950,7 +960,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (135)
+#define SOAP_TYPE_SOAP_ENV__Reason (136)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -960,7 +970,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (136)
+#define SOAP_TYPE_SOAP_ENV__Fault (137)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
