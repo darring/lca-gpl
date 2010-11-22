@@ -105,6 +105,31 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping19");
     ctx.mParams = &k1;
     logger->QuickLog("StewardService> ping20");
+    ns4__MachineType l_mType = ns4__MachineType__HOST;
+    switch (mType)
+    {
+        case ANY:
+            l_mType = ns4__MachineType__ANY;
+            break;
+        case HOST_WILDCARD:
+            l_mType = ns4__MachineType__HOST_USCOREWILDCARD;
+            break;
+        case FQDN:
+            l_mType = ns4__MachineType__FQDN;
+            break;
+        case UUID:
+            l_mType = ns4__MachineType__UUID;
+            break;
+        case COLLECTION:
+            l_mType = ns4__MachineType__COLLECTION;
+            break;
+        default:
+            // Default is HOST
+            l_mType = ns4__MachineType__HOST;
+            break;
+    }
+    
+    ctx.mType = &l_mType;
     
     /*
       Finally, we're ready for the GetCommandToExecute class
