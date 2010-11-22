@@ -53,6 +53,8 @@ done
 
 wsdl2h -g -f -o EILClientOps.h "http://$(CCMS_SERVER)/CCMS/EILClientOperationsService.svc?wsdl"
 
+cat header_append.h >> EILClientOps.h
+
 soapcpp2 -2 -a -i -C -I /usr/include/gsoap/ EILClientOps.h
 
 echo "gSOAP files reconstructed"
