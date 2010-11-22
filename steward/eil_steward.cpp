@@ -38,6 +38,7 @@
 // Various helper libraries
 #include "logger.h"
 #include "stewardService.h"
+#include "machineType.h"
 
 using namespace std;
 
@@ -140,58 +141,42 @@ int main(int argc, char *argv[])
         // Start out at the lowest possible data type
         //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring i1;
 
-        logger.QuickLog("ping1");
         //std::string kn = std::string("HOST_NAME");
         //i1.Key = &kn;
-        logger.QuickLog("ping2");
         //std::string hn = std::string(hostname);
         //i1.Value= &hn;
 
         // Set up our order num
         //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring on;
-        logger.QuickLog("on create");
         //std::string onumkey = std::string("ORDER_NUM");
         //on.Key = &onumkey;
-        logger.QuickLog("add key");
         //std::string onumval = std::string("1");
         //on.Value = &onumval;
-        logger.QuickLog("add value");
 
         //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
         //ar[0] = i1;
         //ar[1] = on;
 
-        logger.QuickLog("ping3");
         // Move up one data type
         //ns5__ArrayOfKeyValueOfstringstring k1;
-        logger.QuickLog("ping4");
         //k1.__sizeKeyValueOfstringstring = 2;
-        logger.QuickLog("ping5");
         //k1.KeyValueOfstringstring = &ar[0];
-        logger.QuickLog("ping6");
 
         // Now, up to the machine context
         //ns4__MachineContext ctx;
-        logger.QuickLog("ping7");
         //ctx.soap_default(&soap);
-        logger.QuickLog("ping8");
         //ctx.mParams = &k1;
 
-        logger.QuickLog("ping9");
         // Now, up to the get command to execute class
         //_ns1__GetCommandToExecute getCommand;
-        logger.QuickLog("ping10");
         //getCommand.ctx = &ctx;
-        logger.QuickLog("ping11");
         //getCommand.soap_serialize(&soap);
-        logger.QuickLog("ping12");
         //soap_begin_send(&soap);
-        logger.QuickLog("ping13");
         //op_codes = getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
         //_ns1__GetCommandToExecuteResponse response;
         //op_codes = service.GetCommandToExecute(
         //    &getCommand, &response);
-        logger.QuickLog("ping14");
+        service.QueryForClientCommands(hostname, "1", HOST);
         //soap_end_send(&soap);
 
         //if(op_codes == SOAP_OK)

@@ -22,6 +22,14 @@ StewardService::StewardService(StewardLogger *myLogger)
     soap = &lsoap;
     
     logger->QuickLog("StewardService> gSOAP initialized");
+    
+    WSHttpBinding_USCOREIEILClientOperationsProxy lservice;
+    
+    logger->QuickLog("StewardService> Proxy Service setup...");
+    
+    service = &lservice;
+    
+    logger->QuickLog("StewardService> Proxy Service initialized...");
 }
 
 StewardService::~StewardService()
@@ -42,51 +50,76 @@ CommandIssued StewardService::QueryForClientCommands(
       
       Start out at the lowest possible data type 
     */
+    logger->QuickLog("StewardService> ping1");
+
     
     // Set up our host name
     _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
+    logger->QuickLog("StewardService> ping2");
     std::string kn = std::string("HOST_NAME");
+    logger->QuickLog("StewardService> ping3");
     hostname_kv.Key = &kn;
     std::string hn = std::string(hostname);
+    logger->QuickLog("StewardService> ping5");
     hostname_kv.Value= &hn;
     
     // Set up our order num
+    logger->QuickLog("StewardService> ping6");
     _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
+    logger->QuickLog("StewardService> ping7");
     std::string onumkey = std::string("ORDER_NUM");
+    logger->QuickLog("StewardService> ping8");
     ordernum_kv.Key = &onumkey;
+    logger->QuickLog("StewardService> ping9");
     std::string onumval = std::string(order_num);
+    logger->QuickLog("StewardService> ping10");
     ordernum_kv.Value = &onumval;
+    logger->QuickLog("StewardService> ping11");
     
     /*
       Bring it up to the next level
     */
     _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
+    logger->QuickLog("StewardService> ping12");
     ar[0] = hostname_kv;
+    logger->QuickLog("StewardService> ping13");
     ar[1] = ordernum_kv;
+    logger->QuickLog("StewardService> ping14");
     
     /*
       Take that array, and plug it into the next data type level
     */
     ns5__ArrayOfKeyValueOfstringstring k1;
+    logger->QuickLog("StewardService> ping15");
     k1.__sizeKeyValueOfstringstring = 2;
+    logger->QuickLog("StewardService> ping16");
     k1.KeyValueOfstringstring = &ar[0];
     
     /*
       Now, up to the machine context
     */
+    logger->QuickLog("StewardService> ping17");
     ns4__MachineContext ctx;
+    logger->QuickLog("StewardService> ping18");
     ctx.soap_default(soap); // Must set our soap instance
+    logger->QuickLog("StewardService> ping19");
     ctx.mParams = &k1;
+    logger->QuickLog("StewardService> ping20");
     
     /*
       Finally, we're ready for the GetCommandToExecute class
     */
     _ns1__GetCommandToExecute getCommand;
+    logger->QuickLog("StewardService> ping21");
     getCommand.ctx = &ctx;
+    logger->QuickLog("StewardService> ping22");
     getCommand.soap_serialize(soap); // Serialize with our soap instance
+    logger->QuickLog("StewardService> ping23");
     _ns1__GetCommandToExecuteResponse response;
+    logger->QuickLog("StewardService> ping24");
     op_codes = service->GetCommandToExecute(
         &getCommand, &response);
+    logger->QuickLog("StewardService> ping25");
 
     return COMMAND_ERROR;
 }
