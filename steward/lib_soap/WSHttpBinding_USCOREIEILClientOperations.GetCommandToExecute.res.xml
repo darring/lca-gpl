@@ -8,7 +8,7 @@
  xmlns:ns4="http://schemas.datacontract.org/2004/07/EILClientManagmentService"
  xmlns:ns5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
  xmlns:ns1="http://tempuri.org/"
- xmlns:t="http://tempuri.org/t.xsd">
+ xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
  <SOAP-ENV:Header>
  </SOAP-ENV:Header>
  <SOAP-ENV:Body>
@@ -21,6 +21,12 @@
       <ns5:Key></ns5:Key>
       <ns5:Value></ns5:Value>
      </ns5:KeyValueOfstringstring>
+     <ns5:KeyValueOfstringstring>
+      <ns5:Key></ns5:Key>
+      <ns5:Value></ns5:Value>
+     </ns5:KeyValueOfstringstring>
+     <!-- extensibility element(s) -->
+
     </ns4:CommandParameters>
     <ns4:CommandPath></ns4:CommandPath>
     <ns4:CommandResult></ns4:CommandResult>
@@ -30,6 +36,8 @@
     <ns4:ExpectedTimeOut>0</ns4:ExpectedTimeOut>
     <ns4:OperationID></ns4:OperationID>
     <ns4:SetMachineType></ns4:SetMachineType>
+    <!-- extensibility element(s) -->
+
    </ns1:GetCommandToExecuteResult>
   </ns1:GetCommandToExecuteResponse>
  </SOAP-ENV:Body>

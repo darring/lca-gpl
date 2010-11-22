@@ -855,13 +855,17 @@ int __ns1__InitiateClientCommands(
 );
 
 /* End of EILClientOps.h */
+/*
+ * The following is appended when we rebuild the gSOAP bindings
+ */
+#import "wsa.h"
 struct SOAP_ENV__Header
 {
-   char *t__Action;
-   mustUnderstand char *t__MessageID;
-   mustUnderstand char *t__To;
-   struct t__ReplyTo
-   {
-      char *t__Address;
-   };
+    mustUnderstand _wsa__MessageID wsa__MessageID 0;
+    mustUnderstand _wsa__RelatesTo *wsa__RelatesTo 0;
+    mustUnderstand _wsa__From *wsa__From 0;
+    mustUnderstand _wsa__ReplyTo *wsa__ReplyTo 0;
+    mustUnderstand _wsa__FaultTo *wsa__FaultTo 0;
+    mustUnderstand _wsa__To wsa__To 0;
+    mustUnderstand _wsa__Action wsa__Action 0;
 };
