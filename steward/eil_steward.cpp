@@ -26,6 +26,9 @@
 
 #define HOSTNAME_LEN 50
 
+//! Debugging toggle- Enable to force not to run as daemon
+#define DEBUG
+
 /*
 // Nasty gSOAP bindings
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
@@ -41,7 +44,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     // Misc variables to be used by the daemon
+    #ifndef DEBUG
     pid_t pid, sid;
+    #endif
     FILE *logPipe;
     //int op_codes;
 
@@ -57,6 +62,7 @@ int main(int argc, char *argv[])
     //struct soap soap;
     //WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
+    #ifndef DEBUG
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
     if (pid < 0) {
@@ -67,7 +73,7 @@ int main(int argc, char *argv[])
     if (pid > 0) {
         exit(EXIT_SUCCESS);
     }
-
+    #endif
     // File mode mask so we can have full access
     umask(0);
 
@@ -89,6 +95,7 @@ int main(int argc, char *argv[])
 
     logger.QuickLog("Startup daemon");
 
+    #ifndef DEBUG
     // Obtain a new session ID for child process
     sid = setsid();
     if (sid < 0) {
@@ -98,6 +105,7 @@ int main(int argc, char *argv[])
     }
 
     logger.QuickLog("New Session ID obtained");
+    #endif
 
     // Obtain our hostname information for the first time
     gethostname(hostname, HOSTNAME_LEN);
@@ -107,15 +115,18 @@ int main(int argc, char *argv[])
     // TODO - Change to working directory
     // should be determined by a helper script from the dispatcher
 
+    #ifndef DEBUG
     // File descriptors are a security hazard in a daemon
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
     logger.QuickLog("STD i/o closed");
+    #endif
 
     // TODO - Any initialization will go here
     // Set up our steward service
+    logger.QuickLog("Initializing service...");
     StewardService service(&logger);
     
     // Main loop

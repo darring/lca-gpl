@@ -14,10 +14,12 @@
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
-    //struct soap soap;
+    struct soap lsoap;
     logger = myLogger;
+    logger->QuickLog("StewardService> gSOAP setup...");
     // Initialize our soap runtime environment
-    soap_init(soap);
+    soap_init(&lsoap);
+    soap = &lsoap;
     
     logger->QuickLog("StewardService> gSOAP initialized");
 }
