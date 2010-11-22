@@ -51,7 +51,6 @@ CommandIssued StewardService::QueryForClientCommands(
       Start out at the lowest possible data type 
     */
     logger->QuickLog("StewardService> ping1");
-
     
     // Set up our host name
     _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
