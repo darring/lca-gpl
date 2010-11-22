@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CCMS_SERVER=172.16.3.10
+
 # gSOAP rebuild script
 
 CLEANUP_FILES=$(cat <<EOF
@@ -9,7 +11,7 @@ WSHttpBinding_USCOREIEILClientOperations.GetCommandStatus.req.xml
 WSHttpBinding_USCOREIEILClientOperations.GetCommandStatus.res.xml
 WSHttpBinding_USCOREIEILClientOperations.GetCommandToExecute.req.xml
 soapC.cpp
-soapC.co
+soapC.c
 WSHttpBinding_USCOREIEILClientOperations.GetCommandToExecute.res.xml
 soapH.h
 WSHttpBinding_USCOREIEILClientOperations.InitiateClientCommands.req.xml
@@ -49,7 +51,7 @@ done
 
 #soapcpp2 -i -C -c -I /usr/include/gsoap/ EILClientOps.h
 
-wsdl2h -g -f -o EILClientOps.h "http://10.10.0.20/CCMS/EILClientOperationsService.svc?wsdl"
+wsdl2h -g -f -o EILClientOps.h "http://$(CCMS_SERVER)/CCMS/EILClientOperationsService.svc?wsdl"
 
 soapcpp2 -2 -a -i -C -I /usr/include/gsoap/ EILClientOps.h
 
