@@ -22,10 +22,17 @@ class WSHttpBinding_USCOREIEILClientOperationsProxy;
 class StewardService
 {
     private:
-        struct soap *soap;
+        //struct soap *soap;
         WSHttpBinding_USCOREIEILClientOperationsProxy *service;
         StewardLogger *logger;
         int op_codes;
+        bool serviceIsSet;
+        
+        //! Private method for setting the proxy service
+        /*!
+         * \param new_service a Client Operations Proxy service
+         */
+        void setService(WSHttpBinding_USCOREIEILClientOperationsProxy *new_service);
     public:
         //! Constructor for the Steward service wrapper
         /*!

@@ -14,12 +14,13 @@
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
-    struct soap lsoap;
+    //struct soap lsoap;
+    serviceIsSet = false;
     logger = myLogger;
     logger->QuickLog("StewardService> gSOAP setup...");
     // Initialize our soap runtime environment
-    soap_init(&lsoap);
-    soap = &lsoap;
+    //soap_init(&lsoap);
+    //soap = &lsoap;
     
     logger->QuickLog("StewardService> gSOAP initialized");
     
@@ -27,16 +28,16 @@ StewardService::StewardService(StewardLogger *myLogger)
     
     logger->QuickLog("StewardService> Proxy Service setup...");
     
-    service = &lservice;
+    setService(&lservice);
     
     logger->QuickLog("StewardService> Proxy Service initialized...");
 }
 
 StewardService::~StewardService()
 {
-    soap_destroy(soap); // remove deserialized class instances (C++ only)
-    soap_end(soap); // clean up and remove deserialized data
-    soap_done(soap); // detach environment (last use and no longer in scope)
+    //soap_destroy(soap); // remove deserialized class instances (C++ only)
+    //soap_end(soap); // clean up and remove deserialized data
+    //soap_done(soap); // detach environment (last use and no longer in scope)
 }
 
 CommandIssued StewardService::QueryForClientCommands(
@@ -100,7 +101,7 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping17");
     ns4__MachineContext ctx;
     logger->QuickLog("StewardService> ping18");
-    ctx.soap_default(soap); // Must set our soap instance
+    //ctx.soap_default(soap); // Must set our soap instance
     logger->QuickLog("StewardService> ping19");
     ctx.mParams = &k1;
     logger->QuickLog("StewardService> ping20");
@@ -137,7 +138,7 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping21");
     getCommand.ctx = &ctx;
     logger->QuickLog("StewardService> ping22");
-    getCommand.soap_serialize(soap); // Serialize with our soap instance
+    //getCommand.soap_serialize(soap); // Serialize with our soap instance
     logger->QuickLog("StewardService> ping23");
     _ns1__GetCommandToExecuteResponse response;
     logger->QuickLog("StewardService> ping24");
@@ -146,4 +147,16 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping25");
 
     return COMMAND_ERROR;
+}
+
+void
+StewardService::setService
+(WSHttpBinding_USCOREIEILClientOperationsProxy *new_service)
+{
+    if(serviceIsSet) {
+        free(service);
+        serviceIsSet = false;
+    }
+    service = new_service;
+    serviceIsSet = true;
 }
