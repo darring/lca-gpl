@@ -28,8 +28,8 @@ void WSHttpBinding_USCOREIEILClientOperationsProxy::WSHttpBinding_USCOREIEILClie
 	soap_endpoint = NULL;
 	static const struct Namespace namespaces[] =
 {
-	{"SOAP-ENV", "http://www.w3.org/2003/05/soap-envelope", "http://schemas.xmlsoap.org/soap/envelope/", NULL},
-	{"SOAP-ENC", "http://www.w3.org/2003/05/soap-encoding", "http://schemas.xmlsoap.org/soap/encoding/", NULL},
+	{"SOAP-ENV", "http://www.w3.org/2003/05/soap-envelope", "http://www.w3.org/2003/05/soap-envelope", NULL},
+	{"SOAP-ENC", "http://www.w3.org/2003/05/soap-encoding", "http://www.w3.org/2003/05/soap-encoding", NULL},
 	{"xsi", "http://www.w3.org/2001/XMLSchema-instance", "http://www.w3.org/*/XMLSchema-instance", NULL},
 	{"xsd", "http://www.w3.org/2001/XMLSchema", "http://www.w3.org/*/XMLSchema", NULL},
 	{"ns3", "http://schemas.microsoft.com/2003/10/Serialization/", NULL, NULL},
@@ -104,7 +104,7 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::GetCommandToExecute(_ns1__Get
 	struct __ns1__GetCommandToExecute soap_tmp___ns1__GetCommandToExecute;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://rmssvr01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__GetCommandToExecute.ns1__GetCommandToExecute = ns1__GetCommandToExecute;
@@ -156,7 +156,7 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::UpdateCommandStatus(_ns1__Upd
 	struct __ns1__UpdateCommandStatus soap_tmp___ns1__UpdateCommandStatus;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://rmssvr01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/UpdateCommandStatus";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__UpdateCommandStatus.ns1__UpdateCommandStatus = ns1__UpdateCommandStatus;
@@ -208,7 +208,7 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::GetCommandStatus(_ns1__GetCom
 	struct __ns1__GetCommandStatus soap_tmp___ns1__GetCommandStatus;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://rmssvr01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/GetCommandStatus";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__GetCommandStatus.ns1__GetCommandStatus = ns1__GetCommandStatus;
@@ -260,7 +260,7 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::InitiateClientCommands(_ns1__
 	struct __ns1__InitiateClientCommands soap_tmp___ns1__InitiateClientCommands;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://rmssvr01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/InitiateClientCommands";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__InitiateClientCommands.ns1__InitiateClientCommands = ns1__InitiateClientCommands;

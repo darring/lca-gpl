@@ -12,7 +12,7 @@
 
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.0 2010-11-22 23:43:25 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.0 2010-11-23 22:01:11 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -165,6 +165,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		*type = soap_lookup_type(soap, soap->href);
 	switch (*type)
 	{
+	case SOAP_TYPE_xsd__byte:
+		return soap_in_xsd__byte(soap, NULL, NULL, "xsd:byte");
 	case SOAP_TYPE_byte:
 		return soap_in_byte(soap, NULL, NULL, "xsd:byte");
 	case SOAP_TYPE_short:
@@ -179,6 +181,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_float(soap, NULL, NULL, "xsd:float");
 	case SOAP_TYPE_double:
 		return soap_in_double(soap, NULL, NULL, "xsd:double");
+	case SOAP_TYPE_xsd__unsignedByte:
+		return soap_in_xsd__unsignedByte(soap, NULL, NULL, "xsd:unsignedByte");
 	case SOAP_TYPE_unsignedByte:
 		return soap_in_unsignedByte(soap, NULL, NULL, "xsd:unsignedByte");
 	case SOAP_TYPE_unsignedShort:
@@ -231,8 +235,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_xsd__unsignedLong(soap, NULL, NULL, "xsd:unsignedLong");
 	case SOAP_TYPE_xsd__unsignedInt:
 		return soap_in_xsd__unsignedInt(soap, NULL, NULL, "xsd:unsignedInt");
-	case SOAP_TYPE_xsd__unsignedByte:
-		return soap_in_xsd__unsignedByte(soap, NULL, NULL, "xsd:unsignedByte");
+	case SOAP_TYPE_xsd__unsignedByte_:
+		return soap_in_xsd__unsignedByte_(soap, NULL, NULL, "xsd:unsignedByte");
 	case SOAP_TYPE_xsd__string:
 		return soap_in_xsd__string(soap, NULL, NULL, "xsd:string");
 	case SOAP_TYPE_xsd__short:
@@ -255,8 +259,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_xsd__decimal(soap, NULL, NULL, "xsd:decimal");
 	case SOAP_TYPE_xsd__dateTime:
 		return soap_in_xsd__dateTime(soap, NULL, NULL, "xsd:dateTime");
-	case SOAP_TYPE_xsd__byte:
-		return soap_in_xsd__byte(soap, NULL, NULL, "xsd:byte");
+	case SOAP_TYPE_xsd__byte_:
+		return soap_in_xsd__byte_(soap, NULL, NULL, "xsd:byte");
 	case SOAP_TYPE_xsd__boolean:
 		return soap_in_xsd__boolean(soap, NULL, NULL, "xsd:boolean");
 	case SOAP_TYPE_xsd__base64Binary_:
@@ -426,8 +430,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 			return soap_in_xsd__unsignedInt(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "xsd:unsignedByte"))
-		{	*type = SOAP_TYPE_xsd__unsignedByte;
-			return soap_in_xsd__unsignedByte(soap, NULL, NULL, NULL);
+		{	*type = SOAP_TYPE_xsd__unsignedByte_;
+			return soap_in_xsd__unsignedByte_(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "xsd:string"))
 		{	*type = SOAP_TYPE_xsd__string;
@@ -474,8 +478,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 			return soap_in_xsd__dateTime(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "xsd:byte"))
-		{	*type = SOAP_TYPE_xsd__byte;
-			return soap_in_xsd__byte(soap, NULL, NULL, NULL);
+		{	*type = SOAP_TYPE_xsd__byte_;
+			return soap_in_xsd__byte_(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "xsd:boolean"))
 		{	*type = SOAP_TYPE_xsd__boolean;
@@ -530,6 +534,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 			return soap_in_xsd__anyType(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "xsd:byte"))
+		{	*type = SOAP_TYPE_xsd__byte;
+			return soap_in_xsd__byte(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "xsd:byte"))
 		{	*type = SOAP_TYPE_byte;
 			return soap_in_byte(soap, NULL, NULL, NULL);
 		}
@@ -556,6 +564,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		if (!soap_match_tag(soap, t, "xsd:double"))
 		{	*type = SOAP_TYPE_double;
 			return soap_in_double(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "xsd:unsignedByte"))
+		{	*type = SOAP_TYPE_xsd__unsignedByte;
+			return soap_in_xsd__unsignedByte(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "xsd:unsignedByte"))
 		{	*type = SOAP_TYPE_unsignedByte;
@@ -887,6 +899,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 	{
 	case SOAP_TYPE__ns3__byte:
 		return soap_out__ns3__byte(soap, "ns3:byte", id, (const char *)ptr, NULL);
+	case SOAP_TYPE_xsd__byte:
+		return soap_out_xsd__byte(soap, tag, id, (const char *)ptr, "xsd:byte");
 	case SOAP_TYPE_byte:
 		return soap_out_byte(soap, tag, id, (const char *)ptr, "xsd:byte");
 	case SOAP_TYPE__ns3__short:
@@ -915,6 +929,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_double(soap, tag, id, (const double *)ptr, "xsd:double");
 	case SOAP_TYPE__ns3__unsignedByte:
 		return soap_out__ns3__unsignedByte(soap, "ns3:unsignedByte", id, (const unsigned char *)ptr, NULL);
+	case SOAP_TYPE_xsd__unsignedByte:
+		return soap_out_xsd__unsignedByte(soap, tag, id, (const unsigned char *)ptr, "xsd:unsignedByte");
 	case SOAP_TYPE_unsignedByte:
 		return soap_out_unsignedByte(soap, tag, id, (const unsigned char *)ptr, "xsd:unsignedByte");
 	case SOAP_TYPE__ns3__unsignedShort:
@@ -1027,8 +1043,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return ((xsd__unsignedLong *)ptr)->soap_out(soap, tag, id, "xsd:unsignedLong");
 	case SOAP_TYPE_xsd__unsignedInt:
 		return ((xsd__unsignedInt *)ptr)->soap_out(soap, tag, id, "xsd:unsignedInt");
-	case SOAP_TYPE_xsd__unsignedByte:
-		return ((xsd__unsignedByte *)ptr)->soap_out(soap, tag, id, "xsd:unsignedByte");
+	case SOAP_TYPE_xsd__unsignedByte_:
+		return ((xsd__unsignedByte_ *)ptr)->soap_out(soap, tag, id, "xsd:unsignedByte");
 	case SOAP_TYPE_xsd__string:
 		return ((xsd__string *)ptr)->soap_out(soap, tag, id, "xsd:string");
 	case SOAP_TYPE_xsd__short:
@@ -1051,8 +1067,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_xsd__decimal(soap, tag, id, (const std::string *)ptr, "xsd:decimal");
 	case SOAP_TYPE_xsd__dateTime:
 		return ((xsd__dateTime *)ptr)->soap_out(soap, tag, id, "xsd:dateTime");
-	case SOAP_TYPE_xsd__byte:
-		return ((xsd__byte *)ptr)->soap_out(soap, tag, id, "xsd:byte");
+	case SOAP_TYPE_xsd__byte_:
+		return ((xsd__byte_ *)ptr)->soap_out(soap, tag, id, "xsd:byte");
 	case SOAP_TYPE_xsd__boolean:
 		return ((xsd__boolean *)ptr)->soap_out(soap, tag, id, "xsd:boolean");
 	case SOAP_TYPE_xsd__base64Binary_:
@@ -1296,8 +1312,8 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_xsd__unsignedInt:
 		((xsd__unsignedInt *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE_xsd__unsignedByte:
-		((xsd__unsignedByte *)ptr)->soap_serialize(soap);
+	case SOAP_TYPE_xsd__unsignedByte_:
+		((xsd__unsignedByte_ *)ptr)->soap_serialize(soap);
 		break;
 	case SOAP_TYPE_xsd__string:
 		((xsd__string *)ptr)->soap_serialize(soap);
@@ -1332,8 +1348,8 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_xsd__dateTime:
 		((xsd__dateTime *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE_xsd__byte:
-		((xsd__byte *)ptr)->soap_serialize(soap);
+	case SOAP_TYPE_xsd__byte_:
+		((xsd__byte_ *)ptr)->soap_serialize(soap);
 		break;
 	case SOAP_TYPE_xsd__boolean:
 		((xsd__boolean *)ptr)->soap_serialize(soap);
@@ -1542,8 +1558,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate_xsd__base64Binary_(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_xsd__boolean:
 		return (void*)soap_instantiate_xsd__boolean(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_xsd__byte:
-		return (void*)soap_instantiate_xsd__byte(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_xsd__byte_:
+		return (void*)soap_instantiate_xsd__byte_(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_xsd__dateTime:
 		return (void*)soap_instantiate_xsd__dateTime(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_xsd__decimal_:
@@ -1562,8 +1578,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate_xsd__short(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_xsd__string:
 		return (void*)soap_instantiate_xsd__string(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_xsd__unsignedByte:
-		return (void*)soap_instantiate_xsd__unsignedByte(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_xsd__unsignedByte_:
+		return (void*)soap_instantiate_xsd__unsignedByte_(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_xsd__unsignedInt:
 		return (void*)soap_instantiate_xsd__unsignedInt(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_xsd__unsignedLong:
@@ -1763,11 +1779,11 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((xsd__boolean*)p->ptr);
 		break;
-	case SOAP_TYPE_xsd__byte:
+	case SOAP_TYPE_xsd__byte_:
 		if (p->size < 0)
-			SOAP_DELETE((xsd__byte*)p->ptr);
+			SOAP_DELETE((xsd__byte_*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((xsd__byte*)p->ptr);
+			SOAP_DELETE_ARRAY((xsd__byte_*)p->ptr);
 		break;
 	case SOAP_TYPE_xsd__dateTime:
 		if (p->size < 0)
@@ -1823,11 +1839,11 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((xsd__string*)p->ptr);
 		break;
-	case SOAP_TYPE_xsd__unsignedByte:
+	case SOAP_TYPE_xsd__unsignedByte_:
 		if (p->size < 0)
-			SOAP_DELETE((xsd__unsignedByte*)p->ptr);
+			SOAP_DELETE((xsd__unsignedByte_*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((xsd__unsignedByte*)p->ptr);
+			SOAP_DELETE_ARRAY((xsd__unsignedByte_*)p->ptr);
 		break;
 	case SOAP_TYPE_xsd__unsignedInt:
 		if (p->size < 0)
@@ -2247,6 +2263,33 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_container_insert(struct soap *soap, int st, int 
 #endif
 }
 
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__byte(struct soap *soap, const char *tag, int id, const char *a, const char *type)
+{
+	return soap_outbyte(soap, tag, id, a, type, SOAP_TYPE_xsd__byte);
+}
+
+SOAP_FMAC3 char * SOAP_FMAC4 soap_in_xsd__byte(struct soap *soap, const char *tag, char *a, const char *type)
+{	char *p;
+	p = soap_inbyte(soap, tag, a, type, SOAP_TYPE_xsd__byte);
+	return p;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd__byte(struct soap *soap, const char *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_xsd__byte);
+	if (soap_out_xsd__byte(soap, tag?tag:"xsd:byte", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 char * SOAP_FMAC4 soap_get_xsd__byte(struct soap *soap, char *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_xsd__byte(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_byte(struct soap *soap, char *a)
 {
 	(void)soap; /* appease -Wall -Werror */
@@ -2491,6 +2534,33 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_double(struct soap *soap, const double *a, co
 SOAP_FMAC3 double * SOAP_FMAC4 soap_get_double(struct soap *soap, double *p, const char *tag, const char *type)
 {
 	if ((p = soap_in_double(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__unsignedByte(struct soap *soap, const char *tag, int id, const unsigned char *a, const char *type)
+{
+	return soap_outunsignedByte(soap, tag, id, a, type, SOAP_TYPE_xsd__unsignedByte);
+}
+
+SOAP_FMAC3 unsigned char * SOAP_FMAC4 soap_in_xsd__unsignedByte(struct soap *soap, const char *tag, unsigned char *a, const char *type)
+{	unsigned char *p;
+	p = soap_inunsignedByte(soap, tag, a, type, SOAP_TYPE_xsd__unsignedByte);
+	return p;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd__unsignedByte(struct soap *soap, const unsigned char *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_xsd__unsignedByte);
+	if (soap_out_xsd__unsignedByte(soap, tag?tag:"xsd:unsignedByte", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 unsigned char * SOAP_FMAC4 soap_get_xsd__unsignedByte(struct soap *soap, unsigned char *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_xsd__unsignedByte(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
@@ -6182,41 +6252,40 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__unsignedInt(struct soap *soap, int st,
 	*(xsd__unsignedInt*)p = *(xsd__unsignedInt*)q;
 }
 
-void xsd__unsignedByte::soap_default(struct soap *soap)
+void xsd__unsignedByte_::soap_default(struct soap *soap)
 {
 	this->soap = soap;
-	soap_default_unsignedByte(soap, &this->xsd__unsignedByte::__item);
+	soap_default_xsd__unsignedByte(soap, &this->xsd__unsignedByte_::__item);
 	this->xsd__anyType::__item = NULL;
 	/* transient soap skipped */
 }
 
-void xsd__unsignedByte::soap_serialize(struct soap *soap) const
+void xsd__unsignedByte_::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
-	soap_embedded(soap, &this->xsd__unsignedByte::__item, SOAP_TYPE_unsignedByte);
 	/* transient soap skipped */
 }
 
-int xsd__unsignedByte::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+int xsd__unsignedByte_::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
 {
-	return soap_out_xsd__unsignedByte(soap, tag, id, this, type);
+	return soap_out_xsd__unsignedByte_(soap, tag, id, this, type);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__unsignedByte(struct soap *soap, const char *tag, int id, const xsd__unsignedByte *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__unsignedByte_(struct soap *soap, const char *tag, int id, const xsd__unsignedByte_ *a, const char *type)
 {
-	return soap_out_unsignedByte(soap, tag, id, &(a->xsd__unsignedByte::__item), "xsd:unsignedByte");
+	return soap_out_xsd__unsignedByte(soap, tag, id, &(a->xsd__unsignedByte_::__item), "xsd:unsignedByte");
 }
 
-void *xsd__unsignedByte::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in_xsd__unsignedByte(soap, tag, this, type);
+void *xsd__unsignedByte_::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_xsd__unsignedByte_(soap, tag, this, type);
 }
 
-SOAP_FMAC3 xsd__unsignedByte * SOAP_FMAC4 soap_in_xsd__unsignedByte(struct soap *soap, const char *tag, xsd__unsignedByte *a, const char *type)
+SOAP_FMAC3 xsd__unsignedByte_ * SOAP_FMAC4 soap_in_xsd__unsignedByte_(struct soap *soap, const char *tag, xsd__unsignedByte_ *a, const char *type)
 {
 	(void)type; /* appease -Wall -Werror */
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
-	if (!(a = (xsd__unsignedByte *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_xsd__unsignedByte, sizeof(xsd__unsignedByte), soap->type, soap->arrayType)))
+	if (!(a = (xsd__unsignedByte_ *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_xsd__unsignedByte_, sizeof(xsd__unsignedByte_), soap->type, soap->arrayType)))
 	{	soap->error = SOAP_TAG_MISMATCH;
 		return NULL;
 	}
@@ -6224,68 +6293,68 @@ SOAP_FMAC3 xsd__unsignedByte * SOAP_FMAC4 soap_in_xsd__unsignedByte(struct soap 
 	*soap->id = '\0';
 	if (soap->alloced)
 	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE_xsd__unsignedByte)
-			return (xsd__unsignedByte *)a->soap_in(soap, tag, type);
+		if (soap->clist->type != SOAP_TYPE_xsd__unsignedByte_)
+			return (xsd__unsignedByte_ *)a->soap_in(soap, tag, type);
 	}
-	if (!soap_in_unsignedByte(soap, tag, &(a->xsd__unsignedByte::__item), "xsd:unsignedByte"))
+	if (!soap_in_xsd__unsignedByte(soap, tag, &(a->xsd__unsignedByte_::__item), "xsd:unsignedByte"))
 		return NULL;
 	return a;
 }
 
-int xsd__unsignedByte::soap_put(struct soap *soap, const char *tag, const  char *type) const
+int xsd__unsignedByte_::soap_put(struct soap *soap, const char *tag, const  char *type) const
 {
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_xsd__unsignedByte);
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_xsd__unsignedByte_);
 	if (this->soap_out(soap, tag?tag:"xsd:unsignedByte", id, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-void *xsd__unsignedByte::soap_get(struct soap *soap, const char *tag, const char *type)
+void *xsd__unsignedByte_::soap_get(struct soap *soap, const char *tag, const char *type)
 {
-	return soap_get_xsd__unsignedByte(soap, this, tag, type);
+	return soap_get_xsd__unsignedByte_(soap, this, tag, type);
 }
 
-SOAP_FMAC3 xsd__unsignedByte * SOAP_FMAC4 soap_get_xsd__unsignedByte(struct soap *soap, xsd__unsignedByte *p, const char *tag, const char *type)
+SOAP_FMAC3 xsd__unsignedByte_ * SOAP_FMAC4 soap_get_xsd__unsignedByte_(struct soap *soap, xsd__unsignedByte_ *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_xsd__unsignedByte(soap, tag, p, type)))
+	if ((p = soap_in_xsd__unsignedByte_(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC1 xsd__unsignedByte * SOAP_FMAC2 soap_instantiate_xsd__unsignedByte(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC1 xsd__unsignedByte_ * SOAP_FMAC2 soap_instantiate_xsd__unsignedByte_(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
 	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_xsd__unsignedByte(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_xsd__unsignedByte, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_xsd__unsignedByte_(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_xsd__unsignedByte_, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte);
+	{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte_);
 		if (size)
-			*size = sizeof(xsd__unsignedByte);
-		((xsd__unsignedByte*)cp->ptr)->soap = soap;
+			*size = sizeof(xsd__unsignedByte_);
+		((xsd__unsignedByte_*)cp->ptr)->soap = soap;
 	}
 	else
-	{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte[n]);
+	{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte_[n]);
 		if (!cp->ptr)
 		{	soap->error = SOAP_EOM;
 			return NULL;
 		}
 		if (size)
-			*size = n * sizeof(xsd__unsignedByte);
+			*size = n * sizeof(xsd__unsignedByte_);
 		for (int i = 0; i < n; i++)
-			((xsd__unsignedByte*)cp->ptr)[i].soap = soap;
+			((xsd__unsignedByte_*)cp->ptr)[i].soap = soap;
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (xsd__unsignedByte*)cp->ptr;
+	return (xsd__unsignedByte_*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__unsignedByte(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__unsignedByte_(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying xsd__unsignedByte %p -> %p\n", q, p));
-	*(xsd__unsignedByte*)p = *(xsd__unsignedByte*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying xsd__unsignedByte_ %p -> %p\n", q, p));
+	*(xsd__unsignedByte_*)p = *(xsd__unsignedByte_*)q;
 }
 
 void xsd__string::soap_default(struct soap *soap)
@@ -7340,41 +7409,40 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__dateTime(struct soap *soap, int st, in
 	*(xsd__dateTime*)p = *(xsd__dateTime*)q;
 }
 
-void xsd__byte::soap_default(struct soap *soap)
+void xsd__byte_::soap_default(struct soap *soap)
 {
 	this->soap = soap;
-	soap_default_byte(soap, &this->xsd__byte::__item);
+	soap_default_xsd__byte(soap, &this->xsd__byte_::__item);
 	this->xsd__anyType::__item = NULL;
 	/* transient soap skipped */
 }
 
-void xsd__byte::soap_serialize(struct soap *soap) const
+void xsd__byte_::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
-	soap_embedded(soap, &this->xsd__byte::__item, SOAP_TYPE_byte);
 	/* transient soap skipped */
 }
 
-int xsd__byte::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+int xsd__byte_::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
 {
-	return soap_out_xsd__byte(soap, tag, id, this, type);
+	return soap_out_xsd__byte_(soap, tag, id, this, type);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__byte(struct soap *soap, const char *tag, int id, const xsd__byte *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd__byte_(struct soap *soap, const char *tag, int id, const xsd__byte_ *a, const char *type)
 {
-	return soap_out_byte(soap, tag, id, &(a->xsd__byte::__item), "xsd:byte");
+	return soap_out_xsd__byte(soap, tag, id, &(a->xsd__byte_::__item), "xsd:byte");
 }
 
-void *xsd__byte::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in_xsd__byte(soap, tag, this, type);
+void *xsd__byte_::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_xsd__byte_(soap, tag, this, type);
 }
 
-SOAP_FMAC3 xsd__byte * SOAP_FMAC4 soap_in_xsd__byte(struct soap *soap, const char *tag, xsd__byte *a, const char *type)
+SOAP_FMAC3 xsd__byte_ * SOAP_FMAC4 soap_in_xsd__byte_(struct soap *soap, const char *tag, xsd__byte_ *a, const char *type)
 {
 	(void)type; /* appease -Wall -Werror */
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
-	if (!(a = (xsd__byte *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_xsd__byte, sizeof(xsd__byte), soap->type, soap->arrayType)))
+	if (!(a = (xsd__byte_ *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_xsd__byte_, sizeof(xsd__byte_), soap->type, soap->arrayType)))
 	{	soap->error = SOAP_TAG_MISMATCH;
 		return NULL;
 	}
@@ -7382,68 +7450,68 @@ SOAP_FMAC3 xsd__byte * SOAP_FMAC4 soap_in_xsd__byte(struct soap *soap, const cha
 	*soap->id = '\0';
 	if (soap->alloced)
 	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE_xsd__byte)
-			return (xsd__byte *)a->soap_in(soap, tag, type);
+		if (soap->clist->type != SOAP_TYPE_xsd__byte_)
+			return (xsd__byte_ *)a->soap_in(soap, tag, type);
 	}
-	if (!soap_in_byte(soap, tag, &(a->xsd__byte::__item), "xsd:byte"))
+	if (!soap_in_xsd__byte(soap, tag, &(a->xsd__byte_::__item), "xsd:byte"))
 		return NULL;
 	return a;
 }
 
-int xsd__byte::soap_put(struct soap *soap, const char *tag, const  char *type) const
+int xsd__byte_::soap_put(struct soap *soap, const char *tag, const  char *type) const
 {
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_xsd__byte);
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_xsd__byte_);
 	if (this->soap_out(soap, tag?tag:"xsd:byte", id, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-void *xsd__byte::soap_get(struct soap *soap, const char *tag, const char *type)
+void *xsd__byte_::soap_get(struct soap *soap, const char *tag, const char *type)
 {
-	return soap_get_xsd__byte(soap, this, tag, type);
+	return soap_get_xsd__byte_(soap, this, tag, type);
 }
 
-SOAP_FMAC3 xsd__byte * SOAP_FMAC4 soap_get_xsd__byte(struct soap *soap, xsd__byte *p, const char *tag, const char *type)
+SOAP_FMAC3 xsd__byte_ * SOAP_FMAC4 soap_get_xsd__byte_(struct soap *soap, xsd__byte_ *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_xsd__byte(soap, tag, p, type)))
+	if ((p = soap_in_xsd__byte_(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC1 xsd__byte * SOAP_FMAC2 soap_instantiate_xsd__byte(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC1 xsd__byte_ * SOAP_FMAC2 soap_instantiate_xsd__byte_(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
 	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_xsd__byte(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_xsd__byte, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_xsd__byte_(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_xsd__byte_, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(xsd__byte);
+	{	cp->ptr = (void*)SOAP_NEW(xsd__byte_);
 		if (size)
-			*size = sizeof(xsd__byte);
-		((xsd__byte*)cp->ptr)->soap = soap;
+			*size = sizeof(xsd__byte_);
+		((xsd__byte_*)cp->ptr)->soap = soap;
 	}
 	else
-	{	cp->ptr = (void*)SOAP_NEW(xsd__byte[n]);
+	{	cp->ptr = (void*)SOAP_NEW(xsd__byte_[n]);
 		if (!cp->ptr)
 		{	soap->error = SOAP_EOM;
 			return NULL;
 		}
 		if (size)
-			*size = n * sizeof(xsd__byte);
+			*size = n * sizeof(xsd__byte_);
 		for (int i = 0; i < n; i++)
-			((xsd__byte*)cp->ptr)[i].soap = soap;
+			((xsd__byte_*)cp->ptr)[i].soap = soap;
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (xsd__byte*)cp->ptr;
+	return (xsd__byte_*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__byte(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__byte_(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying xsd__byte %p -> %p\n", q, p));
-	*(xsd__byte*)p = *(xsd__byte*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying xsd__byte_ %p -> %p\n", q, p));
+	*(xsd__byte_*)p = *(xsd__byte_*)q;
 }
 
 void xsd__boolean::soap_default(struct soap *soap)
@@ -8756,26 +8824,26 @@ SOAP_FMAC1 xsd__anyType * SOAP_FMAC2 soap_instantiate_xsd__anyType(struct soap *
 		return (xsd__boolean*)cp->ptr;
 	}
 	if (type && !soap_match_tag(soap, type, "xsd:byte"))
-	{	cp->type = SOAP_TYPE_xsd__byte;
+	{	cp->type = SOAP_TYPE_xsd__byte_;
 		if (n < 0)
-		{	cp->ptr = (void*)SOAP_NEW(xsd__byte);
+		{	cp->ptr = (void*)SOAP_NEW(xsd__byte_);
 			if (!cp->ptr)
 			{	soap->error = SOAP_EOM;
 				return NULL;
 			}
 			if (size)
-				*size = sizeof(xsd__byte);
-			((xsd__byte*)cp->ptr)->soap = soap;
+				*size = sizeof(xsd__byte_);
+			((xsd__byte_*)cp->ptr)->soap = soap;
 		}
 		else
-		{	cp->ptr = (void*)SOAP_NEW(xsd__byte[n]);
+		{	cp->ptr = (void*)SOAP_NEW(xsd__byte_[n]);
 			if (size)
-				*size = n * sizeof(xsd__byte);
+				*size = n * sizeof(xsd__byte_);
 			for (int i = 0; i < n; i++)
-				((xsd__byte*)cp->ptr)[i].soap = soap;
+				((xsd__byte_*)cp->ptr)[i].soap = soap;
 		}
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-		return (xsd__byte*)cp->ptr;
+		return (xsd__byte_*)cp->ptr;
 	}
 	if (type && !soap_match_tag(soap, type, "xsd:dateTime"))
 	{	cp->type = SOAP_TYPE_xsd__dateTime;
@@ -8976,26 +9044,26 @@ SOAP_FMAC1 xsd__anyType * SOAP_FMAC2 soap_instantiate_xsd__anyType(struct soap *
 		return (xsd__string*)cp->ptr;
 	}
 	if (type && !soap_match_tag(soap, type, "xsd:unsignedByte"))
-	{	cp->type = SOAP_TYPE_xsd__unsignedByte;
+	{	cp->type = SOAP_TYPE_xsd__unsignedByte_;
 		if (n < 0)
-		{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte);
+		{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte_);
 			if (!cp->ptr)
 			{	soap->error = SOAP_EOM;
 				return NULL;
 			}
 			if (size)
-				*size = sizeof(xsd__unsignedByte);
-			((xsd__unsignedByte*)cp->ptr)->soap = soap;
+				*size = sizeof(xsd__unsignedByte_);
+			((xsd__unsignedByte_*)cp->ptr)->soap = soap;
 		}
 		else
-		{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte[n]);
+		{	cp->ptr = (void*)SOAP_NEW(xsd__unsignedByte_[n]);
 			if (size)
-				*size = n * sizeof(xsd__unsignedByte);
+				*size = n * sizeof(xsd__unsignedByte_);
 			for (int i = 0; i < n; i++)
-				((xsd__unsignedByte*)cp->ptr)[i].soap = soap;
+				((xsd__unsignedByte_*)cp->ptr)[i].soap = soap;
 		}
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-		return (xsd__unsignedByte*)cp->ptr;
+		return (xsd__unsignedByte_*)cp->ptr;
 	}
 	if (type && !soap_match_tag(soap, type, "xsd:unsignedInt"))
 	{	cp->type = SOAP_TYPE_xsd__unsignedInt;
