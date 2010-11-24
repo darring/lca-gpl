@@ -17,6 +17,7 @@ StewardService::StewardService(StewardLogger *myLogger)
     logger->QuickLog("StewardService> Initializing the steward service");
 
     // TODO Initialization here
+    currentState = STATE_None;
 
     logger->QuickLog("StewardService> Service initialized...");
 }
