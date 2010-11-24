@@ -27,7 +27,7 @@ class StewardService
         WSHttpBinding_USCOREIEILClientOperationsProxy service;
         StewardLogger *logger;
         int op_codes;
-        bool serviceIsSet;
+        char *last_MessageID;
 
     public:
         //! Constructor for the Steward service wrapper

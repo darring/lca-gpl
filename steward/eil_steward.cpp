@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
     // Set up our steward service
     logger.QuickLog("Initializing service...");
     StewardService service(&logger);
-    
+
     // Main loop
     while (1) {
         //logger.BeginLogging();
@@ -137,71 +137,14 @@ int main(int argc, char *argv[])
         logger.QuickLog(hostname);
         // TODO - Our logic here
 
-        // Set up our hostname
-        // Start out at the lowest possible data type
-        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring i1;
-
-        //std::string kn = std::string("HOST_NAME");
-        //i1.Key = &kn;
-        //std::string hn = std::string(hostname);
-        //i1.Value= &hn;
-
-        // Set up our order num
-        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring on;
-        //std::string onumkey = std::string("ORDER_NUM");
-        //on.Key = &onumkey;
-        //std::string onumval = std::string("1");
-        //on.Value = &onumval;
-
-        //_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
-        //ar[0] = i1;
-        //ar[1] = on;
-
-        // Move up one data type
-        //ns5__ArrayOfKeyValueOfstringstring k1;
-        //k1.__sizeKeyValueOfstringstring = 2;
-        //k1.KeyValueOfstringstring = &ar[0];
-
-        // Now, up to the machine context
-        //ns4__MachineContext ctx;
-        //ctx.soap_default(&soap);
-        //ctx.mParams = &k1;
-
-        // Now, up to the get command to execute class
-        //_ns1__GetCommandToExecute getCommand;
-        //getCommand.ctx = &ctx;
-        //getCommand.soap_serialize(&soap);
-        //soap_begin_send(&soap);
-        //op_codes = getCommand.soap_put(&soap, "ns:element-name", "ns:type-name");
-        //_ns1__GetCommandToExecuteResponse response;
-        //op_codes = service.GetCommandToExecute(
-        //    &getCommand, &response);
         service.QueryForClientCommands(hostname, "1", HOST);
-        //soap_end_send(&soap);
 
-        //if(op_codes == SOAP_OK)
-        //    logger.QuickLog("SOAP_OK");
-        //else if (op_codes == SOAP_EOF)
-        //    logger.QuickLog("SOAP_EOF");
-        //else if (op_codes == SOAP_SVR_FAULT)
-        //    logger.QuickLog("SOAP_SVR_FAULT");
-        //else if (op_codes == SOAP_MUSTUNDERSTAND)
-        //    logger.QuickLog("SOAP_MUSTUNDERSTAND");
-        //else {
-        //    logger.QuickLog("ERROR!");
-        //    char str[20];
-        //    snprintf(str, 20, "%d", op_codes);
-        //    logger.QuickLog(str);
-        //}
         logger.QuickLog("ping15");
 
         //logger.LogEntry("Sleeping for 30 seconds");
         //logger.EndLogging();
         sleep(30); // TODO - Our sleep
+
         // TODO signal to interrupt and break from this loop
     }
-
-    //soap_destroy(&soap); // remove deserialized class instances (C++ only)
-    //soap_end(&soap); // clean up and remove deserialized data
-    //soap_done(&soap); // detach environment (last use and no longer in scope)
 }
