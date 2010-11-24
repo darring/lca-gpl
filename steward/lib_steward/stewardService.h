@@ -32,6 +32,13 @@ class StewardService
         char *last_MessageID;
         ServiceState currentState;
 
+        //! Obtain a new message ID
+        /*!
+         * Internal method used to obtain a valid message ID used in WS-A
+         * \return Null byte terminated message ID
+         */
+        char* getNewMessageID();
+
     public:
         //! Constructor for the Steward service wrapper
         /*!

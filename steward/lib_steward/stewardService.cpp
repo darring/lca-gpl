@@ -112,12 +112,25 @@ CommandIssued StewardService::QueryForClientCommands(
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
 
+        // FIXME Set proper state information here
+
         // FIXME Return something useful
         return COMMAND_ERROR;
     }
     else
     {
         // We were in the wrong state to call this method
-        return COMMAND_STATE_ERROR;
+        return COMMAND_ERROR_STATE;
+    }
+
+    /**** Private Methods ****/
+
+    char* StewardService::getNewMessageID()
+    {
+        char *messageID; // Temp place holder
+
+        // FIXME for now we just hardcode this, but later on, we want to
+        // generate this more dynamically
+        // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
     }
 }
