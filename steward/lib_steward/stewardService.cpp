@@ -5,7 +5,7 @@
  */
 
 // Nasty gSOAP bindings
-#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
+//#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "soapH.h"
 
@@ -21,13 +21,12 @@ StewardService::StewardService(StewardLogger *myLogger)
     // Initialize our soap runtime environment
     //soap_init(&lsoap);
     //soap = &lsoap;
-    
+
     logger->QuickLog("StewardService> gSOAP initialized");
-        
+
     logger->QuickLog("StewardService> Proxy Service setup...");
-    
+
     //setService(&lservice);
-    
     logger->QuickLog("StewardService> Proxy Service initialized...");
 }
 
@@ -46,13 +45,10 @@ CommandIssued StewardService::QueryForClientCommands(
     /* 
       Okay, unfortunately, gSOAP turns the data-types inside out. So this can
       get a bit hairy. We must re-construct these somewhat backwards.
-      
-      Start out at the lowest possible data type 
+      Start out at the lowest possible data type
     */
-    WSHttpBinding_USCOREIEILClientOperationsProxy service;
 
     logger->QuickLog("StewardService> ping1");
-    
     // Set up our host name
     _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
     logger->QuickLog("StewardService> ping2");
@@ -62,7 +58,6 @@ CommandIssued StewardService::QueryForClientCommands(
     std::string hn = std::string(hostname);
     logger->QuickLog("StewardService> ping5");
     hostname_kv.Value= &hn;
-    
     // Set up our order num
     logger->QuickLog("StewardService> ping6");
     _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
@@ -75,7 +70,6 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping10");
     ordernum_kv.Value = &onumval;
     logger->QuickLog("StewardService> ping11");
-    
     /*
       Bring it up to the next level
     */
@@ -85,7 +79,6 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping13");
     ar[1] = ordernum_kv;
     logger->QuickLog("StewardService> ping14");
-    
     /*
       Take that array, and plug it into the next data type level
     */
@@ -94,7 +87,6 @@ CommandIssued StewardService::QueryForClientCommands(
     k1.__sizeKeyValueOfstringstring = 2;
     logger->QuickLog("StewardService> ping16");
     k1.KeyValueOfstringstring = &ar[0];
-    
     /*
       Now, up to the machine context
     */
@@ -128,9 +120,9 @@ CommandIssued StewardService::QueryForClientCommands(
             l_mType = ns4__MachineType__HOST;
             break;
     }
-    
+
     ctx.mType = &l_mType;
-    
+
     /*
       Finally, we're ready for the GetCommandToExecute class
     */

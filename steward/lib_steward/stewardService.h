@@ -15,6 +15,7 @@
 
 #include "machineType.h"
 #include "commands.h"
+#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 
 class StewardLogger;
 //class WSHttpBinding_USCOREIEILClientOperationsProxy;
@@ -23,21 +24,21 @@ class StewardService
 {
     private:
         //struct soap *soap;
-        //WSHttpBinding_USCOREIEILClientOperationsProxy *service;
+        WSHttpBinding_USCOREIEILClientOperationsProxy service;
         StewardLogger *logger;
         int op_codes;
         bool serviceIsSet;
-        
+
     public:
         //! Constructor for the Steward service wrapper
         /*!
          * \param myLogger is the logger instance we should use.
          */
         StewardService(StewardLogger *myLogger);
-        
+
         //! Destructor for the Steward service wrapper
         ~StewardService();
-        
+
         //! Query for client commands from the web service
         /*!
          * Call this every NN seconds to query the web service for available
