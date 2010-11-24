@@ -15,7 +15,7 @@
 StewardService::StewardService(StewardLogger *myLogger)
 {
     //struct soap lsoap;
-    serviceIsSet = false;
+    //serviceIsSet = false;
     logger = myLogger;
     logger->QuickLog("StewardService> gSOAP setup...");
     // Initialize our soap runtime environment
@@ -23,12 +23,10 @@ StewardService::StewardService(StewardLogger *myLogger)
     //soap = &lsoap;
     
     logger->QuickLog("StewardService> gSOAP initialized");
-    
-    WSHttpBinding_USCOREIEILClientOperationsProxy lservice;
-    
+        
     logger->QuickLog("StewardService> Proxy Service setup...");
     
-    setService(&lservice);
+    //setService(&lservice);
     
     logger->QuickLog("StewardService> Proxy Service initialized...");
 }
@@ -51,6 +49,8 @@ CommandIssued StewardService::QueryForClientCommands(
       
       Start out at the lowest possible data type 
     */
+    WSHttpBinding_USCOREIEILClientOperationsProxy service;
+
     logger->QuickLog("StewardService> ping1");
     
     // Set up our host name
@@ -142,21 +142,9 @@ CommandIssued StewardService::QueryForClientCommands(
     logger->QuickLog("StewardService> ping23");
     _ns1__GetCommandToExecuteResponse response;
     logger->QuickLog("StewardService> ping24");
-    op_codes = service->GetCommandToExecute(
+    op_codes = service.GetCommandToExecute(
         &getCommand, &response);
     logger->QuickLog("StewardService> ping25");
 
     return COMMAND_ERROR;
-}
-
-void
-StewardService::setService
-(WSHttpBinding_USCOREIEILClientOperationsProxy *new_service)
-{
-    if(serviceIsSet) {
-        free(service);
-        serviceIsSet = false;
-    }
-    service = new_service;
-    serviceIsSet = true;
 }
