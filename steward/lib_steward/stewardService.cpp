@@ -34,81 +34,90 @@ CommandIssued StewardService::QueryForClientCommands(
             char *order_num,
             MachineType mType)
 {
-    /* 
-      Okay, unfortunately, gSOAP turns the data-types inside out. So this can
-      get a bit hairy. We must re-construct these somewhat backwards.
-      Start out at the lowest possible data type
-    */
-
-    // Set up our host name
-    _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
-    std::string kn = std::string("HOST_NAME");
-    hostname_kv.Key = &kn;
-    std::string hn = std::string(hostname);
-    hostname_kv.Value= &hn;
-
-    // Set up our order num
-    _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
-    std::string onumkey = std::string("ORDER_NUM");
-    ordernum_kv.Key = &onumkey;
-    std::string onumval = std::string(order_num);
-    ordernum_kv.Value = &onumval;
-
-    /*
-      Bring it up to the next level
-    */
-    _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
-    ar[0] = hostname_kv;
-    ar[1] = ordernum_kv;
-
-    /*
-      Take that array, and plug it into the next data type level
-    */
-    ns5__ArrayOfKeyValueOfstringstring k1;
-    k1.__sizeKeyValueOfstringstring = 2;
-    k1.KeyValueOfstringstring = &ar[0];
-
-
-    /*
-      Now, up to the machine context
-    */
-    ns4__MachineContext ctx;
-    ctx.mParams = &k1;
-    ns4__MachineType l_mType = ns4__MachineType__HOST;
-
-    switch (mType)
+    if (currentState == STATE_None)
     {
-        case ANY:
-            l_mType = ns4__MachineType__ANY;
-            break;
-        case HOST_WILDCARD:
-            l_mType = ns4__MachineType__HOST_USCOREWILDCARD;
-            break;
-        case FQDN:
-            l_mType = ns4__MachineType__FQDN;
-            break;
-        case UUID:
-            l_mType = ns4__MachineType__UUID;
-            break;
-        case COLLECTION:
-            l_mType = ns4__MachineType__COLLECTION;
-            break;
-        default:
-            // Default is HOST
-            l_mType = ns4__MachineType__HOST;
-            break;
+        /*
+        Okay, unfortunately, gSOAP turns the data-types inside out. So this can
+        get a bit hairy. We must re-construct these somewhat backwards.
+        Start out at the lowest possible data type
+        */
+
+        // Set up our host name
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
+        std::string kn = std::string("HOST_NAME");
+        hostname_kv.Key = &kn;
+        std::string hn = std::string(hostname);
+        hostname_kv.Value= &hn;
+
+        // Set up our order num
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
+        std::string onumkey = std::string("ORDER_NUM");
+        ordernum_kv.Key = &onumkey;
+        std::string onumval = std::string(order_num);
+        ordernum_kv.Value = &onumval;
+
+        /*
+        Bring it up to the next level
+        */
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
+        ar[0] = hostname_kv;
+        ar[1] = ordernum_kv;
+
+        /*
+        Take that array, and plug it into the next data type level
+        */
+        ns5__ArrayOfKeyValueOfstringstring k1;
+        k1.__sizeKeyValueOfstringstring = 2;
+        k1.KeyValueOfstringstring = &ar[0];
+
+
+        /*
+        Now, up to the machine context
+        */
+        ns4__MachineContext ctx;
+        ctx.mParams = &k1;
+        ns4__MachineType l_mType = ns4__MachineType__HOST;
+
+        switch (mType)
+        {
+            case ANY:
+                l_mType = ns4__MachineType__ANY;
+                break;
+            case HOST_WILDCARD:
+                l_mType = ns4__MachineType__HOST_USCOREWILDCARD;
+                break;
+            case FQDN:
+                l_mType = ns4__MachineType__FQDN;
+                break;
+            case UUID:
+                l_mType = ns4__MachineType__UUID;
+                break;
+            case COLLECTION:
+                l_mType = ns4__MachineType__COLLECTION;
+                break;
+            default:
+                // Default is HOST
+                l_mType = ns4__MachineType__HOST;
+                break;
+        }
+
+        ctx.mType = &l_mType;
+
+        /*
+        Finally, we're ready for the GetCommandToExecute class
+        */
+        _ns1__GetCommandToExecute getCommand;
+        getCommand.ctx = &ctx;
+        _ns1__GetCommandToExecuteResponse response;
+        op_codes = service.GetCommandToExecute(
+            &getCommand, &response);
+
+        // FIXME Return something useful
+        return COMMAND_ERROR;
     }
-
-    ctx.mType = &l_mType;
-
-    /*
-      Finally, we're ready for the GetCommandToExecute class
-    */
-    _ns1__GetCommandToExecute getCommand;
-    getCommand.ctx = &ctx;
-    _ns1__GetCommandToExecuteResponse response;
-    op_codes = service.GetCommandToExecute(
-        &getCommand, &response);
-
-    return COMMAND_ERROR;
+    else
+    {
+        // We were in the wrong state to call this method
+        return COMMAND_STATE_ERROR;
+    }
 }

@@ -7,7 +7,8 @@
  */
 enum CommandIssued
 {
-    COMMAND_ERROR
+    COMMAND_ERROR,
+    COMMAND_STATE_ERROR
     // FIXME 
 };
 
