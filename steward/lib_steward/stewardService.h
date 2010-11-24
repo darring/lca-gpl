@@ -13,21 +13,24 @@
 #ifndef stewardService_H
 #define stewardService_H
 
+// Helper enumerations
 #include "machineType.h"
 #include "commands.h"
+#include "serviceState.h"
+
+// Proxy service definition
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 
 class StewardLogger;
-//class WSHttpBinding_USCOREIEILClientOperationsProxy;
 
 class StewardService
 {
     private:
-        //struct soap *soap;
         WSHttpBinding_USCOREIEILClientOperationsProxy service;
         StewardLogger *logger;
         int op_codes;
         char *last_MessageID;
+        ServiceState currentState;
 
     public:
         //! Constructor for the Steward service wrapper
