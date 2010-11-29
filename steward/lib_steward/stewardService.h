@@ -19,7 +19,7 @@
 #include "serviceState.h"
 
 // Proxy service definition
-//#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
+#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
 //#include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "soapH.h"
 
@@ -28,7 +28,7 @@ class StewardLogger;
 class StewardService
 {
     private:
-        //WSHttpBinding_USCOREIEILClientOperationsProxy service;
+        WSHttpBinding_USCOREIEILClientOperationsProxy service;
         struct soap soap;
         struct SOAP_ENV__Header header;
         StewardLogger *logger;

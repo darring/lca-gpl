@@ -137,6 +137,7 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         ns4__MachineContext ctx;
         ctx.mParams = &k1;
+        ctx.soap_default(&soap); // Must set our soap instance
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
         logger->QuickLog("ping11");
@@ -172,11 +173,13 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         _ns1__GetCommandToExecute getCommand;
         getCommand.ctx = &ctx;
-        getCommand.soap = &soap;
+        ctx.soap_default(&soap); // Must set our soap instance
+        getCommand.soap_default(&soap);
+        //getCommand.soap = &soap;
         logger->QuickLog("ping13");
         _ns1__GetCommandToExecuteResponse response;
-        //op_codes = service.GetCommandToExecute(
-            //&getCommand, &response);
+        op_codes = service.GetCommandToExecute(
+            &getCommand, &response);
         logger->QuickLog("ping14");
 
         // FIXME Set proper state information here
