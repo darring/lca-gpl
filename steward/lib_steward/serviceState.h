@@ -4,7 +4,7 @@
 
 enum ServiceState
 {
-    STATE_None,
+    STATE_None
 };
 
 #endif

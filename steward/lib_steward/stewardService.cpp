@@ -123,14 +123,19 @@ CommandIssued StewardService::QueryForClientCommands(
         return COMMAND_ERROR_STATE;
     }
 
+}
+
     /**** Private Methods ****/
 
-    char* StewardService::getNewMessageID()
-    {
-        char *messageID; // Temp place holder
+char* StewardService::getNewMessageID()
+{
+    char *messageID; // Temp place holder
 
-        // FIXME for now we just hardcode this, but later on, we want to
-        // generate this more dynamically
-        // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
-    }
+    // FIXME for now we just hardcode this, but later on, we want to
+    // generate this more dynamically
+    // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
+
+    messageID = "urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321";
+
+    return messageID;
 }
