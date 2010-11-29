@@ -6,7 +6,7 @@
 
 // Nasty gSOAP bindings
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
-#include "soapH.h"
+//#include "soapH.h"
 
 #include "logger.h"
 #include "stewardService.h"
@@ -18,15 +18,16 @@ StewardService::StewardService(StewardLogger *myLogger)
 
     // TODO Initialization here
     currentState = STATE_None;
+    soap_init(&soap);
 
     logger->QuickLog("StewardService> Service initialized...");
 }
 
 StewardService::~StewardService()
 {
-    //soap_destroy(soap); // remove deserialized class instances (C++ only)
-    //soap_end(soap); // clean up and remove deserialized data
-    //soap_done(soap); // detach environment (last use and no longer in scope)
+    soap_destroy(&soap); // remove deserialized class instances (C++ only)
+    soap_end(&soap); // clean up and remove deserialized data
+    soap_done(&soap); // detach environment (last use and no longer in scope)
 }
 
 CommandIssued StewardService::QueryForClientCommands(
@@ -40,33 +41,54 @@ CommandIssued StewardService::QueryForClientCommands(
         First, we need to build up our header, which includes the various
         WS-Addressing bits that are needed by CCMS for routing of commands
         */
+        soap_default_SOAP_ENV__Header(&soap, &header);
         logger->QuickLog("ping1");
 
-        wsa__EndpointReferenceType replyTo;
+        //wsa__EndpointReferenceType replyTo;
+        struct wsa__EndpointReferenceType replyTo;
         logger->QuickLog("ping2");
 
-        replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
+        //replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
+        //replyTo.__size = 0;
+        soap_default_wsa__EndpointReferenceType(&soap, &replyTo);
         logger->QuickLog("ping3");
+        replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
 
         // Need some empty structs for various items to be zeroed out
-        wsa__Relationship wsaRelatesTo;
-        logger->QuickLog("ping4");
-        wsa__EndpointReferenceType wsaFrom;
-        logger->QuickLog("ping5");
-        wsa__EndpointReferenceType wsaFaultTo;
-        logger->QuickLog("ping6");
+        //wsa__Relationship wsaRelatesTo;
+        //wsaRelatesTo.__item = "";
+        //wsaRelatesTo.RelationshipType = "";
+        //wsaRelatesTo.__anyAttribute = "";
 
-        service.soap_header(
-            getNewMessageID(),
-            &wsaRelatesTo,
-            &wsaFrom,
-            &replyTo,
-            &wsaFaultTo,
-            "http://10.10.0.20/CCMS/EILClientOperationsService.svc", // FIXME
-            "http://tempuri.org/IEILClientOperations/GetCommandToExecute" // FIXME
-            );
+        logger->QuickLog("ping4");
+        header.wsa__MessageID = getNewMessageID();
+        //wsa__EndpointReferenceType wsaFrom;
+        //wsaFrom.Address = "";
+        //wsaFrom.__size = 0;
+
+        logger->QuickLog("ping5");
+        header.wsa__ReplyTo = &replyTo;
+        //wsa__EndpointReferenceType wsaFaultTo;
+        //wsaFaultTo.Address = "";
+        //wsaFaultTo.__size = 0;
+        logger->QuickLog("ping6");
+        header.wsa__To = "http://10.10.0.20/CCMS/EILClientOperationsService.svc"; // FIXME
+
+        //service.soap_header(
+            //getNewMessageID(),
+            //&wsaRelatesTo,
+            //&wsaFrom,
+            //&replyTo,
+            //&wsaFaultTo,
+            //"http://10.10.0.20/CCMS/EILClientOperationsService.svc", // FIXME
+            //"http://tempuri.org/IEILClientOperations/GetCommandToExecute" // FIXME
+            //);
 
         logger->QuickLog("ping7");
+        header.wsa__Action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute"; // FIXME
+
+        logger->QuickLog("ping7.5");
+        soap.header = &header;
 
         /*
         Okay, unfortunately, gSOAP turns the data-types inside out. So this can
@@ -150,10 +172,11 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         _ns1__GetCommandToExecute getCommand;
         getCommand.ctx = &ctx;
+        getCommand.soap = &soap;
         logger->QuickLog("ping13");
         _ns1__GetCommandToExecuteResponse response;
-        op_codes = service.GetCommandToExecute(
-            &getCommand, &response);
+        //op_codes = service.GetCommandToExecute(
+            //&getCommand, &response);
         logger->QuickLog("ping14");
 
         // FIXME Set proper state information here
