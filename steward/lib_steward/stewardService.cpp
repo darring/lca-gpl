@@ -37,6 +37,38 @@ CommandIssued StewardService::QueryForClientCommands(
     if (currentState == STATE_None)
     {
         /*
+        First, we need to build up our header, which includes the various
+        WS-Addressing bits that are needed by CCMS for routing of commands
+        */
+        logger->QuickLog("ping1");
+
+        wsa__EndpointReferenceType replyTo;
+        logger->QuickLog("ping2");
+
+        replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
+        logger->QuickLog("ping3");
+
+        // Need some empty structs for various items to be zeroed out
+        wsa__Relationship wsaRelatesTo;
+        logger->QuickLog("ping4");
+        wsa__EndpointReferenceType wsaFrom;
+        logger->QuickLog("ping5");
+        wsa__EndpointReferenceType wsaFaultTo;
+        logger->QuickLog("ping6");
+
+        service.soap_header(
+            getNewMessageID(),
+            &wsaRelatesTo,
+            &wsaFrom,
+            &replyTo,
+            &wsaFaultTo,
+            "http://10.10.0.20/CCMS/EILClientOperationsService.svc", // FIXME
+            "http://tempuri.org/IEILClientOperations/GetCommandToExecute" // FIXME
+            );
+
+        logger->QuickLog("ping7");
+
+        /*
         Okay, unfortunately, gSOAP turns the data-types inside out. So this can
         get a bit hairy. We must re-construct these somewhat backwards.
         Start out at the lowest possible data type
@@ -49,12 +81,16 @@ CommandIssued StewardService::QueryForClientCommands(
         std::string hn = std::string(hostname);
         hostname_kv.Value= &hn;
 
+        logger->QuickLog("ping8");
+
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
         std::string onumkey = std::string("ORDER_NUM");
         ordernum_kv.Key = &onumkey;
         std::string onumval = std::string(order_num);
         ordernum_kv.Value = &onumval;
+
+        logger->QuickLog("ping9");
 
         /*
         Bring it up to the next level
@@ -63,6 +99,8 @@ CommandIssued StewardService::QueryForClientCommands(
         ar[0] = hostname_kv;
         ar[1] = ordernum_kv;
 
+        logger->QuickLog("ping10");
+
         /*
         Take that array, and plug it into the next data type level
         */
@@ -70,6 +108,7 @@ CommandIssued StewardService::QueryForClientCommands(
         k1.__sizeKeyValueOfstringstring = 2;
         k1.KeyValueOfstringstring = &ar[0];
 
+        logger->QuickLog("ping11");
 
         /*
         Now, up to the machine context
@@ -78,6 +117,7 @@ CommandIssued StewardService::QueryForClientCommands(
         ctx.mParams = &k1;
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
+        logger->QuickLog("ping11");
         switch (mType)
         {
             case ANY:
@@ -103,14 +143,18 @@ CommandIssued StewardService::QueryForClientCommands(
 
         ctx.mType = &l_mType;
 
+        logger->QuickLog("ping12");
+
         /*
         Finally, we're ready for the GetCommandToExecute class
         */
         _ns1__GetCommandToExecute getCommand;
         getCommand.ctx = &ctx;
+        logger->QuickLog("ping13");
         _ns1__GetCommandToExecuteResponse response;
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
+        logger->QuickLog("ping14");
 
         // FIXME Set proper state information here
 
