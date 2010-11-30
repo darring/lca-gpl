@@ -7,6 +7,7 @@
 // Nasty gSOAP bindings
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 //#include "soapH.h"
+#include "wsaapi.h"
 
 #include "logger.h"
 #include "stewardService.h"
@@ -19,6 +20,7 @@ StewardService::StewardService(StewardLogger *myLogger)
     // TODO Initialization here
     currentState = STATE_None;
     soap_init(&soap);
+    soap_register_plugin(&soap, soap_wsa);
 
     logger->QuickLog("StewardService> Service initialized...");
 }
