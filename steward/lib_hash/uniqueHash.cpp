@@ -4,11 +4,15 @@
  A basic helper class which provides unique hashes for the steward library
  */
 
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "uniqueHash.h"
 
 UniqueHash::UniqueHash()
 {
-    base36chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    hashCommand = "/usr/bin/clientagent-helper.sh --hash";
 }
 
 UniqueHash::~UniqueHash()
@@ -18,20 +22,23 @@ UniqueHash::~UniqueHash()
 
 char* UniqueHash::GetHash()
 {
-    return GetHash(0);
-}
+    char hash[256];
+    char *retVal;
+    FILE *commandPipe;
 
-char* UniqueHash::GetHash(int seed)
-{
-    char *messageID; // Temp place holder
+    if ( !(commandPipe = (FILE*)popen(hashCommand,"r")) )
+    {  // If commandPipe is NULL
+        perror("Problems with pipe to clientagent-helper.sh");
+        exit(1);
+    }
 
-    // FIXME for now we just hardcode this, but later on, we want to
-    // generate this more dynamically
-    // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
-    // urn:uuid:2bb49d8d-d1cf-40fa-a378-b39af8fbe558
+    while (fgets(hash, sizeof hash, commandPipe))
+    {
+        // May be silly to have a loop that does nothing, but
+        // we really only expect one result from this pipe
+    }
+    pclose(commandPipe);
 
-    messageID = "urn:uuid:6789";
-    //messageID = "urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321";
-
-    return messageID;
+    retVal = hash;
+    return retVal;
 }

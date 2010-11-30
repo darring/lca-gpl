@@ -13,6 +13,7 @@
 unset DUMP_BASE DUMP_INSTALL DUMP_BIN DUMP_LIB DUMP_DOC || true
 unset DUMP_TOOL DUMP_HOME DUMP_SCRIPTS DUMP_COMDIR DUMP_UID || true
 unset DUMP_GID DUMP_STDLOG DUMP_CCMSLOG DUMP_ERRLOG TMPFILE || true
+unset RUN_HASH || true
 
 PROGNAME=${0##*/}
 
@@ -80,6 +81,8 @@ Where [OPTION] is one of the following
 
     --errlog        Returns the path to the error log used by client agent
 
+    --hash          Returns a hash ID suitable for use in MessageID
+
 If ran without any options, this usage text will be displayed.
 EOF
 }
@@ -104,7 +107,8 @@ uid,\
 gid,\
 stdlog,\
 ccmslog,\
-errlog -- $*)
+errlog,\
+hash -- $*)
 
 if [ $? -ne 0 ]; then
     echo "Error while parsing options!"
@@ -173,6 +177,10 @@ while [ $1 != -- ]; do
             ;;
         --errlog)
             DUMP_ERRLOG=yes
+            shift
+            ;;
+        --hash)
+            RUN_HASH=yes
             shift
             ;;
         -h)
@@ -256,4 +264,10 @@ fi
 
 if [ -n "$DUMP_UID" ]; then
     trace "$INSTALL_UID"
+fi
+
+# Specific run command code
+
+if [ -n "$RUN_HASH" ]; then
+    /usr/bin/openssl rand -hex 26
 fi

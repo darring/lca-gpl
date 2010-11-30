@@ -13,10 +13,14 @@
 #ifndef uniqueHash_H
 #define uniqueHash_H
 
+//! The maximum size of the hash (this may be too big)
+#define RETURN_STORAGE_MAX_SIZE 40
+
 class UniqueHash
 {
     private:
-        char* base36chars;
+        char* hashCommand;
+        //char* internalReturnStorage;
     public:
         //! Constructor for the UniqueHash class
         UniqueHash();
@@ -25,20 +29,7 @@ class UniqueHash
         ~UniqueHash();
 
         //! Get a unique hash
-        /*!
-         * The default GetHash method takes no arguments and returns a hash
-         * based upon the system time and a psuedo-random number.
-         */
         char* GetHash();
-
-        //! Get a unique hash
-        /*!
-         * If GetHash is called with a seed integer, then this is used as a seed
-         * instead of system time and a unique hash is generated using this and
-         * a psuedo-random number.
-         * \param seed the integer to use as seed
-         */
-        char* GetHash(int seed);
 };
 
 #endif
