@@ -56,6 +56,7 @@ CommandIssued StewardService::QueryForClientCommands(
         replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
 
         header.wsa5__MessageID = getNewMessageID();
+        logger->QuickLog(header.wsa5__MessageID);
 
         header.wsa5__ReplyTo = &replyTo;
         header.wsa5__To = EIL__CLIENTOPSERVICE;
@@ -186,15 +187,12 @@ CommandIssued StewardService::QueryForClientCommands(
 
 char* StewardService::getNewMessageID()
 {
-    char *messageID; // Temp place holder
+    char messageID[MAX_MESSAGEID_LEN];
+    char *retVal;
 
-    // FIXME for now we just hardcode this, but later on, we want to
-    // generate this more dynamically
-    // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
-    // urn:uuid:2bb49d8d-d1cf-40fa-a378-b39af8fbe558
+    snprintf(messageID, MAX_MESSAGEID_LEN,
+            "urn:uuid:%s", uniqueHash->GetHash());
 
-    messageID = "urn:uuid:6789";
-    //messageID = "urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321";
-
-    return messageID;
+    retVal = messageID;
+    return retVal;
 }

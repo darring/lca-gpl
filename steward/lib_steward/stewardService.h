@@ -23,6 +23,9 @@
 //#include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "soapH.h"
 
+//! The maximum length of the MessageID
+#define MAX_MESSAGEID_LEN 40
+
 class StewardLogger;
 class UniqueHash;
 

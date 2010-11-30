@@ -13,14 +13,12 @@
 #ifndef uniqueHash_H
 #define uniqueHash_H
 
-//! The maximum size of the hash (this may be too big)
-#define RETURN_STORAGE_MAX_SIZE 40
+#define MAX_INTERNAL_STORAGE 26
 
 class UniqueHash
 {
     private:
-        char* hashCommand;
-        //char* internalReturnStorage;
+        char* internalReturnStorage;
     public:
         //! Constructor for the UniqueHash class
         UniqueHash();
