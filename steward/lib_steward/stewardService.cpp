@@ -189,7 +189,7 @@ char* StewardService::getNewMessageID()
     // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
     // urn:uuid:2bb49d8d-d1cf-40fa-a378-b39af8fbe558
 
-    messageID = "urn:uuid:abcdefghijklmnopqrstuvwxyz0123456789";
+    messageID = "urn:uuid:6789";
     //messageID = "urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321";
 
     return messageID;

@@ -9,10 +9,10 @@
  * This is the class which handles the logging for the EIL Linux Client Agent.
  */
 
-// Constants
-
 #ifndef logger_H
 #define logger_H
+
+// Constants
 
 //! Maximum length of the log line
 #define LOG_LINE_LENGTH 512
