@@ -44,45 +44,20 @@ CommandIssued StewardService::QueryForClientCommands(
         soap_default_SOAP_ENV__Header(&soap, &header);
         logger->QuickLog("ping1");
 
-        //wsa__EndpointReferenceType replyTo;
         struct wsa__EndpointReferenceType replyTo;
         logger->QuickLog("ping2");
 
-        //replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
-        //replyTo.__size = 0;
         soap_default_wsa__EndpointReferenceType(&soap, &replyTo);
         logger->QuickLog("ping3");
         replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
 
-        // Need some empty structs for various items to be zeroed out
-        //wsa__Relationship wsaRelatesTo;
-        //wsaRelatesTo.__item = "";
-        //wsaRelatesTo.RelationshipType = "";
-        //wsaRelatesTo.__anyAttribute = "";
-
         logger->QuickLog("ping4");
         header.wsa__MessageID = getNewMessageID();
-        //wsa__EndpointReferenceType wsaFrom;
-        //wsaFrom.Address = "";
-        //wsaFrom.__size = 0;
 
         logger->QuickLog("ping5");
         header.wsa__ReplyTo = &replyTo;
-        //wsa__EndpointReferenceType wsaFaultTo;
-        //wsaFaultTo.Address = "";
-        //wsaFaultTo.__size = 0;
         logger->QuickLog("ping6");
         header.wsa__To = "http://10.10.0.20/CCMS/EILClientOperationsService.svc"; // FIXME
-
-        //service.soap_header(
-            //getNewMessageID(),
-            //&wsaRelatesTo,
-            //&wsaFrom,
-            //&replyTo,
-            //&wsaFaultTo,
-            //"http://10.10.0.20/CCMS/EILClientOperationsService.svc", // FIXME
-            //"http://tempuri.org/IEILClientOperations/GetCommandToExecute" // FIXME
-            //);
 
         logger->QuickLog("ping7");
         header.wsa__Action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute"; // FIXME
@@ -137,7 +112,7 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         ns4__MachineContext ctx;
         ctx.mParams = &k1;
-        ctx.soap_default(&soap); // Must set our soap instance
+        //ctx.soap_default(&soap); // Must set our soap instance
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
         logger->QuickLog("ping11");
@@ -173,10 +148,12 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         _ns1__GetCommandToExecute getCommand;
         getCommand.ctx = &ctx;
-        ctx.soap_default(&soap); // Must set our soap instance
-        getCommand.soap_default(&soap);
-        //getCommand.soap = &soap;
+
+        //ctx.soap_default(&soap); // Must set our soap instance
+        //getCommand.soap_default(&soap);
+
         logger->QuickLog("ping13");
+
         service.soap_header(
             header.wsa__MessageID,
             header.wsa__RelatesTo,
@@ -186,22 +163,11 @@ CommandIssued StewardService::QueryForClientCommands(
             header.wsa__To,
             header.wsa__Action);
 
-        //soap_begin(&soap);
-        logger->QuickLog("ping13.1");
-        //soap_begin_send(&soap);
-        logger->QuickLog("ping13.2");
-        //getCommand.soap_serialize(&soap);
-        logger->QuickLog("ping13.3");
-        //soap_write__ns1__GetCommandToExecute(&soap, &getCommand);
-        logger->QuickLog("ping13.4");
-        //soap_end_send(&soap);
-        //getCommand.soap_serialize(&soap);
         _ns1__GetCommandToExecuteResponse response;
 
         /*
         Execute the getCommand request
         */
-        //op_codes = getCommand.put(
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
         logger->QuickLog("ping14");
