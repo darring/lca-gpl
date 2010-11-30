@@ -25,7 +25,7 @@ soapC.o: eil_steward.o
 
 stewardService.o: eil_steward.o
 
-GSOAP_WSAAPI_O: GSOAP_WSAAPI_O
+GSOAP_WSAAPI_O: eil_steward.o
 
 eil_steward.o: $(SOURCES) $(HEADERS)
 	$(CPP) $(CP_FLAGS) $(INCLUDES) $(GSOAP_INCLUDES) $(GSOAP_SOURCES) $(SOURCES)
