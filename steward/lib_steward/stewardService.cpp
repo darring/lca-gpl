@@ -12,6 +12,7 @@
 #include "logger.h"
 #include "stewardService.h"
 #include "EIL_defines.h"
+#include "uniqueHash.h"
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
@@ -22,6 +23,9 @@ StewardService::StewardService(StewardLogger *myLogger)
     currentState = STATE_None;
     soap_init(&soap);
     soap_register_plugin(&soap, soap_wsa);
+
+    UniqueHash l_uniqueHash;
+    uniqueHash = &l_uniqueHash;
 
     logger->QuickLog("StewardService> Service initialized...");
 }

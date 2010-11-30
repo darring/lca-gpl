@@ -16,7 +16,7 @@
 class UniqueHash
 {
     private:
-        const char[] base36chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        char* base36chars;
     public:
         //! Constructor for the UniqueHash class
         UniqueHash();

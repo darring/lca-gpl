@@ -24,6 +24,7 @@
 #include "soapH.h"
 
 class StewardLogger;
+class UniqueHash;
 
 class StewardService
 {
@@ -32,6 +33,7 @@ class StewardService
         struct soap soap;
         struct SOAP_ENV__Header header;
         StewardLogger *logger;
+        UniqueHash *uniqueHash;
         int op_codes;
         char *last_MessageID;
         ServiceState currentState;
