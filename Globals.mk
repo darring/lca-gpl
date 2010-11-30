@@ -3,6 +3,9 @@
 # Set this empty to disable debugging (when ready for release)
 DEBUG=-g
 
+# FIXME - Add defines for reducing gSOAP build size by removing the server
+# code as it wont be needed
+
 CC=gcc
 CPP=g++
 

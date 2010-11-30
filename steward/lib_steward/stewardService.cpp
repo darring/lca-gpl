@@ -177,7 +177,31 @@ CommandIssued StewardService::QueryForClientCommands(
         getCommand.soap_default(&soap);
         //getCommand.soap = &soap;
         logger->QuickLog("ping13");
+        service.soap_header(
+            header.wsa__MessageID,
+            header.wsa__RelatesTo,
+            header.wsa__From,
+            header.wsa__ReplyTo,
+            header.wsa__FaultTo,
+            header.wsa__To,
+            header.wsa__Action);
+
+        //soap_begin(&soap);
+        logger->QuickLog("ping13.1");
+        //soap_begin_send(&soap);
+        logger->QuickLog("ping13.2");
+        //getCommand.soap_serialize(&soap);
+        logger->QuickLog("ping13.3");
+        //soap_write__ns1__GetCommandToExecute(&soap, &getCommand);
+        logger->QuickLog("ping13.4");
+        //soap_end_send(&soap);
+        //getCommand.soap_serialize(&soap);
         _ns1__GetCommandToExecuteResponse response;
+
+        /*
+        Execute the getCommand request
+        */
+        //op_codes = getCommand.put(
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
         logger->QuickLog("ping14");
