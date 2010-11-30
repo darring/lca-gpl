@@ -57,7 +57,7 @@ CommandIssued StewardService::QueryForClientCommands(
         logger->QuickLog("ping5");
         header.wsa__ReplyTo = &replyTo;
         logger->QuickLog("ping6");
-        header.wsa__To = "http://10.10.0.20/CCMS/EILClientOperationsService.svc"; // FIXME
+        header.wsa__To = "http://172.16.3.10/CCMS/EILClientOperationsService.svc"; // FIXME
 
         logger->QuickLog("ping7");
         header.wsa__Action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute"; // FIXME
