@@ -17,7 +17,7 @@ OBJECTS=logger.o soapC.o stewardService.o \
 INCLUDES=-I./logger/ -I./lib_soap/ -I./lib_steward/
 
 eil_steward: $(OBJECTS)
-	$(CPP) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
+	$(CPP) $(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
 
 logger.o: eil_steward.o
 
@@ -25,8 +25,10 @@ soapC.o: eil_steward.o
 
 stewardService.o: eil_steward.o
 
+GSOAP_WSAAPI_O: GSOAP_WSAAPI_O
+
 eil_steward.o: $(SOURCES) $(HEADERS)
-	$(CPP) $(CP_FLAGS) $(INCLUDES) $(SOURCES)
+	$(CPP) $(CP_FLAGS) $(INCLUDES) $(GSOAP_INCLUDES) $(GSOAP_SOURCES) $(SOURCES)
 
 clean:
 	@echo Cleaning the build environment
