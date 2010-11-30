@@ -10,6 +10,6 @@ SOAP_NMAC struct Namespace namespaces[] =
 	{"ns4", "http://schemas.datacontract.org/2004/07/EILClientManagmentService", NULL, NULL},
 	{"ns5", "http://schemas.microsoft.com/2003/10/Serialization/Arrays", NULL, NULL},
 	{"ns1", "http://tempuri.org/", NULL, NULL},
-	{"wsa", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL, NULL},
+	{"wsa5", "http://www.w3.org/2005/08/addressing", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL},
 	{NULL, NULL, NULL, NULL}
 };

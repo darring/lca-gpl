@@ -8,7 +8,7 @@
  xmlns:ns4="http://schemas.datacontract.org/2004/07/EILClientManagmentService"
  xmlns:ns5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
  xmlns:ns1="http://tempuri.org/"
- xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+ xmlns:wsa5="http://www.w3.org/2005/08/addressing">
  <SOAP-ENV:Header>
  </SOAP-ENV:Header>
  <SOAP-ENV:Body>

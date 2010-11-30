@@ -36,7 +36,7 @@ void WSHttpBinding_USCOREIEILClientOperationsProxy::WSHttpBinding_USCOREIEILClie
 	{"ns4", "http://schemas.datacontract.org/2004/07/EILClientManagmentService", NULL, NULL},
 	{"ns5", "http://schemas.microsoft.com/2003/10/Serialization/Arrays", NULL, NULL},
 	{"ns1", "http://tempuri.org/", NULL, NULL},
-	{"wsa", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL, NULL},
+	{"wsa5", "http://www.w3.org/2005/08/addressing", "http://schemas.xmlsoap.org/ws/2004/08/addressing", NULL},
 	{NULL, NULL, NULL, NULL}
 };
 	this->namespaces = namespaces;
@@ -54,15 +54,15 @@ void WSHttpBinding_USCOREIEILClientOperationsProxy::soap_noheader()
 {	header = NULL;
 }
 
-void WSHttpBinding_USCOREIEILClientOperationsProxy::soap_header(char *wsa__MessageID, struct wsa__Relationship *wsa__RelatesTo, struct wsa__EndpointReferenceType *wsa__From, struct wsa__EndpointReferenceType *wsa__ReplyTo, struct wsa__EndpointReferenceType *wsa__FaultTo, char *wsa__To, char *wsa__Action)
+void WSHttpBinding_USCOREIEILClientOperationsProxy::soap_header(char *wsa5__MessageID, struct wsa5__RelatesToType *wsa5__RelatesTo, struct wsa5__EndpointReferenceType *wsa5__From, struct wsa5__EndpointReferenceType *wsa5__ReplyTo, struct wsa5__EndpointReferenceType *wsa5__FaultTo, char *wsa5__To, char *wsa5__Action)
 {	::soap_header(this);
-	this->header->wsa__MessageID = wsa__MessageID;
-	this->header->wsa__RelatesTo = wsa__RelatesTo;
-	this->header->wsa__From = wsa__From;
-	this->header->wsa__ReplyTo = wsa__ReplyTo;
-	this->header->wsa__FaultTo = wsa__FaultTo;
-	this->header->wsa__To = wsa__To;
-	this->header->wsa__Action = wsa__Action;
+	this->header->wsa5__MessageID = wsa5__MessageID;
+	this->header->wsa5__RelatesTo = wsa5__RelatesTo;
+	this->header->wsa5__From = wsa5__From;
+	this->header->wsa5__ReplyTo = wsa5__ReplyTo;
+	this->header->wsa5__FaultTo = wsa5__FaultTo;
+	this->header->wsa5__To = wsa5__To;
+	this->header->wsa5__Action = wsa5__Action;
 }
 
 const SOAP_ENV__Header *WSHttpBinding_USCOREIEILClientOperationsProxy::soap_header()

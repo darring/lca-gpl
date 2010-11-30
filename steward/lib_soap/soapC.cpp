@@ -12,7 +12,7 @@
 
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.0 2010-11-30 18:01:09 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.0 2010-11-30 18:20:12 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -193,10 +193,12 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_unsignedLONG64(soap, NULL, NULL, "xsd:unsignedLong");
 	case SOAP_TYPE_time:
 		return soap_in_time(soap, NULL, NULL, "xsd:dateTime");
-	case SOAP_TYPE_wsa__FaultSubcodeValues:
-		return soap_in_wsa__FaultSubcodeValues(soap, NULL, NULL, "wsa:FaultSubcodeValues");
-	case SOAP_TYPE_wsa__RelationshipTypeValues:
-		return soap_in_wsa__RelationshipTypeValues(soap, NULL, NULL, "wsa:RelationshipTypeValues");
+	case SOAP_TYPE__wsa5__IsReferenceParameter:
+		return soap_in__wsa5__IsReferenceParameter(soap, NULL, NULL, "wsa5:IsReferenceParameter");
+	case SOAP_TYPE_wsa5__FaultCodesType:
+		return soap_in_wsa5__FaultCodesType(soap, NULL, NULL, "wsa5:FaultCodesType");
+	case SOAP_TYPE_wsa5__RelationshipType:
+		return soap_in_wsa5__RelationshipType(soap, NULL, NULL, "wsa5:RelationshipType");
 	case SOAP_TYPE_ns4__EILCommandStatus:
 		return soap_in_ns4__EILCommandStatus(soap, NULL, NULL, "ns4:EILCommandStatus");
 	case SOAP_TYPE_ns4__MachineType:
@@ -287,32 +289,43 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_std__string(soap, NULL, NULL, "xsd:string");
 	case SOAP_TYPE_xsd__anyType:
 		return soap_in_xsd__anyType(soap, NULL, NULL, "xsd:anyType");
-	case SOAP_TYPE_wsa__Relationship:
-		return soap_in_wsa__Relationship(soap, NULL, NULL, "wsa:Relationship");
-	case SOAP_TYPE_wsa__ServiceNameType:
-		return soap_in_wsa__ServiceNameType(soap, NULL, NULL, "wsa:ServiceNameType");
-	case SOAP_TYPE_wsa__ReferenceParametersType:
-		return soap_in_wsa__ReferenceParametersType(soap, NULL, NULL, "wsa:ReferenceParametersType");
-	case SOAP_TYPE_wsa__ReferencePropertiesType:
-		return soap_in_wsa__ReferencePropertiesType(soap, NULL, NULL, "wsa:ReferencePropertiesType");
-	case SOAP_TYPE_wsa__EndpointReferenceType:
-		return soap_in_wsa__EndpointReferenceType(soap, NULL, NULL, "wsa:EndpointReferenceType");
-	case SOAP_TYPE_PointerTo_wsa__FaultTo:
-		return soap_in_PointerTo_wsa__FaultTo(soap, NULL, NULL, "wsa:FaultTo");
-	case SOAP_TYPE_PointerTo_wsa__ReplyTo:
-		return soap_in_PointerTo_wsa__ReplyTo(soap, NULL, NULL, "wsa:ReplyTo");
-	case SOAP_TYPE_PointerTo_wsa__From:
-		return soap_in_PointerTo_wsa__From(soap, NULL, NULL, "wsa:From");
-	case SOAP_TYPE_PointerTo_wsa__RelatesTo:
-		return soap_in_PointerTo_wsa__RelatesTo(soap, NULL, NULL, "wsa:RelatesTo");
-	case SOAP_TYPE_PointerTowsa__ServiceNameType:
-		return soap_in_PointerTowsa__ServiceNameType(soap, NULL, NULL, "wsa:ServiceNameType");
-	case SOAP_TYPE_PointerTo_QName:
-		return soap_in_PointerTo_QName(soap, NULL, NULL, "xsd:QName");
-	case SOAP_TYPE_PointerTowsa__ReferenceParametersType:
-		return soap_in_PointerTowsa__ReferenceParametersType(soap, NULL, NULL, "wsa:ReferenceParametersType");
-	case SOAP_TYPE_PointerTowsa__ReferencePropertiesType:
-		return soap_in_PointerTowsa__ReferencePropertiesType(soap, NULL, NULL, "wsa:ReferencePropertiesType");
+	case SOAP_TYPE_wsa5__ProblemActionType:
+		return soap_in_wsa5__ProblemActionType(soap, NULL, NULL, "wsa5:ProblemActionType");
+	case SOAP_TYPE_wsa5__RelatesToType:
+		return soap_in_wsa5__RelatesToType(soap, NULL, NULL, "wsa5:RelatesToType");
+	case SOAP_TYPE_wsa5__MetadataType:
+		return soap_in_wsa5__MetadataType(soap, NULL, NULL, "wsa5:MetadataType");
+	case SOAP_TYPE_wsa5__ReferenceParametersType:
+		return soap_in_wsa5__ReferenceParametersType(soap, NULL, NULL, "wsa5:ReferenceParametersType");
+	case SOAP_TYPE_wsa5__EndpointReferenceType:
+		return soap_in_wsa5__EndpointReferenceType(soap, NULL, NULL, "wsa5:EndpointReferenceType");
+	case SOAP_TYPE_PointerTo_wsa5__FaultTo:
+		return soap_in_PointerTo_wsa5__FaultTo(soap, NULL, NULL, "wsa5:FaultTo");
+	case SOAP_TYPE_PointerTo_wsa5__ReplyTo:
+		return soap_in_PointerTo_wsa5__ReplyTo(soap, NULL, NULL, "wsa5:ReplyTo");
+	case SOAP_TYPE_PointerTo_wsa5__From:
+		return soap_in_PointerTo_wsa5__From(soap, NULL, NULL, "wsa5:From");
+	case SOAP_TYPE_PointerTo_wsa5__RelatesTo:
+		return soap_in_PointerTo_wsa5__RelatesTo(soap, NULL, NULL, "wsa5:RelatesTo");
+	case SOAP_TYPE__wsa5__ProblemHeaderQName:
+	{	char **s;
+		s = soap_in__wsa5__ProblemHeaderQName(soap, NULL, NULL, "xsd:QName");
+		return s ? *s : NULL;
+	}
+	case SOAP_TYPE_PointerTowsa5__MetadataType:
+		return soap_in_PointerTowsa5__MetadataType(soap, NULL, NULL, "wsa5:MetadataType");
+	case SOAP_TYPE_PointerTowsa5__ReferenceParametersType:
+		return soap_in_PointerTowsa5__ReferenceParametersType(soap, NULL, NULL, "wsa5:ReferenceParametersType");
+	case SOAP_TYPE_wsa5__FaultCodesOpenEnumType:
+	{	char **s;
+		s = soap_in_wsa5__FaultCodesOpenEnumType(soap, NULL, NULL, "wsa5:FaultCodesOpenEnumType");
+		return s ? *s : NULL;
+	}
+	case SOAP_TYPE_wsa5__RelationshipTypeOpenEnum:
+	{	char **s;
+		s = soap_in_wsa5__RelationshipTypeOpenEnum(soap, NULL, NULL, "wsa5:RelationshipTypeOpenEnum");
+		return s ? *s : NULL;
+	}
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsResponse:
 		return soap_in_PointerTo_ns1__InitiateClientCommandsResponse(soap, NULL, NULL, "ns1:InitiateClientCommandsResponse");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommands:
@@ -589,13 +602,17 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_time;
 			return soap_in_time(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:FaultSubcodeValues"))
-		{	*type = SOAP_TYPE_wsa__FaultSubcodeValues;
-			return soap_in_wsa__FaultSubcodeValues(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:IsReferenceParameter"))
+		{	*type = SOAP_TYPE__wsa5__IsReferenceParameter;
+			return soap_in__wsa5__IsReferenceParameter(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:RelationshipTypeValues"))
-		{	*type = SOAP_TYPE_wsa__RelationshipTypeValues;
-			return soap_in_wsa__RelationshipTypeValues(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:FaultCodesType"))
+		{	*type = SOAP_TYPE_wsa5__FaultCodesType;
+			return soap_in_wsa5__FaultCodesType(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "wsa5:RelationshipType"))
+		{	*type = SOAP_TYPE_wsa5__RelationshipType;
+			return soap_in_wsa5__RelationshipType(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns4:EILCommandStatus"))
 		{	*type = SOAP_TYPE_ns4__EILCommandStatus;
@@ -609,25 +626,43 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_bool;
 			return soap_in_bool(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:Relationship"))
-		{	*type = SOAP_TYPE_wsa__Relationship;
-			return soap_in_wsa__Relationship(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:ProblemActionType"))
+		{	*type = SOAP_TYPE_wsa5__ProblemActionType;
+			return soap_in_wsa5__ProblemActionType(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:ServiceNameType"))
-		{	*type = SOAP_TYPE_wsa__ServiceNameType;
-			return soap_in_wsa__ServiceNameType(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:RelatesToType"))
+		{	*type = SOAP_TYPE_wsa5__RelatesToType;
+			return soap_in_wsa5__RelatesToType(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:ReferenceParametersType"))
-		{	*type = SOAP_TYPE_wsa__ReferenceParametersType;
-			return soap_in_wsa__ReferenceParametersType(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:MetadataType"))
+		{	*type = SOAP_TYPE_wsa5__MetadataType;
+			return soap_in_wsa5__MetadataType(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:ReferencePropertiesType"))
-		{	*type = SOAP_TYPE_wsa__ReferencePropertiesType;
-			return soap_in_wsa__ReferencePropertiesType(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:ReferenceParametersType"))
+		{	*type = SOAP_TYPE_wsa5__ReferenceParametersType;
+			return soap_in_wsa5__ReferenceParametersType(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:EndpointReferenceType"))
-		{	*type = SOAP_TYPE_wsa__EndpointReferenceType;
-			return soap_in_wsa__EndpointReferenceType(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:EndpointReferenceType"))
+		{	*type = SOAP_TYPE_wsa5__EndpointReferenceType;
+			return soap_in_wsa5__EndpointReferenceType(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "xsd:QName"))
+		{	char **s;
+			*type = SOAP_TYPE__wsa5__ProblemHeaderQName;
+			s = soap_in__wsa5__ProblemHeaderQName(soap, NULL, NULL, NULL);
+			return s ? *s : NULL;
+		}
+		if (!soap_match_tag(soap, t, "wsa5:FaultCodesOpenEnumType"))
+		{	char **s;
+			*type = SOAP_TYPE_wsa5__FaultCodesOpenEnumType;
+			s = soap_in_wsa5__FaultCodesOpenEnumType(soap, NULL, NULL, NULL);
+			return s ? *s : NULL;
+		}
+		if (!soap_match_tag(soap, t, "wsa5:RelationshipTypeOpenEnum"))
+		{	char **s;
+			*type = SOAP_TYPE_wsa5__RelationshipTypeOpenEnum;
+			s = soap_in_wsa5__RelationshipTypeOpenEnum(soap, NULL, NULL, NULL);
+			return s ? *s : NULL;
 		}
 		if (!soap_match_tag(soap, t, "xsd:QName"))
 		{	char **s;
@@ -678,13 +713,13 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE__ns3__unsignedShort;
 			return soap_in__ns3__unsignedShort(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:ReplyAfter"))
-		{	*type = SOAP_TYPE__wsa__ReplyAfter;
-			return soap_in__wsa__ReplyAfter(soap, NULL, NULL, NULL);
-		}
 		if (!soap_match_tag(soap, t, "ns3:unsignedInt"))
 		{	*type = SOAP_TYPE__ns3__unsignedInt;
 			return soap_in__ns3__unsignedInt(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "wsa5:RetryAfter"))
+		{	*type = SOAP_TYPE__wsa5__RetryAfter;
+			return soap_in__wsa5__RetryAfter(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns3:unsignedLong"))
 		{	*type = SOAP_TYPE__ns3__unsignedLong;
@@ -794,42 +829,60 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE__ns1__GetCommandToExecute;
 			return soap_in__ns1__GetCommandToExecute(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:FaultTo"))
-		{	*type = SOAP_TYPE__wsa__FaultTo;
-			return soap_in__wsa__FaultTo(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:ProblemAction"))
+		{	*type = SOAP_TYPE__wsa5__ProblemAction;
+			return soap_in__wsa5__ProblemAction(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:ReplyTo"))
-		{	*type = SOAP_TYPE__wsa__ReplyTo;
-			return soap_in__wsa__ReplyTo(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:FaultTo"))
+		{	*type = SOAP_TYPE__wsa5__FaultTo;
+			return soap_in__wsa5__FaultTo(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:From"))
-		{	*type = SOAP_TYPE__wsa__From;
-			return soap_in__wsa__From(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:From"))
+		{	*type = SOAP_TYPE__wsa5__From;
+			return soap_in__wsa5__From(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:RelatesTo"))
-		{	*type = SOAP_TYPE__wsa__RelatesTo;
-			return soap_in__wsa__RelatesTo(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:ReplyTo"))
+		{	*type = SOAP_TYPE__wsa5__ReplyTo;
+			return soap_in__wsa5__ReplyTo(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:EndpointReference"))
-		{	*type = SOAP_TYPE__wsa__EndpointReference;
-			return soap_in__wsa__EndpointReference(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "wsa5:RelatesTo"))
+		{	*type = SOAP_TYPE__wsa5__RelatesTo;
+			return soap_in__wsa5__RelatesTo(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "wsa:Action"))
+		if (!soap_match_tag(soap, t, "wsa5:Metadata"))
+		{	*type = SOAP_TYPE__wsa5__Metadata;
+			return soap_in__wsa5__Metadata(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "wsa5:ReferenceParameters"))
+		{	*type = SOAP_TYPE__wsa5__ReferenceParameters;
+			return soap_in__wsa5__ReferenceParameters(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "wsa5:EndpointReference"))
+		{	*type = SOAP_TYPE__wsa5__EndpointReference;
+			return soap_in__wsa5__EndpointReference(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "wsa5:ProblemIRI"))
 		{	char **s;
-			*type = SOAP_TYPE__wsa__Action;
-			s = soap_in__wsa__Action(soap, NULL, NULL, NULL);
+			*type = SOAP_TYPE__wsa5__ProblemIRI;
+			s = soap_in__wsa5__ProblemIRI(soap, NULL, NULL, NULL);
 			return s ? *s : NULL;
 		}
-		if (!soap_match_tag(soap, t, "wsa:To"))
+		if (!soap_match_tag(soap, t, "wsa5:Action"))
 		{	char **s;
-			*type = SOAP_TYPE__wsa__To;
-			s = soap_in__wsa__To(soap, NULL, NULL, NULL);
+			*type = SOAP_TYPE__wsa5__Action;
+			s = soap_in__wsa5__Action(soap, NULL, NULL, NULL);
 			return s ? *s : NULL;
 		}
-		if (!soap_match_tag(soap, t, "wsa:MessageID"))
+		if (!soap_match_tag(soap, t, "wsa5:To"))
 		{	char **s;
-			*type = SOAP_TYPE__wsa__MessageID;
-			s = soap_in__wsa__MessageID(soap, NULL, NULL, NULL);
+			*type = SOAP_TYPE__wsa5__To;
+			s = soap_in__wsa5__To(soap, NULL, NULL, NULL);
+			return s ? *s : NULL;
+		}
+		if (!soap_match_tag(soap, t, "wsa5:MessageID"))
+		{	char **s;
+			*type = SOAP_TYPE__wsa5__MessageID;
+			s = soap_in__wsa5__MessageID(soap, NULL, NULL, NULL);
 			return s ? *s : NULL;
 		}
 	}
@@ -937,12 +990,12 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out__ns3__unsignedShort(soap, "ns3:unsignedShort", id, (const unsigned short *)ptr, NULL);
 	case SOAP_TYPE_unsignedShort:
 		return soap_out_unsignedShort(soap, tag, id, (const unsigned short *)ptr, "xsd:unsignedShort");
-	case SOAP_TYPE__wsa__ReplyAfter:
-		return soap_out__wsa__ReplyAfter(soap, "wsa:ReplyAfter", id, (const unsigned int *)ptr, NULL);
 	case SOAP_TYPE__ns3__unsignedInt:
 		return soap_out__ns3__unsignedInt(soap, "ns3:unsignedInt", id, (const unsigned int *)ptr, NULL);
 	case SOAP_TYPE_unsignedInt:
 		return soap_out_unsignedInt(soap, tag, id, (const unsigned int *)ptr, "xsd:unsignedInt");
+	case SOAP_TYPE__wsa5__RetryAfter:
+		return soap_out__wsa5__RetryAfter(soap, "wsa5:RetryAfter", id, (const ULONG64 *)ptr, NULL);
 	case SOAP_TYPE__ns3__unsignedLong:
 		return soap_out__ns3__unsignedLong(soap, "ns3:unsignedLong", id, (const ULONG64 *)ptr, NULL);
 	case SOAP_TYPE_unsignedLONG64:
@@ -951,10 +1004,12 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out__ns3__dateTime(soap, "ns3:dateTime", id, (const time_t *)ptr, NULL);
 	case SOAP_TYPE_time:
 		return soap_out_time(soap, tag, id, (const time_t *)ptr, "xsd:dateTime");
-	case SOAP_TYPE_wsa__FaultSubcodeValues:
-		return soap_out_wsa__FaultSubcodeValues(soap, tag, id, (const enum wsa__FaultSubcodeValues *)ptr, "wsa:FaultSubcodeValues");
-	case SOAP_TYPE_wsa__RelationshipTypeValues:
-		return soap_out_wsa__RelationshipTypeValues(soap, tag, id, (const enum wsa__RelationshipTypeValues *)ptr, "wsa:RelationshipTypeValues");
+	case SOAP_TYPE__wsa5__IsReferenceParameter:
+		return soap_out__wsa5__IsReferenceParameter(soap, tag, id, (const enum _wsa5__IsReferenceParameter *)ptr, "wsa5:IsReferenceParameter");
+	case SOAP_TYPE_wsa5__FaultCodesType:
+		return soap_out_wsa5__FaultCodesType(soap, tag, id, (const enum wsa5__FaultCodesType *)ptr, "wsa5:FaultCodesType");
+	case SOAP_TYPE_wsa5__RelationshipType:
+		return soap_out_wsa5__RelationshipType(soap, tag, id, (const enum wsa5__RelationshipType *)ptr, "wsa5:RelationshipType");
 	case SOAP_TYPE__ns4__EILCommandStatus:
 		return soap_out__ns4__EILCommandStatus(soap, "ns4:EILCommandStatus", id, (const enum ns4__EILCommandStatus *)ptr, NULL);
 	case SOAP_TYPE__ns4__MachineType:
@@ -1095,48 +1150,58 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_std__string(soap, tag, id, (const std::string *)ptr, "xsd:string");
 	case SOAP_TYPE_xsd__anyType:
 		return ((xsd__anyType *)ptr)->soap_out(soap, tag, id, "xsd:anyType");
-	case SOAP_TYPE__wsa__FaultTo:
-		return soap_out__wsa__FaultTo(soap, "wsa:FaultTo", id, (const struct wsa__EndpointReferenceType *)ptr, NULL);
-	case SOAP_TYPE__wsa__ReplyTo:
-		return soap_out__wsa__ReplyTo(soap, "wsa:ReplyTo", id, (const struct wsa__EndpointReferenceType *)ptr, NULL);
-	case SOAP_TYPE__wsa__From:
-		return soap_out__wsa__From(soap, "wsa:From", id, (const struct wsa__EndpointReferenceType *)ptr, NULL);
-	case SOAP_TYPE__wsa__RelatesTo:
-		return soap_out__wsa__RelatesTo(soap, "wsa:RelatesTo", id, (const struct wsa__Relationship *)ptr, NULL);
-	case SOAP_TYPE__wsa__EndpointReference:
-		return soap_out__wsa__EndpointReference(soap, "wsa:EndpointReference", id, (const struct wsa__EndpointReferenceType *)ptr, NULL);
-	case SOAP_TYPE_wsa__Relationship:
-		return soap_out_wsa__Relationship(soap, tag, id, (const struct wsa__Relationship *)ptr, "wsa:Relationship");
-	case SOAP_TYPE_wsa__ServiceNameType:
-		return soap_out_wsa__ServiceNameType(soap, tag, id, (const struct wsa__ServiceNameType *)ptr, "wsa:ServiceNameType");
-	case SOAP_TYPE_wsa__ReferenceParametersType:
-		return soap_out_wsa__ReferenceParametersType(soap, tag, id, (const struct wsa__ReferenceParametersType *)ptr, "wsa:ReferenceParametersType");
-	case SOAP_TYPE_wsa__ReferencePropertiesType:
-		return soap_out_wsa__ReferencePropertiesType(soap, tag, id, (const struct wsa__ReferencePropertiesType *)ptr, "wsa:ReferencePropertiesType");
-	case SOAP_TYPE_wsa__EndpointReferenceType:
-		return soap_out_wsa__EndpointReferenceType(soap, tag, id, (const struct wsa__EndpointReferenceType *)ptr, "wsa:EndpointReferenceType");
-	case SOAP_TYPE_PointerTo_wsa__FaultTo:
-		return soap_out_PointerTo_wsa__FaultTo(soap, tag, id, (struct wsa__EndpointReferenceType *const*)ptr, "wsa:FaultTo");
-	case SOAP_TYPE_PointerTo_wsa__ReplyTo:
-		return soap_out_PointerTo_wsa__ReplyTo(soap, tag, id, (struct wsa__EndpointReferenceType *const*)ptr, "wsa:ReplyTo");
-	case SOAP_TYPE_PointerTo_wsa__From:
-		return soap_out_PointerTo_wsa__From(soap, tag, id, (struct wsa__EndpointReferenceType *const*)ptr, "wsa:From");
-	case SOAP_TYPE_PointerTo_wsa__RelatesTo:
-		return soap_out_PointerTo_wsa__RelatesTo(soap, tag, id, (struct wsa__Relationship *const*)ptr, "wsa:RelatesTo");
-	case SOAP_TYPE__wsa__Action:
-		return soap_out_string(soap, "wsa:Action", id, (char*const*)&ptr, NULL);
-	case SOAP_TYPE__wsa__To:
-		return soap_out_string(soap, "wsa:To", id, (char*const*)&ptr, NULL);
-	case SOAP_TYPE__wsa__MessageID:
-		return soap_out_string(soap, "wsa:MessageID", id, (char*const*)&ptr, NULL);
-	case SOAP_TYPE_PointerTowsa__ServiceNameType:
-		return soap_out_PointerTowsa__ServiceNameType(soap, tag, id, (struct wsa__ServiceNameType *const*)ptr, "wsa:ServiceNameType");
-	case SOAP_TYPE_PointerTo_QName:
-		return soap_out_PointerTo_QName(soap, tag, id, (char **const*)ptr, "xsd:QName");
-	case SOAP_TYPE_PointerTowsa__ReferenceParametersType:
-		return soap_out_PointerTowsa__ReferenceParametersType(soap, tag, id, (struct wsa__ReferenceParametersType *const*)ptr, "wsa:ReferenceParametersType");
-	case SOAP_TYPE_PointerTowsa__ReferencePropertiesType:
-		return soap_out_PointerTowsa__ReferencePropertiesType(soap, tag, id, (struct wsa__ReferencePropertiesType *const*)ptr, "wsa:ReferencePropertiesType");
+	case SOAP_TYPE__wsa5__ProblemAction:
+		return soap_out__wsa5__ProblemAction(soap, "wsa5:ProblemAction", id, (const struct wsa5__ProblemActionType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__FaultTo:
+		return soap_out__wsa5__FaultTo(soap, "wsa5:FaultTo", id, (const struct wsa5__EndpointReferenceType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__From:
+		return soap_out__wsa5__From(soap, "wsa5:From", id, (const struct wsa5__EndpointReferenceType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__ReplyTo:
+		return soap_out__wsa5__ReplyTo(soap, "wsa5:ReplyTo", id, (const struct wsa5__EndpointReferenceType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__RelatesTo:
+		return soap_out__wsa5__RelatesTo(soap, "wsa5:RelatesTo", id, (const struct wsa5__RelatesToType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__Metadata:
+		return soap_out__wsa5__Metadata(soap, "wsa5:Metadata", id, (const struct wsa5__MetadataType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__ReferenceParameters:
+		return soap_out__wsa5__ReferenceParameters(soap, "wsa5:ReferenceParameters", id, (const struct wsa5__ReferenceParametersType *)ptr, NULL);
+	case SOAP_TYPE__wsa5__EndpointReference:
+		return soap_out__wsa5__EndpointReference(soap, "wsa5:EndpointReference", id, (const struct wsa5__EndpointReferenceType *)ptr, NULL);
+	case SOAP_TYPE_wsa5__ProblemActionType:
+		return soap_out_wsa5__ProblemActionType(soap, tag, id, (const struct wsa5__ProblemActionType *)ptr, "wsa5:ProblemActionType");
+	case SOAP_TYPE_wsa5__RelatesToType:
+		return soap_out_wsa5__RelatesToType(soap, tag, id, (const struct wsa5__RelatesToType *)ptr, "wsa5:RelatesToType");
+	case SOAP_TYPE_wsa5__MetadataType:
+		return soap_out_wsa5__MetadataType(soap, tag, id, (const struct wsa5__MetadataType *)ptr, "wsa5:MetadataType");
+	case SOAP_TYPE_wsa5__ReferenceParametersType:
+		return soap_out_wsa5__ReferenceParametersType(soap, tag, id, (const struct wsa5__ReferenceParametersType *)ptr, "wsa5:ReferenceParametersType");
+	case SOAP_TYPE_wsa5__EndpointReferenceType:
+		return soap_out_wsa5__EndpointReferenceType(soap, tag, id, (const struct wsa5__EndpointReferenceType *)ptr, "wsa5:EndpointReferenceType");
+	case SOAP_TYPE_PointerTo_wsa5__FaultTo:
+		return soap_out_PointerTo_wsa5__FaultTo(soap, tag, id, (struct wsa5__EndpointReferenceType *const*)ptr, "wsa5:FaultTo");
+	case SOAP_TYPE_PointerTo_wsa5__ReplyTo:
+		return soap_out_PointerTo_wsa5__ReplyTo(soap, tag, id, (struct wsa5__EndpointReferenceType *const*)ptr, "wsa5:ReplyTo");
+	case SOAP_TYPE_PointerTo_wsa5__From:
+		return soap_out_PointerTo_wsa5__From(soap, tag, id, (struct wsa5__EndpointReferenceType *const*)ptr, "wsa5:From");
+	case SOAP_TYPE_PointerTo_wsa5__RelatesTo:
+		return soap_out_PointerTo_wsa5__RelatesTo(soap, tag, id, (struct wsa5__RelatesToType *const*)ptr, "wsa5:RelatesTo");
+	case SOAP_TYPE__wsa5__ProblemIRI:
+		return soap_out_string(soap, "wsa5:ProblemIRI", id, (char*const*)&ptr, NULL);
+	case SOAP_TYPE__wsa5__ProblemHeaderQName:
+		return soap_out_string(soap, tag, id, (char*const*)&ptr, "xsd:QName");
+	case SOAP_TYPE__wsa5__Action:
+		return soap_out_string(soap, "wsa5:Action", id, (char*const*)&ptr, NULL);
+	case SOAP_TYPE__wsa5__To:
+		return soap_out_string(soap, "wsa5:To", id, (char*const*)&ptr, NULL);
+	case SOAP_TYPE__wsa5__MessageID:
+		return soap_out_string(soap, "wsa5:MessageID", id, (char*const*)&ptr, NULL);
+	case SOAP_TYPE_PointerTowsa5__MetadataType:
+		return soap_out_PointerTowsa5__MetadataType(soap, tag, id, (struct wsa5__MetadataType *const*)ptr, "wsa5:MetadataType");
+	case SOAP_TYPE_PointerTowsa5__ReferenceParametersType:
+		return soap_out_PointerTowsa5__ReferenceParametersType(soap, tag, id, (struct wsa5__ReferenceParametersType *const*)ptr, "wsa5:ReferenceParametersType");
+	case SOAP_TYPE_wsa5__FaultCodesOpenEnumType:
+		return soap_out_string(soap, tag, id, (char*const*)&ptr, "wsa5:FaultCodesOpenEnumType");
+	case SOAP_TYPE_wsa5__RelationshipTypeOpenEnum:
+		return soap_out_string(soap, tag, id, (char*const*)&ptr, "wsa5:RelationshipTypeOpenEnum");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsResponse:
 		return soap_out_PointerTo_ns1__InitiateClientCommandsResponse(soap, tag, id, (_ns1__InitiateClientCommandsResponse *const*)ptr, "ns1:InitiateClientCommandsResponse");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommands:
@@ -1390,35 +1455,44 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_xsd__anyType:
 		((xsd__anyType *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE__wsa__FaultTo:
-		soap_serialize__wsa__FaultTo(soap, (const struct wsa__EndpointReferenceType *)ptr);
+	case SOAP_TYPE__wsa5__ProblemAction:
+		soap_serialize__wsa5__ProblemAction(soap, (const struct wsa5__ProblemActionType *)ptr);
 		break;
-	case SOAP_TYPE__wsa__ReplyTo:
-		soap_serialize__wsa__ReplyTo(soap, (const struct wsa__EndpointReferenceType *)ptr);
+	case SOAP_TYPE__wsa5__FaultTo:
+		soap_serialize__wsa5__FaultTo(soap, (const struct wsa5__EndpointReferenceType *)ptr);
 		break;
-	case SOAP_TYPE__wsa__From:
-		soap_serialize__wsa__From(soap, (const struct wsa__EndpointReferenceType *)ptr);
+	case SOAP_TYPE__wsa5__From:
+		soap_serialize__wsa5__From(soap, (const struct wsa5__EndpointReferenceType *)ptr);
 		break;
-	case SOAP_TYPE__wsa__RelatesTo:
-		soap_serialize__wsa__RelatesTo(soap, (const struct wsa__Relationship *)ptr);
+	case SOAP_TYPE__wsa5__ReplyTo:
+		soap_serialize__wsa5__ReplyTo(soap, (const struct wsa5__EndpointReferenceType *)ptr);
 		break;
-	case SOAP_TYPE__wsa__EndpointReference:
-		soap_serialize__wsa__EndpointReference(soap, (const struct wsa__EndpointReferenceType *)ptr);
+	case SOAP_TYPE__wsa5__RelatesTo:
+		soap_serialize__wsa5__RelatesTo(soap, (const struct wsa5__RelatesToType *)ptr);
 		break;
-	case SOAP_TYPE_wsa__Relationship:
-		soap_serialize_wsa__Relationship(soap, (const struct wsa__Relationship *)ptr);
+	case SOAP_TYPE__wsa5__Metadata:
+		soap_serialize__wsa5__Metadata(soap, (const struct wsa5__MetadataType *)ptr);
 		break;
-	case SOAP_TYPE_wsa__ServiceNameType:
-		soap_serialize_wsa__ServiceNameType(soap, (const struct wsa__ServiceNameType *)ptr);
+	case SOAP_TYPE__wsa5__ReferenceParameters:
+		soap_serialize__wsa5__ReferenceParameters(soap, (const struct wsa5__ReferenceParametersType *)ptr);
 		break;
-	case SOAP_TYPE_wsa__ReferenceParametersType:
-		soap_serialize_wsa__ReferenceParametersType(soap, (const struct wsa__ReferenceParametersType *)ptr);
+	case SOAP_TYPE__wsa5__EndpointReference:
+		soap_serialize__wsa5__EndpointReference(soap, (const struct wsa5__EndpointReferenceType *)ptr);
 		break;
-	case SOAP_TYPE_wsa__ReferencePropertiesType:
-		soap_serialize_wsa__ReferencePropertiesType(soap, (const struct wsa__ReferencePropertiesType *)ptr);
+	case SOAP_TYPE_wsa5__ProblemActionType:
+		soap_serialize_wsa5__ProblemActionType(soap, (const struct wsa5__ProblemActionType *)ptr);
 		break;
-	case SOAP_TYPE_wsa__EndpointReferenceType:
-		soap_serialize_wsa__EndpointReferenceType(soap, (const struct wsa__EndpointReferenceType *)ptr);
+	case SOAP_TYPE_wsa5__RelatesToType:
+		soap_serialize_wsa5__RelatesToType(soap, (const struct wsa5__RelatesToType *)ptr);
+		break;
+	case SOAP_TYPE_wsa5__MetadataType:
+		soap_serialize_wsa5__MetadataType(soap, (const struct wsa5__MetadataType *)ptr);
+		break;
+	case SOAP_TYPE_wsa5__ReferenceParametersType:
+		soap_serialize_wsa5__ReferenceParametersType(soap, (const struct wsa5__ReferenceParametersType *)ptr);
+		break;
+	case SOAP_TYPE_wsa5__EndpointReferenceType:
+		soap_serialize_wsa5__EndpointReferenceType(soap, (const struct wsa5__EndpointReferenceType *)ptr);
 		break;
 	case SOAP_TYPE___ns1__InitiateClientCommands:
 		soap_serialize___ns1__InitiateClientCommands(soap, (const struct __ns1__InitiateClientCommands *)ptr);
@@ -1432,38 +1506,44 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE___ns1__GetCommandToExecute:
 		soap_serialize___ns1__GetCommandToExecute(soap, (const struct __ns1__GetCommandToExecute *)ptr);
 		break;
-	case SOAP_TYPE_PointerTo_wsa__FaultTo:
-		soap_serialize_PointerTo_wsa__FaultTo(soap, (struct wsa__EndpointReferenceType *const*)ptr);
+	case SOAP_TYPE_PointerTo_wsa5__FaultTo:
+		soap_serialize_PointerTo_wsa5__FaultTo(soap, (struct wsa5__EndpointReferenceType *const*)ptr);
 		break;
-	case SOAP_TYPE_PointerTo_wsa__ReplyTo:
-		soap_serialize_PointerTo_wsa__ReplyTo(soap, (struct wsa__EndpointReferenceType *const*)ptr);
+	case SOAP_TYPE_PointerTo_wsa5__ReplyTo:
+		soap_serialize_PointerTo_wsa5__ReplyTo(soap, (struct wsa5__EndpointReferenceType *const*)ptr);
 		break;
-	case SOAP_TYPE_PointerTo_wsa__From:
-		soap_serialize_PointerTo_wsa__From(soap, (struct wsa__EndpointReferenceType *const*)ptr);
+	case SOAP_TYPE_PointerTo_wsa5__From:
+		soap_serialize_PointerTo_wsa5__From(soap, (struct wsa5__EndpointReferenceType *const*)ptr);
 		break;
-	case SOAP_TYPE_PointerTo_wsa__RelatesTo:
-		soap_serialize_PointerTo_wsa__RelatesTo(soap, (struct wsa__Relationship *const*)ptr);
+	case SOAP_TYPE_PointerTo_wsa5__RelatesTo:
+		soap_serialize_PointerTo_wsa5__RelatesTo(soap, (struct wsa5__RelatesToType *const*)ptr);
 		break;
-	case SOAP_TYPE__wsa__Action:
+	case SOAP_TYPE__wsa5__ProblemIRI:
 		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
-	case SOAP_TYPE__wsa__To:
+	case SOAP_TYPE__wsa5__ProblemHeaderQName:
 		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
-	case SOAP_TYPE__wsa__MessageID:
+	case SOAP_TYPE__wsa5__Action:
 		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
-	case SOAP_TYPE_PointerTowsa__ServiceNameType:
-		soap_serialize_PointerTowsa__ServiceNameType(soap, (struct wsa__ServiceNameType *const*)ptr);
+	case SOAP_TYPE__wsa5__To:
+		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
-	case SOAP_TYPE_PointerTo_QName:
-		soap_serialize_PointerTo_QName(soap, (char **const*)ptr);
+	case SOAP_TYPE__wsa5__MessageID:
+		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
-	case SOAP_TYPE_PointerTowsa__ReferenceParametersType:
-		soap_serialize_PointerTowsa__ReferenceParametersType(soap, (struct wsa__ReferenceParametersType *const*)ptr);
+	case SOAP_TYPE_PointerTowsa5__MetadataType:
+		soap_serialize_PointerTowsa5__MetadataType(soap, (struct wsa5__MetadataType *const*)ptr);
 		break;
-	case SOAP_TYPE_PointerTowsa__ReferencePropertiesType:
-		soap_serialize_PointerTowsa__ReferencePropertiesType(soap, (struct wsa__ReferencePropertiesType *const*)ptr);
+	case SOAP_TYPE_PointerTowsa5__ReferenceParametersType:
+		soap_serialize_PointerTowsa5__ReferenceParametersType(soap, (struct wsa5__ReferenceParametersType *const*)ptr);
+		break;
+	case SOAP_TYPE_wsa5__FaultCodesOpenEnumType:
+		soap_serialize_string(soap, (char*const*)&ptr);
+		break;
+	case SOAP_TYPE_wsa5__RelationshipTypeOpenEnum:
+		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsResponse:
 		soap_serialize_PointerTo_ns1__InitiateClientCommandsResponse(soap, (_ns1__InitiateClientCommandsResponse *const*)ptr);
@@ -1630,16 +1710,16 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate___ns1__GetCommandStatus(soap, -1, type, arrayType, n);
 	case SOAP_TYPE___ns1__InitiateClientCommands:
 		return (void*)soap_instantiate___ns1__InitiateClientCommands(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_wsa__EndpointReferenceType:
-		return (void*)soap_instantiate_wsa__EndpointReferenceType(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_wsa__ReferencePropertiesType:
-		return (void*)soap_instantiate_wsa__ReferencePropertiesType(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_wsa__ReferenceParametersType:
-		return (void*)soap_instantiate_wsa__ReferenceParametersType(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_wsa__ServiceNameType:
-		return (void*)soap_instantiate_wsa__ServiceNameType(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_wsa__Relationship:
-		return (void*)soap_instantiate_wsa__Relationship(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_wsa5__EndpointReferenceType:
+		return (void*)soap_instantiate_wsa5__EndpointReferenceType(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_wsa5__ReferenceParametersType:
+		return (void*)soap_instantiate_wsa5__ReferenceParametersType(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_wsa5__MetadataType:
+		return (void*)soap_instantiate_wsa5__MetadataType(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_wsa5__ProblemActionType:
+		return (void*)soap_instantiate_wsa5__ProblemActionType(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_wsa5__RelatesToType:
+		return (void*)soap_instantiate_wsa5__RelatesToType(soap, -1, type, arrayType, n);
 #ifndef WITH_NOGLOBAL
 	case SOAP_TYPE_SOAP_ENV__Header:
 		return (void*)soap_instantiate_SOAP_ENV__Header(soap, -1, type, arrayType, n);
@@ -1706,16 +1786,22 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate__ns5__ArrayOfstring(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring:
 		return (void*)soap_instantiate__ns5__ArrayOfKeyValueOfstringstring(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__wsa__EndpointReference:
-		return (void*)soap_instantiate__wsa__EndpointReference(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__wsa__RelatesTo:
-		return (void*)soap_instantiate__wsa__RelatesTo(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__wsa__From:
-		return (void*)soap_instantiate__wsa__From(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__wsa__ReplyTo:
-		return (void*)soap_instantiate__wsa__ReplyTo(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__wsa__FaultTo:
-		return (void*)soap_instantiate__wsa__FaultTo(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__EndpointReference:
+		return (void*)soap_instantiate__wsa5__EndpointReference(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__ReferenceParameters:
+		return (void*)soap_instantiate__wsa5__ReferenceParameters(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__Metadata:
+		return (void*)soap_instantiate__wsa5__Metadata(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__RelatesTo:
+		return (void*)soap_instantiate__wsa5__RelatesTo(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__ReplyTo:
+		return (void*)soap_instantiate__wsa5__ReplyTo(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__From:
+		return (void*)soap_instantiate__wsa5__From(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__FaultTo:
+		return (void*)soap_instantiate__wsa5__FaultTo(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__wsa5__ProblemAction:
+		return (void*)soap_instantiate__wsa5__ProblemAction(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_std__vectorTemplateOfstd__string:
 		return (void*)soap_instantiate_std__vectorTemplateOfstd__string(soap, -1, type, arrayType, n);
 	}
@@ -1995,35 +2081,35 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((struct __ns1__InitiateClientCommands*)p->ptr);
 		break;
-	case SOAP_TYPE_wsa__EndpointReferenceType:
+	case SOAP_TYPE_wsa5__EndpointReferenceType:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE((struct wsa5__EndpointReferenceType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__EndpointReferenceType*)p->ptr);
 		break;
-	case SOAP_TYPE_wsa__ReferencePropertiesType:
+	case SOAP_TYPE_wsa5__ReferenceParametersType:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__ReferencePropertiesType*)p->ptr);
+			SOAP_DELETE((struct wsa5__ReferenceParametersType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__ReferencePropertiesType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__ReferenceParametersType*)p->ptr);
 		break;
-	case SOAP_TYPE_wsa__ReferenceParametersType:
+	case SOAP_TYPE_wsa5__MetadataType:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__ReferenceParametersType*)p->ptr);
+			SOAP_DELETE((struct wsa5__MetadataType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__ReferenceParametersType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__MetadataType*)p->ptr);
 		break;
-	case SOAP_TYPE_wsa__ServiceNameType:
+	case SOAP_TYPE_wsa5__ProblemActionType:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__ServiceNameType*)p->ptr);
+			SOAP_DELETE((struct wsa5__ProblemActionType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__ServiceNameType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__ProblemActionType*)p->ptr);
 		break;
-	case SOAP_TYPE_wsa__Relationship:
+	case SOAP_TYPE_wsa5__RelatesToType:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__Relationship*)p->ptr);
+			SOAP_DELETE((struct wsa5__RelatesToType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__Relationship*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__RelatesToType*)p->ptr);
 		break;
 	case SOAP_TYPE_SOAP_ENV__Header:
 		if (p->size < 0)
@@ -2193,35 +2279,53 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((ns5__ArrayOfKeyValueOfstringstring*)p->ptr);
 		break;
-	case SOAP_TYPE__wsa__EndpointReference:
+	case SOAP_TYPE__wsa5__EndpointReference:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE((struct wsa5__EndpointReferenceType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__EndpointReferenceType*)p->ptr);
 		break;
-	case SOAP_TYPE__wsa__RelatesTo:
+	case SOAP_TYPE__wsa5__ReferenceParameters:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__Relationship*)p->ptr);
+			SOAP_DELETE((struct wsa5__ReferenceParametersType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__Relationship*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__ReferenceParametersType*)p->ptr);
 		break;
-	case SOAP_TYPE__wsa__From:
+	case SOAP_TYPE__wsa5__Metadata:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE((struct wsa5__MetadataType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__MetadataType*)p->ptr);
 		break;
-	case SOAP_TYPE__wsa__ReplyTo:
+	case SOAP_TYPE__wsa5__RelatesTo:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE((struct wsa5__RelatesToType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__RelatesToType*)p->ptr);
 		break;
-	case SOAP_TYPE__wsa__FaultTo:
+	case SOAP_TYPE__wsa5__ReplyTo:
 		if (p->size < 0)
-			SOAP_DELETE((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE((struct wsa5__EndpointReferenceType*)p->ptr);
 		else
-			SOAP_DELETE_ARRAY((struct wsa__EndpointReferenceType*)p->ptr);
+			SOAP_DELETE_ARRAY((struct wsa5__EndpointReferenceType*)p->ptr);
+		break;
+	case SOAP_TYPE__wsa5__From:
+		if (p->size < 0)
+			SOAP_DELETE((struct wsa5__EndpointReferenceType*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct wsa5__EndpointReferenceType*)p->ptr);
+		break;
+	case SOAP_TYPE__wsa5__FaultTo:
+		if (p->size < 0)
+			SOAP_DELETE((struct wsa5__EndpointReferenceType*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct wsa5__EndpointReferenceType*)p->ptr);
+		break;
+	case SOAP_TYPE__wsa5__ProblemAction:
+		if (p->size < 0)
+			SOAP_DELETE((struct wsa5__ProblemActionType*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct wsa5__ProblemActionType*)p->ptr);
 		break;
 	case SOAP_TYPE_std__vectorTemplateOfstd__string:
 		if (p->size < 0)
@@ -2751,169 +2855,256 @@ SOAP_FMAC3 time_t * SOAP_FMAC4 soap_get_time(struct soap *soap, time_t *p, const
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__FaultSubcodeValues(struct soap *soap, enum wsa__FaultSubcodeValues *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default__wsa5__IsReferenceParameter(struct soap *soap, enum _wsa5__IsReferenceParameter *a)
 {
 	(void)soap; /* appease -Wall -Werror */
-#ifdef SOAP_DEFAULT_wsa__FaultSubcodeValues
-	*a = SOAP_DEFAULT_wsa__FaultSubcodeValues;
+#ifdef SOAP_DEFAULT__wsa5__IsReferenceParameter
+	*a = SOAP_DEFAULT__wsa5__IsReferenceParameter;
 #else
-	*a = (enum wsa__FaultSubcodeValues)0;
+	*a = (enum _wsa5__IsReferenceParameter)0;
 #endif
 }
 
-static const struct soap_code_map soap_codes_wsa__FaultSubcodeValues[] =
-{	{ (long)wsa__InvalidMessageInformationHeader, "wsa:InvalidMessageInformationHeader" },
-	{ (long)wsa__MessageInformationHeaderRequired, "wsa:MessageInformationHeaderRequired" },
-	{ (long)wsa__DestinationUnreachable, "wsa:DestinationUnreachable" },
-	{ (long)wsa__ActionNotSupported, "wsa:ActionNotSupported" },
-	{ (long)wsa__EndpointUnavailable, "wsa:EndpointUnavailable" },
+static const struct soap_code_map soap_codes__wsa5__IsReferenceParameter[] =
+{	{ (long)wsa5__false, "wsa5:false" },
+	{ (long)wsa5__true, "wsa5:true" },
 	{ 0, NULL }
 };
 
-SOAP_FMAC3S const char* SOAP_FMAC4S soap_wsa__FaultSubcodeValues2s(struct soap *soap, enum wsa__FaultSubcodeValues n)
-{	const char *s = soap_code_str(soap_codes_wsa__FaultSubcodeValues, (long)n);
+SOAP_FMAC3S const char* SOAP_FMAC4S soap__wsa5__IsReferenceParameter2s(struct soap *soap, enum _wsa5__IsReferenceParameter n)
+{	const char *s = soap_code_str(soap_codes__wsa5__IsReferenceParameter, (long)n);
 	if (s)
 		return s;
 	return soap_long2s(soap, (long)n);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__FaultSubcodeValues(struct soap *soap, const char *tag, int id, const enum wsa__FaultSubcodeValues *a, const char *type)
-{	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa__FaultSubcodeValues), type) || soap_send(soap, soap_wsa__FaultSubcodeValues2s(soap, *a)))
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__wsa5__IsReferenceParameter(struct soap *soap, const char *tag, int id, const enum _wsa5__IsReferenceParameter *a, const char *type)
+{	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__wsa5__IsReferenceParameter), type) || soap_send(soap, soap__wsa5__IsReferenceParameter2s(soap, *a)))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3S int SOAP_FMAC4S soap_s2wsa__FaultSubcodeValues(struct soap *soap, const char *s, enum wsa__FaultSubcodeValues *a)
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2_wsa5__IsReferenceParameter(struct soap *soap, const char *s, enum _wsa5__IsReferenceParameter *a)
 {
 	const struct soap_code_map *map;
 	char *t;
 	if (!s)
 		return soap->error;
 	soap_s2QName(soap, s, &t, -1, -1);
-	map = soap_code(soap_codes_wsa__FaultSubcodeValues, t);
+	map = soap_code(soap_codes__wsa5__IsReferenceParameter, t);
 	if (map)
-		*a = (enum wsa__FaultSubcodeValues)map->code;
+		*a = (enum _wsa5__IsReferenceParameter)map->code;
 	else
 	{	long n;
-		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 4)))
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 1)))
 			return soap->error = SOAP_TYPE;
-		*a = (enum wsa__FaultSubcodeValues)n;
+		*a = (enum _wsa5__IsReferenceParameter)n;
 	}
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 enum wsa__FaultSubcodeValues * SOAP_FMAC4 soap_in_wsa__FaultSubcodeValues(struct soap *soap, const char *tag, enum wsa__FaultSubcodeValues *a, const char *type)
+SOAP_FMAC3 enum _wsa5__IsReferenceParameter * SOAP_FMAC4 soap_in__wsa5__IsReferenceParameter(struct soap *soap, const char *tag, enum _wsa5__IsReferenceParameter *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
-	a = (enum wsa__FaultSubcodeValues *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__FaultSubcodeValues, sizeof(enum wsa__FaultSubcodeValues), 0, NULL, NULL, NULL);
+	a = (enum _wsa5__IsReferenceParameter *)soap_id_enter(soap, soap->id, a, SOAP_TYPE__wsa5__IsReferenceParameter, sizeof(enum _wsa5__IsReferenceParameter), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
 	if (soap->body && !*soap->href)
-	{	if (!a || soap_s2wsa__FaultSubcodeValues(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
+	{	if (!a || soap_s2_wsa5__IsReferenceParameter(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	else
-	{	a = (enum wsa__FaultSubcodeValues *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa__FaultSubcodeValues, 0, sizeof(enum wsa__FaultSubcodeValues), 0, NULL);
+	{	a = (enum _wsa5__IsReferenceParameter *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__wsa5__IsReferenceParameter, 0, sizeof(enum _wsa5__IsReferenceParameter), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__FaultSubcodeValues(struct soap *soap, const enum wsa__FaultSubcodeValues *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put__wsa5__IsReferenceParameter(struct soap *soap, const enum _wsa5__IsReferenceParameter *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__FaultSubcodeValues);
-	if (soap_out_wsa__FaultSubcodeValues(soap, tag?tag:"wsa:FaultSubcodeValues", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE__wsa5__IsReferenceParameter);
+	if (soap_out__wsa5__IsReferenceParameter(soap, tag?tag:"wsa5:IsReferenceParameter", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 enum wsa__FaultSubcodeValues * SOAP_FMAC4 soap_get_wsa__FaultSubcodeValues(struct soap *soap, enum wsa__FaultSubcodeValues *p, const char *tag, const char *type)
+SOAP_FMAC3 enum _wsa5__IsReferenceParameter * SOAP_FMAC4 soap_get__wsa5__IsReferenceParameter(struct soap *soap, enum _wsa5__IsReferenceParameter *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_wsa__FaultSubcodeValues(soap, tag, p, type)))
+	if ((p = soap_in__wsa5__IsReferenceParameter(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__RelationshipTypeValues(struct soap *soap, enum wsa__RelationshipTypeValues *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__FaultCodesType(struct soap *soap, enum wsa5__FaultCodesType *a)
 {
 	(void)soap; /* appease -Wall -Werror */
-#ifdef SOAP_DEFAULT_wsa__RelationshipTypeValues
-	*a = SOAP_DEFAULT_wsa__RelationshipTypeValues;
+#ifdef SOAP_DEFAULT_wsa5__FaultCodesType
+	*a = SOAP_DEFAULT_wsa5__FaultCodesType;
 #else
-	*a = (enum wsa__RelationshipTypeValues)0;
+	*a = (enum wsa5__FaultCodesType)0;
 #endif
 }
 
-static const struct soap_code_map soap_codes_wsa__RelationshipTypeValues[] =
-{	{ (long)wsa__Reply, "wsa:Reply" },
+static const struct soap_code_map soap_codes_wsa5__FaultCodesType[] =
+{	{ (long)wsa5__InvalidAddressingHeader, "wsa5:InvalidAddressingHeader" },
+	{ (long)wsa5__InvalidAddress, "wsa5:InvalidAddress" },
+	{ (long)wsa5__InvalidEPR, "wsa5:InvalidEPR" },
+	{ (long)wsa5__InvalidCardinality, "wsa5:InvalidCardinality" },
+	{ (long)wsa5__MissingAddressInEPR, "wsa5:MissingAddressInEPR" },
+	{ (long)wsa5__DuplicateMessageID, "wsa5:DuplicateMessageID" },
+	{ (long)wsa5__ActionMismatch, "wsa5:ActionMismatch" },
+	{ (long)wsa5__MessageAddressingHeaderRequired, "wsa5:MessageAddressingHeaderRequired" },
+	{ (long)wsa5__DestinationUnreachable, "wsa5:DestinationUnreachable" },
+	{ (long)wsa5__ActionNotSupported, "wsa5:ActionNotSupported" },
+	{ (long)wsa5__EndpointUnavailable, "wsa5:EndpointUnavailable" },
 	{ 0, NULL }
 };
 
-SOAP_FMAC3S const char* SOAP_FMAC4S soap_wsa__RelationshipTypeValues2s(struct soap *soap, enum wsa__RelationshipTypeValues n)
-{	const char *s = soap_code_str(soap_codes_wsa__RelationshipTypeValues, (long)n);
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_wsa5__FaultCodesType2s(struct soap *soap, enum wsa5__FaultCodesType n)
+{	const char *s = soap_code_str(soap_codes_wsa5__FaultCodesType, (long)n);
 	if (s)
 		return s;
 	return soap_long2s(soap, (long)n);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__RelationshipTypeValues(struct soap *soap, const char *tag, int id, const enum wsa__RelationshipTypeValues *a, const char *type)
-{	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa__RelationshipTypeValues), type) || soap_send(soap, soap_wsa__RelationshipTypeValues2s(soap, *a)))
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__FaultCodesType(struct soap *soap, const char *tag, int id, const enum wsa5__FaultCodesType *a, const char *type)
+{	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa5__FaultCodesType), type) || soap_send(soap, soap_wsa5__FaultCodesType2s(soap, *a)))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3S int SOAP_FMAC4S soap_s2wsa__RelationshipTypeValues(struct soap *soap, const char *s, enum wsa__RelationshipTypeValues *a)
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2wsa5__FaultCodesType(struct soap *soap, const char *s, enum wsa5__FaultCodesType *a)
 {
 	const struct soap_code_map *map;
 	char *t;
 	if (!s)
 		return soap->error;
 	soap_s2QName(soap, s, &t, -1, -1);
-	map = soap_code(soap_codes_wsa__RelationshipTypeValues, t);
+	map = soap_code(soap_codes_wsa5__FaultCodesType, t);
 	if (map)
-		*a = (enum wsa__RelationshipTypeValues)map->code;
+		*a = (enum wsa5__FaultCodesType)map->code;
 	else
 	{	long n;
-		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 0)))
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 10)))
 			return soap->error = SOAP_TYPE;
-		*a = (enum wsa__RelationshipTypeValues)n;
+		*a = (enum wsa5__FaultCodesType)n;
 	}
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 enum wsa__RelationshipTypeValues * SOAP_FMAC4 soap_in_wsa__RelationshipTypeValues(struct soap *soap, const char *tag, enum wsa__RelationshipTypeValues *a, const char *type)
+SOAP_FMAC3 enum wsa5__FaultCodesType * SOAP_FMAC4 soap_in_wsa5__FaultCodesType(struct soap *soap, const char *tag, enum wsa5__FaultCodesType *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
-	a = (enum wsa__RelationshipTypeValues *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__RelationshipTypeValues, sizeof(enum wsa__RelationshipTypeValues), 0, NULL, NULL, NULL);
+	a = (enum wsa5__FaultCodesType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__FaultCodesType, sizeof(enum wsa5__FaultCodesType), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
 	if (soap->body && !*soap->href)
-	{	if (!a || soap_s2wsa__RelationshipTypeValues(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
+	{	if (!a || soap_s2wsa5__FaultCodesType(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	else
-	{	a = (enum wsa__RelationshipTypeValues *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa__RelationshipTypeValues, 0, sizeof(enum wsa__RelationshipTypeValues), 0, NULL);
+	{	a = (enum wsa5__FaultCodesType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa5__FaultCodesType, 0, sizeof(enum wsa5__FaultCodesType), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__RelationshipTypeValues(struct soap *soap, const enum wsa__RelationshipTypeValues *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__FaultCodesType(struct soap *soap, const enum wsa5__FaultCodesType *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__RelationshipTypeValues);
-	if (soap_out_wsa__RelationshipTypeValues(soap, tag?tag:"wsa:RelationshipTypeValues", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__FaultCodesType);
+	if (soap_out_wsa5__FaultCodesType(soap, tag?tag:"wsa5:FaultCodesType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 enum wsa__RelationshipTypeValues * SOAP_FMAC4 soap_get_wsa__RelationshipTypeValues(struct soap *soap, enum wsa__RelationshipTypeValues *p, const char *tag, const char *type)
+SOAP_FMAC3 enum wsa5__FaultCodesType * SOAP_FMAC4 soap_get_wsa5__FaultCodesType(struct soap *soap, enum wsa5__FaultCodesType *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_wsa__RelationshipTypeValues(soap, tag, p, type)))
+	if ((p = soap_in_wsa5__FaultCodesType(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__RelationshipType(struct soap *soap, enum wsa5__RelationshipType *a)
+{
+	(void)soap; /* appease -Wall -Werror */
+#ifdef SOAP_DEFAULT_wsa5__RelationshipType
+	*a = SOAP_DEFAULT_wsa5__RelationshipType;
+#else
+	*a = (enum wsa5__RelationshipType)0;
+#endif
+}
+
+static const struct soap_code_map soap_codes_wsa5__RelationshipType[] =
+{	{ (long)http_x003a_x002f_x002fwww_x002ew3_x002eorg_x002f2005_x002f08_x002faddressing_x002freply, "http://www.w3.org/2005/08/addressing/reply" },
+	{ 0, NULL }
+};
+
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_wsa5__RelationshipType2s(struct soap *soap, enum wsa5__RelationshipType n)
+{	const char *s = soap_code_str(soap_codes_wsa5__RelationshipType, (long)n);
+	if (s)
+		return s;
+	return soap_long2s(soap, (long)n);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__RelationshipType(struct soap *soap, const char *tag, int id, const enum wsa5__RelationshipType *a, const char *type)
+{	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa5__RelationshipType), type) || soap_send(soap, soap_wsa5__RelationshipType2s(soap, *a)))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2wsa5__RelationshipType(struct soap *soap, const char *s, enum wsa5__RelationshipType *a)
+{
+	const struct soap_code_map *map;
+	if (!s)
+		return soap->error;
+	map = soap_code(soap_codes_wsa5__RelationshipType, s);
+	if (map)
+		*a = (enum wsa5__RelationshipType)map->code;
+	else
+	{	long n;
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 0)))
+			return soap->error = SOAP_TYPE;
+		*a = (enum wsa5__RelationshipType)n;
+	}
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 enum wsa5__RelationshipType * SOAP_FMAC4 soap_in_wsa5__RelationshipType(struct soap *soap, const char *tag, enum wsa5__RelationshipType *a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (enum wsa5__RelationshipType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__RelationshipType, sizeof(enum wsa5__RelationshipType), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	if (soap->body && !*soap->href)
+	{	if (!a || soap_s2wsa5__RelationshipType(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (enum wsa5__RelationshipType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa5__RelationshipType, 0, sizeof(enum wsa5__RelationshipType), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__RelationshipType(struct soap *soap, const enum wsa5__RelationshipType *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__RelationshipType);
+	if (soap_out_wsa5__RelationshipType(soap, tag?tag:"wsa5:RelationshipType", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 enum wsa5__RelationshipType * SOAP_FMAC4 soap_get_wsa5__RelationshipType(struct soap *soap, enum wsa5__RelationshipType *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_wsa5__RelationshipType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
@@ -9901,61 +10092,61 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Code(struct soap *soap, int st, i
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Header(struct soap *soap, struct SOAP_ENV__Header *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_default__wsa__MessageID(soap, &a->wsa__MessageID);
-	a->wsa__RelatesTo = NULL;
-	a->wsa__From = NULL;
-	a->wsa__ReplyTo = NULL;
-	a->wsa__FaultTo = NULL;
-	soap_default__wsa__To(soap, &a->wsa__To);
-	soap_default__wsa__Action(soap, &a->wsa__Action);
+	soap_default__wsa5__MessageID(soap, &a->wsa5__MessageID);
+	a->wsa5__RelatesTo = NULL;
+	a->wsa5__From = NULL;
+	a->wsa5__ReplyTo = NULL;
+	a->wsa5__FaultTo = NULL;
+	soap_default__wsa5__To(soap, &a->wsa5__To);
+	soap_default__wsa5__Action(soap, &a->wsa5__Action);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Header(struct soap *soap, const struct SOAP_ENV__Header *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize__wsa__MessageID(soap, &a->wsa__MessageID);
-	soap_serialize_PointerTo_wsa__RelatesTo(soap, &a->wsa__RelatesTo);
-	soap_serialize_PointerTo_wsa__From(soap, &a->wsa__From);
-	soap_serialize_PointerTo_wsa__ReplyTo(soap, &a->wsa__ReplyTo);
-	soap_serialize_PointerTo_wsa__FaultTo(soap, &a->wsa__FaultTo);
-	soap_serialize__wsa__To(soap, &a->wsa__To);
-	soap_serialize__wsa__Action(soap, &a->wsa__Action);
+	soap_serialize__wsa5__MessageID(soap, &a->wsa5__MessageID);
+	soap_serialize_PointerTo_wsa5__RelatesTo(soap, &a->wsa5__RelatesTo);
+	soap_serialize_PointerTo_wsa5__From(soap, &a->wsa5__From);
+	soap_serialize_PointerTo_wsa5__ReplyTo(soap, &a->wsa5__ReplyTo);
+	soap_serialize_PointerTo_wsa5__FaultTo(soap, &a->wsa5__FaultTo);
+	soap_serialize__wsa5__To(soap, &a->wsa5__To);
+	soap_serialize__wsa5__Action(soap, &a->wsa5__Action);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_SOAP_ENV__Header(struct soap *soap, const char *tag, int id, const struct SOAP_ENV__Header *a, const char *type)
 {
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SOAP_ENV__Header), type))
 		return soap->error;
-	if (soap_out__wsa__MessageID(soap, "wsa:MessageID", -1, &a->wsa__MessageID, ""))
+	if (soap_out__wsa5__MessageID(soap, "wsa5:MessageID", -1, &a->wsa5__MessageID, ""))
 		return soap->error;
-	if (soap_out_PointerTo_wsa__RelatesTo(soap, "wsa:RelatesTo", -1, &a->wsa__RelatesTo, ""))
+	if (soap_out_PointerTo_wsa5__RelatesTo(soap, "wsa5:RelatesTo", -1, &a->wsa5__RelatesTo, ""))
 		return soap->error;
-	if (soap_out_PointerTo_wsa__From(soap, "wsa:From", -1, &a->wsa__From, ""))
-		return soap->error;
-	soap->mustUnderstand = 1;
-	if (soap_out_PointerTo_wsa__ReplyTo(soap, "wsa:ReplyTo", -1, &a->wsa__ReplyTo, ""))
+	if (soap_out_PointerTo_wsa5__From(soap, "wsa5:From", -1, &a->wsa5__From, ""))
 		return soap->error;
 	soap->mustUnderstand = 1;
-	if (soap_out_PointerTo_wsa__FaultTo(soap, "wsa:FaultTo", -1, &a->wsa__FaultTo, ""))
+	if (soap_out_PointerTo_wsa5__ReplyTo(soap, "wsa5:ReplyTo", -1, &a->wsa5__ReplyTo, ""))
 		return soap->error;
 	soap->mustUnderstand = 1;
-	if (soap_out__wsa__To(soap, "wsa:To", -1, &a->wsa__To, ""))
+	if (soap_out_PointerTo_wsa5__FaultTo(soap, "wsa5:FaultTo", -1, &a->wsa5__FaultTo, ""))
 		return soap->error;
 	soap->mustUnderstand = 1;
-	if (soap_out__wsa__Action(soap, "wsa:Action", -1, &a->wsa__Action, ""))
+	if (soap_out__wsa5__To(soap, "wsa5:To", -1, &a->wsa5__To, ""))
+		return soap->error;
+	soap->mustUnderstand = 1;
+	if (soap_out__wsa5__Action(soap, "wsa5:Action", -1, &a->wsa5__Action, ""))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
 SOAP_FMAC3 struct SOAP_ENV__Header * SOAP_FMAC4 soap_in_SOAP_ENV__Header(struct soap *soap, const char *tag, struct SOAP_ENV__Header *a, const char *type)
 {
-	size_t soap_flag_wsa__MessageID = 1;
-	size_t soap_flag_wsa__RelatesTo = 1;
-	size_t soap_flag_wsa__From = 1;
-	size_t soap_flag_wsa__ReplyTo = 1;
-	size_t soap_flag_wsa__FaultTo = 1;
-	size_t soap_flag_wsa__To = 1;
-	size_t soap_flag_wsa__Action = 1;
+	size_t soap_flag_wsa5__MessageID = 1;
+	size_t soap_flag_wsa5__RelatesTo = 1;
+	size_t soap_flag_wsa5__From = 1;
+	size_t soap_flag_wsa5__ReplyTo = 1;
+	size_t soap_flag_wsa5__FaultTo = 1;
+	size_t soap_flag_wsa5__To = 1;
+	size_t soap_flag_wsa5__Action = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct SOAP_ENV__Header *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SOAP_ENV__Header, sizeof(struct SOAP_ENV__Header), 0, NULL, NULL, NULL);
@@ -9966,39 +10157,39 @@ SOAP_FMAC3 struct SOAP_ENV__Header * SOAP_FMAC4 soap_in_SOAP_ENV__Header(struct 
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag_wsa__MessageID && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in__wsa__MessageID(soap, "wsa:MessageID", &a->wsa__MessageID, ""))
-				{	soap_flag_wsa__MessageID--;
+			if (soap_flag_wsa5__MessageID && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in__wsa5__MessageID(soap, "wsa5:MessageID", &a->wsa5__MessageID, ""))
+				{	soap_flag_wsa5__MessageID--;
 					continue;
 				}
-			if (soap_flag_wsa__RelatesTo && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTo_wsa__RelatesTo(soap, "wsa:RelatesTo", &a->wsa__RelatesTo, ""))
-				{	soap_flag_wsa__RelatesTo--;
+			if (soap_flag_wsa5__RelatesTo && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_wsa5__RelatesTo(soap, "wsa5:RelatesTo", &a->wsa5__RelatesTo, ""))
+				{	soap_flag_wsa5__RelatesTo--;
 					continue;
 				}
-			if (soap_flag_wsa__From && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTo_wsa__From(soap, "wsa:From", &a->wsa__From, ""))
-				{	soap_flag_wsa__From--;
+			if (soap_flag_wsa5__From && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_wsa5__From(soap, "wsa5:From", &a->wsa5__From, ""))
+				{	soap_flag_wsa5__From--;
 					continue;
 				}
-			if (soap_flag_wsa__ReplyTo && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTo_wsa__ReplyTo(soap, "wsa:ReplyTo", &a->wsa__ReplyTo, ""))
-				{	soap_flag_wsa__ReplyTo--;
+			if (soap_flag_wsa5__ReplyTo && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_wsa5__ReplyTo(soap, "wsa5:ReplyTo", &a->wsa5__ReplyTo, ""))
+				{	soap_flag_wsa5__ReplyTo--;
 					continue;
 				}
-			if (soap_flag_wsa__FaultTo && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTo_wsa__FaultTo(soap, "wsa:FaultTo", &a->wsa__FaultTo, ""))
-				{	soap_flag_wsa__FaultTo--;
+			if (soap_flag_wsa5__FaultTo && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_wsa5__FaultTo(soap, "wsa5:FaultTo", &a->wsa5__FaultTo, ""))
+				{	soap_flag_wsa5__FaultTo--;
 					continue;
 				}
-			if (soap_flag_wsa__To && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in__wsa__To(soap, "wsa:To", &a->wsa__To, ""))
-				{	soap_flag_wsa__To--;
+			if (soap_flag_wsa5__To && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in__wsa5__To(soap, "wsa5:To", &a->wsa5__To, ""))
+				{	soap_flag_wsa5__To--;
 					continue;
 				}
-			if (soap_flag_wsa__Action && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in__wsa__Action(soap, "wsa:Action", &a->wsa__Action, ""))
-				{	soap_flag_wsa__Action--;
+			if (soap_flag_wsa5__Action && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in__wsa5__Action(soap, "wsa5:Action", &a->wsa5__Action, ""))
+				{	soap_flag_wsa5__Action--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -10069,220 +10260,254 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Header(struct soap *soap, int st,
 
 #endif
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__Relationship(struct soap *soap, struct wsa__Relationship *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__ProblemActionType(struct soap *soap, struct wsa5__ProblemActionType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_default_string(soap, &a->__item);
-	soap_default__QName(soap, &a->RelationshipType);
+	soap_default_string(soap, &a->Action);
+	soap_default_string(soap, &a->SoapAction);
 	a->__anyAttribute = NULL;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa__Relationship(struct soap *soap, const struct wsa__Relationship *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa5__ProblemActionType(struct soap *soap, const struct wsa5__ProblemActionType *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &a->Action);
+	soap_serialize_string(soap, &a->SoapAction);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__ProblemActionType(struct soap *soap, const char *tag, int id, const struct wsa5__ProblemActionType *a, const char *type)
+{
+	if (a->__anyAttribute)
+		soap_set_attr(soap, "-anyAttribute", a->__anyAttribute, 1);
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa5__ProblemActionType), type))
+		return soap->error;
+	if (soap_out_string(soap, "wsa5:Action", -1, &a->Action, ""))
+		return soap->error;
+	if (soap_out_string(soap, "wsa5:SoapAction", -1, &a->SoapAction, ""))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3 struct wsa5__ProblemActionType * SOAP_FMAC4 soap_in_wsa5__ProblemActionType(struct soap *soap, const char *tag, struct wsa5__ProblemActionType *a, const char *type)
+{
+	size_t soap_flag_Action = 1;
+	size_t soap_flag_SoapAction = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct wsa5__ProblemActionType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__ProblemActionType, sizeof(struct wsa5__ProblemActionType), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_wsa5__ProblemActionType(soap, a);
+	if (soap_s2string(soap, soap_attr_value(soap, "-anyAttribute", 0), &a->__anyAttribute, -1, -1))
+		return NULL;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_Action && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "wsa5:Action", &a->Action, "xsd:string"))
+				{	soap_flag_Action--;
+					continue;
+				}
+			if (soap_flag_SoapAction && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "wsa5:SoapAction", &a->SoapAction, "xsd:string"))
+				{	soap_flag_SoapAction--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct wsa5__ProblemActionType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa5__ProblemActionType, 0, sizeof(struct wsa5__ProblemActionType), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__ProblemActionType(struct soap *soap, const struct wsa5__ProblemActionType *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__ProblemActionType);
+	if (soap_out_wsa5__ProblemActionType(soap, tag?tag:"wsa5:ProblemActionType", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct wsa5__ProblemActionType * SOAP_FMAC4 soap_get_wsa5__ProblemActionType(struct soap *soap, struct wsa5__ProblemActionType *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_wsa5__ProblemActionType(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 struct wsa5__ProblemActionType * SOAP_FMAC2 soap_instantiate_wsa5__ProblemActionType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa5__ProblemActionType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa5__ProblemActionType, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__ProblemActionType);
+		if (size)
+			*size = sizeof(struct wsa5__ProblemActionType);
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__ProblemActionType[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(struct wsa5__ProblemActionType);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct wsa5__ProblemActionType*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa5__ProblemActionType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa5__ProblemActionType %p -> %p\n", q, p));
+	*(struct wsa5__ProblemActionType*)p = *(struct wsa5__ProblemActionType*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__RelatesToType(struct soap *soap, struct wsa5__RelatesToType *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_string(soap, &a->__item);
+	soap_default_wsa5__RelationshipTypeOpenEnum(soap, &a->RelationshipType);
+	a->__anyAttribute = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa5__RelatesToType(struct soap *soap, const struct wsa5__RelatesToType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->__item);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__Relationship(struct soap *soap, const char *tag, int id, const struct wsa__Relationship *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__RelatesToType(struct soap *soap, const char *tag, int id, const struct wsa5__RelatesToType *a, const char *type)
 {
 	if (a->RelationshipType)
-		soap_set_attr(soap, "RelationshipType", soap_QName2s(soap, a->RelationshipType), 1);
+		soap_set_attr(soap, "RelationshipType", a->RelationshipType, 1);
 	if (a->__anyAttribute)
 		soap_set_attr(soap, "-anyAttribute", a->__anyAttribute, 1);
 	return soap_out_string(soap, tag, id, &a->__item, "");
 }
 
-SOAP_FMAC3 struct wsa__Relationship * SOAP_FMAC4 soap_in_wsa__Relationship(struct soap *soap, const char *tag, struct wsa__Relationship *a, const char *type)
+SOAP_FMAC3 struct wsa5__RelatesToType * SOAP_FMAC4 soap_in_wsa5__RelatesToType(struct soap *soap, const char *tag, struct wsa5__RelatesToType *a, const char *type)
 {
 	(void)type; /* appease -Wall -Werror */
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
-	if (!(a = (struct wsa__Relationship *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__Relationship, sizeof(struct wsa__Relationship), 0, NULL, NULL, NULL)))
+	if (!(a = (struct wsa5__RelatesToType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__RelatesToType, sizeof(struct wsa5__RelatesToType), 0, NULL, NULL, NULL)))
 		return NULL;
 	soap_revert(soap);
 	*soap->id = '\0';
-	soap_default_wsa__Relationship(soap, a);
-	if (soap_s2QName(soap, soap_attr_value(soap, "RelationshipType", 0), &a->RelationshipType, -1, -1))
+	soap_default_wsa5__RelatesToType(soap, a);
+	if (soap_s2string(soap, soap_attr_value(soap, "RelationshipType", 0), &a->RelationshipType, -1, -1))
 		return NULL;
 	if (soap_s2string(soap, soap_attr_value(soap, "-anyAttribute", 0), &a->__anyAttribute, -1, -1))
 		return NULL;
-	if (!soap_in_string(soap, tag, &a->__item, "wsa:Relationship"))
+	if (!soap_in_string(soap, tag, &a->__item, "wsa5:RelatesToType"))
 		return NULL;
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__Relationship(struct soap *soap, const struct wsa__Relationship *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__RelatesToType(struct soap *soap, const struct wsa5__RelatesToType *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__Relationship);
-	if (soap_out_wsa__Relationship(soap, tag?tag:"wsa:Relationship", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__RelatesToType);
+	if (soap_out_wsa5__RelatesToType(soap, tag?tag:"wsa5:RelatesToType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__Relationship * SOAP_FMAC4 soap_get_wsa__Relationship(struct soap *soap, struct wsa__Relationship *p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__RelatesToType * SOAP_FMAC4 soap_get_wsa5__RelatesToType(struct soap *soap, struct wsa5__RelatesToType *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_wsa__Relationship(soap, tag, p, type)))
+	if ((p = soap_in_wsa5__RelatesToType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC1 struct wsa__Relationship * SOAP_FMAC2 soap_instantiate_wsa__Relationship(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC1 struct wsa5__RelatesToType * SOAP_FMAC2 soap_instantiate_wsa5__RelatesToType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
 	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa__Relationship(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa__Relationship, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa5__RelatesToType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa5__RelatesToType, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__Relationship);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__RelatesToType);
 		if (size)
-			*size = sizeof(struct wsa__Relationship);
+			*size = sizeof(struct wsa5__RelatesToType);
 	}
 	else
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__Relationship[n]);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__RelatesToType[n]);
 		if (!cp->ptr)
 		{	soap->error = SOAP_EOM;
 			return NULL;
 		}
 		if (size)
-			*size = n * sizeof(struct wsa__Relationship);
+			*size = n * sizeof(struct wsa5__RelatesToType);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct wsa__Relationship*)cp->ptr;
+	return (struct wsa5__RelatesToType*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa__Relationship(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa5__RelatesToType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa__Relationship %p -> %p\n", q, p));
-	*(struct wsa__Relationship*)p = *(struct wsa__Relationship*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa5__RelatesToType %p -> %p\n", q, p));
+	*(struct wsa5__RelatesToType*)p = *(struct wsa5__RelatesToType*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__ServiceNameType(struct soap *soap, struct wsa__ServiceNameType *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__MetadataType(struct soap *soap, struct wsa5__MetadataType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_default__QName(soap, &a->__item);
-	soap_default_string(soap, &a->PortName);
+	a->__size = 0;
+	a->__any = NULL;
 	a->__anyAttribute = NULL;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa__ServiceNameType(struct soap *soap, const struct wsa__ServiceNameType *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa5__MetadataType(struct soap *soap, const struct wsa5__MetadataType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize__QName(soap, &a->__item);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__ServiceNameType(struct soap *soap, const char *tag, int id, const struct wsa__ServiceNameType *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__MetadataType(struct soap *soap, const char *tag, int id, const struct wsa5__MetadataType *a, const char *type)
 {
-	const char *soap_tmp___item = soap_QName2s(soap, a->__item);
-	if (a->PortName)
-		soap_set_attr(soap, "PortName", a->PortName, 1);
 	if (a->__anyAttribute)
 		soap_set_attr(soap, "-anyAttribute", a->__anyAttribute, 1);
-	return soap_out__QName(soap, tag, id, (char*const*)&soap_tmp___item, "");
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa5__MetadataType), type))
+		return soap->error;
+	if (a->__any)
+	{	int i;
+		for (i = 0; i < a->__size; i++)
+			soap_outliteral(soap, "-any", a->__any + i, NULL);
+	}
+	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3 struct wsa__ServiceNameType * SOAP_FMAC4 soap_in_wsa__ServiceNameType(struct soap *soap, const char *tag, struct wsa__ServiceNameType *a, const char *type)
+SOAP_FMAC3 struct wsa5__MetadataType * SOAP_FMAC4 soap_in_wsa5__MetadataType(struct soap *soap, const char *tag, struct wsa5__MetadataType *a, const char *type)
 {
-	(void)type; /* appease -Wall -Werror */
-	if (soap_element_begin_in(soap, tag, 1, NULL))
+	struct soap_blist *soap_blist___any = NULL;
+	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
-	if (!(a = (struct wsa__ServiceNameType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__ServiceNameType, sizeof(struct wsa__ServiceNameType), 0, NULL, NULL, NULL)))
+	a = (struct wsa5__MetadataType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__MetadataType, sizeof(struct wsa5__MetadataType), 0, NULL, NULL, NULL);
+	if (!a)
 		return NULL;
-	soap_revert(soap);
-	*soap->id = '\0';
-	soap_default_wsa__ServiceNameType(soap, a);
-	if (soap_s2string(soap, soap_attr_value(soap, "PortName", 0), &a->PortName, -1, -1))
-		return NULL;
+	soap_default_wsa5__MetadataType(soap, a);
 	if (soap_s2string(soap, soap_attr_value(soap, "-anyAttribute", 0), &a->__anyAttribute, -1, -1))
 		return NULL;
-	if (!soap_in__QName(soap, tag, &a->__item, "wsa:ServiceNameType"))
-		return NULL;
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__ServiceNameType(struct soap *soap, const struct wsa__ServiceNameType *a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__ServiceNameType);
-	if (soap_out_wsa__ServiceNameType(soap, tag?tag:"wsa:ServiceNameType", id, a, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-SOAP_FMAC3 struct wsa__ServiceNameType * SOAP_FMAC4 soap_get_wsa__ServiceNameType(struct soap *soap, struct wsa__ServiceNameType *p, const char *tag, const char *type)
-{
-	if ((p = soap_in_wsa__ServiceNameType(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC1 struct wsa__ServiceNameType * SOAP_FMAC2 soap_instantiate_wsa__ServiceNameType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
-{
-	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa__ServiceNameType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa__ServiceNameType, n, soap_fdelete);
-	if (!cp)
-		return NULL;
-	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__ServiceNameType);
-		if (size)
-			*size = sizeof(struct wsa__ServiceNameType);
-	}
-	else
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__ServiceNameType[n]);
-		if (!cp->ptr)
-		{	soap->error = SOAP_EOM;
-			return NULL;
-		}
-		if (size)
-			*size = n * sizeof(struct wsa__ServiceNameType);
-	}
-		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct wsa__ServiceNameType*)cp->ptr;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa__ServiceNameType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
-{
-	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa__ServiceNameType %p -> %p\n", q, p));
-	*(struct wsa__ServiceNameType*)p = *(struct wsa__ServiceNameType*)q;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__ReferenceParametersType(struct soap *soap, struct wsa__ReferenceParametersType *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->__size = 0;
-	a->__any = NULL;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa__ReferenceParametersType(struct soap *soap, const struct wsa__ReferenceParametersType *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__ReferenceParametersType(struct soap *soap, const char *tag, int id, const struct wsa__ReferenceParametersType *a, const char *type)
-{
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa__ReferenceParametersType), type))
-		return soap->error;
-	if (a->__any)
-	{	int i;
-		for (i = 0; i < a->__size; i++)
-			soap_outliteral(soap, "-any", a->__any + i, NULL);
-	}
-	return soap_element_end_out(soap, tag);
-}
-
-SOAP_FMAC3 struct wsa__ReferenceParametersType * SOAP_FMAC4 soap_in_wsa__ReferenceParametersType(struct soap *soap, const char *tag, struct wsa__ReferenceParametersType *a, const char *type)
-{
-	struct soap_blist *soap_blist___any = NULL;
-	if (soap_element_begin_in(soap, tag, 0, type))
-		return NULL;
-	a = (struct wsa__ReferenceParametersType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__ReferenceParametersType, sizeof(struct wsa__ReferenceParametersType), 0, NULL, NULL, NULL);
-	if (!a)
-		return NULL;
-	soap_default_wsa__ReferenceParametersType(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -10322,76 +10547,79 @@ SOAP_FMAC3 struct wsa__ReferenceParametersType * SOAP_FMAC4 soap_in_wsa__Referen
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__ReferenceParametersType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa__ReferenceParametersType, 0, sizeof(struct wsa__ReferenceParametersType), 0, NULL);
+	{	a = (struct wsa5__MetadataType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa5__MetadataType, 0, sizeof(struct wsa5__MetadataType), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__ReferenceParametersType(struct soap *soap, const struct wsa__ReferenceParametersType *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__MetadataType(struct soap *soap, const struct wsa5__MetadataType *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__ReferenceParametersType);
-	if (soap_out_wsa__ReferenceParametersType(soap, tag?tag:"wsa:ReferenceParametersType", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__MetadataType);
+	if (soap_out_wsa5__MetadataType(soap, tag?tag:"wsa5:MetadataType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__ReferenceParametersType * SOAP_FMAC4 soap_get_wsa__ReferenceParametersType(struct soap *soap, struct wsa__ReferenceParametersType *p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__MetadataType * SOAP_FMAC4 soap_get_wsa5__MetadataType(struct soap *soap, struct wsa5__MetadataType *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_wsa__ReferenceParametersType(soap, tag, p, type)))
+	if ((p = soap_in_wsa5__MetadataType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC1 struct wsa__ReferenceParametersType * SOAP_FMAC2 soap_instantiate_wsa__ReferenceParametersType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC1 struct wsa5__MetadataType * SOAP_FMAC2 soap_instantiate_wsa5__MetadataType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
 	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa__ReferenceParametersType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa__ReferenceParametersType, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa5__MetadataType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa5__MetadataType, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__ReferenceParametersType);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__MetadataType);
 		if (size)
-			*size = sizeof(struct wsa__ReferenceParametersType);
+			*size = sizeof(struct wsa5__MetadataType);
 	}
 	else
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__ReferenceParametersType[n]);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__MetadataType[n]);
 		if (!cp->ptr)
 		{	soap->error = SOAP_EOM;
 			return NULL;
 		}
 		if (size)
-			*size = n * sizeof(struct wsa__ReferenceParametersType);
+			*size = n * sizeof(struct wsa5__MetadataType);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct wsa__ReferenceParametersType*)cp->ptr;
+	return (struct wsa5__MetadataType*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa__ReferenceParametersType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa5__MetadataType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa__ReferenceParametersType %p -> %p\n", q, p));
-	*(struct wsa__ReferenceParametersType*)p = *(struct wsa__ReferenceParametersType*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa5__MetadataType %p -> %p\n", q, p));
+	*(struct wsa5__MetadataType*)p = *(struct wsa5__MetadataType*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__ReferencePropertiesType(struct soap *soap, struct wsa__ReferencePropertiesType *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__ReferenceParametersType(struct soap *soap, struct wsa5__ReferenceParametersType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	a->__size = 0;
 	a->__any = NULL;
+	a->__anyAttribute = NULL;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa__ReferencePropertiesType(struct soap *soap, const struct wsa__ReferencePropertiesType *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa5__ReferenceParametersType(struct soap *soap, const struct wsa5__ReferenceParametersType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__ReferencePropertiesType(struct soap *soap, const char *tag, int id, const struct wsa__ReferencePropertiesType *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__ReferenceParametersType(struct soap *soap, const char *tag, int id, const struct wsa5__ReferenceParametersType *a, const char *type)
 {
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa__ReferencePropertiesType), type))
+	if (a->__anyAttribute)
+		soap_set_attr(soap, "-anyAttribute", a->__anyAttribute, 1);
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa5__ReferenceParametersType), type))
 		return soap->error;
 	if (a->__any)
 	{	int i;
@@ -10401,15 +10629,17 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__ReferencePropertiesType(struct soap *soa
 	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3 struct wsa__ReferencePropertiesType * SOAP_FMAC4 soap_in_wsa__ReferencePropertiesType(struct soap *soap, const char *tag, struct wsa__ReferencePropertiesType *a, const char *type)
+SOAP_FMAC3 struct wsa5__ReferenceParametersType * SOAP_FMAC4 soap_in_wsa5__ReferenceParametersType(struct soap *soap, const char *tag, struct wsa5__ReferenceParametersType *a, const char *type)
 {
 	struct soap_blist *soap_blist___any = NULL;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
-	a = (struct wsa__ReferencePropertiesType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__ReferencePropertiesType, sizeof(struct wsa__ReferencePropertiesType), 0, NULL, NULL, NULL);
+	a = (struct wsa5__ReferenceParametersType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__ReferenceParametersType, sizeof(struct wsa5__ReferenceParametersType), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
-	soap_default_wsa__ReferencePropertiesType(soap, a);
+	soap_default_wsa5__ReferenceParametersType(soap, a);
+	if (soap_s2string(soap, soap_attr_value(soap, "-anyAttribute", 0), &a->__anyAttribute, -1, -1))
+		return NULL;
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -10449,104 +10679,95 @@ SOAP_FMAC3 struct wsa__ReferencePropertiesType * SOAP_FMAC4 soap_in_wsa__Referen
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__ReferencePropertiesType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa__ReferencePropertiesType, 0, sizeof(struct wsa__ReferencePropertiesType), 0, NULL);
+	{	a = (struct wsa5__ReferenceParametersType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa5__ReferenceParametersType, 0, sizeof(struct wsa5__ReferenceParametersType), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__ReferencePropertiesType(struct soap *soap, const struct wsa__ReferencePropertiesType *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__ReferenceParametersType(struct soap *soap, const struct wsa5__ReferenceParametersType *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__ReferencePropertiesType);
-	if (soap_out_wsa__ReferencePropertiesType(soap, tag?tag:"wsa:ReferencePropertiesType", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__ReferenceParametersType);
+	if (soap_out_wsa5__ReferenceParametersType(soap, tag?tag:"wsa5:ReferenceParametersType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__ReferencePropertiesType * SOAP_FMAC4 soap_get_wsa__ReferencePropertiesType(struct soap *soap, struct wsa__ReferencePropertiesType *p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__ReferenceParametersType * SOAP_FMAC4 soap_get_wsa5__ReferenceParametersType(struct soap *soap, struct wsa5__ReferenceParametersType *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_wsa__ReferencePropertiesType(soap, tag, p, type)))
+	if ((p = soap_in_wsa5__ReferenceParametersType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC1 struct wsa__ReferencePropertiesType * SOAP_FMAC2 soap_instantiate_wsa__ReferencePropertiesType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC1 struct wsa5__ReferenceParametersType * SOAP_FMAC2 soap_instantiate_wsa5__ReferenceParametersType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
 	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa__ReferencePropertiesType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa__ReferencePropertiesType, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa5__ReferenceParametersType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa5__ReferenceParametersType, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__ReferencePropertiesType);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__ReferenceParametersType);
 		if (size)
-			*size = sizeof(struct wsa__ReferencePropertiesType);
+			*size = sizeof(struct wsa5__ReferenceParametersType);
 	}
 	else
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__ReferencePropertiesType[n]);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__ReferenceParametersType[n]);
 		if (!cp->ptr)
 		{	soap->error = SOAP_EOM;
 			return NULL;
 		}
 		if (size)
-			*size = n * sizeof(struct wsa__ReferencePropertiesType);
+			*size = n * sizeof(struct wsa5__ReferenceParametersType);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct wsa__ReferencePropertiesType*)cp->ptr;
+	return (struct wsa5__ReferenceParametersType*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa__ReferencePropertiesType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa5__ReferenceParametersType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa__ReferencePropertiesType %p -> %p\n", q, p));
-	*(struct wsa__ReferencePropertiesType*)p = *(struct wsa__ReferencePropertiesType*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa5__ReferenceParametersType %p -> %p\n", q, p));
+	*(struct wsa5__ReferenceParametersType*)p = *(struct wsa5__ReferenceParametersType*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa__EndpointReferenceType(struct soap *soap, struct wsa__EndpointReferenceType *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_wsa5__EndpointReferenceType(struct soap *soap, struct wsa5__EndpointReferenceType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_string(soap, &a->Address);
-	a->ReferenceProperties = NULL;
 	a->ReferenceParameters = NULL;
-	a->PortType = NULL;
-	a->ServiceName = NULL;
+	a->Metadata = NULL;
 	a->__size = 0;
 	a->__any = NULL;
 	a->__anyAttribute = NULL;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa__EndpointReferenceType(struct soap *soap, const struct wsa__EndpointReferenceType *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_wsa5__EndpointReferenceType(struct soap *soap, const struct wsa5__EndpointReferenceType *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->Address);
-	soap_serialize_PointerTowsa__ReferencePropertiesType(soap, &a->ReferenceProperties);
-	soap_serialize_PointerTowsa__ReferenceParametersType(soap, &a->ReferenceParameters);
-	soap_serialize_PointerTo_QName(soap, &a->PortType);
-	soap_serialize_PointerTowsa__ServiceNameType(soap, &a->ServiceName);
+	soap_serialize_PointerTowsa5__ReferenceParametersType(soap, &a->ReferenceParameters);
+	soap_serialize_PointerTowsa5__MetadataType(soap, &a->Metadata);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__EndpointReferenceType(struct soap *soap, const char *tag, int id, const struct wsa__EndpointReferenceType *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__EndpointReferenceType(struct soap *soap, const char *tag, int id, const struct wsa5__EndpointReferenceType *a, const char *type)
 {
-	const char *soap_tmp_PortType = a->PortType ? soap_QName2s(soap, *a->PortType) : NULL;
 	if (a->__anyAttribute)
 		soap_set_attr(soap, "-anyAttribute", a->__anyAttribute, 1);
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa__EndpointReferenceType), type))
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_wsa5__EndpointReferenceType), type))
 		return soap->error;
 	if (a->Address)
-	{	if (soap_out_string(soap, "wsa:Address", -1, &a->Address, ""))
+	{	if (soap_out_string(soap, "wsa5:Address", -1, &a->Address, ""))
 			return soap->error;
 	}
-	else if (soap_element_nil(soap, "wsa:Address"))
+	else if (soap_element_nil(soap, "wsa5:Address"))
 		return soap->error;
-	if (soap_out_PointerTowsa__ReferencePropertiesType(soap, "wsa:ReferenceProperties", -1, &a->ReferenceProperties, ""))
+	if (soap_out_PointerTowsa5__ReferenceParametersType(soap, "wsa5:ReferenceParameters", -1, &a->ReferenceParameters, ""))
 		return soap->error;
-	if (soap_out_PointerTowsa__ReferenceParametersType(soap, "wsa:ReferenceParameters", -1, &a->ReferenceParameters, ""))
-		return soap->error;
-	if (soap_out__QName(soap, "wsa:PortType", -1, (char*const*)&soap_tmp_PortType, ""))
-		return soap->error;
-	if (soap_out_PointerTowsa__ServiceNameType(soap, "wsa:ServiceName", -1, &a->ServiceName, ""))
+	if (soap_out_PointerTowsa5__MetadataType(soap, "wsa5:Metadata", -1, &a->Metadata, ""))
 		return soap->error;
 	if (a->__any)
 	{	int i;
@@ -10556,20 +10777,18 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa__EndpointReferenceType(struct soap *soap,
 	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType * SOAP_FMAC4 soap_in_wsa__EndpointReferenceType(struct soap *soap, const char *tag, struct wsa__EndpointReferenceType *a, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType * SOAP_FMAC4 soap_in_wsa5__EndpointReferenceType(struct soap *soap, const char *tag, struct wsa5__EndpointReferenceType *a, const char *type)
 {
 	size_t soap_flag_Address = 1;
-	size_t soap_flag_ReferenceProperties = 1;
 	size_t soap_flag_ReferenceParameters = 1;
-	size_t soap_flag_PortType = 1;
-	size_t soap_flag_ServiceName = 1;
+	size_t soap_flag_Metadata = 1;
 	struct soap_blist *soap_blist___any = NULL;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
-	a = (struct wsa__EndpointReferenceType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa__EndpointReferenceType, sizeof(struct wsa__EndpointReferenceType), 0, NULL, NULL, NULL);
+	a = (struct wsa5__EndpointReferenceType *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_wsa5__EndpointReferenceType, sizeof(struct wsa5__EndpointReferenceType), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
-	soap_default_wsa__EndpointReferenceType(soap, a);
+	soap_default_wsa5__EndpointReferenceType(soap, a);
 	if (soap_s2string(soap, soap_attr_value(soap, "-anyAttribute", 0), &a->__anyAttribute, -1, -1))
 		return NULL;
 	if (soap->body && !*soap->href)
@@ -10577,28 +10796,18 @@ SOAP_FMAC3 struct wsa__EndpointReferenceType * SOAP_FMAC4 soap_in_wsa__EndpointR
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag_Address && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "wsa:Address", &a->Address, "xsd:string"))
+				if (soap_in_string(soap, "wsa5:Address", &a->Address, "xsd:string"))
 				{	soap_flag_Address--;
 					continue;
 				}
-			if (soap_flag_ReferenceProperties && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTowsa__ReferencePropertiesType(soap, "wsa:ReferenceProperties", &a->ReferenceProperties, "wsa:ReferencePropertiesType"))
-				{	soap_flag_ReferenceProperties--;
-					continue;
-				}
 			if (soap_flag_ReferenceParameters && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTowsa__ReferenceParametersType(soap, "wsa:ReferenceParameters", &a->ReferenceParameters, "wsa:ReferenceParametersType"))
+				if (soap_in_PointerTowsa5__ReferenceParametersType(soap, "wsa5:ReferenceParameters", &a->ReferenceParameters, "wsa5:ReferenceParametersType"))
 				{	soap_flag_ReferenceParameters--;
 					continue;
 				}
-			if (soap_flag_PortType && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTo_QName(soap, "wsa:PortType", &a->PortType, ""))
-				{	soap_flag_PortType--;
-					continue;
-				}
-			if (soap_flag_ServiceName && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTowsa__ServiceNameType(soap, "wsa:ServiceName", &a->ServiceName, "wsa:ServiceNameType"))
-				{	soap_flag_ServiceName--;
+			if (soap_flag_Metadata && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTowsa5__MetadataType(soap, "wsa5:Metadata", &a->Metadata, "wsa5:MetadataType"))
+				{	soap_flag_Metadata--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH && !soap_peek_element(soap))
@@ -10636,7 +10845,7 @@ SOAP_FMAC3 struct wsa__EndpointReferenceType * SOAP_FMAC4 soap_in_wsa__EndpointR
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__EndpointReferenceType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa__EndpointReferenceType, 0, sizeof(struct wsa__EndpointReferenceType), 0, NULL);
+	{	a = (struct wsa5__EndpointReferenceType *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_wsa5__EndpointReferenceType, 0, sizeof(struct wsa5__EndpointReferenceType), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
@@ -10647,52 +10856,52 @@ SOAP_FMAC3 struct wsa__EndpointReferenceType * SOAP_FMAC4 soap_in_wsa__EndpointR
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa__EndpointReferenceType(struct soap *soap, const struct wsa__EndpointReferenceType *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__EndpointReferenceType(struct soap *soap, const struct wsa5__EndpointReferenceType *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa__EndpointReferenceType);
-	if (soap_out_wsa__EndpointReferenceType(soap, tag?tag:"wsa:EndpointReferenceType", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__EndpointReferenceType);
+	if (soap_out_wsa5__EndpointReferenceType(soap, tag?tag:"wsa5:EndpointReferenceType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType * SOAP_FMAC4 soap_get_wsa__EndpointReferenceType(struct soap *soap, struct wsa__EndpointReferenceType *p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType * SOAP_FMAC4 soap_get_wsa5__EndpointReferenceType(struct soap *soap, struct wsa5__EndpointReferenceType *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_wsa__EndpointReferenceType(soap, tag, p, type)))
+	if ((p = soap_in_wsa5__EndpointReferenceType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC1 struct wsa__EndpointReferenceType * SOAP_FMAC2 soap_instantiate_wsa__EndpointReferenceType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC1 struct wsa5__EndpointReferenceType * SOAP_FMAC2 soap_instantiate_wsa5__EndpointReferenceType(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
 	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa__EndpointReferenceType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa__EndpointReferenceType, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_wsa5__EndpointReferenceType(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_wsa5__EndpointReferenceType, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__EndpointReferenceType);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__EndpointReferenceType);
 		if (size)
-			*size = sizeof(struct wsa__EndpointReferenceType);
+			*size = sizeof(struct wsa5__EndpointReferenceType);
 	}
 	else
-	{	cp->ptr = (void*)SOAP_NEW(struct wsa__EndpointReferenceType[n]);
+	{	cp->ptr = (void*)SOAP_NEW(struct wsa5__EndpointReferenceType[n]);
 		if (!cp->ptr)
 		{	soap->error = SOAP_EOM;
 			return NULL;
 		}
 		if (size)
-			*size = n * sizeof(struct wsa__EndpointReferenceType);
+			*size = n * sizeof(struct wsa5__EndpointReferenceType);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct wsa__EndpointReferenceType*)cp->ptr;
+	return (struct wsa5__EndpointReferenceType*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa__EndpointReferenceType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa5__EndpointReferenceType(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa__EndpointReferenceType %p -> %p\n", q, p));
-	*(struct wsa__EndpointReferenceType*)p = *(struct wsa__EndpointReferenceType*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct wsa5__EndpointReferenceType %p -> %p\n", q, p));
+	*(struct wsa5__EndpointReferenceType*)p = *(struct wsa5__EndpointReferenceType*)q;
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__InitiateClientCommands(struct soap *soap, struct __ns1__InitiateClientCommands *a)
@@ -11240,409 +11449,388 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Code(
 
 #endif
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa__FaultTo(struct soap *soap, struct wsa__EndpointReferenceType *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa5__FaultTo(struct soap *soap, struct wsa5__EndpointReferenceType *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE__wsa__FaultTo))
-		soap_serialize__wsa__FaultTo(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE__wsa5__FaultTo))
+		soap_serialize__wsa5__FaultTo(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa__FaultTo(struct soap *soap, const char *tag, int id, struct wsa__EndpointReferenceType *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa5__FaultTo(struct soap *soap, const char *tag, int id, struct wsa5__EndpointReferenceType *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa__FaultTo);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa5__FaultTo);
 	if (id < 0)
 		return soap->error;
-	return soap_out__wsa__FaultTo(soap, tag, id, *a, type);
+	return soap_out__wsa5__FaultTo(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType ** SOAP_FMAC4 soap_in_PointerTo_wsa__FaultTo(struct soap *soap, const char *tag, struct wsa__EndpointReferenceType **a, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType ** SOAP_FMAC4 soap_in_PointerTo_wsa5__FaultTo(struct soap *soap, const char *tag, struct wsa5__EndpointReferenceType **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (struct wsa__EndpointReferenceType **)soap_malloc(soap, sizeof(struct wsa__EndpointReferenceType *))))
+		if (!(a = (struct wsa5__EndpointReferenceType **)soap_malloc(soap, sizeof(struct wsa5__EndpointReferenceType *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in__wsa__FaultTo(soap, tag, *a, type)))
+		if (!(*a = soap_in__wsa5__FaultTo(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__EndpointReferenceType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa__FaultTo, sizeof(struct wsa__EndpointReferenceType), 0);
+	{	a = (struct wsa5__EndpointReferenceType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa5__FaultTo, sizeof(struct wsa5__EndpointReferenceType), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa__FaultTo(struct soap *soap, struct wsa__EndpointReferenceType *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa5__FaultTo(struct soap *soap, struct wsa5__EndpointReferenceType *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa__FaultTo);
-	if (soap_out_PointerTo_wsa__FaultTo(soap, tag?tag:"wsa:FaultTo", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa5__FaultTo);
+	if (soap_out_PointerTo_wsa5__FaultTo(soap, tag?tag:"wsa5:FaultTo", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType ** SOAP_FMAC4 soap_get_PointerTo_wsa__FaultTo(struct soap *soap, struct wsa__EndpointReferenceType **p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType ** SOAP_FMAC4 soap_get_PointerTo_wsa5__FaultTo(struct soap *soap, struct wsa5__EndpointReferenceType **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTo_wsa__FaultTo(soap, tag, p, type)))
+	if ((p = soap_in_PointerTo_wsa5__FaultTo(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa__ReplyTo(struct soap *soap, struct wsa__EndpointReferenceType *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa5__ReplyTo(struct soap *soap, struct wsa5__EndpointReferenceType *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE__wsa__ReplyTo))
-		soap_serialize__wsa__ReplyTo(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE__wsa5__ReplyTo))
+		soap_serialize__wsa5__ReplyTo(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa__ReplyTo(struct soap *soap, const char *tag, int id, struct wsa__EndpointReferenceType *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa5__ReplyTo(struct soap *soap, const char *tag, int id, struct wsa5__EndpointReferenceType *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa__ReplyTo);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa5__ReplyTo);
 	if (id < 0)
 		return soap->error;
-	return soap_out__wsa__ReplyTo(soap, tag, id, *a, type);
+	return soap_out__wsa5__ReplyTo(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType ** SOAP_FMAC4 soap_in_PointerTo_wsa__ReplyTo(struct soap *soap, const char *tag, struct wsa__EndpointReferenceType **a, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType ** SOAP_FMAC4 soap_in_PointerTo_wsa5__ReplyTo(struct soap *soap, const char *tag, struct wsa5__EndpointReferenceType **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (struct wsa__EndpointReferenceType **)soap_malloc(soap, sizeof(struct wsa__EndpointReferenceType *))))
+		if (!(a = (struct wsa5__EndpointReferenceType **)soap_malloc(soap, sizeof(struct wsa5__EndpointReferenceType *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in__wsa__ReplyTo(soap, tag, *a, type)))
+		if (!(*a = soap_in__wsa5__ReplyTo(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__EndpointReferenceType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa__ReplyTo, sizeof(struct wsa__EndpointReferenceType), 0);
+	{	a = (struct wsa5__EndpointReferenceType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa5__ReplyTo, sizeof(struct wsa5__EndpointReferenceType), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa__ReplyTo(struct soap *soap, struct wsa__EndpointReferenceType *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa5__ReplyTo(struct soap *soap, struct wsa5__EndpointReferenceType *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa__ReplyTo);
-	if (soap_out_PointerTo_wsa__ReplyTo(soap, tag?tag:"wsa:ReplyTo", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa5__ReplyTo);
+	if (soap_out_PointerTo_wsa5__ReplyTo(soap, tag?tag:"wsa5:ReplyTo", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType ** SOAP_FMAC4 soap_get_PointerTo_wsa__ReplyTo(struct soap *soap, struct wsa__EndpointReferenceType **p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType ** SOAP_FMAC4 soap_get_PointerTo_wsa5__ReplyTo(struct soap *soap, struct wsa5__EndpointReferenceType **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTo_wsa__ReplyTo(soap, tag, p, type)))
+	if ((p = soap_in_PointerTo_wsa5__ReplyTo(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa__From(struct soap *soap, struct wsa__EndpointReferenceType *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa5__From(struct soap *soap, struct wsa5__EndpointReferenceType *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE__wsa__From))
-		soap_serialize__wsa__From(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE__wsa5__From))
+		soap_serialize__wsa5__From(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa__From(struct soap *soap, const char *tag, int id, struct wsa__EndpointReferenceType *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa5__From(struct soap *soap, const char *tag, int id, struct wsa5__EndpointReferenceType *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa__From);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa5__From);
 	if (id < 0)
 		return soap->error;
-	return soap_out__wsa__From(soap, tag, id, *a, type);
+	return soap_out__wsa5__From(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType ** SOAP_FMAC4 soap_in_PointerTo_wsa__From(struct soap *soap, const char *tag, struct wsa__EndpointReferenceType **a, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType ** SOAP_FMAC4 soap_in_PointerTo_wsa5__From(struct soap *soap, const char *tag, struct wsa5__EndpointReferenceType **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (struct wsa__EndpointReferenceType **)soap_malloc(soap, sizeof(struct wsa__EndpointReferenceType *))))
+		if (!(a = (struct wsa5__EndpointReferenceType **)soap_malloc(soap, sizeof(struct wsa5__EndpointReferenceType *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in__wsa__From(soap, tag, *a, type)))
+		if (!(*a = soap_in__wsa5__From(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__EndpointReferenceType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa__From, sizeof(struct wsa__EndpointReferenceType), 0);
+	{	a = (struct wsa5__EndpointReferenceType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa5__From, sizeof(struct wsa5__EndpointReferenceType), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa__From(struct soap *soap, struct wsa__EndpointReferenceType *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa5__From(struct soap *soap, struct wsa5__EndpointReferenceType *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa__From);
-	if (soap_out_PointerTo_wsa__From(soap, tag?tag:"wsa:From", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa5__From);
+	if (soap_out_PointerTo_wsa5__From(soap, tag?tag:"wsa5:From", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__EndpointReferenceType ** SOAP_FMAC4 soap_get_PointerTo_wsa__From(struct soap *soap, struct wsa__EndpointReferenceType **p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__EndpointReferenceType ** SOAP_FMAC4 soap_get_PointerTo_wsa5__From(struct soap *soap, struct wsa5__EndpointReferenceType **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTo_wsa__From(soap, tag, p, type)))
+	if ((p = soap_in_PointerTo_wsa5__From(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa__RelatesTo(struct soap *soap, struct wsa__Relationship *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_wsa5__RelatesTo(struct soap *soap, struct wsa5__RelatesToType *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE__wsa__RelatesTo))
-		soap_serialize__wsa__RelatesTo(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE__wsa5__RelatesTo))
+		soap_serialize__wsa5__RelatesTo(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa__RelatesTo(struct soap *soap, const char *tag, int id, struct wsa__Relationship *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_wsa5__RelatesTo(struct soap *soap, const char *tag, int id, struct wsa5__RelatesToType *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa__RelatesTo);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__wsa5__RelatesTo);
 	if (id < 0)
 		return soap->error;
-	return soap_out__wsa__RelatesTo(soap, tag, id, *a, type);
+	return soap_out__wsa5__RelatesTo(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 struct wsa__Relationship ** SOAP_FMAC4 soap_in_PointerTo_wsa__RelatesTo(struct soap *soap, const char *tag, struct wsa__Relationship **a, const char *type)
+SOAP_FMAC3 struct wsa5__RelatesToType ** SOAP_FMAC4 soap_in_PointerTo_wsa5__RelatesTo(struct soap *soap, const char *tag, struct wsa5__RelatesToType **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (struct wsa__Relationship **)soap_malloc(soap, sizeof(struct wsa__Relationship *))))
+		if (!(a = (struct wsa5__RelatesToType **)soap_malloc(soap, sizeof(struct wsa5__RelatesToType *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in__wsa__RelatesTo(soap, tag, *a, type)))
+		if (!(*a = soap_in__wsa5__RelatesTo(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__Relationship **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa__RelatesTo, sizeof(struct wsa__Relationship), 0);
+	{	a = (struct wsa5__RelatesToType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__wsa5__RelatesTo, sizeof(struct wsa5__RelatesToType), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa__RelatesTo(struct soap *soap, struct wsa__Relationship *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_wsa5__RelatesTo(struct soap *soap, struct wsa5__RelatesToType *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa__RelatesTo);
-	if (soap_out_PointerTo_wsa__RelatesTo(soap, tag?tag:"wsa:RelatesTo", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_wsa5__RelatesTo);
+	if (soap_out_PointerTo_wsa5__RelatesTo(soap, tag?tag:"wsa5:RelatesTo", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__Relationship ** SOAP_FMAC4 soap_get_PointerTo_wsa__RelatesTo(struct soap *soap, struct wsa__Relationship **p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__RelatesToType ** SOAP_FMAC4 soap_get_PointerTo_wsa5__RelatesTo(struct soap *soap, struct wsa5__RelatesToType **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTo_wsa__RelatesTo(soap, tag, p, type)))
+	if ((p = soap_in_PointerTo_wsa5__RelatesTo(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTowsa__ServiceNameType(struct soap *soap, struct wsa__ServiceNameType *const*a)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__wsa5__ProblemHeaderQName(struct soap *soap, const char *tag, int id, char *const*a, const char *type)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_wsa__ServiceNameType))
-		soap_serialize_wsa__ServiceNameType(soap, *a);
+	return soap_outstring(soap, tag, id, a, type, SOAP_TYPE__wsa5__ProblemHeaderQName);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTowsa__ServiceNameType(struct soap *soap, const char *tag, int id, struct wsa__ServiceNameType *const*a, const char *type)
-{
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_wsa__ServiceNameType);
-	if (id < 0)
-		return soap->error;
-	return soap_out_wsa__ServiceNameType(soap, tag, id, *a, type);
+SOAP_FMAC3 char * * SOAP_FMAC4 soap_in__wsa5__ProblemHeaderQName(struct soap *soap, const char *tag, char **a, const char *type)
+{	char **p;
+	p = soap_instring(soap, tag, a, type, SOAP_TYPE__wsa5__ProblemHeaderQName, 2, -1, -1);
+	return p;
 }
 
-SOAP_FMAC3 struct wsa__ServiceNameType ** SOAP_FMAC4 soap_in_PointerTowsa__ServiceNameType(struct soap *soap, const char *tag, struct wsa__ServiceNameType **a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put__wsa5__ProblemHeaderQName(struct soap *soap, char *const*a, const char *tag, const char *type)
 {
-	if (soap_element_begin_in(soap, tag, 1, NULL))
-		return NULL;
-	if (!a)
-		if (!(a = (struct wsa__ServiceNameType **)soap_malloc(soap, sizeof(struct wsa__ServiceNameType *))))
-			return NULL;
-	*a = NULL;
-	if (!soap->null && *soap->href != '#')
-	{	soap_revert(soap);
-		if (!(*a = soap_in_wsa__ServiceNameType(soap, tag, *a, type)))
-			return NULL;
-	}
-	else
-	{	a = (struct wsa__ServiceNameType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_wsa__ServiceNameType, sizeof(struct wsa__ServiceNameType), 0);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTowsa__ServiceNameType(struct soap *soap, struct wsa__ServiceNameType *const*a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTowsa__ServiceNameType);
-	if (soap_out_PointerTowsa__ServiceNameType(soap, tag?tag:"wsa:ServiceNameType", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE__wsa5__ProblemHeaderQName);
+	if (soap_out__wsa5__ProblemHeaderQName(soap, tag?tag:"byte", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__ServiceNameType ** SOAP_FMAC4 soap_get_PointerTowsa__ServiceNameType(struct soap *soap, struct wsa__ServiceNameType **p, const char *tag, const char *type)
+SOAP_FMAC3 char ** SOAP_FMAC4 soap_get__wsa5__ProblemHeaderQName(struct soap *soap, char **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTowsa__ServiceNameType(soap, tag, p, type)))
+	if ((p = soap_in__wsa5__ProblemHeaderQName(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_QName(struct soap *soap, char **const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTowsa5__MetadataType(struct soap *soap, struct wsa5__MetadataType *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE__QName))
-		soap_serialize__QName(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE_wsa5__MetadataType))
+		soap_serialize_wsa5__MetadataType(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_QName(struct soap *soap, const char *tag, int id, char **const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTowsa5__MetadataType(struct soap *soap, const char *tag, int id, struct wsa5__MetadataType *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__QName);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_wsa5__MetadataType);
 	if (id < 0)
 		return soap->error;
-	return soap_out__QName(soap, tag, id, *a, type);
+	return soap_out_wsa5__MetadataType(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 char *** SOAP_FMAC4 soap_in_PointerTo_QName(struct soap *soap, const char *tag, char ***a, const char *type)
+SOAP_FMAC3 struct wsa5__MetadataType ** SOAP_FMAC4 soap_in_PointerTowsa5__MetadataType(struct soap *soap, const char *tag, struct wsa5__MetadataType **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (char ***)soap_malloc(soap, sizeof(char **))))
+		if (!(a = (struct wsa5__MetadataType **)soap_malloc(soap, sizeof(struct wsa5__MetadataType *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in__QName(soap, tag, *a, type)))
+		if (!(*a = soap_in_wsa5__MetadataType(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (char ***)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__QName, sizeof(char *), 1);
+	{	a = (struct wsa5__MetadataType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_wsa5__MetadataType, sizeof(struct wsa5__MetadataType), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_QName(struct soap *soap, char **const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTowsa5__MetadataType(struct soap *soap, struct wsa5__MetadataType *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_QName);
-	if (soap_out_PointerTo_QName(soap, tag?tag:"byte", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTowsa5__MetadataType);
+	if (soap_out_PointerTowsa5__MetadataType(soap, tag?tag:"wsa5:MetadataType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 char *** SOAP_FMAC4 soap_get_PointerTo_QName(struct soap *soap, char ***p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__MetadataType ** SOAP_FMAC4 soap_get_PointerTowsa5__MetadataType(struct soap *soap, struct wsa5__MetadataType **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTo_QName(soap, tag, p, type)))
+	if ((p = soap_in_PointerTowsa5__MetadataType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTowsa__ReferenceParametersType(struct soap *soap, struct wsa__ReferenceParametersType *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTowsa5__ReferenceParametersType(struct soap *soap, struct wsa5__ReferenceParametersType *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_wsa__ReferenceParametersType))
-		soap_serialize_wsa__ReferenceParametersType(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE_wsa5__ReferenceParametersType))
+		soap_serialize_wsa5__ReferenceParametersType(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTowsa__ReferenceParametersType(struct soap *soap, const char *tag, int id, struct wsa__ReferenceParametersType *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTowsa5__ReferenceParametersType(struct soap *soap, const char *tag, int id, struct wsa5__ReferenceParametersType *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_wsa__ReferenceParametersType);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_wsa5__ReferenceParametersType);
 	if (id < 0)
 		return soap->error;
-	return soap_out_wsa__ReferenceParametersType(soap, tag, id, *a, type);
+	return soap_out_wsa5__ReferenceParametersType(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 struct wsa__ReferenceParametersType ** SOAP_FMAC4 soap_in_PointerTowsa__ReferenceParametersType(struct soap *soap, const char *tag, struct wsa__ReferenceParametersType **a, const char *type)
+SOAP_FMAC3 struct wsa5__ReferenceParametersType ** SOAP_FMAC4 soap_in_PointerTowsa5__ReferenceParametersType(struct soap *soap, const char *tag, struct wsa5__ReferenceParametersType **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (struct wsa__ReferenceParametersType **)soap_malloc(soap, sizeof(struct wsa__ReferenceParametersType *))))
+		if (!(a = (struct wsa5__ReferenceParametersType **)soap_malloc(soap, sizeof(struct wsa5__ReferenceParametersType *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in_wsa__ReferenceParametersType(soap, tag, *a, type)))
+		if (!(*a = soap_in_wsa5__ReferenceParametersType(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (struct wsa__ReferenceParametersType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_wsa__ReferenceParametersType, sizeof(struct wsa__ReferenceParametersType), 0);
+	{	a = (struct wsa5__ReferenceParametersType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_wsa5__ReferenceParametersType, sizeof(struct wsa5__ReferenceParametersType), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTowsa__ReferenceParametersType(struct soap *soap, struct wsa__ReferenceParametersType *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTowsa5__ReferenceParametersType(struct soap *soap, struct wsa5__ReferenceParametersType *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTowsa__ReferenceParametersType);
-	if (soap_out_PointerTowsa__ReferenceParametersType(soap, tag?tag:"wsa:ReferenceParametersType", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTowsa5__ReferenceParametersType);
+	if (soap_out_PointerTowsa5__ReferenceParametersType(soap, tag?tag:"wsa5:ReferenceParametersType", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__ReferenceParametersType ** SOAP_FMAC4 soap_get_PointerTowsa__ReferenceParametersType(struct soap *soap, struct wsa__ReferenceParametersType **p, const char *tag, const char *type)
+SOAP_FMAC3 struct wsa5__ReferenceParametersType ** SOAP_FMAC4 soap_get_PointerTowsa5__ReferenceParametersType(struct soap *soap, struct wsa5__ReferenceParametersType **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTowsa__ReferenceParametersType(soap, tag, p, type)))
+	if ((p = soap_in_PointerTowsa5__ReferenceParametersType(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTowsa__ReferencePropertiesType(struct soap *soap, struct wsa__ReferencePropertiesType *const*a)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__FaultCodesOpenEnumType(struct soap *soap, const char *tag, int id, char *const*a, const char *type)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_wsa__ReferencePropertiesType))
-		soap_serialize_wsa__ReferencePropertiesType(soap, *a);
+	return soap_outstring(soap, tag, id, a, type, SOAP_TYPE_wsa5__FaultCodesOpenEnumType);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTowsa__ReferencePropertiesType(struct soap *soap, const char *tag, int id, struct wsa__ReferencePropertiesType *const*a, const char *type)
-{
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_wsa__ReferencePropertiesType);
-	if (id < 0)
-		return soap->error;
-	return soap_out_wsa__ReferencePropertiesType(soap, tag, id, *a, type);
+SOAP_FMAC3 char * * SOAP_FMAC4 soap_in_wsa5__FaultCodesOpenEnumType(struct soap *soap, const char *tag, char **a, const char *type)
+{	char **p;
+	p = soap_instring(soap, tag, a, type, SOAP_TYPE_wsa5__FaultCodesOpenEnumType, 1, -1, -1);
+	return p;
 }
 
-SOAP_FMAC3 struct wsa__ReferencePropertiesType ** SOAP_FMAC4 soap_in_PointerTowsa__ReferencePropertiesType(struct soap *soap, const char *tag, struct wsa__ReferencePropertiesType **a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__FaultCodesOpenEnumType(struct soap *soap, char *const*a, const char *tag, const char *type)
 {
-	if (soap_element_begin_in(soap, tag, 1, NULL))
-		return NULL;
-	if (!a)
-		if (!(a = (struct wsa__ReferencePropertiesType **)soap_malloc(soap, sizeof(struct wsa__ReferencePropertiesType *))))
-			return NULL;
-	*a = NULL;
-	if (!soap->null && *soap->href != '#')
-	{	soap_revert(soap);
-		if (!(*a = soap_in_wsa__ReferencePropertiesType(soap, tag, *a, type)))
-			return NULL;
-	}
-	else
-	{	a = (struct wsa__ReferencePropertiesType **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_wsa__ReferencePropertiesType, sizeof(struct wsa__ReferencePropertiesType), 0);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTowsa__ReferencePropertiesType(struct soap *soap, struct wsa__ReferencePropertiesType *const*a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTowsa__ReferencePropertiesType);
-	if (soap_out_PointerTowsa__ReferencePropertiesType(soap, tag?tag:"wsa:ReferencePropertiesType", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__FaultCodesOpenEnumType);
+	if (soap_out_wsa5__FaultCodesOpenEnumType(soap, tag?tag:"byte", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct wsa__ReferencePropertiesType ** SOAP_FMAC4 soap_get_PointerTowsa__ReferencePropertiesType(struct soap *soap, struct wsa__ReferencePropertiesType **p, const char *tag, const char *type)
+SOAP_FMAC3 char ** SOAP_FMAC4 soap_get_wsa5__FaultCodesOpenEnumType(struct soap *soap, char **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTowsa__ReferencePropertiesType(soap, tag, p, type)))
+	if ((p = soap_in_wsa5__FaultCodesOpenEnumType(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_wsa5__RelationshipTypeOpenEnum(struct soap *soap, const char *tag, int id, char *const*a, const char *type)
+{
+	return soap_outstring(soap, tag, id, a, type, SOAP_TYPE_wsa5__RelationshipTypeOpenEnum);
+}
+
+SOAP_FMAC3 char * * SOAP_FMAC4 soap_in_wsa5__RelationshipTypeOpenEnum(struct soap *soap, const char *tag, char **a, const char *type)
+{	char **p;
+	p = soap_instring(soap, tag, a, type, SOAP_TYPE_wsa5__RelationshipTypeOpenEnum, 1, -1, -1);
+	return p;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_wsa5__RelationshipTypeOpenEnum(struct soap *soap, char *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_wsa5__RelationshipTypeOpenEnum);
+	if (soap_out_wsa5__RelationshipTypeOpenEnum(soap, tag?tag:"byte", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 char ** SOAP_FMAC4 soap_get_wsa5__RelationshipTypeOpenEnum(struct soap *soap, char **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_wsa5__RelationshipTypeOpenEnum(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;

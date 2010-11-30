@@ -13,7 +13,7 @@
 #define SOAP_NAMESPACE_OF_ns3	"http://schemas.microsoft.com/2003/10/Serialization/"
 #define SOAP_NAMESPACE_OF_ns4	"http://schemas.datacontract.org/2004/07/EILClientManagmentService"
 #define SOAP_NAMESPACE_OF_ns5	"http://schemas.microsoft.com/2003/10/Serialization/Arrays"
-#define SOAP_WSA_200408
+#define SOAP_WSA_2005
 #include "stdsoap2.h"
 
 /******************************************************************************\
@@ -35,18 +35,25 @@ enum ns4__MachineType {ns4__MachineType__ANY = 0, ns4__MachineType__HOST_USCOREW
 enum ns4__EILCommandStatus {ns4__EILCommandStatus__COMMAND_USCOREISSUED = 0, ns4__EILCommandStatus__COMMAND_USCORERECEIVED = 1, ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORESTARTED = 2, ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE = 3, ns4__EILCommandStatus__COMMAND_USCOREFAILED = 4, ns4__EILCommandStatus__WAIT_USCOREFOR_USCOREMANUAL_USCORESTEP = 5, ns4__EILCommandStatus__COMMAND_USCORETIMED_USCOREOUT = 6, ns4__EILCommandStatus__COMMAND_USCOREDELAYED_USCORERESPONSE = 7, ns4__EILCommandStatus__COMMAND_USCORERETRY = 8};
 #endif
 
-#ifndef SOAP_TYPE_wsa__RelationshipTypeValues
-#define SOAP_TYPE_wsa__RelationshipTypeValues (136)
-/* wsa:RelationshipTypeValues */
-enum wsa__RelationshipTypeValues {wsa__Reply = 0};
-typedef enum wsa__RelationshipTypeValues wsa__RelationshipTypeValues;
+#ifndef SOAP_TYPE_wsa5__RelationshipType
+#define SOAP_TYPE_wsa5__RelationshipType (138)
+/* wsa5:RelationshipType */
+enum wsa5__RelationshipType {http_x003a_x002f_x002fwww_x002ew3_x002eorg_x002f2005_x002f08_x002faddressing_x002freply = 0};
+typedef enum wsa5__RelationshipType wsa5__RelationshipType;
 #endif
 
-#ifndef SOAP_TYPE_wsa__FaultSubcodeValues
-#define SOAP_TYPE_wsa__FaultSubcodeValues (137)
-/* wsa:FaultSubcodeValues */
-enum wsa__FaultSubcodeValues {wsa__InvalidMessageInformationHeader = 0, wsa__MessageInformationHeaderRequired = 1, wsa__DestinationUnreachable = 2, wsa__ActionNotSupported = 3, wsa__EndpointUnavailable = 4};
-typedef enum wsa__FaultSubcodeValues wsa__FaultSubcodeValues;
+#ifndef SOAP_TYPE_wsa5__FaultCodesType
+#define SOAP_TYPE_wsa5__FaultCodesType (139)
+/* wsa5:FaultCodesType */
+enum wsa5__FaultCodesType {wsa5__InvalidAddressingHeader = 0, wsa5__InvalidAddress = 1, wsa5__InvalidEPR = 2, wsa5__InvalidCardinality = 3, wsa5__MissingAddressInEPR = 4, wsa5__DuplicateMessageID = 5, wsa5__ActionMismatch = 6, wsa5__MessageAddressingHeaderRequired = 7, wsa5__DestinationUnreachable = 8, wsa5__ActionNotSupported = 9, wsa5__EndpointUnavailable = 10};
+typedef enum wsa5__FaultCodesType wsa5__FaultCodesType;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__IsReferenceParameter
+#define SOAP_TYPE__wsa5__IsReferenceParameter (157)
+/* wsa5:IsReferenceParameter */
+enum _wsa5__IsReferenceParameter {wsa5__false = 0, wsa5__true = 1};
+typedef enum _wsa5__IsReferenceParameter _wsa5__IsReferenceParameter;
 #endif
 
 /******************************************************************************\
@@ -948,92 +955,92 @@ public:
 };
 #endif
 
-#ifndef SOAP_TYPE_wsa__EndpointReferenceType
-#define SOAP_TYPE_wsa__EndpointReferenceType (131)
-/* wsa:EndpointReferenceType */
-struct wsa__EndpointReferenceType
+#ifndef SOAP_TYPE_wsa5__EndpointReferenceType
+#define SOAP_TYPE_wsa5__EndpointReferenceType (131)
+/* wsa5:EndpointReferenceType */
+struct wsa5__EndpointReferenceType
 {
 public:
 	char *Address;	/* required element of type xsd:string */
-	struct wsa__ReferencePropertiesType *ReferenceProperties;	/* optional element of type wsa:ReferencePropertiesType */
-	struct wsa__ReferenceParametersType *ReferenceParameters;	/* optional element of type wsa:ReferenceParametersType */
-	char **PortType;	/* optional element of type xsd:QName */
-	struct wsa__ServiceNameType *ServiceName;	/* optional element of type wsa:ServiceNameType */
+	struct wsa5__ReferenceParametersType *ReferenceParameters;	/* optional element of type wsa5:ReferenceParametersType */
+	struct wsa5__MetadataType *Metadata;	/* optional element of type wsa5:MetadataType */
 	int __size;	/* sequence of elements <-any> */
 	char **__any;
 	char *__anyAttribute;	/* optional attribute of type xsd:anyType */
 };
-typedef struct wsa__EndpointReferenceType wsa__EndpointReferenceType;
+typedef struct wsa5__EndpointReferenceType wsa5__EndpointReferenceType;
 #endif
 
-#ifndef SOAP_TYPE_wsa__ReferencePropertiesType
-#define SOAP_TYPE_wsa__ReferencePropertiesType (132)
-/* wsa:ReferencePropertiesType */
-struct wsa__ReferencePropertiesType
+#ifndef SOAP_TYPE_wsa5__ReferenceParametersType
+#define SOAP_TYPE_wsa5__ReferenceParametersType (132)
+/* wsa5:ReferenceParametersType */
+struct wsa5__ReferenceParametersType
 {
 public:
 	int __size;	/* sequence of elements <-any> */
 	char **__any;
+	char *__anyAttribute;	/* optional attribute of type xsd:anyType */
 };
-typedef struct wsa__ReferencePropertiesType wsa__ReferencePropertiesType;
+typedef struct wsa5__ReferenceParametersType wsa5__ReferenceParametersType;
 #endif
 
-#ifndef SOAP_TYPE_wsa__ReferenceParametersType
-#define SOAP_TYPE_wsa__ReferenceParametersType (133)
-/* wsa:ReferenceParametersType */
-struct wsa__ReferenceParametersType
+#ifndef SOAP_TYPE_wsa5__MetadataType
+#define SOAP_TYPE_wsa5__MetadataType (133)
+/* wsa5:MetadataType */
+struct wsa5__MetadataType
 {
 public:
 	int __size;	/* sequence of elements <-any> */
 	char **__any;
+	char *__anyAttribute;	/* optional attribute of type xsd:anyType */
 };
-typedef struct wsa__ReferenceParametersType wsa__ReferenceParametersType;
+typedef struct wsa5__MetadataType wsa5__MetadataType;
 #endif
 
-#ifndef SOAP_TYPE_wsa__ServiceNameType
-#define SOAP_TYPE_wsa__ServiceNameType (134)
-/* Primitive wsa:ServiceNameType schema type: */
-struct wsa__ServiceNameType
+#ifndef SOAP_TYPE_wsa5__ProblemActionType
+#define SOAP_TYPE_wsa5__ProblemActionType (135)
+/* wsa5:ProblemActionType */
+struct wsa5__ProblemActionType
+{
+public:
+	char *Action;	/* optional element of type xsd:string */
+	char *SoapAction;	/* optional element of type xsd:string */
+	char *__anyAttribute;	/* optional attribute of type xsd:anyType */
+};
+typedef struct wsa5__ProblemActionType wsa5__ProblemActionType;
+#endif
+
+#ifndef SOAP_TYPE_wsa5__RelatesToType
+#define SOAP_TYPE_wsa5__RelatesToType (134)
+/* Primitive wsa5:RelatesToType schema type: */
+struct wsa5__RelatesToType
 {
 public:
 	char *__item;
-	char *PortName;	/* optional attribute of type xsd:string */
+	char *RelationshipType;	/* optional attribute of type wsa5:RelationshipTypeOpenEnum */
 	char *__anyAttribute;	/* optional attribute of type xsd:anyType */
 };
-typedef struct wsa__ServiceNameType wsa__ServiceNameType;
-#endif
-
-#ifndef SOAP_TYPE_wsa__Relationship
-#define SOAP_TYPE_wsa__Relationship (135)
-/* Primitive wsa:Relationship schema type: */
-struct wsa__Relationship
-{
-public:
-	char *__item;
-	char *RelationshipType;	/* optional attribute of type xsd:QName */
-	char *__anyAttribute;	/* optional attribute of type xsd:anyType */
-};
-typedef struct wsa__Relationship wsa__Relationship;
+typedef struct wsa5__RelatesToType wsa5__RelatesToType;
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (152)
+#define SOAP_TYPE_SOAP_ENV__Header (158)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
 public:
-	char *wsa__MessageID;	/* optional element of type wsa:MessageID */
-	struct wsa__Relationship *wsa__RelatesTo;	/* optional element of type wsa:RelatesTo */
-	struct wsa__EndpointReferenceType *wsa__From;	/* optional element of type wsa:From */
-	struct wsa__EndpointReferenceType *wsa__ReplyTo;	/* mustUnderstand */
-	struct wsa__EndpointReferenceType *wsa__FaultTo;	/* mustUnderstand */
-	char *wsa__To;	/* mustUnderstand */
-	char *wsa__Action;	/* mustUnderstand */
+	char *wsa5__MessageID;	/* optional element of type wsa5:MessageID */
+	struct wsa5__RelatesToType *wsa5__RelatesTo;	/* optional element of type wsa5:RelatesTo */
+	struct wsa5__EndpointReferenceType *wsa5__From;	/* optional element of type wsa5:From */
+	struct wsa5__EndpointReferenceType *wsa5__ReplyTo;	/* mustUnderstand */
+	struct wsa5__EndpointReferenceType *wsa5__FaultTo;	/* mustUnderstand */
+	char *wsa5__To;	/* mustUnderstand */
+	char *wsa5__Action;	/* mustUnderstand */
 };
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (157)
+#define SOAP_TYPE_SOAP_ENV__Code (163)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -1044,7 +1051,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (159)
+#define SOAP_TYPE_SOAP_ENV__Detail (165)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -1056,7 +1063,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (162)
+#define SOAP_TYPE_SOAP_ENV__Reason (168)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -1066,7 +1073,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (163)
+#define SOAP_TYPE_SOAP_ENV__Fault (169)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -1299,49 +1306,84 @@ typedef ns5__ArrayOfstring _ns5__ArrayOfstring;
 typedef ns5__ArrayOfKeyValueOfstringstring _ns5__ArrayOfKeyValueOfstringstring;
 #endif
 
-#ifndef SOAP_TYPE__wsa__EndpointReference
-#define SOAP_TYPE__wsa__EndpointReference (143)
-typedef struct wsa__EndpointReferenceType _wsa__EndpointReference;
+#ifndef SOAP_TYPE_wsa5__RelationshipTypeOpenEnum
+#define SOAP_TYPE_wsa5__RelationshipTypeOpenEnum (136)
+typedef char *wsa5__RelationshipTypeOpenEnum;
 #endif
 
-#ifndef SOAP_TYPE__wsa__MessageID
-#define SOAP_TYPE__wsa__MessageID (144)
-typedef char *_wsa__MessageID;
+#ifndef SOAP_TYPE_wsa5__FaultCodesOpenEnumType
+#define SOAP_TYPE_wsa5__FaultCodesOpenEnumType (137)
+typedef char *wsa5__FaultCodesOpenEnumType;
 #endif
 
-#ifndef SOAP_TYPE__wsa__RelatesTo
-#define SOAP_TYPE__wsa__RelatesTo (145)
-typedef struct wsa__Relationship _wsa__RelatesTo;
+#ifndef SOAP_TYPE__wsa5__EndpointReference
+#define SOAP_TYPE__wsa5__EndpointReference (143)
+typedef struct wsa5__EndpointReferenceType _wsa5__EndpointReference;
 #endif
 
-#ifndef SOAP_TYPE__wsa__To
-#define SOAP_TYPE__wsa__To (146)
-typedef char *_wsa__To;
+#ifndef SOAP_TYPE__wsa5__ReferenceParameters
+#define SOAP_TYPE__wsa5__ReferenceParameters (144)
+typedef struct wsa5__ReferenceParametersType _wsa5__ReferenceParameters;
 #endif
 
-#ifndef SOAP_TYPE__wsa__Action
-#define SOAP_TYPE__wsa__Action (147)
-typedef char *_wsa__Action;
+#ifndef SOAP_TYPE__wsa5__Metadata
+#define SOAP_TYPE__wsa5__Metadata (145)
+typedef struct wsa5__MetadataType _wsa5__Metadata;
 #endif
 
-#ifndef SOAP_TYPE__wsa__From
-#define SOAP_TYPE__wsa__From (148)
-typedef struct wsa__EndpointReferenceType _wsa__From;
+#ifndef SOAP_TYPE__wsa5__MessageID
+#define SOAP_TYPE__wsa5__MessageID (146)
+typedef char *_wsa5__MessageID;
 #endif
 
-#ifndef SOAP_TYPE__wsa__ReplyTo
-#define SOAP_TYPE__wsa__ReplyTo (149)
-typedef struct wsa__EndpointReferenceType _wsa__ReplyTo;
+#ifndef SOAP_TYPE__wsa5__RelatesTo
+#define SOAP_TYPE__wsa5__RelatesTo (147)
+typedef struct wsa5__RelatesToType _wsa5__RelatesTo;
 #endif
 
-#ifndef SOAP_TYPE__wsa__FaultTo
-#define SOAP_TYPE__wsa__FaultTo (150)
-typedef struct wsa__EndpointReferenceType _wsa__FaultTo;
+#ifndef SOAP_TYPE__wsa5__ReplyTo
+#define SOAP_TYPE__wsa5__ReplyTo (148)
+typedef struct wsa5__EndpointReferenceType _wsa5__ReplyTo;
 #endif
 
-#ifndef SOAP_TYPE__wsa__ReplyAfter
-#define SOAP_TYPE__wsa__ReplyAfter (151)
-typedef unsigned int _wsa__ReplyAfter;
+#ifndef SOAP_TYPE__wsa5__From
+#define SOAP_TYPE__wsa5__From (149)
+typedef struct wsa5__EndpointReferenceType _wsa5__From;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__FaultTo
+#define SOAP_TYPE__wsa5__FaultTo (150)
+typedef struct wsa5__EndpointReferenceType _wsa5__FaultTo;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__To
+#define SOAP_TYPE__wsa5__To (151)
+typedef char *_wsa5__To;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__Action
+#define SOAP_TYPE__wsa5__Action (152)
+typedef char *_wsa5__Action;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__RetryAfter
+#define SOAP_TYPE__wsa5__RetryAfter (153)
+typedef ULONG64 _wsa5__RetryAfter;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__ProblemHeaderQName
+#define SOAP_TYPE__wsa5__ProblemHeaderQName (154)
+typedef char *_wsa5__ProblemHeaderQName;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__ProblemIRI
+#define SOAP_TYPE__wsa5__ProblemIRI (155)
+typedef char *_wsa5__ProblemIRI;
+#endif
+
+#ifndef SOAP_TYPE__wsa5__ProblemAction
+#define SOAP_TYPE__wsa5__ProblemAction (156)
+typedef struct wsa5__ProblemActionType _wsa5__ProblemAction;
 #endif
 
 

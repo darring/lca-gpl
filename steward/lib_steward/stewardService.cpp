@@ -46,23 +46,23 @@ CommandIssued StewardService::QueryForClientCommands(
         soap_default_SOAP_ENV__Header(&soap, &header);
         logger->QuickLog("ping1");
 
-        struct wsa__EndpointReferenceType replyTo;
+        struct wsa5__EndpointReferenceType replyTo;
         logger->QuickLog("ping2");
 
-        soap_default_wsa__EndpointReferenceType(&soap, &replyTo);
+        soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
         logger->QuickLog("ping3");
         replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
 
         logger->QuickLog("ping4");
-        header.wsa__MessageID = getNewMessageID();
+        header.wsa5__MessageID = getNewMessageID();
 
         logger->QuickLog("ping5");
-        header.wsa__ReplyTo = &replyTo;
+        header.wsa5__ReplyTo = &replyTo;
         logger->QuickLog("ping6");
-        header.wsa__To = "http://172.16.3.10/CCMS/EILClientOperationsService.svc"; // FIXME
+        header.wsa5__To = "http://172.16.3.10/CCMS/EILClientOperationsService.svc"; // FIXME
 
         logger->QuickLog("ping7");
-        header.wsa__Action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute"; // FIXME
+        header.wsa5__Action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute"; // FIXME
 
         logger->QuickLog("ping7.5");
         soap.header = &header;
@@ -157,13 +157,13 @@ CommandIssued StewardService::QueryForClientCommands(
         logger->QuickLog("ping13");
 
         service.soap_header(
-            header.wsa__MessageID,
-            header.wsa__RelatesTo,
-            header.wsa__From,
-            header.wsa__ReplyTo,
-            header.wsa__FaultTo,
-            header.wsa__To,
-            header.wsa__Action);
+            header.wsa5__MessageID,
+            header.wsa5__RelatesTo,
+            header.wsa5__From,
+            header.wsa5__ReplyTo,
+            header.wsa5__FaultTo,
+            header.wsa5__To,
+            header.wsa5__Action);
 
         _ns1__GetCommandToExecuteResponse response;
 
