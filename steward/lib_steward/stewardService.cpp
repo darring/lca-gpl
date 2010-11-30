@@ -11,6 +11,7 @@
 
 #include "logger.h"
 #include "stewardService.h"
+#include "EIL_defines.h"
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
@@ -44,27 +45,19 @@ CommandIssued StewardService::QueryForClientCommands(
         WS-Addressing bits that are needed by CCMS for routing of commands
         */
         soap_default_SOAP_ENV__Header(&soap, &header);
-        logger->QuickLog("ping1");
 
         struct wsa5__EndpointReferenceType replyTo;
-        logger->QuickLog("ping2");
 
         soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
-        logger->QuickLog("ping3");
-        replyTo.Address = "http://www.w3.org/2005/08/addressing/anonymous";
+        replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
 
-        logger->QuickLog("ping4");
         header.wsa5__MessageID = getNewMessageID();
 
-        logger->QuickLog("ping5");
         header.wsa5__ReplyTo = &replyTo;
-        logger->QuickLog("ping6");
-        header.wsa5__To = "http://172.16.3.10/CCMS/EILClientOperationsService.svc"; // FIXME
+        header.wsa5__To = EIL__CLIENTOPSERVICE;
 
-        logger->QuickLog("ping7");
-        header.wsa5__Action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute"; // FIXME
+        header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
 
-        logger->QuickLog("ping7.5");
         soap.header = &header;
 
         /*
@@ -80,16 +73,12 @@ CommandIssued StewardService::QueryForClientCommands(
         std::string hn = std::string(hostname);
         hostname_kv.Value= &hn;
 
-        logger->QuickLog("ping8");
-
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
         std::string onumkey = std::string("ORDER_NUM");
         ordernum_kv.Key = &onumkey;
         std::string onumval = std::string(order_num);
         ordernum_kv.Value = &onumval;
-
-        logger->QuickLog("ping9");
 
         /*
         Bring it up to the next level
@@ -98,16 +87,12 @@ CommandIssued StewardService::QueryForClientCommands(
         ar[0] = hostname_kv;
         ar[1] = ordernum_kv;
 
-        logger->QuickLog("ping10");
-
         /*
         Take that array, and plug it into the next data type level
         */
         ns5__ArrayOfKeyValueOfstringstring k1;
         k1.__sizeKeyValueOfstringstring = 2;
         k1.KeyValueOfstringstring = &ar[0];
-
-        logger->QuickLog("ping11");
 
         /*
         Now, up to the machine context
@@ -117,7 +102,6 @@ CommandIssued StewardService::QueryForClientCommands(
         //ctx.soap_default(&soap); // Must set our soap instance
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
-        logger->QuickLog("ping11");
         switch (mType)
         {
             case ANY:
@@ -143,8 +127,6 @@ CommandIssued StewardService::QueryForClientCommands(
 
         ctx.mType = &l_mType;
 
-        logger->QuickLog("ping12");
-
         /*
         Finally, we're ready for the GetCommandToExecute class
         */
@@ -153,8 +135,6 @@ CommandIssued StewardService::QueryForClientCommands(
 
         //ctx.soap_default(&soap); // Must set our soap instance
         //getCommand.soap_default(&soap);
-
-        logger->QuickLog("ping13");
 
         service.soap_header(
             header.wsa5__MessageID,
@@ -172,9 +152,20 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
-        logger->QuickLog("ping14");
 
         // FIXME Set proper state information here
+
+        // FIXME Memory clean-up
+        /*free(&relpyTo);
+        free(&hostname_kv);
+        free(&onumkey);
+        free(&onumval);
+        free(ar);
+        free(&k1);
+        free(&ctx);
+        free(&l_mType);
+        free(&getCommand);
+        free(&response);*/
 
         // FIXME Return something useful
         return COMMAND_ERROR;
@@ -196,8 +187,10 @@ char* StewardService::getNewMessageID()
     // FIXME for now we just hardcode this, but later on, we want to
     // generate this more dynamically
     // urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321
+    // urn:uuid:2bb49d8d-d1cf-40fa-a378-b39af8fbe558
 
-    messageID = "urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321";
+    messageID = "urn:uuid:abcdefghijklmnopqrstuvwxyz0123456789";
+    //messageID = "urn:uuid:75a4a1d6-7d17-48e5-bcfb-83307aeaf321";
 
     return messageID;
 }
