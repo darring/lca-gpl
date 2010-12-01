@@ -1,39 +1,27 @@
 /*
  uniqueHash.cpp
  ------------------
- A basic helper class which provides unique hashes for the steward library
+ A basic helper function which provides unique hashes for the steward library
  */
 
-#include <time.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <math.h>
 
 #include "uniqueHash.h"
 
-UniqueHash::UniqueHash()
+static void generateUniqueHash(char *ptr, int hashSize)
 {
-    char l_lookupTable[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static const char lookupTable[] =
+        "0123456789ABCDEFGHIJKLMNOPQRSTUVWYZ";
 
-    sizeOfLookupTable = sizeof(l_lookupTable)/sizeof(l_lookupTable[0]);
+    static const int lookupTableLen = 36;
 
-    lookupTable = l_lookupTable;
-
-    srandom(time(NULL));
-}
-
-UniqueHash::~UniqueHash()
-{
-    free(lookupTable);
-}
-
-void UniqueHash::GetHash(char* ptr, int hashSize)
-{
     int spot;
 
-    // Jumble the characters
     for (int i = 0; i < hashSize; i++)
     {
-        spot = random() % sizeOfLookupTable;
+        spot = remainder(random(), lookupTableLen);
+
         ptr[i] = lookupTable[spot];
     }
 }

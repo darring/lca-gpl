@@ -6,31 +6,19 @@
  *
  * \section intro_sec Introduction
  *
- * This is a helper class which provides hash generation utilities for the
+ * This is a helper function which provides hash generation utilities for the
  * Linux EIL Client Agent Steward.
  */
 
 #ifndef uniqueHash_H
 #define uniqueHash_H
 
-class UniqueHash
-{
-    private:
-        char* lookupTable;
-        int sizeOfLookupTable;
-    public:
-        //! Constructor for the UniqueHash class
-        UniqueHash();
-
-        //! Destructor for the UniqueHash class
-        ~UniqueHash();
-
-        //! Get a unique hash
-        /*!
-         * \param ptr char pointer to store the hash into
-         * \param hashSize the size of ptr
-         */
-        void GetHash(char* ptr, int hashSize);
-};
+//! Function which generates the unique hash
+/*!
+ * Call this function to generate a unique hash
+ * \param ptr pointer to the character array for the hash
+ * \param hashSize the size of the hash
+ */
+static void generateUniqueHash(char *ptr, int hashSize);
 
 #endif
