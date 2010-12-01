@@ -21,6 +21,11 @@ INCLUDES=-I./logger/ -I./lib_soap/ -I./lib_steward/ -I./lib_hash/
 eil_steward: $(OBJECTS)
 	$(CPP) $(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
 
+static: $(OBJECTS)
+	@echo Static linking enabled - Be sure to check the README/INSTALL
+	$(CPP) $(STATIC_BASIC) $(STATIC_CC) \
+		$(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
+
 logger.o: eil_steward.o
 
 soapC.o: eil_steward.o

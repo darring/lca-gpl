@@ -15,9 +15,18 @@ GSOAP_OBJECTS=$(GSOAP_WSAAPI_O)
 CC=gcc
 CPP=g++
 
+INSTALL=install
+INSTALL_GID=eil
+INSTALL_UID=eil
+
 CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses
 CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses
 
 LDFLAGS=
 CP_LDFLAGS=-lgsoap++
 
+# Flags for static linking - Be sure to check the README and LICENSE files
+# for concerns when static linking!
+STATIC_BASE=-static
+STATIC_CC=-static-libgcc
+STATIC_CPP=-static-libstdc++
