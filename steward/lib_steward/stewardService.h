@@ -27,7 +27,7 @@
 #define MAX_MESSAGEID_LEN 40
 
 class StewardLogger;
-class UniqueHash;
+//class UniqueHash;
 
 class StewardService
 {
@@ -36,7 +36,7 @@ class StewardService
         struct soap soap;
         struct SOAP_ENV__Header header;
         StewardLogger *logger;
-        UniqueHash *uniqueHash;
+        //UniqueHash *uniqueHash;
         int op_codes;
         char last_MessageID[MAX_MESSAGEID_LEN];
         ServiceState currentState;

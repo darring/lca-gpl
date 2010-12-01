@@ -9,7 +9,7 @@
 
 #include "uniqueHash.h"
 
-static void generateUniqueHash(char *ptr, int hashSize)
+void generateUniqueHash(char *ptr, int hashSize)
 {
     static const char lookupTable[] =
         "0123456789ABCDEFGHIJKLMNOPQRSTUVWYZ";

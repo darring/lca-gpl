@@ -24,8 +24,8 @@ StewardService::StewardService(StewardLogger *myLogger)
     soap_init(&soap);
     soap_register_plugin(&soap, soap_wsa);
 
-    UniqueHash l_uniqueHash;
-    uniqueHash = &l_uniqueHash;
+    //UniqueHash l_uniqueHash;
+    //uniqueHash = &l_uniqueHash;
 
     logger->QuickLog("StewardService> Service initialized...");
 }
@@ -193,7 +193,7 @@ void StewardService::getNewMessageID()
     char messageID[MAX_MESSAGEID_LEN - 10];
     logger->QuickLog("ping2");
 
-    uniqueHash->GetHash(messageID, MAX_MESSAGEID_LEN - 10);
+    generateUniqueHash(messageID, MAX_MESSAGEID_LEN - 10);
 
     logger->QuickLog(last_MessageID);
     logger->QuickLog("ping3");

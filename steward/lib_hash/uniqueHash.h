@@ -19,6 +19,6 @@
  * \param ptr pointer to the character array for the hash
  * \param hashSize the size of the hash
  */
-static void generateUniqueHash(char *ptr, int hashSize);
+void generateUniqueHash(char *ptr, int hashSize);
 
 #endif
