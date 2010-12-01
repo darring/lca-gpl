@@ -198,6 +198,9 @@ void StewardService::getNewMessageID()
     logger->QuickLog(last_MessageID);
     logger->QuickLog("ping3");
 
+    // FIXME, it would be nice to have this formatted more like
+    // other messageIDs, e.g.,
+    // urn:uuid:8d1d259a-bd87-4e9a-b28d-02c4bd420fb3
     snprintf(last_MessageID, MAX_MESSAGEID_LEN,
             "urn:uuid:%s", messageID);
 
