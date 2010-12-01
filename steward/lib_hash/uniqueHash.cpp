@@ -6,18 +6,19 @@
 
 #include <stdlib.h>
 #include <math.h>
-#include <string>
+//#include <string>
 #include <time.h>
 
 #include "uniqueHash.h"
 
-using namespace std;
+//using namespace std;
 
 void generateUniqueHash(char *ptr, int hashSize)
 {
-    static string lookupTable = "0123456789ABCDEFGHIJKLMNOPQRSTUVWYZ";
+    //static string
+    static char lookupTable[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWYZ";
 
-    static int lookupTableLen = lookupTable.length();
+    static int lookupTableLen = 36;
 
     // FIXME random is *horrible* at randomness! this is a stopgap at best
     // we need to get at /dev/urandom for better randomness
