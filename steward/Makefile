@@ -22,7 +22,9 @@ eil_steward: $(OBJECTS)
 	$(CPP) $(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
 
 static: $(OBJECTS)
+	@echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	@echo Static linking enabled - Be sure to check the README/INSTALL
+	@echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$(CPP) $(STATIC_BASE) $(STATIC_CC) \
 		$(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
 
