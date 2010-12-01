@@ -30,27 +30,6 @@ do
     rm -i $THIS_FILE
 done
 
-#TYPEMAP=$(cat <<EOF
-#base = "http://tempuri.org/"
-#base_imports = "http://tempuri.org/Imports"
-#serialization = "http://schemas.microsoft.com/2003/10/Serialization/"
-#clientManageService = "http://schemas.datacontract.org/2004/07/EILClientManagmentService"
-#serializationArrays = "http://schemas.microsoft.com/2003/10/Serialization/Arrays"
-#EOF
-#)
-
-#rm typemap.dat
-#touch typemap.dat
-
-#for LINE in $TYPEMAP
-#do
-#    echo "${LINE}" >> typemap.dat
-#done
-
-#wsdl2h -g -c -s -o EILClientOps.h "http://10.10.0.20/CCMS/EILClientOperationsService.svc?wsdl"
-
-#soapcpp2 -i -C -c -I /usr/include/gsoap/ EILClientOps.h
-
 wsdl2h -g -s -f -o EILClientOps.h "http://${CCMS_SERVER}/CCMS/EILClientOperationsService.svc?wsdl"
 
 cat header_append.h >> EILClientOps.h
