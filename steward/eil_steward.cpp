@@ -27,7 +27,7 @@
 #define HOSTNAME_LEN 50
 
 //! Debugging toggle- Enable to force not to run as daemon
-#define DEBUG
+//#define DEBUG
 
 /*
 // Nasty gSOAP bindings
