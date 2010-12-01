@@ -51,7 +51,7 @@ done
 
 #soapcpp2 -i -C -c -I /usr/include/gsoap/ EILClientOps.h
 
-wsdl2h -g -f -o EILClientOps.h "http://${CCMS_SERVER}/CCMS/EILClientOperationsService.svc?wsdl"
+wsdl2h -g -s -f -o EILClientOps.h "http://${CCMS_SERVER}/CCMS/EILClientOperationsService.svc?wsdl"
 
 cat header_append.h >> EILClientOps.h
 

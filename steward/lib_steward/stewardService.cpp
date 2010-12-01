@@ -75,17 +75,17 @@ CommandIssued StewardService::QueryForClientCommands(
 
         // Set up our host name
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
-        std::string kn = std::string("HOST_NAME");
-        hostname_kv.Key = &kn;
-        std::string hn = std::string(hostname);
-        hostname_kv.Value= &hn;
+        //std::string kn = std::string("HOST_NAME");
+        hostname_kv.Key = "HOST_NAME";
+        //std::string hn = std::string(hostname);
+        hostname_kv.Value= hostname; //&hn;
 
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
-        std::string onumkey = std::string("ORDER_NUM");
-        ordernum_kv.Key = &onumkey;
-        std::string onumval = std::string(order_num);
-        ordernum_kv.Value = &onumval;
+        //std::string onumkey = std::string("ORDER_NUM");
+        ordernum_kv.Key = "ORDER_NUM";
+        //std::string onumval = std::string(order_num);
+        ordernum_kv.Value = order_num;
 
         /*
         Bring it up to the next level

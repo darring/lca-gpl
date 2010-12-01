@@ -23,7 +23,7 @@ eil_steward: $(OBJECTS)
 
 static: $(OBJECTS)
 	@echo Static linking enabled - Be sure to check the README/INSTALL
-	$(CPP) $(STATIC_BASIC) $(STATIC_CC) \
+	$(CPP) $(STATIC_BASE) $(STATIC_CC) \
 		$(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
 
 logger.o: eil_steward.o
