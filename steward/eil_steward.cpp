@@ -19,7 +19,6 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include <string>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -39,8 +38,6 @@
 #include "logger.h"
 #include "stewardService.h"
 #include "machineType.h"
-
-using namespace std;
 
 int main(int argc, char *argv[])
 {
