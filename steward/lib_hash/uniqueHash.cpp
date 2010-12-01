@@ -6,16 +6,12 @@
 
 #include <stdlib.h>
 #include <math.h>
-//#include <string>
 #include <time.h>
 
 #include "uniqueHash.h"
 
-//using namespace std;
-
 void generateUniqueHash(char *ptr, int hashSize)
 {
-    //static string
     static char lookupTable[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWYZ";
 
     static int lookupTableLen = 36;
