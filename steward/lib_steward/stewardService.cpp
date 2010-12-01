@@ -6,7 +6,6 @@
 
 // Nasty gSOAP bindings
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
-//#include "soapH.h"
 #include "wsaapi.h"
 
 #include "logger.h"
@@ -23,9 +22,6 @@ StewardService::StewardService(StewardLogger *myLogger)
     currentState = STATE_None;
     soap_init(&soap);
     soap_register_plugin(&soap, soap_wsa);
-
-    //UniqueHash l_uniqueHash;
-    //uniqueHash = &l_uniqueHash;
 
     logger->QuickLog("StewardService> Service initialized...");
 }
@@ -75,16 +71,12 @@ CommandIssued StewardService::QueryForClientCommands(
 
         // Set up our host name
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
-        //std::string kn = std::string("HOST_NAME");
         hostname_kv.Key = "HOST_NAME";
-        //std::string hn = std::string(hostname);
         hostname_kv.Value= hostname; //&hn;
 
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
-        //std::string onumkey = std::string("ORDER_NUM");
         ordernum_kv.Key = "ORDER_NUM";
-        //std::string onumval = std::string(order_num);
         ordernum_kv.Value = order_num;
 
         /*
@@ -106,7 +98,6 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         ns4__MachineContext ctx;
         ctx.mParams = &k1;
-        //ctx.soap_default(&soap); // Must set our soap instance
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
         switch (mType)
@@ -140,9 +131,6 @@ CommandIssued StewardService::QueryForClientCommands(
         _ns1__GetCommandToExecute getCommand;
         getCommand.ctx = &ctx;
 
-        //ctx.soap_default(&soap); // Must set our soap instance
-        //getCommand.soap_default(&soap);
-
         service.soap_header(
             header.wsa5__MessageID,
             header.wsa5__RelatesTo,
@@ -163,16 +151,6 @@ CommandIssued StewardService::QueryForClientCommands(
         // FIXME Set proper state information here
 
         // FIXME Memory clean-up
-        /*free(&relpyTo);
-        free(&hostname_kv);
-        free(&onumkey);
-        free(&onumval);
-        free(ar);
-        free(&k1);
-        free(&ctx);
-        free(&l_mType);
-        free(&getCommand);
-        free(&response);*/
 
         // FIXME Return something useful
         return COMMAND_ERROR;
