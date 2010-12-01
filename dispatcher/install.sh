@@ -64,7 +64,7 @@ add_user_if_not_exist() {
     if [ $? -ne 0 ]; then
         # User does not exist, add them
         if [ -n "$IS_SLES" ]; then
-            /usr/sbin/useradd -d /dev/null -c eil_client \
+            /usr/sbin/useradd -d $HOME_DIR -c eil_client \
                 -s /bin/false -g $LGID $LUID
         else
             /usr/sbin/useradd -d /dev/null -c eil_client \
