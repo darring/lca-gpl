@@ -13,12 +13,11 @@
 #ifndef uniqueHash_H
 #define uniqueHash_H
 
-#define MAX_INTERNAL_STORAGE 26
-
 class UniqueHash
 {
     private:
-        char* internalReturnStorage;
+        char* lookupTable;
+        int sizeOfLookupTable;
     public:
         //! Constructor for the UniqueHash class
         UniqueHash();
@@ -27,7 +26,11 @@ class UniqueHash
         ~UniqueHash();
 
         //! Get a unique hash
-        char* GetHash();
+        /*!
+         * \param ptr char pointer to store the hash into
+         * \param hashSize the size of ptr
+         */
+        void GetHash(char* ptr, int hashSize);
 };
 
 #endif

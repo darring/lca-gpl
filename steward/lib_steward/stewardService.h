@@ -38,7 +38,7 @@ class StewardService
         StewardLogger *logger;
         UniqueHash *uniqueHash;
         int op_codes;
-        char *last_MessageID;
+        char last_MessageID[MAX_MESSAGEID_LEN];
         ServiceState currentState;
 
         //! Obtain a new message ID
@@ -46,7 +46,7 @@ class StewardService
          * Internal method used to obtain a valid message ID used in WS-A
          * \return Null byte terminated message ID
          */
-        char* getNewMessageID();
+        void getNewMessageID();
 
     public:
         //! Constructor for the Steward service wrapper

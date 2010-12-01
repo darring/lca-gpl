@@ -55,7 +55,9 @@ CommandIssued StewardService::QueryForClientCommands(
         soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
         replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
 
-        header.wsa5__MessageID = getNewMessageID();
+        getNewMessageID();
+
+        header.wsa5__MessageID = last_MessageID;
         logger->QuickLog(header.wsa5__MessageID);
 
         header.wsa5__ReplyTo = &replyTo;
@@ -185,14 +187,19 @@ CommandIssued StewardService::QueryForClientCommands(
 
     /**** Private Methods ****/
 
-char* StewardService::getNewMessageID()
+void StewardService::getNewMessageID()
 {
-    char messageID[MAX_MESSAGEID_LEN];
-    char *retVal;
+    logger->QuickLog("ping1");
+    char messageID[MAX_MESSAGEID_LEN - 10];
+    logger->QuickLog("ping2");
 
-    snprintf(messageID, MAX_MESSAGEID_LEN,
-            "urn:uuid:%s", uniqueHash->GetHash());
+    uniqueHash->GetHash(messageID, MAX_MESSAGEID_LEN - 10);
 
-    retVal = messageID;
-    return retVal;
+    logger->QuickLog(last_MessageID);
+    logger->QuickLog("ping3");
+
+    snprintf(last_MessageID, MAX_MESSAGEID_LEN,
+            "urn:uuid:%s", messageID);
+
+    logger->QuickLog(last_MessageID);
 }
