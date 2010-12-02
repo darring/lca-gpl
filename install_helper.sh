@@ -1,6 +1,12 @@
 # This scriptlet is not intended to be run by itself, it merely provides
 # helper functionality to the install_tool
 
+####################
+# Define the version
+####################
+
+EIL_LCA_VERSION=`cat VERSION`
+
 ###########################################################
 # Convenience defintions for the various bash color prompts
 ###########################################################
@@ -30,12 +36,12 @@ I_LANANA=$I_BASE_DIR/intel
 # EIL namespace, additionally, we want our client agent to live there.
 I_INSTALL_DIR=$I_LANANA/eil/clientagent
 
-I_BIN_DIR=$I_INSTALL_DIR/bin
-I_LIB_DIR=$I_INSTALL_DIR/lib
-I_DOC_DIR=$I_INSTALL_DIR/doc
-I_TOOL_DIR=$I_INSTALL_DIR/tools
-I_HOME_DIR=$I_INSTALL_DIR/home
-I_SCRIPTS_DIR=$I_INSTALL_DIR/scripts
+I_BIN_DIR=/bin
+I_LIB_DIR=/lib
+I_DOC_DIR=/doc
+I_TOOL_DIR=/tools
+I_HOME_DIR=/home
+I_SCRIPTS_DIR=/scripts
 
 # Location of the symbolic links
 I_USRBIN_DIR=/usr/bin
@@ -118,13 +124,15 @@ setup_env() {
         # That's odd, well, let's just clean it up then!
         cleanup_env
     else
-        TMP_WORKSPACE=`mktemp -d`
+        TMP_BASE=`mktemp -d`
+        TMP_WORKSPACE="${TMP_BASE}/eil_clientagent-${EIL_LCA_VERSION}"
+        mkdir -p $TMP_WORKSPACE
     fi
 }
 
 cleanup_env() {
     if [ -n "$TMP_WORKSPACE" ]; then
-        rm -fr $TMP_WORKSPACE
+        rm -fr $TMP_BASE
     fi
 }
 
@@ -133,9 +141,9 @@ cleanup_env() {
 ########################
 
 install_steward() {
-    PREFIX_PATH=""
+    PREFIX_PATH="${I_INSTALL_DIR}"
     if [ -n "$TMP_WORKSPACE" ]; then
-        PREFIX_PATH="${TMP_WORKSPACE}/"
+        PREFIX_PATH="${TMP_WORKSPACE}"
     fi
     trace "!!! Installing the steward"
     warning "!!! WARNING: This step requires the dispatcher to have been installed previously!"
@@ -158,7 +166,7 @@ install_steward() {
     chmod g+s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward
 
     if [ ! -n "$TMP_WORKSPACE" ]; then
-        ln -s ${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
+        ln -s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
     fi
     set +x
 }

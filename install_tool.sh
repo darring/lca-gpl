@@ -8,7 +8,7 @@
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
-unset TMP_WORKSPACE || true
+unset TMP_WORKSPACE TMP_BASE || true
 
 PROGNAME=${0##*/}
 
@@ -227,5 +227,7 @@ if [ -n "$OPT_PKG" ]; then
     fi
     trace "!!! Building an installable package"
     setup_env
-    export BOOTSTRAP_DIR=${TMP_WORKSPACE}
+    install_dispatcher
+    install_steward
+    trace "${TMP_WORKSPACE}"
 fi
