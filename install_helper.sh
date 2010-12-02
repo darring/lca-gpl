@@ -114,9 +114,61 @@ check_uid_gid() {
 }
 
 setup_env() {
-    echo "stub"
+    if [ -n "$TMP_WORKSPACE" ]; then
+        # That's odd, well, let's just clean it up then!
+        cleanup_env
+    else
+        TMP_WORKSPACE=`mktemp -d`
+    fi
 }
 
 cleanup_env() {
-    echo "stub"
+    if [ -n "$TMP_WORKSPACE" ]; then
+        rm -fr $TMP_WORKSPACE
+    fi
+}
+
+########################
+# Installation functions
+########################
+
+install_steward() {
+    PREFIX_PATH=""
+    if [ -n "$TMP_WORKSPACE" ]; then
+        PREFIX_PATH="${TMP_WORKSPACE}/"
+    fi
+    trace "!!! Installing the steward"
+    warning "!!! WARNING: This step requires the dispatcher to have been installed previously!"
+    check_uid_gid
+    if [ -z "$OPT_STATIC" ] && [ -z "$OPT_BUILD" ] && [ ! -e "steward/eil_steward" ]; then
+        warning "!!! WARNING: The steward had not been built, so we will build it with dynamic linking"
+        set -x
+        cd steward/
+        make clean
+        make
+        cd ../
+        set +x
+    fi
+    set -x
+    install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=754 \
+        -v steward/eil_steward ${PREFIX_PATH}${I_BIN_DIR}
+
+    # SETUID/SETGID
+    chmod u+s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward
+    chmod g+s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward
+
+    if [ ! -n "$TMP_WORKSPACE" ]; then
+        ln -s ${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
+    fi
+    set +x
+}
+
+install_dispatcher() {
+    trace "!!! Installing the dispatcher"
+    cd dispatcher/
+    if [ -n "$TMP_WORKSPACE" ]; then
+        export BOOTSTRAP_DIR="${TMP_WORKSPACE}"
+    fi
+    ./install.sh
+    cd ../
 }

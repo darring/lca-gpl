@@ -8,8 +8,12 @@
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
+unset TMP_WORKSPACE || true
 
 PROGNAME=${0##*/}
+
+PWD=$(pwd)
+PWD=${PWD%/}
 
 if [ "$(id -u)" != "0" ]; then
     echo "This install tool script must be run as root!"
@@ -188,10 +192,7 @@ fi
 
 # NOTE: Install before the steward!
 if [ -n "$OPT_INSTALL_DISPATCHER" ]; then
-    trace "!!! Installing the dispatcher"
-    cd dispatcher/
-    ./install.sh
-    cd ../
+    install_dispatcher
 fi
 
 # NOTE: Uninstall before the dispatcher!
@@ -211,26 +212,20 @@ if [ -n "$OPT_UNINSTALL_DISPATCHER" ]; then
 fi
 
 if [ -n "$OPT_INSTALL_STEWARD" ]; then
-    trace "!!! Installing the steward"
-    warning "!!! WARNING: This step requires the dispatcher to have been installed previously!"
-    check_uid_gid
-    if [ -z "$OPT_STATIC" ] && [ -z "$OPT_BUILD" ]; then
-        warning "!!! WARNING: The steward had not been built, so we will build it with dynamic linking"
-        set -x
-        cd steward/
-        make clean
-        make
-        cd ../
-        set +x
+    install_steward
+fi
+
+##############################
+####### PACKAGE FUNCTIONS
+
+if [ -n "$OPT_PKG" ]; then
+    if [ ! -n "$OPT_STATIC" ]; then
+        alert "!!! Well this is embarrassing, somehow you've managed to trigger the"
+        alert "!!! 'build package' routines without actually building a static steward,"
+        alert "!!! which shouldn't be possible!"
+        die "!!! Dying on unrecoverable error!"
     fi
-    set -x
-    install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=754 \
-        -v steward/eil_steward ${I_BIN_DIR}
-
-    # SETUID/SETGID
-    chmod u+s ${I_BIN_DIR}/eil_steward
-    chmod g+s ${I_BIN_DIR}/eil_steward
-
-    ln -s ${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
-    set +x
+    trace "!!! Building an installable package"
+    setup_env
+    export BOOTSTRAP_DIR=${TMP_WORKSPACE}
 fi
