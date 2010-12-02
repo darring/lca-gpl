@@ -152,7 +152,7 @@ following:
 extending and maintenance. They can be found in the source repository, or in
 the doc/ install directory (generally /opt/intel/eil/clientagent/doc) after
 installation. Most of this documentation is self-explanatory, but let's
-briefly cover some of the highlights here.
+briefly cover some of the highlights.
 
         * README, LICENSE, INSTALL, etc.
             - The file you read now, as well as the other all caps
