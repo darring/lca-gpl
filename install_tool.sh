@@ -224,8 +224,12 @@ if [ -n "$OPT_INSTALL_STEWARD" ]; then
         set +x
     fi
     set -x
-    install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=755 \
+    install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=754 \
         -v steward/eil_steward ${I_BIN_DIR}
+
+    # SETUID/SETGID
+    chmod u+s ${I_BIN_DIR}/eil_steward
+    chmod g+s ${I_BIN_DIR}/eil_steward
 
     ln -s ${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
     set +x

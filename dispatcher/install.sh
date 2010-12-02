@@ -198,6 +198,10 @@ mkdir -p $SCRIPTS_DIR
 # Set up the users
 add_user_if_not_exist
 
+# Set ownership of the proper directories
+chown ${INSTALL_UID}.${INSTALL_GID} ${HOME_DIR}
+chmod 1777 ${HOME_DIR}
+
 # Install the libs
 for LIB_FILE in $ALL_LIBS
 do
@@ -229,7 +233,7 @@ do
     cp -fr bin/$EXEC_FILE $BIN_DIR/.
     # Set up the binaries to SETUID as the user
     chown ${INSTALL_UID}.${INSTALL_GID} ${BIN_DIR}/${EXEC_FILE}
-    chmod 774 ${BIN_DIR}/${EXEC_FILE}
+    chmod 754 ${BIN_DIR}/${EXEC_FILE}
     # SETUID/SETGID the binaries
     chmod u+s ${BIN_DIR}/${EXEC_FILE}
     chmod g+s ${BIN_DIR}/${EXEC_FILE}
