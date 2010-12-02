@@ -147,6 +147,11 @@ while [ $1 != -- ]; do
 done
 shift
 
+# Actual install functions
+# NOTE: The order of these matter!
+# For example, on install, the dispatcher must be installed before the steward
+# and on uninstall, the steward must be uninstalled before the dispatcher.
+
 if [ -n "$OPT_BUILD" ]; then
     trace "!!! Rebuilding steward agent"
     set -x
@@ -181,6 +186,7 @@ if [ -n "$OPT_DOC" ]; then
     # TODO
 fi
 
+# NOTE: Install before the steward!
 if [ -n "$OPT_INSTALL_DISPATCHER" ]; then
     trace "!!! Installing the dispatcher"
     cd dispatcher/
@@ -188,6 +194,7 @@ if [ -n "$OPT_INSTALL_DISPATCHER" ]; then
     cd ../
 fi
 
+# NOTE: Uninstall before the dispatcher!
 if [ -n "$OPT_UNINSTALL_STEWARD" ]; then
     trace "!!! Uninstalling the steward"
     set -x
