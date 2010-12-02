@@ -5,8 +5,8 @@
 # This tool is intended to assist in the installation and packaging of the
 # Linux Client Agent
 
-unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG || true
-unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD || true
+unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
+unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 
 PROGNAME=${0##*/}
 
@@ -14,6 +14,8 @@ if [ "$(id -u)" != "0" ]; then
     echo "This install tool script must be run as root!"
     exit 1
 fi
+
+. ./install_helper.sh
 
 usage()
 {
@@ -23,6 +25,9 @@ Where [OPTION] is one of the following
 
     --install       Installs the client agent on the system
                     (building as needed)
+
+    --pkginstall    Install the client agent from a package
+                    (should not be called unless you know what you are doing)
 
     --instdisp      Installs just the dispatcher on the system
 
@@ -52,6 +57,7 @@ TEMP=$(getopt -n "$PROGNAME" --options h \
 install,\
 instdisp,\
 inststew,\
+pkginstall,\
 static,\
 doc,\
 pkg -- $*)
@@ -78,6 +84,10 @@ while [ $1 != -- ]; do
             ;;
         --inststew)
             OPT_INSTALL_STEWARD=yes
+            shift
+            ;;
+        --pkginstall)
+            OPT_INSTALL_PKG=yes
             shift
             ;;
         --doc)
@@ -109,7 +119,7 @@ done
 shift
 
 if [ -n "$OPT_BUILD" ]; then
-    echo "!!! Rebuilding steward agent"
+    trace "!!! Rebuilding steward agent"
     set -x
     cd steward/
     make clean
@@ -119,7 +129,7 @@ if [ -n "$OPT_BUILD" ]; then
 fi
 
 if [ -n "$OPT_STATIC" ]; then
-    echo "!!! Rebuilding steward agent (static linking)"
+    trace "!!! Rebuilding steward agent (static linking)"
     set -x
     cd steward/
     make clean
@@ -129,6 +139,18 @@ if [ -n "$OPT_STATIC" ]; then
 fi
 
 if [ -n "$OPT_DOC" ]; then
-    echo "!!! DOC INSTALLATION NOT IMPLEMENTED YET"
+    trace "!!! DOC INSTALLATION NOT IMPLEMENTED YET"
     # TODO
+fi
+
+if [ -n "$OPT_INSTALL_DISPATCHER" ]; then
+    trace "!!! Installing the dispatcher"
+    cd dispatcher/
+    ./install.sh
+    cd ../
+fi
+
+if [ -n "$OPT_INSTALL_STEWARD" ]; then
+    trace "!!! Installing the steward"
+    warning "!!! WARNING: The steward will be non-functioning without the dispatcher!"
 fi
