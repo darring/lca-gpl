@@ -1,0 +1,178 @@
+                          EIL Linux Client Agent
+                        Technical Design Document
+------------------------------------------------------------------------------
+
+Table of Contents
+1) Overview
+    1.a) Project History
+    1.b) Linux Client Agent Re-Write Requirements
+2) Linux Client Agent
+    2.a) Steward
+    2.b) Dispatcher
+        2.b.1) Client helper tools
+3) Documentation
+
+------------------------------------------------------------------------------
+
+1) Overview
+
+1.a) Project History
+
+    The original stated goal of the EIL Linux Client Agent project was to port
+the existing C# Windows client to Linux/Mono (circa October 2010). However, due
+to difficulties with the existing C# Windows client code (dependencies upon
+Windows binary DLLs, dependencies upon .NET API calls not fully implemented in
+current versions of Mono, and hard project requirements on platforms that did
+not natively provide Mono support), this was scrapped in lieu of a more native
+Linux solution.
+
+    Recommendations were made (and initial prototyping was done) to create the
+native Linux Client Agent in Python (which was present on all desired Linux
+target platforms), however Python was ultimately rejected because of
+maintainability concerns due to there being no permanent staff member with
+Python experience.
+
+1.b) Linux Client Agent Re-Write Requirements
+
+    It was determined that the Linux Client Agent needed to be re-written in a
+more native Linux way. The final design requirements were as follows:
+
+        * It was to be written in C/C++ and BASH
+            - These languages were determined to be the most maintainable
+              given the staff language experience.
+
+            - Due to C/C++ requirement, gSOAP was chosen as the C/C++ SOAP
+              library.
+
+        * The resultant binary would be linked statically
+            - The goal was to have the Linux Client Agent be something that
+              could be "dropped in" to any Linux system with minimal fuss and
+              no additional package dependency install.
+
+            - This requirement meant that care had to be given when C++ was
+              used in the code due to the fact that libstdc++ cannot currently
+              be statically linked using gcc. (Primarily, this means gSOAP must
+              be built without STL support, and no STL templates can be used.)
+
+            - Additionally, care must be given in terms of redistribution as
+              static linking *will* incur GPL/LGPL licensing issues. See
+              LICENSE.
+
+        * Linux client agent should have custom, cross-distribution installer
+            - The staff does not have experience creating and maintaining
+              custom packages, so the larger Linux Client Agent package should
+              be something that is distribution-agnostic (a single tar-file)
+              with an installer. (E.g., something which mimics a more "Windows-
+              like" installation.)
+
+        * Client agent should not use "complex build systems"
+            - There was concern over the GNU autotools system, and how
+              confusing it can be. The decision was made to not use the vast
+              majority of autotools and to keep the build system as simple
+              as possible.
+
+            - Only GNU make and simple Makefiles along with basic BASH shell
+              scripts are to be used in the project.
+
+        * Client agent must interact with current .NET-based CCMS
+            - Current .NET-based CCMS runs WCF (Windows Communication
+              Foundation) and utilizes WS-Addressing (version 5,
+              http://www.w3.org/2005/08/addressing).
+
+        * The client agent should conform to LFHS, LSB and LANANA conventions
+          whenever possible (and whenever it doesn't conflict with previously
+          stated goals).
+            - This was not deemed as high a priority as previously stated
+              goals. (Otherwise, obviously, we would be making RPMs.)
+
+2) Linux Client Agent
+
+    Because of the requirements detailed above, it was determined that the EIL
+Linux Client Agent should be split into two distinct components. One component
+will interact with CCMS, obtaining SOAP commands and relaying information,
+while the other component will translate those commands into instructions
+native to whatever Linux distribution the agent is currently running on.
+
+    These two components are called the "Steward" and the "Dispatcher"
+respectively.
+
+2.a) Steward
+
+    The Steward is the C/C++ component of the agent which utilizes gSOAP and
+interacts with CCMS. It runs as a daemon.
+
+    The Steward's job is to periodically report in with CCMS and check for any
+queued commands. If a command exists, it will hand that command over to the
+Dispatcher.
+
+    The Steward should intercept standard Linux signals
+    *** FIXME DETAILS ***
+
+2.b) Dispatcher
+
+    The Dispatcher is the BASH component of the agent which handles the
+distribution-dependent functionality of the client agent. It is a wrapper
+around a suite of scripts which execute various commands for the Steward.
+
+    *** FIXME DETAILS ***
+
+2.b.1) Client helper tools
+
+    In addition to command handling, the Dispatcher also provides helper tools
+and scripts for the rest of the client agent suite. This includes the
+following:
+        * clientagent-helper.sh
+            - Helper script which provides glue between Steward and
+              Dispatcher.
+
+        * install_tool.sh
+            - Helper install script (satisfies the "distribution-agnostic"
+              installation need).
+
+        * rebuild.sh
+            - Script used to rebuild the gSOAP bindings (should only be used
+              when the CCMS details change, such as IP address or generative
+              XML).
+
+        * dispatcher/tests/
+            - Unit testing framework for the client agent (requires shunit2,
+              http://code.google.com/p/shunit2/).
+
+        * *** FIXME UPGRADE ***
+
+        *** FIXME MORE DETAILS ***
+
+3) Documentation
+
+    The EIL Linux Client Agent contains a number of documents to help in
+extending and maintenance. They can be found in the source repository, or in
+the doc/ install directory (generally /opt/intel/eil/clientagent/doc) after
+installation. Most of this documentation is self-explanatory, but let's
+briefly cover some of the highlights here.
+
+        * README, LICENSE, INSTALL, etc.
+            - The file you read now, as well as the other all caps
+              documentation files are very loosely based upon the well-
+              established "Gnits Standards"
+              (http://en.wikipedia.org/wiki/Gnits_Standards). This is in
+              keeping with other native Linux/Unix projects.
+
+        * HTML Library Documentation
+            - Each C/C++ library included in the Steward source tree has full
+              API documentation generated from comments in the source code.
+              This is done using the Doxygen tool (http://www.doxygen.org/).
+
+            - Rebuilding the API documentation is fairly simple, though care
+              must be giving to first purge the existing documentation from the
+              source repository and then re-add the documentation once it has
+              been regenerated (I am not sure this was the best procedural
+              decision in retrospect, but it is the one that has stuck). Thus,
+              the general process for rebuilding the documentation in a given
+              library is as follows:
+                    $ cd lib_something/
+                    $ hg rm html/
+                    ...watch the existing documentation purge...
+                    $ hg commit -m "purge docs for rebuild"
+                    $ doxygen Doxyfile
+                    $ hg add html/
+                    $ hg commit -m "add rebuilt docs"
