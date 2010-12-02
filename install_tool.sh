@@ -7,7 +7,7 @@
 
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
-unset OPT_CLEAN || true
+unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
 
 PROGNAME=${0##*/}
 
@@ -27,12 +27,18 @@ Where [OPTION] is one of the following
     --install       Installs the client agent on the system
                     (building as needed)
 
+    --uninstall     Uninstalls the client agent from the system
+
     --pkginstall    Install the client agent from a package
                     (should not be called unless you know what you are doing)
 
     --instdisp      Installs just the dispatcher on the system
 
     --inststew      Installs just the steward on the system
+
+    --uninstdisp    Uninstalls the dispatcher
+
+    --uninststew    Uninstalls the steward
 
     --build         Build the steward (rebuilding if needed)
 
@@ -60,6 +66,9 @@ TEMP=$(getopt -n "$PROGNAME" --options h \
 install,\
 instdisp,\
 inststew,\
+uninstall,\
+uninstdisp,\
+uninststew,\
 pkginstall,\
 static,\
 clean,\
@@ -76,18 +85,30 @@ eval set -- "$TEMP"
 
 while [ $1 != -- ]; do
     case "$1" in
-        ## Directory options
         --install)
             OPT_INSTALL_DISPATCHER=yes
             OPT_INSTALL_STEWARD=yes
+            shift
+            ;;
+        --uninstall)
+            OPT_UNINSTALL_STEWARD=yes
+            OPT_UNINSTALL_DISPATCHER=yes
             shift
             ;;
         --instdisp)
             OPT_INSTALL_DISPATCHER=yes
             shift
             ;;
+        --uninstdisp)
+            OPT_UNINSTALL_DISPATCHER=yes
+            shift
+            ;;
         --inststew)
             OPT_INSTALL_STEWARD=yes
+            shift
+            ;;
+        --uninststew)
+            OPT_UNINSTALL_STEWARD=yes
             shift
             ;;
         --pkginstall)
@@ -179,7 +200,11 @@ if [ -n "$OPT_INSTALL_STEWARD" ]; then
         cd ../
         set +x
     fi
+    check_uid_gid
     set -x
+    install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=755 \
+        -v steward/eil_steward ${I_BIN_DIR}
 
+    ln -s ${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
     set +x
 fi

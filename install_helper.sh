@@ -8,6 +8,7 @@ COLOR_RESET='\e[0m'
 COLOR_TRACE='\e[0;34m' # Blue
 COLOR_WARNING='\e[1;33m' # Yellow
 COLOR_ALERT='\e[4;31m' # Underline red
+COLOR_DIE='\e[30m\033[41m' # Red background, black text
 
 #####################################
 # Set up the installation directories
@@ -79,4 +80,43 @@ alert() {
     else
         inner_trace "${COLOR_ALERT}$*${COLOR_RESET}"
     fi
+}
+
+die() {
+    if [ -n "$LOG_FILE" ]; then
+        inner_trace "$*"
+    else
+        inner_trace "${COLOR_DIE}$*${COLOR_RESET}"
+    fi
+    cleanup_env
+    exit 1
+}
+
+#################################
+# Various sundry helper functions
+#################################
+
+check_uid_gid() {
+    egrep -i "^$I_INSTALL_GID" /etc/group > /dev/null
+    if [ $? -ne 0 ]; then
+        # Group does not exist
+        alert "!!! Group does not exist, check that dispatcher has been installed!"
+        die "!!! Cannot proceed!"
+    fi
+
+    egrep -i "^$I_INSTALL_UID" /etc/passwd > /dev/null
+    if [ $? -ne 0 ]; then
+        # User does not exist
+        alert "!!! User does not exist, check that dispatcher has been installed!"
+        die "!!! Cannot proceed!"
+    fi
+
+}
+
+setup_env() {
+    echo "stub"
+}
+
+cleanup_env() {
+    echo "stub"
 }
