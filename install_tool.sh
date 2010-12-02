@@ -7,6 +7,7 @@
 
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
+unset OPT_CLEAN || true
 
 PROGNAME=${0##*/}
 
@@ -38,6 +39,8 @@ Where [OPTION] is one of the following
     --static        Build the steward with static linking (rebuilding if
                     needed)
 
+    --clean         Clean the steward build environment
+
     --doc           Install just the documentation
 
     --pkg           Build an installable package (static linked)
@@ -59,6 +62,7 @@ instdisp,\
 inststew,\
 pkginstall,\
 static,\
+clean,\
 doc,\
 pkg -- $*)
 
@@ -102,6 +106,10 @@ while [ $1 != -- ]; do
             OPT_STATIC=yes
             shift
             ;;
+        --clean)
+            OPT_CLEAN=yes
+            shift
+            ;;
         --pkg)
             OPT_STATIC=yes
             OPT_PKG=yes
@@ -138,6 +146,15 @@ if [ -n "$OPT_STATIC" ]; then
     set +x
 fi
 
+if [ -n "$OPT_CLEAN" ]; then
+    trace "!!! Cleaning steward build environment"
+    set -x
+    cd steward/
+    make clean
+    cd ../
+    set +x
+fi
+
 if [ -n "$OPT_DOC" ]; then
     trace "!!! DOC INSTALLATION NOT IMPLEMENTED YET"
     # TODO
@@ -152,5 +169,17 @@ fi
 
 if [ -n "$OPT_INSTALL_STEWARD" ]; then
     trace "!!! Installing the steward"
-    warning "!!! WARNING: The steward will be non-functioning without the dispatcher!"
+    warning "!!! WARNING: This step requires the dispatcher to have been installed previously!"
+    if [ -z "$OPT_STATIC" && -z "$OPT_BUILD" ]; then
+        warning "!!! WARNING: The steward had not been built, so we will build it with dynamic linking"
+        set -x
+        cd steward/
+        make clean
+        make
+        cd ../
+        set +x
+    fi
+    set -x
+
+    set +x
 fi
