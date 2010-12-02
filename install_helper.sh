@@ -24,11 +24,11 @@ COLOR_DIE='\e[30m\033[41m' # Red background, black text
 I_BASE_DIR=/opt
 
 # Intel has a registered provider name with the LSB
-I_LANANA=$BASE_DIR/intel
+I_LANANA=$I_BASE_DIR/intel
 
 # We want to have our own sub-directory under that specific to the
 # EIL namespace, additionally, we want our client agent to live there.
-I_INSTALL_DIR=$LANANA/eil/clientagent
+I_INSTALL_DIR=$I_LANANA/eil/clientagent
 
 I_BIN_DIR=$I_INSTALL_DIR/bin
 I_LIB_DIR=$I_INSTALL_DIR/lib
