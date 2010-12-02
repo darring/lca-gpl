@@ -188,10 +188,26 @@ if [ -n "$OPT_INSTALL_DISPATCHER" ]; then
     cd ../
 fi
 
+if [ -n "$OPT_UNINSTALL_STEWARD" ]; then
+    trace "!!! Uninstalling the steward"
+    set -x
+    unlink ${I_USRBIN_DIR}/eil_steward
+    unlink ${I_BIN_DIR}/eil_steward
+    set +x
+fi
+
+if [ -n "$OPT_UNINSTALL_DISPATCHER" ]; then
+    trace "!!! Uninstalling the dispatcher"
+    cd dispatcher/
+    ./install.sh -p
+    cd ../
+fi
+
 if [ -n "$OPT_INSTALL_STEWARD" ]; then
     trace "!!! Installing the steward"
     warning "!!! WARNING: This step requires the dispatcher to have been installed previously!"
-    if [ -z "$OPT_STATIC" && -z "$OPT_BUILD" ]; then
+    check_uid_gid
+    if [ -z "$OPT_STATIC" ] && [ -z "$OPT_BUILD" ]; then
         warning "!!! WARNING: The steward had not been built, so we will build it with dynamic linking"
         set -x
         cd steward/
@@ -200,7 +216,6 @@ if [ -n "$OPT_INSTALL_STEWARD" ]; then
         cd ../
         set +x
     fi
-    check_uid_gid
     set -x
     install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=755 \
         -v steward/eil_steward ${I_BIN_DIR}
