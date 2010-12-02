@@ -41,6 +41,10 @@ more native Linux way. The final design requirements were as follows:
             - These languages were determined to be the most maintainable
               given the staff language experience.
 
+            - Perl was listed as an option, but was rejected due to it not
+              being present on several target platforms (thus placing an undue
+              burden on the imaging team).
+
             - Due to C/C++ requirement, gSOAP was chosen as the C/C++ SOAP
               library.
 
