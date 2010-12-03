@@ -45,8 +45,7 @@ int main(int argc, char *argv[])
     #ifndef DEBUG
     pid_t pid, sid;
     #endif
-    FILE *logPipe;
-    //int op_codes;
+    FILE *filePipe;
 
     char hostname[HOSTNAME_LEN];
 
@@ -56,11 +55,27 @@ int main(int argc, char *argv[])
     // filename, perhaps this is bad?
     char logFile[256];
 
-    // Our various SOAP/WSDL/CCMS related items
-    //struct soap soap;
-    //WSHttpBinding_USCOREIEILClientOperationsProxy service;
+    // The PID related variables
+    char pidCommand[]="/usr/bin/clientagent-helper.sh --pidfile";
+    // Just like the logFile, we assume an upper limit of 256 characters for
+    // full path plus filename, could be bad?
+    char pidFile[256];
 
     #ifndef DEBUG
+    // Obtain the PID file
+    if ( !(filePipe = (FILE*)popen(pidCommand,"r")) )
+    {  // If filePipe is NULL
+        perror("Problems with pipe to clientagent-helper.sh");
+        exit(1);
+    }
+
+    while (fgets(pidFile, sizeof pidFile, filePipe))
+    {
+        // May be silly to have a loop that does nothing, but
+        // we really only expect one result from this pipe
+    }
+    pclose(filePipe);
+
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
     if (pid < 0) {
@@ -76,18 +91,18 @@ int main(int argc, char *argv[])
     umask(0);
 
     // Obtain the CCMS log file
-    if ( !(logPipe = (FILE*)popen(ccmsLogCommand,"r")) )
+    if ( !(filePipe = (FILE*)popen(ccmsLogCommand,"r")) )
     {  // If logPipi is NULL
         perror("Problems with pipe to clientagent-helper.sh");
         exit(1);
     }
 
-    while (fgets(logFile, sizeof logFile, logPipe))
+    while (fgets(logFile, sizeof logFile, filePipe))
     {
         // May be silly to have a loop that does nothing, but
         // we really only expect one result from this pipe
     }
-    pclose(logPipe);
+    pclose(filePipe);
 
     StewardLogger logger(logFile);
 

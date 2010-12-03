@@ -10,7 +10,7 @@
 # that changing it involves updating simple bash scripts and will not
 # require a recompile of the steward agent.
 
-unset DUMP_BASE DUMP_INSTALL DUMP_BIN DUMP_LIB DUMP_DOC || true
+unset DUMP_BASE DUMP_INSTALL DUMP_BIN DUMP_LIB DUMP_DOC DUMP_PID || true
 unset DUMP_TOOL DUMP_HOME DUMP_SCRIPTS DUMP_COMDIR DUMP_UID || true
 unset DUMP_GID DUMP_STDLOG DUMP_CCMSLOG DUMP_ERRLOG TMPFILE || true
 
@@ -80,6 +80,9 @@ Where [OPTION] is one of the following
 
     --errlog        Returns the path to the error log used by client agent
 
+    --pidfile       Returns the path to the process ID file used by the client
+                    agent
+
 If ran without any options, this usage text will be displayed.
 EOF
 }
@@ -104,6 +107,7 @@ uid,\
 gid,\
 stdlog,\
 ccmslog,\
+pidfile,\
 errlog -- $*)
 
 if [ $? -ne 0 ]; then
@@ -173,6 +177,10 @@ while [ $1 != -- ]; do
             ;;
         --errlog)
             DUMP_ERRLOG=yes
+            shift
+            ;;
+        --pidfile)
+            DUMP_PID=yes
             shift
             ;;
         -h)
@@ -256,4 +264,8 @@ fi
 
 if [ -n "$DUMP_UID" ]; then
     trace "$INSTALL_UID"
+fi
+
+if [ -n "$DUMP_PID" ]; then
+    trace "$PID_FILE"
 fi

@@ -47,6 +47,7 @@ INSTALL_GID="eil"
 STANDARD_LOG_FILE="${HOME_DIR}/client-agent-base.log"
 CCMS_LOG_FILE="${HOME_DIR}/ccms-agent.log"
 ERROR_LOG_FILE="${HOME_DIR}/client-agent-error.log"
+PID_FILE="${HOME_DIR}/client-agent.pid"
 
 ###############################
 # Communication layer settings
