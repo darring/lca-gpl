@@ -3,6 +3,10 @@
 # Set this empty to disable debugging (when ready for release)
 DEBUG=-g
 
+EIL_VERSION=$(shell cat ../VERSION)
+EIL_VERSION_TEXT=Version $(EIL_VERSION)
+EIL_VERSION_DEF=-D 'EIL_VERSION_TEXT="$(EIL_VERSION_TEXT)"'
+
 # gSOAP includes
 GSOAP_INCLUDES=-I/usr/local/share/gsoap/plugin/
 GSOAP_SOURCES=/usr/local/share/gsoap/plugin/wsaapi.c
@@ -19,8 +23,8 @@ INSTALL=install
 INSTALL_GID=eil
 INSTALL_UID=eil
 
-CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses
-CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses
+CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF)
+CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF)
 
 LDFLAGS=
 CP_LDFLAGS=-lgsoap++

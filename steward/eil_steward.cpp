@@ -91,7 +91,11 @@ int main(int argc, char *argv[])
 
     StewardLogger logger(logFile);
 
-    logger.QuickLog("Startup daemon");
+    logger.BeginLogging();
+    logger.LogEntry("EIL Linux Client Agent");
+    logger.LogEntry(EIL_VERSION_TEXT);
+    logger.LogEntry("Startup daemon");
+    logger.EndLogging();
 
     #ifndef DEBUG
     // Obtain a new session ID for child process
