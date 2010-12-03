@@ -7,6 +7,11 @@
  * \section intro_sec Introduction
  *
  * This is the class which handles the logging for the EIL Linux Client Agent.
+ *
+ * \section TODO_sec TODO
+ *
+ * It might be nice to also utilize syslog calls so we can integrate with
+ * whatever solution might be used for system monitoring.
  */
 
 #ifndef logger_H
