@@ -4,6 +4,8 @@
    Interface for the client agent helper script provided by the dispatcher
  */
 
+#include <stdlib.h>
+
 #include "clientagent_helper.h"
 
 ClientAgentHelper::ClientAgentHelper()
@@ -19,15 +21,15 @@ ClientAgentHelper::~ClientAgentHelper()
 void ClientAgentHelper::Get(
     char *result, int size, ClientAgentOptions option)
 {
-    char helperCmd[];
+    char *helperCmd;
     switch (option)
     {
         case CCMSLOG:
-            helperCmd[] = "/usr/bin/clientagent-helper.sh --ccmslog";
+            helperCmd = "/usr/bin/clientagent-helper.sh --ccmslog";
             break;
         default:
             // default is PIDFILE
-            helperCmd[] = "/usr/bin/clientagent-helper.sh --pidfile";
+            helperCmd = "/usr/bin/clientagent-helper.sh --pidfile";
             break;
     }
 

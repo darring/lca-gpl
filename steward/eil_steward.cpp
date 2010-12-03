@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     #ifndef DEBUG
     pid_t pid, sid;
     #endif
-    FILE *filePipe;
+    //FILE *filePipe;
 
     char hostname[HOSTNAME_LEN];
 
