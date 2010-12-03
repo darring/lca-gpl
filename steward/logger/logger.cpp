@@ -15,6 +15,14 @@ StewardLogger::StewardLogger(char *logFile)
     logFilename = logFile;
 
     isLogging = false;
+    useAltPipe = false;
+}
+
+StewardLogger::StewardLogger(FILE *altPipe)
+{
+    logPipe = altPipe;
+    useAltPipe = true;
+    isLogging = true;
 }
 
 StewardLogger::~StewardLogger()
@@ -22,14 +30,15 @@ StewardLogger::~StewardLogger()
     if(isLogging)
     {
         // TODO close out logging
+        EndLogging();
     }
-
-    fclose(logPipe);
 }
 
 bool StewardLogger::BeginLogging()
 {
-    if(!isLogging) {
+    if(useAltPipe) {
+        return true;
+    } else if(!isLogging) {
         if ( !(logPipe = (FILE*)fopen(logFilename, "a+")) )
         {
             perror("Problems opening CCMS log file for appending!");
@@ -45,7 +54,9 @@ bool StewardLogger::BeginLogging()
 
 bool StewardLogger::EndLogging()
 {
-    if(isLogging)
+    if(useAltPipe) {
+        return true;
+    } else if(isLogging)
     {
         fclose(logPipe);
         isLogging = false;

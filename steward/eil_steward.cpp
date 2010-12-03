@@ -104,7 +104,11 @@ int main(int argc, char *argv[])
     }
     pclose(filePipe);
 
+    #ifndef DEBUG
     StewardLogger logger(logFile);
+    #else
+    StewardLogger logger(stdout);
+    #endif
 
     logger.BeginLogging();
     logger.LogEntry("EIL Linux Client Agent");
@@ -144,6 +148,7 @@ int main(int argc, char *argv[])
     // TODO - Any initialization will go here
     // Set up our steward service
     logger.QuickLog("Initializing service...");
+
     StewardService service(&logger);
 
     // Main loop

@@ -28,6 +28,7 @@ class StewardLogger
     private:
         char *logFilename;
         bool isLogging;
+        bool useAltPipe;
         FILE *logPipe;
         char logLine[LOG_LINE_LENGTH];
         time_t timer;
@@ -39,6 +40,14 @@ class StewardLogger
          *  \param logFile is a character string which details the path to the log file
          */
         StewardLogger(char *logFile);
+
+        //! Alternative constructor which forces the use of a specific pipe
+        /*!
+         * Use this constructor if you want to send to STDOUT (for example)
+         *
+         * \param altPipe is the alternative pipe to use
+         */
+        StewardLogger(FILE *altPipe);
 
         //! Destructor for the EIL Client Agent Steward Logger
         ~StewardLogger();
