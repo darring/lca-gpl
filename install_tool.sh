@@ -8,12 +8,11 @@
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
-unset TMP_WORKSPACE TMP_BASE || true
+unset TMP_WORKSPACE TMP_BASE TMP_ROOT || true
 
 PROGNAME=${0##*/}
 
-PWD=$(pwd)
-PWD=${PWD%/}
+MY_CWD=`pwd`
 
 if [ "$(id -u)" != "0" ]; then
     echo "This install tool script must be run as root!"
@@ -227,7 +226,19 @@ if [ -n "$OPT_PKG" ]; then
     fi
     trace "!!! Building an installable package"
     setup_env
-    install_dispatcher
     install_steward
-    trace "${TMP_WORKSPACE}"
+    trace "!!! Bundling up the installer..."
+    install -v --mode=754 install_tool.sh install_helper.sh ${TMP_ROOT}
+    cp -fvr dispatcher ${TMP_ROOT}
+    set -x
+    cd ${TMP_BASE}
+    tar c eil_clientagent-${EIL_LCA_VERSION} > ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar
+    gzip ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar
+    cd ${MY_CWD}
+    set +x
+    trace "!!! Installable package ready,"
+    trace "!!! ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar.gz"
+    trace "!!! Unarchive the file, and from the package directory run:"
+    trace "!!!     $ install_tool.sh --pkginstall"
+    cleanup_env
 fi

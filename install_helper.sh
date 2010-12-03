@@ -125,7 +125,8 @@ setup_env() {
         cleanup_env
     else
         TMP_BASE=`mktemp -d`
-        TMP_WORKSPACE="${TMP_BASE}/eil_clientagent-${EIL_LCA_VERSION}"
+        TMP_ROOT="${TMP_BASE}/eil_clientagent-${EIL_LCA_VERSION}"
+        TMP_WORKSPACE="${TMP_ROOT}/steward"
         mkdir -p $TMP_WORKSPACE
     fi
 }
@@ -141,7 +142,7 @@ cleanup_env() {
 ########################
 
 install_steward() {
-    PREFIX_PATH="${I_INSTALL_DIR}"
+    PREFIX_PATH="${I_INSTALL_DIR}${I_BIN_DIR}"
     if [ -n "$TMP_WORKSPACE" ]; then
         PREFIX_PATH="${TMP_WORKSPACE}"
     fi
@@ -159,14 +160,14 @@ install_steward() {
     fi
     set -x
     install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=754 \
-        -v steward/eil_steward ${PREFIX_PATH}${I_BIN_DIR}
+        -v steward/eil_steward ${PREFIX_PATH}
 
     # SETUID/SETGID
-    chmod u+s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward
-    chmod g+s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward
+    chmod u+s ${PREFIX_PATH}/eil_steward
+    chmod g+s ${PREFIX_PATH}/eil_steward
 
     if [ ! -n "$TMP_WORKSPACE" ]; then
-        ln -s ${PREFIX_PATH}${I_BIN_DIR}/eil_steward ${I_USRBIN_DIR}/eil_steward
+        ln -s ${PREFIX_PATH}/eil_steward ${I_USRBIN_DIR}/eil_steward
     fi
     set +x
 }
