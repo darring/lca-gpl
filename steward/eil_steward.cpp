@@ -28,16 +28,11 @@
 //! Debugging toggle- Enable to force not to run as daemon
 //#define DEBUG
 
-/*
-// Nasty gSOAP bindings
-#include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
-#include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
-#include "soapH.h"*/
-
 // Various helper libraries
 #include "logger.h"
 #include "stewardService.h"
 #include "machineType.h"
+#include "clientagent_helper.h"
 
 int main(int argc, char *argv[])
 {
@@ -50,20 +45,23 @@ int main(int argc, char *argv[])
     char hostname[HOSTNAME_LEN];
 
     // The CCMS log related variables
-    char ccmsLogCommand[]="/usr/bin/clientagent-helper.sh --ccmslog";
+    //char ccmsLogCommand[]="/usr/bin/clientagent-helper.sh --ccmslog";
     // We assume an upper limit of 256 characters for full path plus
     // filename, perhaps this is bad?
     char logFile[256];
 
     // The PID related variables
-    char pidCommand[]="/usr/bin/clientagent-helper.sh --pidfile";
+    //char pidCommand[]="/usr/bin/clientagent-helper.sh --pidfile";
     // Just like the logFile, we assume an upper limit of 256 characters for
     // full path plus filename, could be bad?
     char pidFile[256];
 
+    ClientAgentHelper agentHelper;
+
     #ifndef DEBUG
     // Obtain the PID file
-    if ( !(filePipe = (FILE*)popen(pidCommand,"r")) )
+    agentHelper.Get(pidFile, 256, PIDFILE);
+    /*if ( !(filePipe = (FILE*)popen(pidCommand,"r")) )
     {  // If filePipe is NULL
         perror("Problems with pipe to clientagent-helper.sh");
         exit(1);
@@ -74,7 +72,7 @@ int main(int argc, char *argv[])
         // May be silly to have a loop that does nothing, but
         // we really only expect one result from this pipe
     }
-    pclose(filePipe);
+    pclose(filePipe);*/
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -91,7 +89,8 @@ int main(int argc, char *argv[])
     umask(0);
 
     // Obtain the CCMS log file
-    if ( !(filePipe = (FILE*)popen(ccmsLogCommand,"r")) )
+    agentHelper.Get(logFile, 256, CCMSLOG);
+    /*if ( !(filePipe = (FILE*)popen(ccmsLogCommand,"r")) )
     {  // If logPipi is NULL
         perror("Problems with pipe to clientagent-helper.sh");
         exit(1);
@@ -102,7 +101,7 @@ int main(int argc, char *argv[])
         // May be silly to have a loop that does nothing, but
         // we really only expect one result from this pipe
     }
-    pclose(filePipe);
+    pclose(filePipe);*/
 
     #ifndef DEBUG
     StewardLogger logger(logFile);
