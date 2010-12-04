@@ -18,8 +18,6 @@
 
 #include <stdio.h>
 
-//#define SCRIPT_COMMAND "/usr/bin/clientagent-helper.sh"
-
 //! Possible options for the client agent
 enum ClientAgentOptions
 {
