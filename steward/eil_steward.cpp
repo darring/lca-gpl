@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     #ifndef DEBUG
     pid_t pid, sid;
     #endif
-    //FILE *filePipe;
+    FILE *filePipe;
 
     char hostname[HOSTNAME_LEN];
 
@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
     // Just like the logFile, we assume an upper limit of 256 characters for
     // full path plus filename, could be bad?
     char pidFile[256];
+    char pidOut[256];
 
     ClientAgentHelper agentHelper;
 
@@ -125,6 +126,14 @@ int main(int argc, char *argv[])
     }
 
     logger.QuickLog("New Session ID obtained");
+    if ( !(filePipe = (FILE*)fopen(pidFile, "w")) )
+    {
+        perror("Problems opening PID file for writing!");
+        return false;
+    }
+    snprintf(pidOut, 256, "%d\n", sid);
+    fputs(pidOut, filePipe);
+    pclose(filePipe);
     #endif
 
     // Obtain our hostname information for the first time
@@ -158,8 +167,6 @@ int main(int argc, char *argv[])
         // TODO - Our logic here
 
         service.QueryForClientCommands(hostname, "1", HOST);
-
-        logger.QuickLog("ping15");
 
         //logger.LogEntry("Sleeping for 30 seconds");
         //logger.EndLogging();
