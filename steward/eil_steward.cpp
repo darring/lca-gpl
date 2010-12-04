@@ -45,13 +45,11 @@ int main(int argc, char *argv[])
     char hostname[HOSTNAME_LEN];
 
     // The CCMS log related variables
-    //char ccmsLogCommand[]="/usr/bin/clientagent-helper.sh --ccmslog";
     // We assume an upper limit of 256 characters for full path plus
     // filename, perhaps this is bad?
     char logFile[256];
 
     // The PID related variables
-    //char pidCommand[]="/usr/bin/clientagent-helper.sh --pidfile";
     // Just like the logFile, we assume an upper limit of 256 characters for
     // full path plus filename, could be bad?
     char pidFile[256];
@@ -62,18 +60,6 @@ int main(int argc, char *argv[])
     #ifndef DEBUG
     // Obtain the PID file
     agentHelper.Get(pidFile, 256, PIDFILE);
-    /*if ( !(filePipe = (FILE*)popen(pidCommand,"r")) )
-    {  // If filePipe is NULL
-        perror("Problems with pipe to clientagent-helper.sh");
-        exit(1);
-    }
-
-    while (fgets(pidFile, sizeof pidFile, filePipe))
-    {
-        // May be silly to have a loop that does nothing, but
-        // we really only expect one result from this pipe
-    }
-    pclose(filePipe);*/
 
     // Since we're a daemon, let's start by forking from parent
     pid = fork();
@@ -91,18 +77,6 @@ int main(int argc, char *argv[])
 
     // Obtain the CCMS log file
     agentHelper.Get(logFile, 256, CCMSLOG);
-    /*if ( !(filePipe = (FILE*)popen(ccmsLogCommand,"r")) )
-    {  // If logPipi is NULL
-        perror("Problems with pipe to clientagent-helper.sh");
-        exit(1);
-    }
-
-    while (fgets(logFile, sizeof logFile, filePipe))
-    {
-        // May be silly to have a loop that does nothing, but
-        // we really only expect one result from this pipe
-    }
-    pclose(filePipe);*/
 
     #ifndef DEBUG
     StewardLogger logger(logFile);
@@ -161,15 +135,15 @@ int main(int argc, char *argv[])
 
     // Main loop
     while (1) {
-        //logger.BeginLogging();
-        //logger.LogEntry("Starting Linux Client Agent activity");
+        logger.BeginLogging();
+        logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog(hostname);
         // TODO - Our logic here
 
         service.QueryForClientCommands(hostname, "1", HOST);
 
-        //logger.LogEntry("Sleeping for 30 seconds");
-        //logger.EndLogging();
+        logger.LogEntry("Sleeping for 30 seconds");
+        logger.EndLogging();
         sleep(30); // TODO - Our sleep
 
         // TODO signal to interrupt and break from this loop
