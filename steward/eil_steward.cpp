@@ -222,6 +222,15 @@ int main(int argc, char *argv[])
     }
 
     // TODO - depending on signal caught, perform various cleanups
+    logger.QuickLog("Signal caught, exit steward...");
+    if (S_STATE == S_STATE_Shutdown)
+    {
+        // We have time, let's do this right
+        logger.EndLogging();
+    }
 
-    logger.QuickLog("Signal caught, exit steward");
+    service.~StewardService();
+    logger.~StewardLogger();
+
+    unlink(pidFile);
 }
