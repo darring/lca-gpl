@@ -17,6 +17,7 @@ EOF
 # The tools to install
 ALL_TOOLS=$(cat <<EOF
 clientagent-helper.sh
+eil_steward.sh
 EOF
 )
 
@@ -34,6 +35,7 @@ EOF
 #    /path/to/link is the absolute path to where the symbolic link should be
 LINKED_TOOLS=$(cat <<EOF
 clientagent-helper.sh:/usr/bin
+eil_steward.sh:/etc/init.d
 EOF
 )
 
