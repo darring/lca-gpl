@@ -218,10 +218,10 @@ int main(int argc, char *argv[])
 
         logger.LogEntry("Sleeping for 30 seconds");
         logger.EndLogging();
-        sleep(30); // TODO - Our sleep
-
-        // TODO signal to interrupt and break from this loop
+        sleep(30); // TODO - Verify that sleep is interrupted on signal catch
     }
+
+    // TODO - depending on signal caught, perform various cleanups
 
     logger.QuickLog("Signal caught, exit steward");
 }
