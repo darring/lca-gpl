@@ -15,7 +15,4 @@ enum StewardState
     S_STATE_Terminate
 };
 
-//! The current steward system state
-static StewardState S_STATE;
-
 #endif
