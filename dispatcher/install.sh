@@ -95,7 +95,8 @@ uninstall_everything() {
     # uninstall the tools
     for TOOL_LINK in $LINKED_TOOLS
     do
-        unlink /usr/bin/${TOOL_LINK}
+        LARR=( `echo "$TOOL_LINK" | tr ':' '\n' ` )
+        unlink ${LARR[1]}/${LARR[0]}
     done
     rm -f $TOOL_DIR/*
 
@@ -216,9 +217,11 @@ do
 done
 
 # Set up the linked tools
-for TOOL_LINK in $LINKED_TOOLS
+for TOOL_LINE in $LINKED_TOOLS
 do
-    ln -s ${TOOL_DIR}/${TOOL_LINK} /usr/bin/${TOOL_LINK}
+    LARR=( `echo "$TOOL_LINE" | tr ':' '\n' ` )
+
+    ln -s ${TOOL_DIR}/${LARR[0]} ${LARR[1]}/${LARR[0]}
 done
 
 # Install the docs

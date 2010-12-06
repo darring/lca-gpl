@@ -226,11 +226,10 @@ int main(int argc, char *argv[])
     if (S_STATE == S_STATE_Shutdown)
     {
         // We have time, let's do this right
+        service.~StewardService();
         logger.EndLogging();
+        logger.~StewardLogger();
     }
-
-    service.~StewardService();
-    logger.~StewardLogger();
 
     unlink(pidFile);
 }

@@ -25,8 +25,15 @@ EOF
 # sort of system-wide fashion based upon the distribution we are using.
 # This way, these tools can be accessed regardless of *where* the real
 # install is.
+#
+# The format of this variable is as follows:
+#   scriptname:/path/to/link
+#
+# Where:
+#    scriptname is the script name as it appears in ALL_TOOLS above
+#    /path/to/link is the absolute path to where the symbolic link should be
 LINKED_TOOLS=$(cat <<EOF
-clientagent-helper.sh
+clientagent-helper.sh:/usr/bin
 EOF
 )
 
