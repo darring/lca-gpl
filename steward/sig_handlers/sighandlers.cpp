@@ -5,3 +5,19 @@
  */
 
 #include "sighandlers.h"
+
+void setupSignalHandlers()
+{
+}
+
+void handle_SIGHUP(int sig)
+{
+}
+
+void handle_SIGINT(int sig)
+{
+}
+
+void handle_SIGTERM(int sig)
+{
+}
