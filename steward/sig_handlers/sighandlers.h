@@ -11,17 +11,15 @@
  * \section signals_sec Handled Signals
  *
  * The steward interprets the following signals in the following ways:
- \htmlonly
-
-    <table border="0">
-    <tr>
-    <td>SIGHUP</td><td>Causes steward to exit gracefully.</td>
-    <td>SIGINT</td><td>Causes steward to exit gracefully.</td>
-    <td>SIGTERM</td><td>Causes steward to exit quickly (gracefully if possible)</td>
-    </tr>
-    </table>
-
- \endhtmlonly
+ *
+ *   <table>
+ *   <tr>
+ *   <td>SIGHUP</td><td>Causes steward to exit gracefully.</td></tr><tr>
+ *   <td>SIGINT</td><td>Causes steward to exit gracefully.</td></tr><tr>
+ *   <td>SIGTERM</td><td>Causes steward to exit quickly (gracefully if possible)</td>
+ *   </tr>
+ *   </table>
+ *
  */
 
 #ifndef sigHandlers_H
