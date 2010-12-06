@@ -33,6 +33,8 @@
 #include "stewardService.h"
 #include "machineType.h"
 #include "clientagent_helper.h"
+#include "serviceState.h"
+#include "sighandlers.h"
 
 int main(int argc, char *argv[])
 {
@@ -133,8 +135,14 @@ int main(int argc, char *argv[])
 
     StewardService service(&logger);
 
+    // Set up signal handling
+    logger.QuickLog("Set up signal handlers...");
+    setupSignalHandlers();
+
+    S_STATE = S_STATE_Running;
+
     // Main loop
-    while (1) {
+    while (S_STATE == S_STATE_Running) {
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog(hostname);
@@ -148,4 +156,6 @@ int main(int argc, char *argv[])
 
         // TODO signal to interrupt and break from this loop
     }
+
+    logger.QuickLog("Signal caught, exit steward");
 }

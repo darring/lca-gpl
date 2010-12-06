@@ -2,23 +2,24 @@
 
 include ../Globals.mk
 
-SOURCES=eil_steward.cpp lib_soap/soapC.cpp \
+SOURCES=eil_steward.cpp lib_soap/soapC.cpp sig_handlers/sighandlers.cpp \
 	logger/logger.cpp lib_steward/stewardService.cpp \
 	lib_hash/uniqueHash.cpp lib_clientagent/clientagent_helper.cpp \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.cpp \
 
 HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
+	sig_handlers/sighandlers.h \
 	lib_hash/uniqueHash.h lib_clientagent/clientagent_helper.h \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
 OBJECTS=logger.o soapC.o uniqueHash.o stewardService.o \
-	clientagent_helper.o \
+	clientagent_helper.o sighandlers.o \
 	soapWSHttpBinding_USCOREIEILClientOperationsProxy.o \
 	eil_steward.o
 
 INCLUDES=-I./logger/ -I./lib_soap/ -I./lib_steward/ -I./lib_hash/ \
-	 -I./lib_clientagent/
+	 -I./lib_clientagent/ -I./sig_handlers/
 
 eil_steward: $(OBJECTS)
 	$(CPP) $(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
@@ -39,6 +40,8 @@ stewardService.o: eil_steward.o
 uniqueHash.o: eil_steward.o
 
 clientagent_helper.o: eil_steward.o
+
+sighandlers.o: eil_steward.o
 
 GSOAP_WSAAPI_O: eil_steward.o
 

@@ -4,8 +4,11 @@
  Collection of signal handlers for EIL Linux Client Agent (steward)
  */
 
-#include "sighandlers.h"
 #include <signal.h>
+#include <unistd.h>
+
+#include "sighandlers.h"
+#include "serviceState.h"
 
 void setupSignalHandlers()
 {
@@ -57,12 +60,15 @@ void setupSignalHandlers()
 
 void handle_SIGHUP(int sig)
 {
+    S_STATE = S_STATE_Shutdown;
 }
 
 void handle_SIGINT(int sig)
 {
+    S_STATE = S_STATE_Shutdown;
 }
 
 void handle_SIGTERM(int sig)
 {
+    S_STATE = S_STATE_Terminate;
 }
