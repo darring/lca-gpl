@@ -29,7 +29,7 @@ case "$1" in
 start)
     # Start the steward service
     check_steward_running
-    local _STATUS=$?
+    _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # According to the LSB, this is considered a success
         echo "eil_steward already running!"
@@ -50,7 +50,7 @@ start)
 stop)
     # Stop the steward service
     check_steward_running
-    local _STATUS=$?
+    _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # Send it SIGHUP
         local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
@@ -67,7 +67,7 @@ stop)
 restart|try-restart|reload|force-reload)
     # Restart the steward service
     check_steward_running
-    local _STATUS=$?
+    _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # Send it SIGHUP
         local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
@@ -90,8 +90,7 @@ restart|try-restart|reload|force-reload)
 status)
     # Display status
     check_steward_running
-
-    local _STATUS=$?
+    _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # It's running
         local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
