@@ -57,7 +57,7 @@ if [ -e "/etc/init.d/eil_steward.sh" ]; then
 fi
 
 # Give it a bit to stop what it's doing
-wait 5
+sleep 5
 
 cd eil_clientagent-release/
 # First, uninstall the old one
