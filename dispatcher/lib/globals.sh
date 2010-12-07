@@ -57,4 +57,7 @@ PID_FILE="${HOME_DIR}/client-agent.pid"
 # defined elsewhere
 COMMAND_DIR="${HOME_DIR}/commands"
 
+# The URL for the release directory
+URL_RELEASE="http://eilstaging/release"
+
 # vim:set ai et sts=4 sw=4 tw=80:

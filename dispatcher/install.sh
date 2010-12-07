@@ -182,14 +182,12 @@ if [ $# != 0 ] ; then
                 rmdir $BIN_DIR
 
                 # purge the main directory
-                rm -fr $INSTALL_DIR/*
-                rmdir $INSTALL_DIR
+                # FIXME this actually purges the logs!
+                #rm -fr $INSTALL_DIR/*
+                #rmdir $INSTALL_DIR
 
                 # purge the users
                 del_user_if_exist
-
-                # purge the rc files
-                # TODO
 
                 echo "clientagent dispatcher purged"
                 exit 0
@@ -222,6 +220,9 @@ for LIB_FILE in $ALL_LIBS
 do
     cp -fr lib/${LIB_FILE} $LIB_DIR/.
 done
+
+# Set up the version info
+cp -f ../VERSION $LIB_DIR/.
 
 # Install the tools
 for TOOL_FILE in $ALL_TOOLS
@@ -302,6 +303,9 @@ else
     echo "Check your installation logs and your distribution and try again!" 2>&1 | tee $ERROR_LOG_FILE
     echo "EIL Linux Client Agent is NOT functioning properly!" 2>&1 | tee $ERROR_LOG_FILE
 fi
+
+# Finally, set up logrotate (or equivalent)
+# FIXME TODO
 
 echo "clientagent dispatcher installed successfully"
 
