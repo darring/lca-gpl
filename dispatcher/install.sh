@@ -268,14 +268,19 @@ done
 # FIXME TODO
 if [ -n "$IS_RHEL" ]; then
     chkconfig --add eil_steward.sh
+    /etc/init.d/eil_steward.sh start
 elif [ -n "$IS_DEB" ]; then
-    echo "STUB"
+    update-rc.d eil_steward.sh defaults
+    /etc/init.d/eil_steward.sh start
 elif [ -n "$IS_SLES" ]; then
-    echo "STUB"
+    /usr/lib/lsb/install_initd /etc/init.d/eil_steward.sh
+    /etc/init.d/eil_steward.sh start
 elif [ -n "$IS_ESX" ]; then
-    echo "STUB"
+    echo "ESX RC setup not yet done"
+    # FIXME TODO
 elif [ -n "$IS_XEN" ]; then
-    echo "STUB"
+    echo "XEN RC setup not yet done"
+    # FIXME TODO
 else
     # Undefined thing! This is very very bad!
     echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
