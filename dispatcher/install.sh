@@ -91,6 +91,24 @@ uninstall_everything() {
     # uninstall the docs
     rm -f $DOC_DIR/*
 
+    # uninstall the rc files
+    if [ -n "$IS_RHEL" ]; then
+        /etc/init.d/eil_steward.sh stop
+        chkconfig --del eil_steward.sh
+    elif [ -n "$IS_DEB" ]; then
+        /etc/init.d/eil_steward.sh stop
+        update-rc.d eil_steward.sh remove
+    elif [ -n "$IS_SLES" ]; then
+        /etc/init.d/eil_steward.sh stop
+        /usr/lib/lsb/remove_initd /etc/init.d/eil_steward.sh
+    elif [ -n "$IS_ESX" ]; then
+        echo "ESX RC setup not yet done"
+        # FIXME TODO
+    elif [ -n "$IS_XEN" ]; then
+        echo "XEN RC setup not yet done"
+        # FIXME TODO
+    fi
+
     # uninstall the tools
     for TOOL_LINK in $LINKED_TOOLS
     do
@@ -104,9 +122,6 @@ uninstall_everything() {
 
     # uninstall the bin
     rm -f $BIN_DIR/*
-
-    # uninstall the rc files
-    # TODO
 }
 
 # We use /opt for our installation location to adhere to LSB Linux
