@@ -8,7 +8,7 @@
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
-unset TMP_WORKSPACE TMP_BASE TMP_ROOT || true
+unset TMP_WORKSPACE TMP_BASE TMP_ROOT IS_RELEASE || true
 
 PROGNAME=${0##*/}
 
@@ -54,6 +54,15 @@ Where [OPTION] is one of the following
 
     --pkg           Build an installable package (static linked)
 
+------------------------------------------------------------------------------
+
+   The following helper options can be added to --pkginstall or --pkg
+
+    -r              The installable package is a release package.
+                    This means that the installable package will be named
+                    generically if called with --pkg and that the output will
+                    go to a log file in /var/log if called with --pkginstall.
+
 If ran without any options, this usage text will be displayed.
 EOF
 }
@@ -64,7 +73,7 @@ if [ "$1" = "" ]; then
 fi
 
 # Parse command line.
-TEMP=$(getopt -n "$PROGNAME" --options h \
+TEMP=$(getopt -n "$PROGNAME" --options hr \
 --longoptions build,\
 install,\
 instdisp,\
@@ -88,6 +97,10 @@ eval set -- "$TEMP"
 
 while [ $1 != -- ]; do
     case "$1" in
+        -r)
+            IS_RELEASE=yes
+            shift
+            ;;
         --install)
             OPT_INSTALL_DISPATCHER=yes
             OPT_INSTALL_STEWARD=yes
@@ -233,20 +246,26 @@ if [ -n "$OPT_PKG" ]; then
     cp -fvr dispatcher ${TMP_ROOT}
     cp VERSION ${TMP_ROOT}/.pkg_version
     cp VERSION ${TMP_ROOT}/.
+    if [ -n "$IS_RELEASE" ]; then
+        $PKG_NAME=eil_clientagent-release
+    else
+        $PKG_NAME=eil_clientagent-${EIL_LCA_VERSION}
+    fi
     set -x
     cd ${TMP_BASE}
-    tar c eil_clientagent-${EIL_LCA_VERSION} > ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar
-    gzip ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar
+    tar c eil_clientagent-${EIL_LCA_VERSION} > ${MY_CWD}/${PKG_NAME}.tar
+    gzip ${MY_CWD}/${PKG_NAME}.tar
     cd ${MY_CWD}
     set +x
     trace "!!! Installable package ready,"
-    trace "!!! ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar.gz"
+    trace "!!! ${MY_CWD}/${PKG_NAME}.tar.gz"
     trace "!!! Unarchive the file, and from the package directory run:"
     trace "!!!     $ install_tool.sh --pkginstall"
     cleanup_env
 fi
 
 if [ -n "$OPT_INSTALL_PKG" ]; then
+    LOG_FILE="/var/log/eil_clientagent_install.log"
     if [ -e ".pkg_version" ]; then
         install_dispatcher
         install_steward
