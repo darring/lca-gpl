@@ -125,7 +125,11 @@ setup_env() {
         cleanup_env
     else
         TMP_BASE=`mktemp -d`
-        TMP_ROOT="${TMP_BASE}/eil_clientagent-${EIL_LCA_VERSION}"
+        if [ -n "$IS_RELEASE" ]; then
+            TMP_ROOT="${TMP_BASE}/eil_clientagent-release"
+        else
+            TMP_ROOT="${TMP_BASE}/eil_clientagent-${EIL_LCA_VERSION}"
+        fi
         TMP_WORKSPACE="${TMP_ROOT}/steward"
         mkdir -p $TMP_WORKSPACE
     fi
