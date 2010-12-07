@@ -53,7 +53,7 @@ stop)
     _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # Send it SIGHUP
-        local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
+        PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
         kill -1 ${PID1}
     elif [ "${_STATUS}" -eq "1" ]; then
         # Service is not running, but pid file exists
@@ -70,7 +70,7 @@ restart|try-restart|reload|force-reload)
     _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # Send it SIGHUP
-        local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
+        PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
         kill -1 ${PID1}
 
         # Give it a bit to stop what it was doing
