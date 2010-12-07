@@ -10,7 +10,9 @@
 EIL_AUTO="172.16.3.10"
 EIL_STAGING="10.4.0.26"
 
-THIS_SCRIPT=$0
+PROGNAME=${0##*/}
+MY_CWD=`pwd`
+THIS_SCRIPT="${MY_CWD}/${PROGNAME}"
 
 # This function cleans the previous hosts file
 clean_hosts_file() {
