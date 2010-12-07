@@ -50,8 +50,11 @@ cd $WORKSPACE
 wget -q "http://${EIL_STAGING}/release/eil_clientagent-release.tar.gz"
 tar xzf eil_clientagent-release.tar.gz
 
-# Begin the package install
 cd eil_clientagent-release/
+# First, uninstall the old one
+./install_tool.sh -r --uninstall
+
+# Begin the package install
 ./install_tool.sh -r --pkginstall
 
 # Clean-up after ourselves
