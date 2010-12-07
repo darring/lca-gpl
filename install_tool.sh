@@ -231,6 +231,8 @@ if [ -n "$OPT_PKG" ]; then
     install -v --mode=754 install_tool.sh ${TMP_ROOT}
     install -v --mode=644 install_helper.sh ${TMP_ROOT}
     cp -fvr dispatcher ${TMP_ROOT}
+    cp VERSION ${TMP_ROOT}/.pkg_version
+    cp VERSION ${TMP_ROOT}/.
     set -x
     cd ${TMP_BASE}
     tar c eil_clientagent-${EIL_LCA_VERSION} > ${MY_CWD}/eil_clientagent-${EIL_LCA_VERSION}.tar
@@ -242,4 +244,14 @@ if [ -n "$OPT_PKG" ]; then
     trace "!!! Unarchive the file, and from the package directory run:"
     trace "!!!     $ install_tool.sh --pkginstall"
     cleanup_env
+fi
+
+if [ -n "$OPT_INSTALL_PKG" ]; then
+    if [ -e ".pkg_version" ]; then
+        install_steward
+        install_dispatcher
+    else
+        alert "!!! Atempt to install package without a package available!"
+        die "!!! Build a package, and try again."
+    fi
 fi
