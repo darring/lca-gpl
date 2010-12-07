@@ -297,11 +297,11 @@ fi
 if [ -n "$OPT_MAKEREPO" ]; then
     TMP_REPO=`mktemp -d`
     cd ${MY_CMD}
-    cp -f ${MY_CWD}/${PKG_NAME} ${TMP_REPO}/${PKG_NAME}
+    cp -f ${MY_CWD}/${PKG_NAME} ${TMP_REPO}/${PKG_NAME}.tar.gz
     cp -f ${MY_CWD}/dispatcher/tools/clientagent-bootstrap.sh ${TMP_REPO}/.
     cp -f ${MY_CWD}/VERSION ${TMP_REPO}/.
-    scp ${MW_CWD}/* ${REMOTE_REPO}
-    rm -fr ${MY_CMD}
+    scp ${MY_CWD}/* ${REMOTE_REPO}
+    rm -fr ${TMP_REPO}
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
