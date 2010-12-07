@@ -10,6 +10,8 @@
 EIL_AUTO="172.16.3.10"
 EIL_STAGING="10.4.0.26"
 
+THIS_SCRIPT=$0
+
 # This function cleans the previous hosts file
 clean_hosts_file() {
     local TMP_FILE=`mktemp`
@@ -41,3 +43,14 @@ make_hosts_file() {
 make_hosts_file
 
 # Obtain the latest release
+WORKSPACE=`mktemp -d`
+cd $WORKSPACE
+wget -q "http://${EIL_STAGING}/release/eil_clientagent-release.tar.gz"
+tar xzf eil_clientagent-release.tar.gz
+
+# Begin the package install
+cd eil_clientagent-release/
+./install_tool.sh -r --pkginstall
+
+# Clean-up after ourselves
+rm -f $THIS_SCRIPT

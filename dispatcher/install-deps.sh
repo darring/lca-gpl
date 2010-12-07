@@ -18,6 +18,7 @@ EOF
 ALL_TOOLS=$(cat <<EOF
 clientagent-helper.sh
 eil_steward.sh
+clientagent-bootstrap.sh
 EOF
 )
 
