@@ -19,6 +19,7 @@ ALL_TOOLS=$(cat <<EOF
 clientagent-helper.sh
 eil_steward.sh
 clientagent-bootstrap.sh
+update-checker.sh
 EOF
 )
 
@@ -38,6 +39,7 @@ EOF
 LINKED_TOOLS=$(cat <<EOF
 clientagent-helper.sh:/usr/bin:-lf
 eil_steward.sh:/etc/init.d:-f
+update-checker.sh:/etc/cron.hourly:-f
 EOF
 )
 

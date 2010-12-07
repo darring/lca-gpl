@@ -40,15 +40,17 @@ TMP_WORKSPACE=`mktemp -d`
 
 cd $TMP_WORKSPACE
 
-wget "${URL_RELEASE}/VERSION"
+wget -q "${URL_RELEASE}/VERSION"
 
 EIL_UPDATE_VERSION=$(cat ${TMP_WORKSPACE}/VERSION)
 
 if [ "$EIL_UPDATE_VERSION" > "$EIL_VERSION" ]; then
     # Update available
-    wget "${URL_RELEASE}/clientagent-bootstrap.sh"
+    wget -q "${URL_RELEASE}/clientagent-bootstrap.sh"
     chmod a+x clientagent-bootstrap.sh
     ./clientagent-bootstrap.sh
 fi
+
+exit 0
 
 # vim:set ai et sts=4 sw=4 tw=80:

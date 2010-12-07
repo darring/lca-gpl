@@ -284,13 +284,10 @@ done
 # FIXME TODO
 if [ -n "$IS_RHEL" ]; then
     chkconfig --add eil_steward.sh
-    /etc/init.d/eil_steward.sh start
 elif [ -n "$IS_DEB" ]; then
     update-rc.d eil_steward.sh defaults
-    /etc/init.d/eil_steward.sh start
 elif [ -n "$IS_SLES" ]; then
     /usr/lib/lsb/install_initd /etc/init.d/eil_steward.sh
-    /etc/init.d/eil_steward.sh start
 elif [ -n "$IS_ESX" ]; then
     echo "ESX RC setup not yet done"
     # FIXME TODO
