@@ -8,7 +8,8 @@
 unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
-unset TMP_WORKSPACE TMP_BASE TMP_ROOT IS_RELEASE || true
+unset TMP_WORKSPACE TMP_BASE TMP_ROOT IS_RELEASE OPT_MAKEREPO || true
+unset REMOTE_REPO || true
 
 PROGNAME=${0##*/}
 
@@ -54,6 +55,11 @@ Where [OPTION] is one of the following
 
     --pkg           Build an installable package (static linked)
 
+    --makerepo      Build installable package and make a repo.
+                    Requires an additional option specifying the IP address
+                    and path we should use for the repo. E.g.:
+                    --makerepo SOMESERVER:/home/pub/releases/.
+
 ------------------------------------------------------------------------------
 
    The following helper options can be added to --pkginstall or --pkg
@@ -85,6 +91,7 @@ pkginstall,\
 static,\
 clean,\
 doc,\
+makerepo:,\
 pkg -- $*)
 
 if [ $? -ne 0 ]; then
@@ -151,6 +158,18 @@ while [ $1 != -- ]; do
             OPT_STATIC=yes
             OPT_PKG=yes
             shift
+            ;;
+        --makerepo)
+            OPT_STATIC=yes
+            OPT_PKG=yes
+            OPT_MAKEREPO=yes
+            IS_RELEASE=yes
+            if [ -n "$2" ]; then
+                REMOTE_REPO="$2"
+                shift 2
+            else
+                die "--makerepo requires an argument"
+            fi
             ;;
         -h)
             usage
@@ -274,3 +293,15 @@ if [ -n "$OPT_INSTALL_PKG" ]; then
         die "!!! Build a package, and try again."
     fi
 fi
+
+if [ -n "$OPT_MAKEREPO" ]; then
+    TMP_REPO=`mktemp -d`
+    cd ${MY_CMD}
+    cp -f ${MY_CWD}/${PKG_NAME} ${TMP_REPO}/${PKG_NAME}
+    cp -f ${MY_CWD}/dispatcher/tools/clientagent-bootstrap.sh ${TMP_REPO}/.
+    cp -f ${MY_CWD}/VERSION ${TMP_REPO}/.
+    scp ${MW_CWD}/* ${REMOTE_REPO}
+    rm -fr ${MY_CMD}
+fi
+
+# vim:set ai et sts=4 sw=4 tw=80:
