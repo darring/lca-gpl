@@ -295,6 +295,8 @@ if [ -n "$OPT_INSTALL_PKG" ]; then
 fi
 
 if [ -n "$OPT_MAKEREPO" ]; then
+    trace "!!! Making a repository..."
+    set -x
     TMP_REPO=`mktemp -d`
     cd ${MY_CMD}
     cp -f ${MY_CWD}/${PKG_NAME} ${TMP_REPO}/${PKG_NAME}.tar.gz
@@ -302,6 +304,7 @@ if [ -n "$OPT_MAKEREPO" ]; then
     cp -f ${MY_CWD}/VERSION ${TMP_REPO}/.
     scp ${MY_CWD}/* ${REMOTE_REPO}
     rm -fr ${TMP_REPO}
+    set +x
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
