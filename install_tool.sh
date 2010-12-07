@@ -228,7 +228,8 @@ if [ -n "$OPT_PKG" ]; then
     setup_env
     install_steward
     trace "!!! Bundling up the installer..."
-    install -v --mode=754 install_tool.sh install_helper.sh ${TMP_ROOT}
+    install -v --mode=754 install_tool.sh ${TMP_ROOT}
+    install -v --mode=644 install_helper.sh ${TMP_ROOT}
     cp -fvr dispatcher ${TMP_ROOT}
     set -x
     cd ${TMP_BASE}

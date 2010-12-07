@@ -4,7 +4,9 @@
 # ---------------------------
 # The aim of this script is to be as platform agnostic as possible
 
-PATH="${PATH}:/sbin"
+# Make sure we have an appropriate path (this shouldn't be necessary, but
+# just to be safe on all platforms)
+PATH="${PATH}:/usr/bin"
 
 check_steward_running() {
     if [ -e "/opt/intel/eil/clientagent/home/client-agent.pid" ]; then
