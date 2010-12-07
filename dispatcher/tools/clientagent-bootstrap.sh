@@ -50,6 +50,15 @@ cd $WORKSPACE
 wget -q "http://${EIL_STAGING}/release/eil_clientagent-release.tar.gz"
 tar xzf eil_clientagent-release.tar.gz
 
+# Before we start, we should ensure the old steward is shutdown, if it is
+# installed and running
+if [ -e "/etc/init.d/eil_steward.sh" ]; then
+    /etc/init.d/eil_steward.sh stop
+fi
+
+# Give it a bit to stop what it's doing
+wait 5
+
 cd eil_clientagent-release/
 # First, uninstall the old one
 ./install_tool.sh -r --uninstall
