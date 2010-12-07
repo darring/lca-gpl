@@ -24,8 +24,8 @@ clean_hosts_file() {
 # stores checksum signatures to check for tampering
 make_hosts_file() {
     local DATE_STAMP=$(date +%j%H%M%S)
-    cp -f /etc/hosts /etc/hosts.backup.%{DATE_STAMP}
-    md5sum /etc/hosts.backup.%{DATE_STAMP} > /etc/hosts.backup.md5.%{DATE_STAMP}
+    cp -f /etc/hosts /etc/hosts.backup.${DATE_STAMP}
+    md5sum /etc/hosts.backup.%{DATE_STAMP} > /etc/hosts.backup.md5.${DATE_STAMP}
 
     clean_hosts_file
 

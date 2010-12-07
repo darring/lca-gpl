@@ -93,7 +93,7 @@ status)
     _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
         # It's running
-        local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
+        PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
         echo "eil_steward start/running, process ${PID1}"
     elif [ "${_STATUS}" -eq "1" ]; then
         echo "eil_steward not running, pid file exists"
