@@ -22,6 +22,8 @@
 # just to be safe on all platforms)
 PATH="${PATH}:/usr/bin"
 
+BIN_STEWARD="/opt/intel/eil/clientagent/bin/eil_steward"
+
 check_steward_running() {
     if [ -e "/opt/intel/eil/clientagent/home/client-agent.pid" ]; then
         # Verify that it's already running
@@ -53,10 +55,10 @@ start)
         # Service is not running, but pid file exists, let's kill old file
         # and restart
         unlink /opt/intel/eil/clientagent/home/client-agent.pid
-        eil_steward
+        $BIN_STEWARD
     else
         # Okay to start
-        eil_steward
+        $BIN_STEWARD
     fi
 
     exit 0
@@ -89,14 +91,14 @@ restart|try-restart|reload|force-reload)
 
         # Give it a bit to stop what it was doing
         sleep 5
-        eil_steward
+        $BIN_STEWARD
     elif [ "${_STATUS}" -eq "1" ]; then
         # Service is not running, but pid file exists
         unlink /opt/intel/eil/clientagent/home/client-agent.pid
-        eil_steward
+        $BIN_STEWARD
     else
         # Wasn't running, just restart
-        eil_steward
+        $BIN_STEWARD
     fi
 
     exit 0
