@@ -247,13 +247,13 @@ if [ -n "$OPT_PKG" ]; then
     cp VERSION ${TMP_ROOT}/.pkg_version
     cp VERSION ${TMP_ROOT}/.
     if [ -n "$IS_RELEASE" ]; then
-        $PKG_NAME=eil_clientagent-release
+        PKG_NAME=eil_clientagent-release
     else
-        $PKG_NAME=eil_clientagent-${EIL_LCA_VERSION}
+        PKG_NAME=eil_clientagent-${EIL_LCA_VERSION}
     fi
     set -x
     cd ${TMP_BASE}
-    tar c eil_clientagent-${EIL_LCA_VERSION} > ${MY_CWD}/${PKG_NAME}.tar
+    tar c ${PKG_NAME} > ${MY_CWD}/${PKG_NAME}.tar
     gzip ${MY_CWD}/${PKG_NAME}.tar
     cd ${MY_CWD}
     set +x
