@@ -299,10 +299,10 @@ if [ -n "$OPT_MAKEREPO" ]; then
     set -x
     TMP_REPO=`mktemp -d`
     cd ${MY_CWD}
-    cp -f ${MY_CWD}/${PKG_NAME} ${TMP_REPO}/${PKG_NAME}.tar.gz
+    cp -f ${MY_CWD}/${PKG_NAME}.tar.gz ${TMP_REPO}/${PKG_NAME}.tar.gz
     cp -f ${MY_CWD}/dispatcher/tools/clientagent-bootstrap.sh ${TMP_REPO}/.
     cp -f ${MY_CWD}/VERSION ${TMP_REPO}/.
-    scp ${MY_CWD}/* ${REMOTE_REPO}
+    scp ${TMP_REPO}/* ${REMOTE_REPO}
     rm -fr ${TMP_REPO}
     set +x
 fi
