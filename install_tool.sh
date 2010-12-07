@@ -288,6 +288,13 @@ if [ -n "$OPT_INSTALL_PKG" ]; then
     if [ -e ".pkg_version" ]; then
         install_dispatcher
         install_steward
+        # We have a chicken/egg kind of problem here-
+        # The dispatcher provides items that the steward requires for install,
+        # but the steward must be installed before the init script can be ran
+        # (and the init script is installed during the dispatcher segment).
+        # As a result, we just start the steward service afterward just to be
+        # safe.
+        /etc/init.d/eil_steward.sh start
     else
         alert "!!! Atempt to install package without a package available!"
         die "!!! Build a package, and try again."
