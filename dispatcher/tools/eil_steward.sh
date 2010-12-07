@@ -62,7 +62,7 @@ stop)
 
     exit 0
     ;;
-retstart|try-restart|reload|force-reload)
+restart|try-restart|reload|force-reload)
     # Restart the steward service
     check_steward_running
     local _STATUS=$?
