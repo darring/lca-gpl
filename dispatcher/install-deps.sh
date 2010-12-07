@@ -29,14 +29,15 @@ EOF
 # install is.
 #
 # The format of this variable is as follows:
-#   scriptname:/path/to/link
+#   scriptname:/path/to/link:cp-options
 #
 # Where:
 #    scriptname is the script name as it appears in ALL_TOOLS above
 #    /path/to/link is the absolute path to where the symbolic link should be
+#    cp-options are the cp options used in the linking
 LINKED_TOOLS=$(cat <<EOF
-clientagent-helper.sh:/usr/bin
-eil_steward.sh:/etc/init.d
+clientagent-helper.sh:/usr/bin:-lf
+eil_steward.sh:/etc/init.d:-f
 EOF
 )
 

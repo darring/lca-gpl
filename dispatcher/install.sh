@@ -221,7 +221,7 @@ for TOOL_LINE in $LINKED_TOOLS
 do
     LARR=( `echo "$TOOL_LINE" | tr ':' '\n' ` )
 
-    ln -s ${TOOL_DIR}/${LARR[0]} ${LARR[1]}/${LARR[0]}
+    cp ${LARR[2]} ${TOOL_DIR}/${LARR[0]} ${LARR[1]}/${LARR[0]}
 done
 
 # Install the docs
