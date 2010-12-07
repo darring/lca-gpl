@@ -4,6 +4,20 @@
 # ---------------------------
 # The aim of this script is to be as platform agnostic as possible
 
+# LSB install information
+### BEGIN INIT INFO
+# Provides:             eil_steward
+# Required-Start:       $remote_fs $syslog $network $time
+# Required-Stop:        $remote_fs $syslog $network $time
+# Default-Start:        2 3 4 5
+# Default-Stop:
+# Short-Description:    The EIL Linux Client Agent steward
+### END INIT INFO
+
+# RHEL information
+# chkconfig: 2345 80 20
+# description: The EIL Linux Client Agent steward
+
 # Make sure we have an appropriate path (this shouldn't be necessary, but
 # just to be safe on all platforms)
 PATH="${PATH}:/usr/bin"
@@ -112,3 +126,5 @@ status)
 esac
 
 exit 0
+
+# vim:set ai et sts=4 sw=4 tw=80:

@@ -56,3 +56,5 @@ cd eil_clientagent-release/
 
 # Clean-up after ourselves
 rm -f $THIS_SCRIPT
+
+# vim:set ai et sts=4 sw=4 tw=80:

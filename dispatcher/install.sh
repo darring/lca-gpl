@@ -31,7 +31,6 @@ EOF
     }
 }
 
-
 . lib/helper.sh
 . lib/globals.sh
 
@@ -263,9 +262,26 @@ do
 done
 
 # - Now do the linked scripts
+# FIXME TODO
 
 # Set up the rc files
 # FIXME TODO
+if [ -n "$IS_RHEL" ]; then
+    chkconfig --add eil_steward.sh
+elif [ -n "$IS_DEB" ]; then
+    echo "STUB"
+elif [ -n "$IS_SLES" ]; then
+    echo "STUB"
+elif [ -n "$IS_ESX" ]; then
+    echo "STUB"
+elif [ -n "$IS_XEN" ]; then
+    echo "STUB"
+else
+    # Undefined thing! This is very very bad!
+    echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
+    echo "Check your installation logs and your distribution and try again!" 2>&1 | tee $ERROR_LOG_FILE
+    echo "EIL Linux Client Agent is NOT functioning properly!" 2>&1 | tee $ERROR_LOG_FILE
+fi
 
 echo "clientagent dispatcher installed successfully"
 
