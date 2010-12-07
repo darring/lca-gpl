@@ -248,8 +248,8 @@ fi
 
 if [ -n "$OPT_INSTALL_PKG" ]; then
     if [ -e ".pkg_version" ]; then
-        install_steward
         install_dispatcher
+        install_steward
     else
         alert "!!! Atempt to install package without a package available!"
         die "!!! Build a package, and try again."
