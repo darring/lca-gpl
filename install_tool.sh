@@ -298,7 +298,7 @@ if [ -n "$OPT_MAKEREPO" ]; then
     trace "!!! Making a repository..."
     set -x
     TMP_REPO=`mktemp -d`
-    cd ${MY_CMD}
+    cd ${MY_CWD}
     cp -f ${MY_CWD}/${PKG_NAME} ${TMP_REPO}/${PKG_NAME}.tar.gz
     cp -f ${MY_CWD}/dispatcher/tools/clientagent-bootstrap.sh ${TMP_REPO}/.
     cp -f ${MY_CWD}/VERSION ${TMP_REPO}/.
