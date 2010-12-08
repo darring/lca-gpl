@@ -67,6 +67,7 @@ cd eil_clientagent-release/
 ./install_tool.sh -r --pkginstall
 
 # Clean-up after ourselves
+rm -fr $WORKSPACE
 rm -f $THIS_SCRIPT
 
 # vim:set ai et sts=4 sw=4 tw=80:
