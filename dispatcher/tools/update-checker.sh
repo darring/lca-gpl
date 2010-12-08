@@ -44,7 +44,7 @@ wget -q "${URL_RELEASE}/VERSION"
 
 EIL_UPDATE_VERSION=$(cat ${TMP_WORKSPACE}/VERSION)
 
-if [ "$EIL_UPDATE_VERSION" > "$EIL_VERSION" ]; then
+if [ "$EIL_UPDATE_VERSION" != "$EIL_VERSION" ]; then
     # Update available
     wget -q "${URL_RELEASE}/clientagent-bootstrap.sh"
     chmod a+x clientagent-bootstrap.sh
