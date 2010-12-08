@@ -5,6 +5,8 @@
 Table of Contents
 1) Overview
     1.a) How to read this document
+2) Package Installation
+    2.a) Making a repository
 
 ------------------------------------------------------------------------------
 
@@ -29,3 +31,7 @@ understanding of Linux and the Linux command line.
     Later sections will deal with lower level build and the installation
 process "under the hood". Think of these sections as a behind the scenes
 explanation of the build and installation system.
+
+2) Package Installation
+
+2.a) Making a repository
