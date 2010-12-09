@@ -6,7 +6,13 @@ Table of Contents
 1) Overview
     1.a) How to read this document
 2) Package Installation
-    2.a) Making a repository
+    2.a) Building a package
+    2.b) Making a repository
+    2.c) Installing a package using the bootstrap
+    2.d) Installing a package manually
+3) Using the install tool
+4) Manually installing the dispatcher
+5) Manually building the steward
 
 ------------------------------------------------------------------------------
 
@@ -34,4 +40,11 @@ explanation of the build and installation system.
 
 2) Package Installation
 
-2.a) Making a repository
+2.a) Building a package
+2.b) Making a repository
+2.c) Installing a package using the bootstrap
+2.d) Installing a package manually
+
+3) Using the install tool
+4) Manually installing the dispatcher
+5) Manually building the steward
