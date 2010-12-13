@@ -5,6 +5,11 @@
 Table of Contents
 1) Overview
     1.a) Installation location, and importing the libraries
+2) The Dispatcher APIs
+    2.a) dispatcher.sh
+    2.b) globals.sh
+    2.c) helper.sh
+        2.c.1) Platform specification
 ------------------------------------------------------------------------------
 1) Overview
 
@@ -13,3 +18,39 @@ shell scripts. These libraries provide a number of unique features including
 distribution detection and abstraction,
 
 1.a) Installation location, and importing the libraries
+
+    In keeping with the Filesystem Hierarchy Standard
+(http://www.pathname.com/fhs/) and LANANA (http://www.lanana.org/), the
+Dispatcher libraries are installed into
+
+        * /opt/intel/eil/clientagent/lib/
+
+    The various libraries contained in this system-wide directory can be
+included in your shell script in a variety of ways. However, the most platform-
+agnostic way is to use the dot-execute directive:
+
+        DSP_LIB_PATH="/opt/intel/eil/clientagent/lib"
+        . ${DSP_LIB_PATH}/helper.sh
+
+2) The Dispatcher APIs
+
+2.a) dispatcher.sh
+    The dispatcher.sh library abstracts the underlying platform for running
+commands. It requires the 'globals.sh' library to be loaded.
+
+    *** TODO ***
+
+2.b) globals.sh
+
+    This library defines a number of global variables utilized by the EIL
+Dispatcher. Unless you are extending the dispatcher itself, or using some of the
+internal Dispatcher functionality, you probably will not need to use anything
+here.
+
+2.c) helper.sh
+
+    This library contains a number of helper features which are utilized by the
+Dispatcher, but which should be general enough that arbitrary scripts can use
+it as well.
+
+2.c.1) Platform specification
