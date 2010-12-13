@@ -24,11 +24,16 @@ find_specific_redhat() {
         # Okay, let's see if we're CentOS
         egrep -i "centos" /etc/redhat-release > /dev/null
         if [ $? -ne 0 ]; then
-            # Hmm, we don't know what to do here... Perhaps we should
-            # exit with failure
-            echo "ERROR! Unsupported Red Hat derivative!"
-            echo "Check /etc/redhat-release for more information!"
-            exit 1
+			egrep -i "xen" /etc/redhat-release > /dev/null
+			if [ $? -ne 0 ]; then
+				# Hmm, we don't know what to do here... Perhaps we should
+				# exit with failure
+				echo "ERROR! Unsupported Red Hat derivative!"
+				echo "Check /etc/redhat-release for more information!"
+				exit 1
+			else
+				# We're Xen
+				PLATFORM_NAME="xen"
         else
             # We're CentOS
             PLATFORM_NAME="centos"
