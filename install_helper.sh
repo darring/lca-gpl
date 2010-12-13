@@ -58,7 +58,7 @@ I_INSTALL_GID="eil"
 #################
 inner_trace () {
     if [ -n "$LOG_FILE" ]; then
-        echo -e "$*" >> ${LOG_FILE}
+        echo -e "$(date) $*" >> ${LOG_FILE}
     else
         echo -e "$*"
     fi
@@ -139,6 +139,13 @@ cleanup_env() {
     if [ -n "$TMP_WORKSPACE" ]; then
         rm -fr $TMP_BASE
     fi
+}
+
+# Replacement function that provides the same functionality as the install(1)
+# command (which is not present on ESXi)
+# Usage:
+# install_replacement group owner mode file path
+install_replacement() {
 }
 
 ########################
