@@ -76,7 +76,7 @@ CommandIssued StewardService::QueryForClientCommands(
         // Set up our host name
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
         hostname_kv.Key = "HOST_NAME";
-        hostname_kv.Value= hostname; //&hn;
+        hostname_kv.Value= hostname;
 
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
