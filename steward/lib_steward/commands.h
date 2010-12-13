@@ -9,7 +9,7 @@ enum CommandIssued
 {
     COMMAND_ERROR,
     COMMAND_ERROR_STATE,
-    COMMAND_SUCCESS, // FIXME temp
+    SUCCESS_NO_COMMAND,
     // FIXME 
 };
 

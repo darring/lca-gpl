@@ -156,7 +156,8 @@ CommandIssued StewardService::QueryForClientCommands(
         Process the response
         */
         if(op_codes == SOAP_OK) {
-            returnCommand = COMMAND_SUCCESS;
+            if (!response.GetCommandToExecuteResult)
+                returnCommand = SUCCESS_NO_COMMAND;
         } else {
             // FIXME - Might be nice to actually parse for specific error
             // codes, see http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
