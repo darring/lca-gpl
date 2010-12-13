@@ -1,0 +1,32 @@
+                            ESXi General Notes
+------------------------------------------------------------------------------
+
+Table of Contents
+1) Technical information on ESXi
+    1.a) Enabling remote SSH
+2) Specific persistent storage items
+    2.a) state.tgz
+    2.b) rc.local
+
+------------------------------------------------------------------------------
+1) Technical information on ESXi
+
+1.a) Enabling remote SSH
+
+    To enable remote SSH, perform the following steps:
+
+        * From the ESXi console, press F2 to configure the system.
+
+        * Select "Troubleshooting Mode Options".
+
+        * Enable "Remote Tech Support (SSH)".
+
+2) Specific persistent storage items
+
+2.a) state.tgz
+
+    state.tgz contains local.tgz which contains specific items from /etc
+
+2.b) rc.local
+
+    rc.local is persistent

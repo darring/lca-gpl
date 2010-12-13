@@ -40,6 +40,10 @@ CommandIssued StewardService::QueryForClientCommands(
 {
     if (currentState == STATE_None)
     {
+        // We default to command error, and assume that if we never change it
+        // something went wrong.
+        CommandIssued returnCommand = COMMAND_ERROR;
+
         /*
         First, we need to build up our header, which includes the various
         WS-Addressing bits that are needed by CCMS for routing of commands
@@ -72,7 +76,7 @@ CommandIssued StewardService::QueryForClientCommands(
         // Set up our host name
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
         hostname_kv.Key = "HOST_NAME";
-        hostname_kv.Value= hostname; //&hn;
+        hostname_kv.Value= hostname;
 
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
@@ -148,12 +152,35 @@ CommandIssued StewardService::QueryForClientCommands(
         op_codes = service.GetCommandToExecute(
             &getCommand, &response);
 
-        // FIXME Set proper state information here
+        /*
+        Process the response
+        */
+        if(op_codes == SOAP_OK) {
+            if (!response.GetCommandToExecuteResult)
+                returnCommand = SUCCESS_NO_COMMAND;
+        } else {
+            // FIXME - Might be nice to actually parse for specific error
+            // codes, see http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
+            returnCommand = COMMAND_ERROR;
+        }
+        /*logger->QuickLog("Ping1");
+        logger->QuickLog(response.GetCommandToExecuteResult->CommandExitMessage);
+        logger->QuickLog("Ping2");
+        logger->QuickLog(response.GetCommandToExecuteResult->CommandName);
+        logger->QuickLog("Ping3");
+        logger->QuickLog(response.GetCommandToExecuteResult->CommandPath);
+        logger->QuickLog("Ping4");
+        logger->QuickLog(response.GetCommandToExecuteResult->CommandResult);
+        logger->QuickLog("Ping5");
+        logger->QuickLog(response.GetCommandToExecuteResult->CommandSuccessful);
+        logger->QuickLog(response.GetCommandToExecuteResult->OperationID);
+        logger->QuickLog("Ping6");
+        logger->QuickLog(response.GetCommandToExecuteResult->SetMachineType);
+        */
 
         // FIXME Memory clean-up
 
-        // FIXME Return something useful
-        return COMMAND_ERROR;
+        return returnCommand;
     }
     else
     {
@@ -167,20 +194,13 @@ CommandIssued StewardService::QueryForClientCommands(
 
 void StewardService::getNewMessageID()
 {
-    logger->QuickLog("ping1");
     char messageID[MAX_MESSAGEID_LEN - 10];
-    logger->QuickLog("ping2");
 
     generateUniqueHash(messageID, MAX_MESSAGEID_LEN - 10);
-
-    logger->QuickLog(last_MessageID);
-    logger->QuickLog("ping3");
 
     // FIXME, it would be nice to have this formatted more like
     // other messageIDs, e.g.,
     // urn:uuid:8d1d259a-bd87-4e9a-b28d-02c4bd420fb3
     snprintf(last_MessageID, MAX_MESSAGEID_LEN,
             "urn:uuid:%s", messageID);
-
-    logger->QuickLog(last_MessageID);
 }
