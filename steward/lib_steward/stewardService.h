@@ -20,14 +20,12 @@
 
 // Proxy service definition
 #include "soapWSHttpBinding_USCOREIEILClientOperationsProxy.h"
-//#include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "soapH.h"
 
 //! The maximum length of the MessageID
 #define MAX_MESSAGEID_LEN 40
 
 class StewardLogger;
-//class UniqueHash;
 
 class StewardService
 {
@@ -36,7 +34,6 @@ class StewardService
         struct soap soap;
         struct SOAP_ENV__Header header;
         StewardLogger *logger;
-        //UniqueHash *uniqueHash;
         int op_codes;
         char last_MessageID[MAX_MESSAGEID_LEN];
         ServiceState currentState;

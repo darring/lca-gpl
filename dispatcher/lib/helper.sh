@@ -52,7 +52,7 @@ if [ -f "/etc/debian_version" ]; then
 elif [ -f "/etc/redhat-release" ]; then
     find_specific_redhat
     IS_RHEL=yes
-elif [ -f "/etc/novell-release" ]; then
+elif [ -f "/etc/novell-release" || -f "/etc/SuSE-release" ]; then
     find_specific_suse
     IS_SLES=yes
 fi
