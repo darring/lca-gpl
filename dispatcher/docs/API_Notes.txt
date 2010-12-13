@@ -1,0 +1,15 @@
+                             EIL Dispatcher
+                            API Documentation
+------------------------------------------------------------------------------
+
+Table of Contents
+1) Overview
+    1.a) Installation location, and importing the libraries
+------------------------------------------------------------------------------
+1) Overview
+
+    The Dispatcher includes shell libraries which can be utilized in external
+shell scripts. These libraries provide a number of unique features including
+distribution detection and abstraction,
+
+1.a) Installation location, and importing the libraries
