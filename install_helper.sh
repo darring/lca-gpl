@@ -146,6 +146,15 @@ cleanup_env() {
 # Usage:
 # install_replacement group owner mode file path
 install_replacement() {
+    local _GROUP=$1
+    local _OWNER=$2
+    local _MODE=$3
+    local _FILE=$4
+    local _PATH=$5
+
+    cp -fv $_FILE $_PATH
+    chown -v ${_OWNER}:${_GROUP} ${_PATH}/${_FILE}
+    chmod -v ${_MODE} ${_PATH}/${_FILE}
 }
 
 ########################
@@ -170,8 +179,9 @@ install_steward() {
         set +x
     fi
     set -x
-    install --group=${I_INSTALL_GID} --owner=${I_INSTALL_UID} --mode=754 \
-        -v steward/eil_steward ${PREFIX_PATH}
+
+    install_replacement "${I_INSTALL_GID}" "${I_INSTALL_UID}" "754" \
+        "steward/eil_steward" "${PREFIX_PATH}"
 
     # SETUID/SETGID
     chmod u+s ${PREFIX_PATH}/eil_steward
