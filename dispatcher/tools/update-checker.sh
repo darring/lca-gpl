@@ -36,7 +36,7 @@ SCRIPTS_DIR=$INSTALL_DIR/scripts
 
 EIL_VERSION=$(cat ${LIB_DIR}/VERSION)
 
-TMP_WORKSPACE=`mktemp -d`
+TMP_WORKSPACE=`mktemp -d /tmp/eil-XXXXXX`
 
 cd $TMP_WORKSPACE
 

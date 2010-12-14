@@ -16,7 +16,7 @@ THIS_SCRIPT="${MY_CWD}/${PROGNAME}"
 
 # This function cleans the previous hosts file
 clean_hosts_file() {
-    local TMP_FILE=`mktemp`
+    local TMP_FILE=`mktemp /tmp/eil-XXXXXX`
     sed '/## EIL_BEGIN/,/## EIL_END/d' /etc/hosts > ${TMP_FILE}
     cp -f ${TMP_FILE} /etc/hosts
     rm -f ${TMP_FILE}
@@ -45,7 +45,7 @@ make_hosts_file() {
 make_hosts_file
 
 # Obtain the latest release
-WORKSPACE=`mktemp -d`
+WORKSPACE=`mktemp -d /tmp/eil-XXXXXX`
 cd $WORKSPACE
 wget -q "http://${EIL_STAGING}/release/eil_clientagent-release.tar.gz"
 tar xzf eil_clientagent-release.tar.gz

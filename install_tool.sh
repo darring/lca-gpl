@@ -95,9 +95,17 @@ makerepo:,\
 pkg -- $*)
 
 if [ $? -ne 0 ]; then
-    echo "Error while parsing options!"
-    usage
-    exit 1
+    # Before we barf, let's see if we're running on ESXi
+    if [ -f "/.emptytgz" ]; then
+        # ESXi really is the red-headed step child here, so, for now,
+        # we have to assume that if we're run on ESXi, we're just doing
+        # a package install
+        TEMP="--pkginstall --"
+    else
+        echo "Error while parsing options!"
+        usage
+        exit 1
+    fi
 fi
 
 eval set -- "$TEMP"
