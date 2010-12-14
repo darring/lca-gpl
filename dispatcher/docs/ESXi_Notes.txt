@@ -7,6 +7,9 @@ Table of Contents
 2) Specific persistent storage items
     2.a) state.tgz
     2.b) rc.local
+3) Specific Command Notes
+    3.a) mktemp
+    3.b) cp
 
 ------------------------------------------------------------------------------
 1) Technical information on ESXi
@@ -30,3 +33,41 @@ Table of Contents
 2.b) rc.local
 
     rc.local is persistent
+
+3) Specific Command Notes
+
+3.a) mktemp
+
+    ESXi mktemp has some subtly different usage requirements than the mktemp
+found in standard Unix and Linux systems.
+
+BusyBox v1.9.1-VMware-visor-klnext-2965 (2010-04-19 12:53:48 PDT) multi-call binary
+
+Usage: mktemp [-dq] TEMPLATE
+
+Create a temporary file with its name based on TEMPLATE.
+TEMPLATE is any name with six 'Xs' (i.e., /tmp/temp.XXXXXX).
+
+Options:
+        -d      Make a directory instead of a file
+        -q      Fail silently if an error occurs
+
+
+3.b) cp
+
+./clientagent-bootstrap.sh: line 45: cannot create : nonexistent directory
+BusyBox v1.9.1-VMware-visor-klnext-2965 (2010-04-19 12:53:48 PDT) multi-call binary
+
+Usage: cp [OPTION]... SOURCE DEST
+
+Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY
+
+Options:
+        -a      Same as -dpR
+        -d,-P   Preserve links
+        -H,-L   Dereference all symlinks (default)
+        -p      Preserve file attributes if possible
+        -f      Force overwrite
+        -i      Prompt before overwrite
+        -R,-r   Recurse directories
+        -l,-s   Create (sym)links
