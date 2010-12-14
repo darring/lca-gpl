@@ -47,7 +47,7 @@ make_hosts_file
 # Obtain the latest release
 WORKSPACE=`mktemp -d /tmp/eil-XXXXXX`
 cd $WORKSPACE
-wget -q "http://${EIL_STAGING}/release/eil_clientagent-release.tar.gz"
+wget -q "http://${EIL_STAGING}/EILLinuxAgent/latest/eil_clientagent-release.tar.gz"
 tar xzf eil_clientagent-release.tar.gz
 
 # Before we start, we should ensure the old steward is shutdown, if it is
