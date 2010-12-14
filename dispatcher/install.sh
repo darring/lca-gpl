@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Install script for clientagent-base.sh suite
 
@@ -51,7 +51,7 @@ add_user_if_not_exist() {
     egrep -i "^$LGID" /etc/group > /dev/null
     if [ $? -ne 0 ]; then
         # Group does not exist, add it
-        if [ -n "$IS_SLES" || -n "$IS_ESX" ]; then
+        if [ -n "$IS_SLES" ] || [ -n "$IS_ESX" ]; then
             /usr/sbin/groupadd $LGID
         else
             /usr/sbin/groupadd -f $LGID
