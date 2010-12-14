@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Install script for clientagent-base.sh suite
 
@@ -38,6 +38,10 @@ EOF
 . ./install-deps.sh
 
 # Functions used by the install script
+_inner_unlink() {
+    unlink ${2}/${1}
+}
+
 add_user_if_not_exist() {
     local LGID=$2
     local LUID=$1
@@ -105,7 +109,7 @@ uninstall_everything() {
         chkconfig --del eil_steward.sh
     elif [ -n "$IS_DEB" ]; then
         /etc/init.d/eil_steward.sh stop
-        update-rc.d eil_steward.sh remove
+        update-rc.d -f eil_steward.sh remove
     elif [ -n "$IS_SLES" ]; then
         /etc/init.d/eil_steward.sh stop
         /usr/lib/lsb/remove_initd /etc/init.d/eil_steward.sh
@@ -122,8 +126,8 @@ uninstall_everything() {
     # uninstall the tools
     for TOOL_LINK in $LINKED_TOOLS
     do
-        LARR=( `echo "$TOOL_LINK" | tr ':' '\n' ` )
-        unlink ${LARR[1]}/${LARR[0]}
+        LARR=`echo "$TOOL_LINK" | tr ':' '\n' `
+        _inner_unlink ${LARR}
     done
     rm -f $TOOL_DIR/*
 
@@ -242,11 +246,14 @@ do
 done
 
 # Set up the linked tools
+_cp_linked_tools() {
+    cp ${3} ${TOOL_DIR}/${1} ${2}/${1}
+}
 for TOOL_LINE in $LINKED_TOOLS
 do
-    LARR=( `echo "$TOOL_LINE" | tr ':' '\n' ` )
+    LARR=`echo "$TOOL_LINE" | tr ':' '\n' `
 
-    cp ${LARR[2]} ${TOOL_DIR}/${LARR[0]} ${LARR[1]}/${LARR[0]}
+    _cp_linked_tools ${LARR}
 done
 
 # Install the docs
@@ -269,22 +276,25 @@ done
 
 # Install the scripts
 # - Start with the source scripts
+_setup_source_script() {
+    cp -fr scripts/${1} ${SCRIPTS_DIR}/.
+    if [ "${1}" = "*.*" ]; then
+        # Make it owned by the same owner as client agent dispatcher
+        chown ${INSTALL_UID}.${INSTALL_GID} ${SCRIPTS_DIR}/${2}
+    else
+        # Make it owned by the user specified
+        chown ${1} ${SCRIPTS_DIR}/${2}
+    fi
+
+    # SETUID/SETGID
+    chmod u+s ${SCRIPTS_DIR}/${2}
+    chmod g+s ${SCRIPTS_DIR}/${2}
+}
 for SCRIPT_LINE in $SOURCE_SCRIPTS
 do
     LARR=( `echo "$SCRIPT_LINE" | tr ':' '\n' ` )
 
-    cp -fr scripts/${LARR[1]} ${SCRIPTS_DIR}/.
-    if [ "${LARR[0]}" = "*.*" ]; then
-        # Make it owned by the same owner as client agent dispatcher
-        chown ${INSTALL_UID}.${INSTALL_GID} ${SCRIPTS_DIR}/${LARR[1]}
-    else
-        # Make it owned by the user specified
-        chown ${LARR[0]} ${SCRIPTS_DIR}/${LARR[1]}
-    fi
-
-    # SETUID/SETGID
-    chmod u+s ${SCRIPTS_DIR}/${LARR[1]}
-    chmod g+s ${SCRIPTS_DIR}/${LARR[1]}
+    _setup_source_script ${LARR}
 done
 
 # - Now do the linked scripts
