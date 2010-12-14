@@ -111,9 +111,16 @@ pidfile,\
 errlog -- $*)
 
 if [ $? -ne 0 ]; then
-    echo "Error while parsing options!"
-    usage
-    exit 1
+    # Before we barf, let's see if we're running on ESXi
+    if [ -f "/.emptytgz" ]; then
+        # ESXi is very problematic, so just append the -- here and hope
+        # for the best
+        TEMP="$* --"
+    else
+        echo "Error while parsing options!"
+        usage
+        exit 1
+    fi
 fi
 
 eval set -- "$TEMP"
