@@ -51,6 +51,15 @@ find_specific_suse() {
     PLATFORM_NAME="suse"
 }
 
+find_specific_esx() {
+    egrep -i "esxi" /etc/issue > /dev/null
+    if [ $? -ne 0 ]; then
+        PLATFORM_NAME="esxi"
+    else
+        PLATFORM_NAME="esx"
+    fi
+}
+
 if [ -f "/etc/debian_version" ]; then
     find_specific_debian
     IS_DEB=yes
@@ -60,6 +69,9 @@ elif [ -f "/etc/redhat-release" ]; then
 elif [ -f "/etc/novell-release" || -f "/etc/SuSE-release" ]; then
     find_specific_suse
     IS_SLES=yes
+elif [ -f "/.emptytgz" ]; then
+    find_specific_esx
+    IS_ESX=yes
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:

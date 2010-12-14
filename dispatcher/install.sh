@@ -51,7 +51,7 @@ add_user_if_not_exist() {
     egrep -i "^$LGID" /etc/group > /dev/null
     if [ $? -ne 0 ]; then
         # Group does not exist, add it
-        if [ -n "$IS_SLES" ]; then
+        if [ -n "$IS_SLES" || -n "$IS_ESX" ]; then
             /usr/sbin/groupadd $LGID
         else
             /usr/sbin/groupadd -f $LGID
@@ -65,6 +65,10 @@ add_user_if_not_exist() {
         if [ -n "$IS_SLES" ]; then
             /usr/sbin/useradd -d $HOME_DIR -c eil_client \
                 -s /bin/false -g $LGID $LUID
+        elif [ -n "$IS_ESX" ]; then
+            # This would be a security problem- if we were persistent
+            /usr/sbin/useradd -d $HOME_DIR -c eil_client \
+                -s /bin/ash -g $LGID $LUID
         else
             /usr/sbin/useradd -d /dev/null -c eil_client \
                 -s /dev/null -g $LGID -M $LUID
@@ -75,7 +79,11 @@ add_user_if_not_exist() {
 del_user_if_exist() {
     egrep -i "^$INSTALL_UID" /etc/passwd > /dev/null
     if [ $? -eq 0 ]; then
-        /usr/sbin/userdel -f $INSTALL_UID
+        if [ -n "$IS_ESX" ]; then
+            /usr/sbin/userdel $INSTALL_UID
+        else
+            /usr/sbin/userdel -f $INSTALL_UID
+        fi
     fi
 
     egrep -i "^$INSTALL_GID" /etc/group > /dev/null
@@ -102,8 +110,10 @@ uninstall_everything() {
         /etc/init.d/eil_steward.sh stop
         /usr/lib/lsb/remove_initd /etc/init.d/eil_steward.sh
     elif [ -n "$IS_ESX" ]; then
-        echo "ESX RC setup not yet done"
-        # FIXME TODO
+        # This is silly, just reboot the system :-P
+        /etc/init.d/eil_steward.sh stop
+        rm -f /etc/init.d/eil_steward.sh
+        rm -f /etc/rc.local.d/eil_steward.sh
     elif [ -n "$IS_XEN" ]; then
         echo "XEN RC setup not yet done"
         # FIXME TODO
@@ -289,8 +299,9 @@ elif [ -n "$IS_DEB" ]; then
 elif [ -n "$IS_SLES" ]; then
     /usr/lib/lsb/install_initd /etc/init.d/eil_steward.sh
 elif [ -n "$IS_ESX" ]; then
-    echo "ESX RC setup not yet done"
-    # FIXME TODO
+    # Yay! Manual labor!
+    mkdir -p /etc/rc.local.d/
+    ln -s /etc/init.d/eil_steward.sh /etc/rc.local.d/eil_steward.sh
 elif [ -n "$IS_XEN" ]; then
     echo "XEN RC setup not yet done"
     # FIXME TODO
