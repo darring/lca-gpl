@@ -39,7 +39,11 @@ EOF
 
 # Functions used by the install script
 _inner_unlink() {
-    unlink ${2}/${1}
+    if [ -n "$IS_ESX" ]; then
+        rm -f ${2}/${1}
+    else
+        unlink ${2}/${1}
+    fi
 }
 
 add_user_if_not_exist() {
@@ -126,7 +130,7 @@ uninstall_everything() {
     # uninstall the tools
     for TOOL_LINK in $LINKED_TOOLS
     do
-        LARR=`echo "$TOOL_LINK" | tr ':' '\n' `
+        LARR=`echo "$TOOL_LINK" | sed -f dep-cleaner.sed`
         _inner_unlink ${LARR}
     done
     rm -f $TOOL_DIR/*
@@ -247,11 +251,16 @@ done
 
 # Set up the linked tools
 _cp_linked_tools() {
-    cp ${3} ${TOOL_DIR}/${1} ${2}/${1}
+    if [ -n "$IS_ESX" ]; then
+        # ESX forces us to ignore the options
+        cp -f ${TOOL_DIR}/${1} ${2}/${1}
+    else
+        cp ${3} ${TOOL_DIR}/${1} ${2}/${1}
+    fi
 }
 for TOOL_LINE in $LINKED_TOOLS
 do
-    LARR=`echo "$TOOL_LINE" | tr ':' '\n' `
+    LARR=`echo "$TOOL_LINE" | sed -f dep-cleaner.sed`
 
     _cp_linked_tools ${LARR}
 done
@@ -292,7 +301,7 @@ _setup_source_script() {
 }
 for SCRIPT_LINE in $SOURCE_SCRIPTS
 do
-    LARR=( `echo "$SCRIPT_LINE" | tr ':' '\n' ` )
+    LARR=`echo "$SCRIPT_LINE" | sed -f dep-cleaner.sed`
 
     _setup_source_script ${LARR}
 done

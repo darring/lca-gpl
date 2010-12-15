@@ -42,6 +42,7 @@ HOME_DIR=$INSTALL_DIR/home
 SCRIPTS_DIR=$INSTALL_DIR/scripts
 
 . ${LIB_DIR}/globals.sh
+. ${LIB_DIR}/helper.sh
 
 usage()
 {
@@ -92,31 +93,29 @@ if [ "$1" = "" ]; then
     exit 0
 fi
 
-# Parse command line.
-TEMP=$(getopt -n "$PROGNAME" --options h \
---longoptions base,\
-install,\
-bin,\
-lib,\
-doc,\
-tool,\
-home,\
-scripts,\
-comdir,\
-uid,\
-gid,\
-stdlog,\
-ccmslog,\
-pidfile,\
-errlog -- $*)
+if [ -n "$IS_ESX" ]; then
+    # ESXi is a crazy case, hope for the best
+    TEMP="$* --"
+else
+    # Parse command line.
+    TEMP=$(getopt -n "$PROGNAME" --options h \
+    --longoptions base,\
+    install,\
+    bin,\
+    lib,\
+    doc,\
+    tool,\
+    home,\
+    scripts,\
+    comdir,\
+    uid,\
+    gid,\
+    stdlog,\
+    ccmslog,\
+    pidfile,\
+    errlog -- $*)
 
-if [ $? -ne 0 ]; then
-    # Before we barf, let's see if we're running on ESXi
-    if [ -f "/.emptytgz" ]; then
-        # ESXi is very problematic, so just append the -- here and hope
-        # for the best
-        TEMP="$* --"
-    else
+    if [ $? -ne 0 ]; then
         echo "Error while parsing options!"
         usage
         exit 1
