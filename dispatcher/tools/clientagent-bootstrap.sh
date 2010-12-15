@@ -11,7 +11,7 @@ EIL_AUTO="172.16.3.10"
 EIL_RELEASE="172.16.3.10"
 EIL_STAGING="10.4.0.26"
 
-unset IS_STAGING IS_RELEASE EIL_LATEST || true
+unset IS_STAGING IS_RELEASE EIL_LATEST INSTALL_TOOL || true
 
 # Uncomment whichever of the following is correct for this install
 IS_STAGING=yes
@@ -26,6 +26,10 @@ fi
 PROGNAME=${0##*/}
 MY_CWD=`pwd`
 THIS_SCRIPT="${MY_CWD}/${PROGNAME}"
+
+# The two install tool variants
+INSTALL_TOOL_GENERAL="install_tool.sh"
+INSTALL_TOOL_ESXi="install_tool_esxi.sh"
 
 # This function cleans the previous hosts file
 clean_hosts_file() {
@@ -56,7 +60,9 @@ make_hosts_file() {
 
 # Pre-install zaniness to ensure that things like ESXi are happy
 if [ ! -e "/bin/bash" ] && [ -f "/.emptytgz" ]; then
-    ln -s /bin/sh /bin/bash
+    INSTALL_TOOL=$INSTALL_TOOL_ESXi
+else
+    INSTALL_TOOL=$INSTALL_TOOL_GENERAL
 fi
 
 # Start out by setting up our hosts file
@@ -79,10 +85,10 @@ sleep 5
 
 cd eil_clientagent-release/
 # First, uninstall the old one
-./install_tool.sh -r --uninstall
+./${INSTALL_TOOL} -r --uninstall
 
 # Begin the package install
-./install_tool.sh -r --pkginstall
+./${INSTALL_TOOL} -r --pkginstall
 
 # Clean-up after ourselves
 rm -fr $WORKSPACE
