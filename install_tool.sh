@@ -95,17 +95,9 @@ makerepo:,\
 pkg -- $*)
 
 if [ $? -ne 0 ]; then
-    # Before we barf, let's see if we're running on ESXi
-    if [ -f "/.emptytgz" ]; then
-        # ESXi really is the red-headed step child here, so, for now,
-        # we have to assume that if we're run on ESXi, we're just doing
-        # a package install
-        TEMP="--pkginstall --"
-    else
-        echo "Error while parsing options!"
-        usage
-        exit 1
-    fi
+    echo "Error while parsing options!"
+    usage
+    exit 1
 fi
 
 eval set -- "$TEMP"
@@ -269,6 +261,7 @@ if [ -n "$OPT_PKG" ]; then
     install_steward
     trace "!!! Bundling up the installer..."
     install -v --mode=754 install_tool.sh ${TMP_ROOT}
+    install -v --mode=754 install_tool_esxi.sh ${TMP_ROOT}
     install -v --mode=644 install_helper.sh ${TMP_ROOT}
     cp -fvr dispatcher ${TMP_ROOT}
     cp VERSION ${TMP_ROOT}/.pkg_version
