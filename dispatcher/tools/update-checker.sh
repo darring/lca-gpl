@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Linux Client Agent Update Checker
 #----------------------------------

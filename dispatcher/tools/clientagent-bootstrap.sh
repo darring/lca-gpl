@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # The client agent bootstrap script
 #----------------------------------
