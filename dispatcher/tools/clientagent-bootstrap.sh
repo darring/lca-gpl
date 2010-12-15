@@ -8,7 +8,20 @@
 
 # EIL IP configs
 EIL_AUTO="172.16.3.10"
+EIL_RELEASE="172.16.3.10"
 EIL_STAGING="10.4.0.26"
+
+unset IS_STAGING IS_RELEASE EIL_LATEST || true
+
+# Uncomment whichever of the following is correct for this install
+IS_STAGING=yes
+#IS_RELEASE=yes
+
+if [ -n "$IS_STAGING" ]; then
+    EIL_LATEST=$EIL_STAGING
+else
+    EIL_LATEST=$EIL_RELEASE
+fi
 
 PROGNAME=${0##*/}
 MY_CWD=`pwd`
@@ -35,7 +48,7 @@ make_hosts_file() {
     echo "### EIL Linux Client Agent Specific Config ###" >> /etc/hosts
     echo "# Changes to this section will be overwritten during client agent upgrades" >> /etc/hosts
     echo "${EIL_AUTO}    eilauto01   eilauto01.eil-infra.com" >> /etc/hosts
-    echo "${EIL_STAGING} eilstaging  eilstaging.eil-infra.com" >> /etc/hosts
+    echo "${EIL_LATEST} eilstaging  eilstaging.eil-infra.com" >> /etc/hosts
     echo "## EIL_END" >> /etc/hosts
 
     md5sum /etc/hosts > /etc/hosts.md5
@@ -47,7 +60,7 @@ make_hosts_file
 # Obtain the latest release
 WORKSPACE=`mktemp -d /tmp/eil-XXXXXX`
 cd $WORKSPACE
-wget -q "http://${EIL_STAGING}/EILLinuxAgent/latest/eil_clientagent-release.tar.gz"
+wget -q "http://${EIL_LATEST}/EILLinuxAgent/latest/eil_clientagent-release.tar.gz"
 tar xzf eil_clientagent-release.tar.gz
 
 # Before we start, we should ensure the old steward is shutdown, if it is
