@@ -1,0 +1,15 @@
+# Note- This changelog is not meant to be a comprehensive list of all changes
+#       in this project. For that, please consult the version control system log
+#       (hg log, or TortoiseHG Explorer). Instead, this is intended to encompass
+#       any major changes that need mentioning.
+#
+#       Additionally, the format of this log is such that we could (if we wanted
+#       to) simply add it to an RPM spec file in the future.
+
+* Wed Dec 15 2010 - Sam Hart <samx.hart@intel.com>
+- Begin Changelog file (admittedly late in the game).
+- Significant replacement of stock commands (tr, install, unlink) with
+  functional equivalents due to ESXi limitations.
+- Change hard BASH requirements to generalized /bin/sh requirements in scripts
+  where this is acceptable (again, due to ESXi limitations). One exception is
+  install_tool.sh where we now need a second, custom ESXi install_tool.
