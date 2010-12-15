@@ -152,9 +152,9 @@ install_replacement() {
     local _FILE=$4
     local _PATH=$5
 
-    cp -fv $_FILE $_PATH
-    chown -v ${_OWNER}:${_GROUP} ${_PATH}/${_FILE}
-    chmod -v ${_MODE} ${_PATH}/${_FILE}
+    cp -f $_FILE $_PATH
+    chown ${_OWNER}:${_GROUP} ${_PATH}/${_FILE}
+    chmod ${_MODE} ${_PATH}/${_FILE}
 }
 
 ########################

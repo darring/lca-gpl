@@ -54,7 +54,7 @@ start)
     elif [ "${_STATUS}" -eq "1" ]; then
         # Service is not running, but pid file exists, let's kill old file
         # and restart
-        unlink /opt/intel/eil/clientagent/home/client-agent.pid
+        rm -f /opt/intel/eil/clientagent/home/client-agent.pid
         $BIN_STEWARD
     else
         # Okay to start
@@ -73,7 +73,7 @@ stop)
         kill -1 ${PID1}
     elif [ "${_STATUS}" -eq "1" ]; then
         # Service is not running, but pid file exists
-        unlink /opt/intel/eil/clientagent/home/client-agent.pid
+        rm -f /opt/intel/eil/clientagent/home/client-agent.pid
     else
         echo "eil_steward is not running."
     fi
@@ -94,7 +94,7 @@ restart|try-restart|reload|force-reload)
         $BIN_STEWARD
     elif [ "${_STATUS}" -eq "1" ]; then
         # Service is not running, but pid file exists
-        unlink /opt/intel/eil/clientagent/home/client-agent.pid
+        rm -f /opt/intel/eil/clientagent/home/client-agent.pid
         $BIN_STEWARD
     else
         # Wasn't running, just restart
