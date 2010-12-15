@@ -93,8 +93,9 @@ if [ "$1" = "" ]; then
     exit 0
 fi
 
-if [ -n "$IS_ESX" ]; then
-    # ESXi is a crazy case, hope for the best
+if [ -n "$IS_ESX" ] || [ -n "$IS_SLES" ]; then
+    # ESXi lacks getopt, and SLES /bin/sh interacts strangely with getopt, so
+    # we just do this kludge and hope for the best
     TEMP="$* --"
 else
     # Parse command line.
