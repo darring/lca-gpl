@@ -59,7 +59,8 @@ make_hosts_file() {
 }
 
 # Pre-install zaniness to ensure that things like ESXi are happy
-if [ ! -e "/bin/bash" ] && [ -f "/.emptytgz" ]; then
+if [ ! -e "/bin/bash" ] && [ -e "/.emptytgz" ]; then
+    echo ">> Installation on ESXi"
     INSTALL_TOOL=$INSTALL_TOOL_ESXi
 else
     INSTALL_TOOL=$INSTALL_TOOL_GENERAL
