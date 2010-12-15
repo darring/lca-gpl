@@ -56,7 +56,7 @@ make_hosts_file() {
 
 # Pre-install zaniness to ensure that things like ESXi are happy
 if [ ! -e "/bin/bash" ] && [ -f "/.emptytgz" ]; then
-    ln /bin/sh /bin/bash
+    ln -s /bin/sh /bin/bash
 fi
 
 # Start out by setting up our hosts file
