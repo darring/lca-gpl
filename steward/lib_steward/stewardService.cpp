@@ -158,25 +158,14 @@ CommandIssued StewardService::QueryForClientCommands(
         if(op_codes == SOAP_OK) {
             if (!response.GetCommandToExecuteResult)
                 returnCommand = SUCCESS_NO_COMMAND;
+			else {
+				// 
+			}
         } else {
             // FIXME - Might be nice to actually parse for specific error
             // codes, see http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
             returnCommand = COMMAND_ERROR;
         }
-        /*logger->QuickLog("Ping1");
-        logger->QuickLog(response.GetCommandToExecuteResult->CommandExitMessage);
-        logger->QuickLog("Ping2");
-        logger->QuickLog(response.GetCommandToExecuteResult->CommandName);
-        logger->QuickLog("Ping3");
-        logger->QuickLog(response.GetCommandToExecuteResult->CommandPath);
-        logger->QuickLog("Ping4");
-        logger->QuickLog(response.GetCommandToExecuteResult->CommandResult);
-        logger->QuickLog("Ping5");
-        logger->QuickLog(response.GetCommandToExecuteResult->CommandSuccessful);
-        logger->QuickLog(response.GetCommandToExecuteResult->OperationID);
-        logger->QuickLog("Ping6");
-        logger->QuickLog(response.GetCommandToExecuteResult->SetMachineType);
-        */
 
         // FIXME Memory clean-up
 
