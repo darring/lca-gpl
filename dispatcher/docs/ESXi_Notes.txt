@@ -10,6 +10,7 @@ Table of Contents
 3) Specific Command Notes
     3.a) mktemp
     3.b) cp
+    3.c) tr
 
 ------------------------------------------------------------------------------
 1) Technical information on ESXi
@@ -71,3 +72,7 @@ Options:
         -i      Prompt before overwrite
         -R,-r   Recurse directories
         -l,-s   Create (sym)links
+
+3.c) tr
+
+    tr is not present on this version of BusyBox.
