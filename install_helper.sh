@@ -149,10 +149,11 @@ install_replacement() {
     local _GROUP=$1
     local _OWNER=$2
     local _MODE=$3
-    local _FILE=$4
-    local _PATH=$5
+    local _PATH_TO_FILE=$4
+    local _FILE=$5
+    local _PATH=$6
 
-    cp -f $_FILE $_PATH
+    cp -f $_PATH_TO_FILE/$_FILE $_PATH
     chown ${_OWNER}:${_GROUP} ${_PATH}/${_FILE}
     chmod ${_MODE} ${_PATH}/${_FILE}
 }
@@ -181,7 +182,7 @@ install_steward() {
     set -x
 
     install_replacement "${I_INSTALL_GID}" "${I_INSTALL_UID}" "754" \
-        "steward/eil_steward" "${PREFIX_PATH}"
+        "steward" "eil_steward" "${PREFIX_PATH}"
 
     # SETUID/SETGID
     chmod u+s ${PREFIX_PATH}/eil_steward
