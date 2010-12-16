@@ -9,7 +9,7 @@ unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
 unset TMP_WORKSPACE TMP_BASE TMP_ROOT IS_RELEASE OPT_MAKEREPO || true
-unset REMOTE_REPO || true
+unset REMOTE_REPO OPT_RUNTEST || true
 
 PROGNAME=${0##*/}
 
@@ -50,6 +50,8 @@ Where [OPTION] is one of the following
                     needed)
 
     --clean         Clean the steward build environment
+
+    --runtest       Run all the unit tests
 
     --doc           Install just the documentation
 
@@ -92,6 +94,7 @@ static,\
 clean,\
 doc,\
 makerepo:,\
+runtest,\
 pkg -- $*)
 
 if [ $? -ne 0 ]; then
@@ -99,8 +102,6 @@ if [ $? -ne 0 ]; then
     usage
     exit 1
 fi
-
-echo "@@@ Temp is $TEMP"
 
 eval set -- "$TEMP"
 
@@ -154,6 +155,10 @@ while [ $1 != -- ]; do
             ;;
         --clean)
             OPT_CLEAN=yes
+            shift
+            ;;
+        --runtest)
+            OPT_RUNTEST=yes
             shift
             ;;
         --pkg)
@@ -246,6 +251,12 @@ fi
 
 if [ -n "$OPT_INSTALL_STEWARD" ]; then
     install_steward
+fi
+
+if [ -n "$OPT_RUNTEST" ]; then
+    cd dispatcher/tests/
+    ./run-all.sh
+    cd ../../
 fi
 
 ##############################
