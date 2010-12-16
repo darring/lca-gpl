@@ -100,6 +100,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "@@@ Temp is $TEMP"
+
 eval set -- "$TEMP"
 
 while [ $1 != -- ]; do

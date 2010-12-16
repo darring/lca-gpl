@@ -100,21 +100,21 @@ if [ -n "$IS_ESX" ] || [ -n "$IS_SLES" ]; then
 else
     # Parse command line.
     TEMP=$(getopt -n "$PROGNAME" --options h \
-    --longoptions base,\
-    install,\
-    bin,\
-    lib,\
-    doc,\
-    tool,\
-    home,\
-    scripts,\
-    comdir,\
-    uid,\
-    gid,\
-    stdlog,\
-    ccmslog,\
-    pidfile,\
-    errlog -- $*)
+--longoptions base,\
+install,\
+bin,\
+lib,\
+doc,\
+tool,\
+home,\
+scripts,\
+comdir,\
+uid,\
+gid,\
+stdlog,\
+ccmslog,\
+pidfile,\
+errlog -- $*)
 
     if [ $? -ne 0 ]; then
         echo "Error while parsing options!"

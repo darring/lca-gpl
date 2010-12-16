@@ -43,6 +43,7 @@ oneTimeTearDown()
 # Test the log file and uid/gid outputs
 testStdlog()
 {
+    export BOOTSTRAP_DIR
     local _test=`${TOOL_DIR}/clientagent-helper.sh --stdlog`
 
     assertEquals "Standard log file error!" \
@@ -51,6 +52,7 @@ testStdlog()
 
 testCCMSlog()
 {
+    export BOOTSTRAP_DIR
     local _test=`${TOOL_DIR}/clientagent-helper.sh --ccmslog`
 
     assertEquals "CCMS log file error!" \
@@ -59,6 +61,7 @@ testCCMSlog()
 
 testErrlog()
 {
+    export BOOTSTRAP_DIR
     local _test=`${TOOL_DIR}/clientagent-helper.sh --errlog`
 
     assertEquals "Error log file error!" \
@@ -67,6 +70,7 @@ testErrlog()
 
 testUID()
 {
+    export BOOTSTRAP_DIR
     local _test=`${TOOL_DIR}/clientagent-helper.sh --uid`
 
     assertEquals "Unexpected install UID!" \
@@ -75,6 +79,7 @@ testUID()
 
 testGID()
 {
+    export BOOTSTRAP_DIR
     local _test=`${TOOL_DIR}/clientagent-helper.sh --gid`
 
     assertEquals "Unexpected install GID!" \
@@ -84,6 +89,7 @@ testGID()
 # Test each of the directory outputs
 testBase()
 {
+    export BOOTSTRAP_DIR
     local base_test=`${TOOL_DIR}/clientagent-helper.sh --base`
 
     assertEquals "Base directory error!" \
@@ -92,6 +98,7 @@ testBase()
 
 testInstall()
 {
+    export BOOTSTRAP_DIR
     local install_test=`${TOOL_DIR}/clientagent-helper.sh --install`
 
     assertEquals "Install directory error!" \
@@ -100,6 +107,7 @@ testInstall()
 
 testBin()
 {
+    export BOOTSTRAP_DIR
     local bin_test=`${TOOL_DIR}/clientagent-helper.sh --bin`
 
     assertEquals "Binary directory error!" \
@@ -108,6 +116,7 @@ testBin()
 
 testLib()
 {
+    export BOOTSTRAP_DIR
     local lib_test=`${TOOL_DIR}/clientagent-helper.sh --lib`
 
     assertEquals "Library directory error!" \
@@ -116,6 +125,7 @@ testLib()
 
 testDoc()
 {
+    export BOOTSTRAP_DIR
     local doc_test=`${TOOL_DIR}/clientagent-helper.sh --doc`
 
     assertEquals "Documentation directory error!" \
@@ -124,6 +134,7 @@ testDoc()
 
 testTool()
 {
+    export BOOTSTRAP_DIR
     local tool_test=`${TOOL_DIR}/clientagent-helper.sh --tool`
 
     assertEquals "Tool directory error!" \
@@ -132,6 +143,7 @@ testTool()
 
 testHome()
 {
+    export BOOTSTRAP_DIR
     local home_test=`${TOOL_DIR}/clientagent-helper.sh --home`
 
     assertEquals "Home directory error!" \
@@ -140,6 +152,7 @@ testHome()
 
 testScripts()
 {
+    export BOOTSTRAP_DIR
     local scripts_test=`${TOOL_DIR}/clientagent-helper.sh --scripts`
 
     assertEquals "Scripts directory error!" \
@@ -148,11 +161,11 @@ testScripts()
 
 testComdir()
 {
+    export BOOTSTRAP_DIR
     local comdir_test=`${TOOL_DIR}/clientagent-helper.sh --comdir`
 
     assertEquals "Command directory error!" \
         "${COMMAND_DIR}" "${comdir_test}"
 }
-
 
 . /usr/share/shunit2/shunit2

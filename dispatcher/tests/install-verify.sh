@@ -31,6 +31,7 @@ oneTimeTearDown()
     export BOOTSTRAP_DIR
     cd ../
     bash install.sh -p
+    rm -fr $BOOTSTRAP_DIR
 
     cd tests/
 }
@@ -64,6 +65,7 @@ testGroupWasAdded()
 # Test that the clientagent-helper script was actually installed and works
 testClienthelperInstall()
 {
+    export BOOTSTRAP_DIR
     local _test=`/usr/bin/clientagent-helper.sh --uid`
 
     assertEquals "Client Agent Helper not in excpected location!" \
