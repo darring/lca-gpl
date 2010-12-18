@@ -159,7 +159,7 @@ CommandIssued StewardService::QueryForClientCommands(
             if (!response.GetCommandToExecuteResult)
                 returnCommand = SUCCESS_NO_COMMAND;
             else {
-                //
+                // Parse *what* our command was
             }
         } else {
             // FIXME - Might be nice to actually parse for specific error
