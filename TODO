@@ -8,3 +8,7 @@
 * Continue work on steward command interpreting
 
 * Once steward is accepting commands, continue work on dispatcher
+
+* Would be nice to re-write the lib_soap bindings to eliminate dependence on
+  WSDL2h and soapcpp tools
+ 
