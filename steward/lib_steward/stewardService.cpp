@@ -162,6 +162,16 @@ CommandIssued StewardService::QueryForClientCommands(
                 returnCommand = SUCCESS_NO_COMMAND;
             else {
                 // Parse *what* our command was
+                if(strcasecmp(
+                    response.GetCommandToExecuteResult->CommandName, "reboot"))
+                {
+                    currentState = STATE_ExecutingCommand;
+                    returnCommand = SUCCESS_REBOOT;
+                } // Other commands go here
+                else
+                {
+                    returnCommand = COMMAND_ERROR;
+                }
             }
         } else {
             // FIXME - Might be nice to actually parse for specific error
@@ -194,16 +204,4 @@ void StewardService::getNewMessageID()
     // urn:uuid:8d1d259a-bd87-4e9a-b28d-02c4bd420fb3
     snprintf(last_MessageID, MAX_MESSAGEID_LEN,
             "urn:uuid:%s", messageID);
-}
-
-void StewardService::lowerConvert(char *str)
-{
-    char *r;
-    for (r = str; *r; r++)
-    {
-        if(*r >= LOWER_CHAR_RANGE && *r <= UPPER_CHAR_RANGE)
-            (*r) = tolower(*r);
-        else
-            (*r) = 0;
-    }
 }

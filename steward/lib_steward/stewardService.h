@@ -51,19 +51,6 @@ class StewardService
          */
         void getNewMessageID();
 
-        //! Convert a string to all lower case
-        /*!
-         * Internal method used to perform in-place conversion of  a string to
-         * all lower case. This method will also NULL any extraneous
-         * non-printable characters from the string.
-         * \note
-         * Note that any non-printable characters found in the middle of the
-         * string will be NULL'ed as well, thus terminating the string where
-         * the new NULL character was inserted.
-         * \param str The string to convert
-         */
-        void lowerConvert(char *str);
-
     public:
         //! Constructor for the Steward service wrapper
         /*!

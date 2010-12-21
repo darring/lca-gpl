@@ -4,7 +4,8 @@
 
 enum ServiceState
 {
-    STATE_None
+    STATE_None,
+    STATE_ExecutingCommand
 };
 
 enum StewardState

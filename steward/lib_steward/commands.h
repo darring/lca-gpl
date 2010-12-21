@@ -10,6 +10,7 @@ enum CommandIssued
     COMMAND_ERROR,
     COMMAND_ERROR_STATE,
     SUCCESS_NO_COMMAND,
+    SUCCESS_REBOOT
     // FIXME 
 };
 
