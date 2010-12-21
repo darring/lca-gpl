@@ -4,7 +4,7 @@
  A basic helper class which wraps the service bindings for the gSOAP interfaces
  */
 
-#include <ctype.h>
+#include <strings.h>
 
 // Nasty gSOAP bindings
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
