@@ -17,6 +17,8 @@ oneTimeSetUp()
     cp -fr steward/ ${TMP_DIR}
     cp -f Globals.mk ${TMP_DIR}
     cp -f VERSION ${TMP_DIR}
+    # If we don't return to the test directory, shunit2 wont be able to
+    # grep this file
     cd dispatcher/tests/
 }
 
