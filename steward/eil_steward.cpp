@@ -124,6 +124,7 @@ int main(int argc, char *argv[])
     char pidOut[256];
 
     ClientAgentHelper agentHelper;
+    CommandIssued issuedStatus;
 
     #ifndef DEBUG
     // Obtain the PID file
@@ -195,7 +196,6 @@ int main(int argc, char *argv[])
     logger.QuickLog("STD i/o closed");
     #endif
 
-    // TODO - Any initialization will go here
     // Set up our steward service
     logger.QuickLog("Initializing service...");
 
@@ -212,16 +212,33 @@ int main(int argc, char *argv[])
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog(hostname);
-        // TODO - Our logic here
 
-        service.QueryForClientCommands(hostname, "1", HOST);
+        issuedStatus = service.QueryForClientCommands(hostname, "1", HOST);
+
+        switch (issuedStatus)
+        {
+            case SUCCESS_REBOOT:
+                logger.QuickLog("Reboot command consumed");
+                // TODO - Reboot logic here
+                break;
+            case COMMAND_ERROR:
+                logger.QuickLog("There was a command error!");
+                // TODO - Deal with error logic
+                break;
+            case COMMAND_ERROR_STATE:
+                // TODO - This shouldn't happen, need to figure out what to do
+                break;
+            default:
+                // SUCCESS_NO_COMMAND
+                // We basically do nothing.
+                break;
+        }
 
         logger.LogEntry("Sleeping for 30 seconds");
         logger.EndLogging();
-        sleep(30); // TODO - Verify that sleep is interrupted on signal catch
+        sleep(30);
     }
 
-    // TODO - depending on signal caught, perform various cleanups
     logger.QuickLog("Signal caught, exit steward...");
     if (S_STATE == S_STATE_Shutdown)
     {
