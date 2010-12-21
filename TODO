@@ -15,3 +15,6 @@
   network and are forced to deal with GPL compliance issues, we then have the
   option of LGPL'ing the stewardService itself and leaving the rest of the
   agent unencumbered.
+
+* Would be nice to re-write the lib_soap bindings to eliminate dependence on
+  WSDL2h and soapcpp tools
