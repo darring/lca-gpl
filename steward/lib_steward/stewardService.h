@@ -25,6 +25,12 @@
 //! The maximum length of the MessageID
 #define MAX_MESSAGEID_LEN 40
 
+//! The lower character range for the convert method
+#define LOWER_CHAR_RANGE 40
+
+//! The upper character range for the convert method
+#define UPPER_CHAR_RANGE 126
+
 class StewardLogger;
 
 class StewardService
@@ -44,6 +50,19 @@ class StewardService
          * \return Null byte terminated message ID
          */
         void getNewMessageID();
+
+        //! Convert a string to all lower case
+        /*!
+         * Internal method used to perform in-place conversion of  a string to
+         * all lower case. This method will also NULL any extraneous
+         * non-printable characters from the string.
+         * \note
+         * Note that any non-printable characters found in the middle of the
+         * string will be NULL'ed as well, thus terminating the string where
+         * the new NULL character was inserted.
+         * \param str The string to convert
+         */
+        void lowerConvert(char *str);
 
     public:
         //! Constructor for the Steward service wrapper

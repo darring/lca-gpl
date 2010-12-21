@@ -4,6 +4,8 @@
  A basic helper class which wraps the service bindings for the gSOAP interfaces
  */
 
+#include <ctype.h>
+
 // Nasty gSOAP bindings
 #include "WSHttpBinding_USCOREIEILClientOperations.nsmap"
 #include "wsaapi.h"
@@ -156,7 +158,7 @@ CommandIssued StewardService::QueryForClientCommands(
         Process the response
         */
         if(op_codes == SOAP_OK) {
-            if (!response.GetCommandToExecuteResult)
+            if (response.GetCommandToExecuteResult == NULL)
                 returnCommand = SUCCESS_NO_COMMAND;
             else {
                 // Parse *what* our command was
@@ -192,4 +194,16 @@ void StewardService::getNewMessageID()
     // urn:uuid:8d1d259a-bd87-4e9a-b28d-02c4bd420fb3
     snprintf(last_MessageID, MAX_MESSAGEID_LEN,
             "urn:uuid:%s", messageID);
+}
+
+void StewardService::lowerConvert(char *str)
+{
+    char *r;
+    for (r = str; *r; r++)
+    {
+        if(*r >= LOWER_CHAR_RANGE && *r <= UPPER_CHAR_RANGE)
+            (*r) = tolower(*r);
+        else
+            (*r) = 0;
+    }
 }
