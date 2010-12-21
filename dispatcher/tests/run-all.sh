@@ -8,6 +8,7 @@
 ALL_TESTS=$(cat <<EOF
 helper-verify.sh
 install-verify.sh
+steward-build-verify.sh
 EOF
 )
 
