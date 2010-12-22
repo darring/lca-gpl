@@ -102,6 +102,9 @@ ubuntu_reboot:reboot
 rhel_reboot:reboot
 suse_reboot:reboot
 centos_reboot:reboot
+xen_reboot:reboot
+esx_reboot:reboot
+esxi_reboot:reboot
 EOF
 )
 

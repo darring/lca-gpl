@@ -72,7 +72,9 @@ while true; do
     COMMANDS=`ls -t $COMMAND_DIR`
     for COMMAND in $COMMANDS;
     do
-        # Process them, if there are any
+        # Get rid of the command pending processing
+        rm -f ${COMMAND_DIR}/${COMMAND}
+
         process_command $COMMAND
     done
 
