@@ -27,6 +27,12 @@ void ClientAgentHelper::Get(
         case CCMSLOG:
             helperCmd = "/usr/bin/clientagent-helper.sh --ccmslog";
             break;
+        case BINDIR:
+            helperCmd = "/usr/bin/clientagent-helper.sh --bin";
+            break;
+        case COMDIR:
+            helperCmd = "/usr/bin/clientagent-helper.sh --comdir";
+            break;
         default:
             // default is PIDFILE
             helperCmd = "/usr/bin/clientagent-helper.sh --pidfile";

@@ -23,6 +23,8 @@ enum ClientAgentOptions
 {
     CCMSLOG,
     PIDFILE,
+    BINDIR,
+    COMDIR,
 };
 
 //! Interface for the client agent helper script

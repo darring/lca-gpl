@@ -123,6 +123,10 @@ int main(int argc, char *argv[])
     char pidFile[256];
     char pidOut[256];
 
+    // The bin and dispatcher related variables
+    char binPath[256];
+    char comPath[256];
+
     ClientAgentHelper agentHelper;
     CommandIssued issuedStatus;
 
@@ -146,6 +150,10 @@ int main(int argc, char *argv[])
 
     // Obtain the CCMS log file
     agentHelper.Get(logFile, 256, CCMSLOG);
+
+    // Obtain the bin directory
+    agentHelper.Get(binPath, 256, BINDIR);
+    agentHelper.Get(comPath, 256, COMDIR);
 
     #ifndef DEBUG
     StewardLogger logger(logFile);
