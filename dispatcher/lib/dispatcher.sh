@@ -5,7 +5,7 @@
 _run_command() {
     # FIXME Do we want to do any error checking here?
     # Currently fire and forget
-    ./${SCRIPTS_DIR}/${PLATFORM_NAME}_${*}
+    ${SCRIPTS_DIR}/${PLATFORM_NAME}_${*}
 }
 
 # This is the general command processor.
@@ -15,7 +15,7 @@ _run_command() {
 # various bit players around the Linux box which ultimately perform
 # those actions we need done (rebooting, domain join/unjoining, etc.)
 process_command() {
-    if [ "$*" == "reboot" ]; then
+    if [ "$*" = "reboot" ]; then
         _run_command "reboot"
     fi
 }
