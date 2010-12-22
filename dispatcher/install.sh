@@ -138,6 +138,9 @@ uninstall_everything() {
     # uninstall the scripts
     rm -f $SCRIPTS_DIR/*
 
+    # purge any un-consumed commands
+    rm -f $COMMAND_DIR/*
+
     # uninstall the bin
     rm -f $BIN_DIR/*
 }
@@ -196,6 +199,9 @@ if [ $# != 0 ] ; then
                 # purge the scripts directory
                 rmdir $SCRIPTS_DIR
 
+                # purge the commands directory
+                rmdir $COMMAND_DIR
+
                 # purge the bin
                 rmdir $BIN_DIR
 
@@ -225,12 +231,14 @@ mkdir -p $DOC_DIR
 mkdir -p $TOOL_DIR
 mkdir -p $HOME_DIR
 mkdir -p $SCRIPTS_DIR
+mkdir -p $COMMAND_DIR
 
 # Set up the users
 add_user_if_not_exist
 
 # Set ownership of the proper directories
 chown ${INSTALL_UID}.${INSTALL_GID} ${HOME_DIR}
+chown ${INSTALL_UID}.${INSTALL_GID} $COMMAND_DIR
 chmod 1777 ${HOME_DIR}
 
 # Install the libs
