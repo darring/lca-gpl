@@ -167,7 +167,8 @@ CCMS_Command StewardService::QueryForClientCommands(
             } else {
                 // Parse *what* our command was
                 if(strcasecmp(
-                    response.GetCommandToExecuteResult->CommandName, "reboot"))
+                    response.GetCommandToExecuteResult->CommandName, "reboot")
+                    == 0)
                 {
                     currentState = STATE_ExecutingCommand;
                     returnCommand.ReturnState = COMMAND_SUCCESS;
@@ -178,7 +179,6 @@ CCMS_Command StewardService::QueryForClientCommands(
                     currentState = STATE_None;
                     returnCommand.ReturnState = COMMAND_ERROR;
                     returnCommand.Command = NO_COMMAND;
-
                 }
             }
         } else {

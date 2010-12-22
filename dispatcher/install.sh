@@ -304,8 +304,8 @@ _setup_source_script() {
     fi
 
     # SETUID/SETGID
-    chmod u+s ${SCRIPTS_DIR}/${2}
-    chmod g+s ${SCRIPTS_DIR}/${2}
+    chmod u+xs ${SCRIPTS_DIR}/${2}
+    chmod g+xs ${SCRIPTS_DIR}/${2}
 }
 for SCRIPT_LINE in $SOURCE_SCRIPTS
 do
