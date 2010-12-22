@@ -286,7 +286,7 @@ done
 # Install the scripts
 # - Start with the source scripts
 _setup_source_script() {
-    cp -fr scripts/${1} ${SCRIPTS_DIR}/.
+    cp -fr scripts/${2} ${SCRIPTS_DIR}/.
     if [ "${1}" = "*.*" ]; then
         # Make it owned by the same owner as client agent dispatcher
         chown ${INSTALL_UID}.${INSTALL_GID} ${SCRIPTS_DIR}/${2}
