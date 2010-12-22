@@ -160,11 +160,11 @@ CCMS_Command StewardService::QueryForClientCommands(
         Process the response
         */
         if(op_codes == SOAP_OK) {
-            if (response.GetCommandToExecuteResult == NULL)
+            if (response.GetCommandToExecuteResult == NULL) {
                 currentState = STATE_None;
                 returnCommand.ReturnState = COMMAND_SUCCESS;
                 returnCommand.Command = NO_COMMAND;
-            else {
+            } else {
                 // Parse *what* our command was
                 if(strcasecmp(
                     response.GetCommandToExecuteResult->CommandName, "reboot"))

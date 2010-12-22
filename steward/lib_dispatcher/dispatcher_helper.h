@@ -32,6 +32,15 @@ class DispatcherHelper
         char *comPath;
         char *dispatcherPath;
         StewardLogger *logger;
+
+        //! Internal method used to actually run the dispatcher
+        /*!
+         * Called after the command directory has been poluated with any and
+         * all data that is needed. This actually executes the dispatcher and
+         * returns a command status.
+         * \returns Command status
+         */
+        Dispatcher_Command_Status runDispatcher();
     public:
         //! Constructor for the abstract interface to the dispatcher
         /*!

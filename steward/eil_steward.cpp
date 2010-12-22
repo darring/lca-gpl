@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
     char comPath[256];
 
     ClientAgentHelper agentHelper;
-    CommandIssued issuedStatus;
+    CCMS_Command issuedCommand;
 
     #ifndef DEBUG
     // Obtain the PID file
@@ -155,7 +155,6 @@ int main(int argc, char *argv[])
     // Obtain the bin directory
     agentHelper.Get(binPath, 256, BINDIR);
     agentHelper.Get(comPath, 256, COMDIR);
-    DispatcherHelper dispatcherHelper(binPath, comPath);
 
     #ifndef DEBUG
     StewardLogger logger(logFile);
@@ -210,6 +209,9 @@ int main(int argc, char *argv[])
     logger.QuickLog("Initializing service...");
 
     StewardService service(&logger);
+
+    // Set up our dispatcher handler
+    DispatcherHelper dispatcher(binPath, comPath, &logger);
 
     // Set up signal handling
     logger.QuickLog("Set up signal handlers...");

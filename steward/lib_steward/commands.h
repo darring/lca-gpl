@@ -16,10 +16,22 @@ enum CCMS_CommandIssued
     REBOOT,
 };
 
+//! The command structure issued from CCMS
 struct CCMS_Command
 {
+    //! The return state
     CCMS_ReturnState ReturnState;
+    //! The actuall command issued
     CCMS_CommandIssued Command;
+};
+
+//! The command status returned from the dispatcher
+struct Dispatcher_Command_Status
+{
+    //! Success or faliure
+    bool Success;
+
+    // NOTE making this a struct now in case we need to grow it down the road
 };
 
 #endif
