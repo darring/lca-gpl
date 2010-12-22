@@ -41,7 +41,7 @@ SCRIPTS_DIR=$INSTALL_DIR/scripts
 # Load our libraries
 . $LIB_DIR/helper.sh
 . $LIB_DIR/globals.sh
-. $LIB_DIR/dispatcer.sh
+. $LIB_DIR/dispatcher.sh
 
 # Set up our temp files and interfaces
 if [ "$TMP_DIR" = "" ]; then
