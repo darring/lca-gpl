@@ -19,6 +19,8 @@
 
 #include <stdio.h>
 
+#include "commands.h"
+
 //! Abstract interface to the dispatcher shell script
 class DispatcherHelper
 {
@@ -34,6 +36,12 @@ class DispatcherHelper
 
         //! Destructor for the abstract interface to the dispatcher
         ~DispatcherHelper();
+
+        //! Actually execute the command
+        /*!
+         * \param commandIssued The CCMS_Command struct containing the command data
+         */
+        void ExecuteCommand(CCMS_Command *commandIssued);
 };
 
 #endif

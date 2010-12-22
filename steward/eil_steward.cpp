@@ -27,7 +27,7 @@
 #define HOSTNAME_LEN 50
 
 //! Debugging toggle- Enable to force not to run as daemon
-//#define DEBUG
+#define DEBUG
 
 // Various helper libraries
 #include "logger.h"
@@ -35,6 +35,7 @@
 #include "machineType.h"
 #include "clientagent_helper.h"
 #include "serviceState.h"
+#include "dispatcher_helper.h"
 
 //! The current steward system state
 static volatile StewardState S_STATE;
@@ -154,6 +155,7 @@ int main(int argc, char *argv[])
     // Obtain the bin directory
     agentHelper.Get(binPath, 256, BINDIR);
     agentHelper.Get(comPath, 256, COMDIR);
+    DispatcherHelper dispatcherHelper(binPath, comPath);
 
     #ifndef DEBUG
     StewardLogger logger(logFile);
@@ -221,14 +223,10 @@ int main(int argc, char *argv[])
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog(hostname);
 
-        issuedStatus = service.QueryForClientCommands(hostname, "1", HOST);
+        issuedCommand = service.QueryForClientCommands(hostname, "1", HOST);
 
-        switch (issuedStatus)
+        switch (issuedCommand.ReturnState)
         {
-            case SUCCESS_REBOOT:
-                logger.QuickLog("Reboot command consumed");
-                // TODO - Reboot logic here
-                break;
             case COMMAND_ERROR:
                 logger.QuickLog("There was a command error!");
                 // TODO - Deal with error logic
@@ -237,8 +235,10 @@ int main(int argc, char *argv[])
                 // TODO - This shouldn't happen, need to figure out what to do
                 break;
             default:
-                // SUCCESS_NO_COMMAND
-                // We basically do nothing.
+                // COMMAND_SUCCESS
+                if(issuedCommand.Command != NO_COMMAND)
+                    dispatcher.ExecuteCommand(&issuedCommand);
+                // If no command, we just pass
                 break;
         }
 

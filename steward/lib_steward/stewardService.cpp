@@ -35,17 +35,19 @@ StewardService::~StewardService()
     soap_done(&soap); // detach environment (last use and no longer in scope)
 }
 
-CommandIssued StewardService::QueryForClientCommands(
+CCMS_Command StewardService::QueryForClientCommands(
             char *hostname,
             char *order_num,
             MachineType mType)
 {
+    // We default to command error, and assume that if we never change it
+    // something went wrong.
+    CCMS_Command returnCommand;
+    returnCommand.ReturnState = COMMAND_ERROR;
+    returnCommand.Command = NO_COMMAND;
+
     if (currentState == STATE_None)
     {
-        // We default to command error, and assume that if we never change it
-        // something went wrong.
-        CommandIssued returnCommand = COMMAND_ERROR;
-
         /*
         First, we need to build up our header, which includes the various
         WS-Addressing bits that are needed by CCMS for routing of commands
@@ -159,36 +161,42 @@ CommandIssued StewardService::QueryForClientCommands(
         */
         if(op_codes == SOAP_OK) {
             if (response.GetCommandToExecuteResult == NULL)
-                returnCommand = SUCCESS_NO_COMMAND;
+                currentState = STATE_None;
+                returnCommand.ReturnState = COMMAND_SUCCESS;
+                returnCommand.Command = NO_COMMAND;
             else {
                 // Parse *what* our command was
                 if(strcasecmp(
                     response.GetCommandToExecuteResult->CommandName, "reboot"))
                 {
                     currentState = STATE_ExecutingCommand;
-                    returnCommand = SUCCESS_REBOOT;
+                    returnCommand.ReturnState = COMMAND_SUCCESS;
+                    returnCommand.Command = REBOOT;
                 } // Other commands go here
                 else
                 {
-                    returnCommand = COMMAND_ERROR;
+                    currentState = STATE_None;
+                    returnCommand.ReturnState = COMMAND_ERROR;
+                    returnCommand.Command = NO_COMMAND;
+
                 }
             }
         } else {
             // FIXME - Might be nice to actually parse for specific error
             // codes, see http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
-            returnCommand = COMMAND_ERROR;
+            currentState = STATE_None;
+            returnCommand.ReturnState = COMMAND_ERROR;
+            returnCommand.Command = NO_COMMAND;
         }
-
         // FIXME Memory clean-up
-
-        return returnCommand;
     }
     else
     {
         // We were in the wrong state to call this method
-        return COMMAND_ERROR_STATE;
+        returnCommand.ReturnState = COMMAND_ERROR_STATE;
+        returnCommand.Command = NO_COMMAND;
     }
-
+    return returnCommand;
 }
 
     /**** Private Methods ****/

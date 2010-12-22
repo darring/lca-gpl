@@ -71,7 +71,7 @@ class StewardService
          * \return Command type (or error if an error occured)
          *
          */
-        CommandIssued QueryForClientCommands(
+        CCMS_Command QueryForClientCommands(
             char *hostname,
             char *order_num,
             MachineType mType);
