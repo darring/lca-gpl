@@ -5,6 +5,7 @@
 _run_command() {
     # FIXME Do we want to do any error checking here?
     # Currently fire and forget
+    echo "RUNNING REBOOT!"
     ./${SCRIPTS_DIR}/${PLATFORM_NAME}_${*}
 }
 
@@ -15,7 +16,7 @@ _run_command() {
 # various bit players around the Linux box which ultimately perform
 # those actions we need done (rebooting, domain join/unjoining, etc.)
 process_command() {
-    if [ "$*" -eq "reboot" ]; then
+    if [ "$*" == "reboot" ]; then
         _run_command "reboot"
     fi
 }

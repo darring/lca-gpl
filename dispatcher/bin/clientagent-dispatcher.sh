@@ -73,7 +73,7 @@ do
     # Get rid of the command pending processing
     rm -f ${COMMAND_DIR}/${COMMAND}
 
-    process_command $COMMAND
+    process_command "$COMMAND"
 done
 
 # vim:set ai et sts=4 sw=4 tw=80:
