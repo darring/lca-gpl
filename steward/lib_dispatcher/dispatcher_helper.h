@@ -17,4 +17,23 @@
 #ifndef dispatcher_helper_H
 #define dispatcher_helper_H
 
+#include <stdio.h>
+
+//! Abstract interface to the dispatcher shell script
+class DispatcherHelper
+{
+    private:
+        FILE *filePipe;
+    public:
+        //! Constructor for the abstract interface to the dispatcher
+        /*!
+         * \param binPath The path to the installed dispatcher binary files
+         * \param comPath The path to the command directory for the dispatcher
+         */
+        DispatcherHelper(char *binPath, char *comPath);
+
+        //! Destructor for the abstract interface to the dispatcher
+        ~DispatcherHelper();
+};
+
 #endif
