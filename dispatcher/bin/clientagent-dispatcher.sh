@@ -66,20 +66,14 @@ if [ ! -d "$COMMAND_DIR" ]; then
     fi
 fi
 
-# Process commands in the command directory, sleep if nothing is there
-while true; do
-    # Get the available commands
-    COMMANDS=`ls -t $COMMAND_DIR`
-    for COMMAND in $COMMANDS;
-    do
-        # Get rid of the command pending processing
-        rm -f ${COMMAND_DIR}/${COMMAND}
+# Get the available commands
+COMMANDS=`ls -t $COMMAND_DIR`
+for COMMAND in $COMMANDS;
+do
+    # Get rid of the command pending processing
+    rm -f ${COMMAND_DIR}/${COMMAND}
 
-        process_command $COMMAND
-    done
-
-    # Sleep for 30 seconds
-    sleep 30
+    process_command $COMMAND
 done
 
 # vim:set ai et sts=4 sw=4 tw=80:
