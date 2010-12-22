@@ -307,7 +307,15 @@ do
 done
 
 # - Now do the linked scripts
-# FIXME TODO
+_setup_script_linking() {
+    ln -s ${SCRIPTS_DIR}/${2} ${SCRIPTS_DIR}/${1}
+}
+for LINKED_SCRIPT_LINE in $LINKED_SCRIPTS
+do
+    LARR=`echo "$LINKED_SCRIPT_LINE" | sed -f dep-cleaner.sed`
+
+    _setup_script_linking ${LARR}
+done
 
 # Set up the rc files
 # FIXME TODO
