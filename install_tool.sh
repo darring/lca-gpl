@@ -236,6 +236,9 @@ fi
 # NOTE: Uninstall before the dispatcher!
 if [ -n "$OPT_UNINSTALL_STEWARD" ]; then
     trace "!!! Uninstalling the steward"
+    # We keep both of these paths around for legacy purposes....
+    # Welcome to the big reason why we should be using native package
+    # management systems instead of rolling our own, folks!
     set -x
     unlink ${I_USRBIN_DIR}/eil_steward
     unlink ${I_BIN_DIR}/eil_steward
