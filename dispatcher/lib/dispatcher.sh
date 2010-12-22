@@ -5,7 +5,6 @@
 _run_command() {
     # FIXME Do we want to do any error checking here?
     # Currently fire and forget
-    echo "RUNNING REBOOT!"
     ./${SCRIPTS_DIR}/${PLATFORM_NAME}_${*}
 }
 
