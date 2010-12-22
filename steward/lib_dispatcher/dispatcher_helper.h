@@ -21,18 +21,26 @@
 
 #include "commands.h"
 
+class StewardLogger;
+
 //! Abstract interface to the dispatcher shell script
 class DispatcherHelper
 {
     private:
         FILE *filePipe;
+        char *binPath;
+        char *comPath;
+        char *dispatcherPath;
+        StewardLogger *logger;
     public:
         //! Constructor for the abstract interface to the dispatcher
         /*!
-         * \param binPath The path to the installed dispatcher binary files
-         * \param comPath The path to the command directory for the dispatcher
+         * \param binaryPath The path to the installed dispatcher binary files
+         * \param commandPath The path to the command directory for the dispatcher
+         * \param myLogger The logger instance associated with this program
          */
-        DispatcherHelper(char *binPath, char *comPath);
+        DispatcherHelper(
+            char *binaryPath, char *commandPath, StewardLogger *myLogger);
 
         //! Destructor for the abstract interface to the dispatcher
         ~DispatcherHelper();

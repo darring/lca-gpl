@@ -7,5 +7,6 @@
 # various bit players around the Linux box which ultimately perform
 # those actions we need done (rebooting, domain join/unjoining, etc.)
 process_command() {
-    #
+    if [ "$*" -eq "reboot" ]; then
+    fi
 }
