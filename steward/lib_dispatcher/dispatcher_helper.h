@@ -27,7 +27,7 @@ class StewardLogger;
 class DispatcherHelper
 {
     private:
-        FILE *filePipe;
+        //FILE *filePipe;
         char *binPath;
         char *comPath;
         char dispatcherPath[512];

@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
     int UID = buf.st_uid;
 
     setuid( UID );
-    system( script );
 
-    return 0;
+    return system( script );
 }

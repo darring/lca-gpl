@@ -18,7 +18,6 @@ DispatcherHelper::DispatcherHelper(char *binaryPath, char *commandPath,  Steward
     logger->QuickLog("DispatcherHelper> Initializing the dispatcher helper");
 
     snprintf(dispatcherPath, 512, "%s/clientagent-dispatcher.sh", binPath);
-    logger->QuickLog(dispatcherPath);
 }
 
 DispatcherHelper::~DispatcherHelper()
@@ -29,6 +28,7 @@ DispatcherHelper::~DispatcherHelper()
 Dispatcher_Command_Status DispatcherHelper::runDispatcher()
 {
     char result[50];
+    FILE *filePipe;
     Dispatcher_Command_Status commandStatus;
 
     if ( !(filePipe = (FILE*)popen(dispatcherPath,"r")) )
@@ -55,6 +55,7 @@ void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
     // It never hurts to have redundancy
     if(commandIssued->ReturnState == COMMAND_SUCCESS)
     {
+        FILE *filePipe;
         switch (commandIssued->Command)
         {
             case REBOOT:
@@ -67,7 +68,7 @@ void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
                     exit(1);
                 }
                 // For reboot, this could be anything
-                fputc(0, filePipe);
+                fputc(102, filePipe);
                 fclose(filePipe);
 
                 runDispatcher();
