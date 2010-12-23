@@ -23,6 +23,7 @@ if [ ! -e "/bin/bash" ] && [ -f "/.emptytgz" ]; then
     if [ -e ".pkg_version" ]; then
         install_dispatcher
         install_steward
+        install_elevate
         # We have a chicken/egg kind of problem here-
         # The dispatcher provides items that the steward requires for install,
         # but the steward must be installed before the init script can be ran
