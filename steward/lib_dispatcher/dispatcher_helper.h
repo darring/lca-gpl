@@ -30,7 +30,7 @@ class DispatcherHelper
         FILE *filePipe;
         char *binPath;
         char *comPath;
-        char *dispatcherPath;
+        char dispatcherPath[512];
         StewardLogger *logger;
 
         //! Internal method used to actually run the dispatcher

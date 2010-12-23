@@ -17,9 +17,8 @@ DispatcherHelper::DispatcherHelper(char *binaryPath, char *commandPath,  Steward
     logger = myLogger;
     logger->QuickLog("DispatcherHelper> Initializing the dispatcher helper");
 
-    char fullDispatcherPath[512]; // This is probably pretty crazy
-    snprintf(fullDispatcherPath, 512, "%s/clientagent-dispatcher.sh", binPath);
-    dispatcherPath = fullDispatcherPath;
+    snprintf(dispatcherPath, 512, "%s/clientagent-dispatcher.sh", binPath);
+    logger->QuickLog(dispatcherPath);
 }
 
 DispatcherHelper::~DispatcherHelper()
