@@ -201,6 +201,10 @@ if [ -n "$OPT_BUILD" ]; then
     make clean
     make
     cd ../
+    cd elevate_script/
+    make clean
+    make
+    cd ../
     set +x
 fi
 
@@ -211,6 +215,10 @@ if [ -n "$OPT_STATIC" ]; then
     make clean
     make static
     cd ../
+    cd elevate_script/
+    make clean
+    make static
+    cd ../
     set +x
 fi
 
@@ -218,6 +226,9 @@ if [ -n "$OPT_CLEAN" ]; then
     trace "!!! Cleaning steward build environment"
     set -x
     cd steward/
+    make clean
+    cd ../
+    cd elevate_script/
     make clean
     cd ../
     set +x
@@ -231,6 +242,7 @@ fi
 # NOTE: Install before the steward!
 if [ -n "$OPT_INSTALL_DISPATCHER" ]; then
     install_dispatcher
+    install_elevate
 fi
 
 # NOTE: Uninstall before the dispatcher!
@@ -275,6 +287,7 @@ if [ -n "$OPT_PKG" ]; then
     trace "!!! Building an installable package"
     setup_env
     install_steward
+    install_elevate
     trace "!!! Bundling up the installer..."
     install -v --mode=754 install_tool.sh ${TMP_ROOT}
     install -v --mode=754 install_tool_esxi.sh ${TMP_ROOT}
@@ -305,6 +318,7 @@ if [ -n "$OPT_INSTALL_PKG" ]; then
     if [ -e ".pkg_version" ]; then
         install_dispatcher
         install_steward
+        install_elevate
         # We have a chicken/egg kind of problem here-
         # The dispatcher provides items that the steward requires for install,
         # but the steward must be installed before the init script can be ran

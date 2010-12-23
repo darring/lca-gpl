@@ -194,6 +194,30 @@ install_steward() {
     set +x
 }
 
+install_elevate() {
+    PREFIX_PATH="${I_INSTALL_DIR}${I_BIN_DIR}"
+    if [ -n "$TMP_ROOT" ]; then
+        PREFIX_PATH="${TMP_ROOT}/elevate_script"
+        mkdir -p ${PREFIX_PATH}
+    fi
+
+    if [ ! -e "elevate_script/elevate_script" ]; then
+        warning "!!! WARNING: The elevate script has not been built, so we will built it with dynamic linking"
+        set -x
+        cd elevate_script/
+        make clean
+        make
+        cd ../
+        set -x
+    fi
+    set -x
+
+    install_replacement "${I_INSTALL_GID}" "root" "4750" \
+        "elevate_script" "elevate_script" "${PREFIX_PATH}"
+
+    set +x
+}
+
 install_dispatcher() {
     trace "!!! Installing the dispatcher"
     cd dispatcher/
