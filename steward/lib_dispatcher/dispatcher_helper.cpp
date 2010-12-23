@@ -20,6 +20,8 @@ DispatcherHelper::DispatcherHelper(char *binaryPath, char *commandPath,  Steward
     char fullDispatcherPath[512]; // This is probably pretty crazy
     snprintf(fullDispatcherPath, 512, "%s/clientagent-dispatcher.sh", binPath);
     dispatcherPath = fullDispatcherPath;
+    logger->QuickLog(dispatcherPath);
+    logger->QuickLog("DispatcherHelper> ping01");
 }
 
 DispatcherHelper::~DispatcherHelper()
