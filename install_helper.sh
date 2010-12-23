@@ -200,7 +200,8 @@ install_elevate() {
         PREFIX_PATH="${TMP_ROOT}/elevate_script"
         mkdir -p ${PREFIX_PATH}
     fi
-
+    trace "!!! Installing the script elevator"
+    check_uid_gid
     if [ ! -e "elevate_script/elevate_script" ]; then
         warning "!!! WARNING: The elevate script has not been built, so we will built it with dynamic linking"
         set -x
