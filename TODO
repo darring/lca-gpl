@@ -18,3 +18,13 @@
 
 * Would be nice to re-write the lib_soap bindings to eliminate dependence on
   WSDL2h and soapcpp tools
+
+* "Escape-hatch" for eil_steward.cpp that writes the PID to a file of the
+  process that is actually executing the CCMS commands. This stems from a
+  conversation with Stewart- the idea here is "what if we eventually need to
+  run multiple, long-running, workloads at once where we'd need to fork the
+  steward itself?" If the steward were to fork, the CCMS logic would get all
+  messed up. So, by putting a PID of the original source PID to a specific
+  file, future forks can check to see if *they* are that PID and the choose
+  whether to even run the CCMS logic based upon whether or not they are the
+  original, source CCMS command steward.
