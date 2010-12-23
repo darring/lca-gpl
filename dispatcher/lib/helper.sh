@@ -75,4 +75,10 @@ elif [ -f "/.emptytgz" ]; then
     IS_ESX=yes
 fi
 
+# Helper functions
+trace() {
+    DATESTAMP=$(date +'%Y-%m-%d %H:%M:%S %Z')
+    echo "${DATESTAMP}${*}" >> ${STANDARD_LOG_FILE}
+}
+
 # vim:set ai et sts=4 sw=4 tw=80:

@@ -66,10 +66,13 @@ if [ ! -d "$COMMAND_DIR" ]; then
     fi
 fi
 
+trace "clientagent-dispatcher called"
+
 # Get the available commands
 COMMANDS=`ls -t $COMMAND_DIR`
 for COMMAND in $COMMANDS;
 do
+    trace "Executing command '${COMMAND}' as UID:${UID} with EUID:${EUID}"
     # Get rid of the command pending processing
     rm -f ${COMMAND_DIR}/${COMMAND}
 

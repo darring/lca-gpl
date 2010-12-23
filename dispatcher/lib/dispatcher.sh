@@ -5,7 +5,7 @@
 _run_command() {
     # FIXME Do we want to do any error checking here?
     # Currently fire and forget
-    ${BIN_DIR}/elevate_script ${SCRIPTS_DIR}/${PLATFORM_NAME}_${*}
+    ${BIN_DIR}/elevate_script ${SCRIPTS_DIR}/${PLATFORM_NAME}_${*} >> ${STANDARD_LOG_FILE} 2>&1
 }
 
 # This is the general command processor.
