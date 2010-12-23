@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
     char *script = argv[1];
 
     // Find the UID
-    struct stat *buf
-    stat(script, buf);
-    int UID buf->st_uid;
+    struct stat buf;
+    lstat(script, &buf);
+    int UID = buf.st_uid;
 
     setuid( UID );
     system( script );
