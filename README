@@ -62,12 +62,25 @@ more native Linux way. The final design requirements were as follows:
               static linking *will* incur GPL/LGPL licensing issues. See
               LICENSE.
 
+            - Due to some complications with the binary on pretty standard
+              systems (SuSE) which *may* be due to ABI compatibility, we may
+              wish to re-evaluate this priority.
+
         * Linux client agent should have custom, cross-distribution installer
             - The staff does not have experience creating and maintaining
               custom packages, so the larger Linux Client Agent package should
               be something that is distribution-agnostic (a single tar-file)
               with an installer. (E.g., something which mimics a more "Windows-
               like" installation.)
+
+            - Suggestions of Zero Install, makeself.sh, etc. were made, however
+              each were considered "too complicated" to learn by the existing
+              team and ultimately the decision to create a custom "simple
+              BASH script" for cross-platform installation was made.
+
+            - It is my recommendation to return to this decision down the road
+              if this cross-distro install script becomes too difficult to
+              maintain.
 
         * Client agent should not use "complex build systems"
             - There was concern over the GNU autotools system, and how

@@ -112,6 +112,10 @@ Linux platforms. For more detail on these archives, see section (6.a).
 3.a) Building a package
 3.b) Making a repository
 3.c) Installing a package using the bootstrap
+
+
+clientagent-bootstrap.sh
+
 3.d) Installing a package manually
 
 4) Manually installing the dispatcher
@@ -121,4 +125,43 @@ Linux platforms. For more detail on these archives, see section (6.a).
 
 6.a) Details of the cross-distribution package
 
-    The
+    The cross-distribution installation package is simply a gzipped tar archive
+containing a number of files expected to be in a specific layout. At present,
+the layout is expected to be as follows:
+        .
+        ./VERSION
+        ./.pkg_version
+        ./install_tool.sh
+        ./install_tool_esxi.sh
+        ./install_helper.sh
+        ./dispatcher
+        ./dispatcher/install-deps.sh
+        ./dispatcher/install.sh
+        ./dispatcher/tools
+        ./dispatcher/tools/....dispatcher tools
+        ....................
+        ./dispatcher/tests
+        ./dispatcher/tests/....unit tests
+        ....................
+        ./dispatcher/lib
+        ./dispatcher/lib/....shell libraries
+        ....................
+        ./dispatcher/bin
+        ./dispatcher/bin/clientagent-dispatcher.sh
+        ./dispatcher/dep-cleaner.sed
+        ./dispatcher/scripts
+        ./dispatcher/scripts/....scripts
+        ....................
+        ./dispatcher/docs
+        ./dispatcher/docs/....documentation
+        ....................
+        ./elevate_script
+        ./elevate_script/elevate_script
+        ./steward
+        ./steward/eil_steward
+
+    The 'install_tool.sh' script is the same install_tool script seen before,
+however, this time it is not intended to be run by hand. Instead, the script
+'clientagent-bootstrap.sh', covered in (3.c) above, will run it.
+
+    'clientagent-bootstrap.sh' 
