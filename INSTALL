@@ -110,6 +110,22 @@ installable set of files which should work across a variety of different
 Linux platforms. For more detail on these archives, see section (6.a).
 
 3.a) Building a package
+
+    A package can be built using the '--pkg' option:
+
+            # install_tool.sh --pkg
+
+    This will create a package in your current working directory, with static
+linked binaries, and name it:
+
+            eil_clientagent-${VERSION}.tar.gz
+
+where ${VERSION} is the current version of the EIL Linux Client Agent (as
+defined in the top-level VERSION file in the repository).
+
+    You can then un-archive this package, and install using the '--pkginstall'
+option on the 'install_tool.sh' script contained inside the archive.
+
 3.b) Making a repository
 3.c) Installing a package using the bootstrap
 
