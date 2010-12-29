@@ -5,12 +5,12 @@
 Table of Contents
 1) Overview
     1.a) How to read this document
-2) Package Installation
-    2.a) Building a package
-    2.b) Making a repository
-    2.c) Installing a package using the bootstrap
-    2.d) Installing a package manually
-3) Using the install tool
+2) Introduction to the install tool
+3) Package Installation
+    3.a) Building a package
+    3.b) Making a repository
+    3.c) Installing a package using the bootstrap
+    3.d) Installing a package manually
 4) Manually installing the dispatcher
 5) Manually building the steward
 
@@ -38,13 +38,19 @@ understanding of Linux and the Linux command line.
 process "under the hood". Think of these sections as a behind the scenes
 explanation of the build and installation system.
 
-2) Package Installation
+2) Introduction to the install tool
 
-2.a) Building a package
-2.b) Making a repository
-2.c) Installing a package using the bootstrap
-2.d) Installing a package manually
+    The highest level interface to the EIL Linux Client agent build/install
+system is the install tool,
 
-3) Using the install tool
+            * install_tool.sh
+
+3) Package Installation
+
+3.a) Building a package
+3.b) Making a repository
+3.c) Installing a package using the bootstrap
+3.d) Installing a package manually
+
 4) Manually installing the dispatcher
 5) Manually building the steward
