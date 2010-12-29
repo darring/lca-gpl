@@ -58,8 +58,8 @@ Where [OPTION] is one of the following
     --pkg           Build an installable package (static linked)
 
     --makerepo      Build installable package and make a repo.
-                    Requires an additional option specifying the IP address
-                    and path we should use for the repo. E.g.:
+                    Requires an additional option specifying the URI
+                    we should use for the repo. E.g.:
                     --makerepo SOMESERVER:/home/pub/releases/.
 
 ------------------------------------------------------------------------------
