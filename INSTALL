@@ -164,4 +164,22 @@ the layout is expected to be as follows:
 however, this time it is not intended to be run by hand. Instead, the script
 'clientagent-bootstrap.sh', covered in (3.c) above, will run it.
 
-    'clientagent-bootstrap.sh' 
+    'clientagent-bootstrap.sh', when it has determined that an update is ready
+(see section (3.c) above) will pull down the updated archive, open it up into
+a temporary directory (created in /tmp by the mktemp command), and then execute
+either the 'install_tool.sh' or 'install_tool_esxi.sh' script depending upon
+whether the system is an ESXi-based system or not.
+
+    The appropriate install tool will be called first to uninstall/purge any
+existing EIL Linux Client Agent on the system:
+
+            # ${INSTALL_TOOL} -r --uninstall
+
+and then, it will be called again to install to the system using the special
+automated '--pkginstall' option:
+
+            # ${INSTALL_TOOL} -r --pkginstall
+
+    '--pkginstall' is an option that is not intended to be called manually. It
+automatically installs the client agent, expecting it to be laid out *exactly*
+as detailed in the archive above.
