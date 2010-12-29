@@ -13,6 +13,8 @@ Table of Contents
     3.d) Installing a package manually
 4) Manually installing the dispatcher
 5) Manually building the steward
+6) Technical details
+    6.a) Details of the cross-distribution package
 
 ------------------------------------------------------------------------------
 
@@ -96,8 +98,16 @@ displayed:
 
     If ran without any options, this usage text will be displayed.
 
+Practically all build/install features and options can be access through this
+install tool.
 
 3) Package Installation
+
+    The most common usage of the install tool is the creation of cross-
+distribution installation packages. Note that these are *NOT* native packages
+for the underlying distribution, rather a single archive containing an
+installable set of files which should work across a variety of different
+Linux platforms. For more detail on these archives, see section (6.a).
 
 3.a) Building a package
 3.b) Making a repository
@@ -106,3 +116,9 @@ displayed:
 
 4) Manually installing the dispatcher
 5) Manually building the steward
+
+6) Technical details
+
+6.a) Details of the cross-distribution package
+
+    The
