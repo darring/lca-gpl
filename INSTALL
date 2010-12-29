@@ -45,6 +45,58 @@ system is the install tool,
 
             * install_tool.sh
 
+if the install tool is run without any options, the following usage text is
+displayed:
+
+    Usage: install_tool.sh [OPTION]
+    Where [OPTION] is one of the following
+
+        --install       Installs the client agent on the system
+                        (building as needed)
+
+        --uninstall     Uninstalls the client agent from the system
+
+        --pkginstall    Install the client agent from a package
+                        (should not be called unless you know what you are doing)
+
+        --instdisp      Installs just the dispatcher on the system
+
+        --inststew      Installs just the steward on the system
+
+        --uninstdisp    Uninstalls the dispatcher
+
+        --uninststew    Uninstalls the steward
+
+        --build         Build the steward (rebuilding if needed)
+
+        --static        Build the steward with static linking (rebuilding if
+                        needed)
+
+        --clean         Clean the steward build environment
+
+        --runtest       Run all the unit tests
+
+        --doc           Install just the documentation
+
+        --pkg           Build an installable package (static linked)
+
+        --makerepo      Build installable package and make a repo.
+                        Requires an additional option specifying the IP address
+                        and path we should use for the repo. E.g.:
+                        --makerepo SOMESERVER:/home/pub/releases/.
+
+    ------------------------------------------------------------------------------
+
+    The following helper options can be added to --pkginstall or --pkg
+
+        -r              The installable package is a release package.
+                        This means that the installable package will be named
+                        generically if called with --pkg and that the output will
+                        go to a log file in /var/log if called with --pkginstall.
+
+    If ran without any options, this usage text will be displayed.
+
+
 3) Package Installation
 
 3.a) Building a package
