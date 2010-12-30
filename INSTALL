@@ -129,10 +129,9 @@ the '--pkg' option:
 
 			# install_tool.sh -r --pkg
 
-    You can then un-archive this package, and install using the '--pkginstall'
-option on the 'install_tool.sh' script contained inside the archive. If you
-created a release, then run '--pkginstall' with the '-r' option.
-
+	The package created by either of these processes can be used in a repository
+(section (3.b)), by the bootstrap tool (3.c), or installed manually (3.d).
+			
 3.b) Making a repository
 
 	The install tool can be used to create a repository suitable for use with
@@ -201,6 +200,11 @@ server IP addresses ever change (or new ones need to be added) this is where
 the edit must occur.
 
 3.d) Installing a package manually
+
+    You can then un-archive this package, and install using the '--pkginstall'
+option on the 'install_tool.sh' script contained inside the archive. If you
+created a release, then run '--pkginstall' with the '-r' option.
+
 
 4) Manually installing the dispatcher
 5) Manually building the steward
