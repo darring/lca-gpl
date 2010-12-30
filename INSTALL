@@ -136,7 +136,24 @@ created a release, then run '--pkginstall' with the '-r' option.
 3.b) Making a repository
 
 	The install tool can be used to create a repository suitable for use with
-the client agent bootstrap tool (see section (3.c) below).
+the client agent bootstrap tool (see section (3.c) below). The option to make
+a repository is '--makerepo', and requires an additional parameter of a URI
+specially formatted to work with the 'scp' command (see 'man scp' for more
+information). scp can be used to copy the resulting repository over SSH to
+another server (preferred) or to a locally mounted filesystem.
+
+	* Making a repository over an SSH connection onto another server:
+
+			# install_tool.sh --makerepo pilot:/path/to/repo/.
+			
+	* Making a repository in a locally mounted filesystem:
+	
+			# install_tool.sh --makerepo /local/path/to/repo/.
+			
+	When called with '--makerepo', the install tool currently assumes that the
+resultant binary is to be linked staticly, and that the package is to be set as
+a release (not a named version). Thus, it cleans/rebuilds the binaries, and
+bundles up a freshly built package.
 
 3.c) Installing a package using the bootstrap
 
