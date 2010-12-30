@@ -218,8 +218,23 @@ here as well.
 		# ./install_tool.sh --pkginstall
 
 4) Manually installing the dispatcher
+
 4.a) Using the install tool
+
+	The dispatcher can be installed using the 'install_tool.sh' script with
+the '--instdisp' option. This simply wraps the manual process detailed in (4.b)
+inside the 'install_tool.sh' script.
+
+		# install_tool.sh --instdisp
+		
+	An installed dispatcher can be uninstalled using the install tool with the
+'--uninstdisp' option. This wraps the 'purge' option detailed in (4.b).
+
+		# install_tool.sh --uninstdisp
+	
 4.b) Using the dispatcher installer
+
+	
 
 5) Manually building the steward
 
