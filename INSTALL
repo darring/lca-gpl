@@ -201,10 +201,19 @@ the edit must occur.
 
 3.d) Installing a package manually
 
-    You can then un-archive this package, and install using the '--pkginstall'
-option on the 'install_tool.sh' script contained inside the archive. If you
-created a release, then run '--pkginstall' with the '-r' option.
+	A package is just a gzipped tar archive containing the files for the Linux
+client agent in a very specific layout. Inside the root directory of the archive
+can be found the 'install_root.sh' script, which can be used to install the
+client agent from the package archive.
 
+	To install manually from a package, simply un-archive the package, and run
+the install tool using the '--pkginstall' option. If the package was created
+using the '-r' option (as a 'release') then you will want to pass that option
+here as well.
+
+		# tar xvfz eil_clientagent-${VERSION}.tar.gz
+		# cd eil_clientagent-${VERSION}/
+		# ./install_tool.sh --pkginstall
 
 4) Manually installing the dispatcher
 5) Manually building the steward
