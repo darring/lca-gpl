@@ -12,6 +12,8 @@ Table of Contents
     3.c) Installing a package using the bootstrap
     3.d) Installing a package manually
 4) Manually installing the dispatcher
+	4.a) Using the install tool
+	4.b) Using the dispatcher installer
 5) Manually building the steward
 6) Technical details
     6.a) Details of the cross-distribution package
@@ -216,6 +218,9 @@ here as well.
 		# ./install_tool.sh --pkginstall
 
 4) Manually installing the dispatcher
+4.a) Using the install tool
+4.b) Using the dispatcher installer
+
 5) Manually building the steward
 
 6) Technical details
