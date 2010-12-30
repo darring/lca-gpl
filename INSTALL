@@ -43,7 +43,7 @@ explanation of the build and installation system.
 2) Introduction to the install tool
 
     The highest level interface to the EIL Linux Client agent build/install
-system is the install tool,
+system is the install tool, which must be run as root,
 
             * install_tool.sh
 
