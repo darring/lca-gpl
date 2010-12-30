@@ -157,8 +157,48 @@ bundles up a freshly built package.
 
 3.c) Installing a package using the bootstrap
 
+	Inside the dispatcher tools directory you will find the client agent
+bootstrap tool, 'clientagent-bootstrap.sh'. This tool is used to bootstrap an
+EIL Linux Client Agent onto a running Linux system either upgrading from a
+previous install or installing from scratch. It can be run manually to force
+an install/upgrade, or it can be run automatically from the update checker tool
+(which is run from a cron job) or fired from a request from the dispatcher
+itself.
 
-clientagent-bootstrap.sh
+	Inside the script, you will find the following toggles:
+
+		# Uncomment whichever of the following is correct for this install
+		IS_STAGING=yes
+		#IS_RELEASE=yes
+		
+At any given time, one and *ONLY* one of these two toggles should be enabled. If
+'IS_STAGING' is set to 'yes', then the bootstrap tool checks the currently set
+staging server for updates. If 'IS_RELEASE' is set to 'yes', then the bootstrap
+tool checks the currently set release server for updates. As the client agent
+is being developed, it is important to keep a staging server active for testing
+the EIL Linux Client Agent before release, and this toggle allows for easy
+switching between staging and release.
+
+	It is considered best practice to keep 'IS_STAGING' set to 'yes' and
+'IS_RELEASE' commented out in the main repository and only toggle them upon
+official releases.
+
+	Above these toggles, you will find the following settings:
+	
+		# EIL IP configs
+		EIL_AUTO="172.16.3.10"
+		EIL_RELEASE="172.16.3.10"
+		EIL_STAGING="10.4.0.26"
+
+These specifically define the various IP addresses used by the client agent
+globally.
+
+	During the bootstrap process, the 'clientagent-bootstrap.sh' script will
+append the above IP addresses to the '/etc/hosts' file (depending upon the
+'IS_RELEASE'/'IS_STAGING' toggle setting) for use globally with the entire
+Linux client agent (steward, dispatcher, tests, scripts, and tools). If these
+server IP addresses ever change (or new ones need to be added) this is where
+the edit must occur.
 
 3.d) Installing a package manually
 
