@@ -17,7 +17,7 @@ Table of Contents
 5) Manually building the steward
 6) Technical details
     6.a) Details of the cross-distribution package
-
+	6.b) Dispatcher install details
 ------------------------------------------------------------------------------
 
 1) Overview
@@ -234,7 +234,18 @@ inside the 'install_tool.sh' script.
 	
 4.b) Using the dispatcher installer
 
-	
+	Inside the dispatcher directory you will find an install script and several
+helper files for this install script:
+
+		* 'install.sh' - The install script for the dispatcher
+		* 'install-deps.sh' - Dependency information for the install script
+		* 'dep-cleaner.sed' - sed script used by the install script
+		
+	To install the dispatcher manually, simply run the 'install.sh' script
+without any arguments. To uninstall the dispatcher, run the 'install.sh' script
+with the '-p' purge option.
+
+	For more information on the 'install-deps.sh' file, see section (6.b).
 
 5) Manually building the steward
 
@@ -300,3 +311,5 @@ automated '--pkginstall' option:
     '--pkginstall' is an option that is not intended to be called manually. It
 automatically installs the client agent, expecting it to be laid out *exactly*
 as detailed in the archive above.
+
+6.b) Dispatcher install details
