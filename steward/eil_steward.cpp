@@ -217,6 +217,12 @@ int main(int argc, char *argv[])
     logger.QuickLog("Set up signal handlers...");
     setupSignalHandlers();
 
+    /* Sanity checks */
+    // Check that hostname isn't localhost
+    if (strncmp(hostname, "localhost", 9) == 0) {
+        logger.QuickLog("Hostname is set to 'localhost', which is
+    }
+
     S_STATE = S_STATE_Running;
 
     // Main loop
