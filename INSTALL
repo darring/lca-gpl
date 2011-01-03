@@ -428,3 +428,37 @@ over these scripts, what they do, and how to extend them.
             This is the master list of the scripts to install on the system.
             These are the scripts that do the actual work for the dispatcher,
             and should be installed with specific user and group IDs.
+
+            The format of this variable is as follows
+                uid.gid:script_name
+
+            where:
+                uid is the User ID
+                gid is the Group ID
+                script_name is the name of the script
+
+    * dep-cleaner.sed
+
+        This is a very simple sed script which is used to break down the
+        variables used in the install-deps.sh file for consumption by
+        install.sh. It was introduced in Hg changeset 285 (ID effe1f6d8fd7) to
+        solve compatibility problems on ESXi.
+
+        Previously, an array BASHism (http://tldp.org/LDP/abs/html/arrays.html)
+        combined with the command-line utility 'tr' (see 'man tr') had been used
+        to split up the above dependencies defined in 'install-deps.sh'.
+
+        However, neither the array BASHism nor the 'tr' command were supported
+        in the version of BusyBox utilized in ESXi (though later versions of
+        BusyBox supported both). This caused a certain degree of difficulty in
+        that this functionality was needed (we did need a simple way to store
+        the dependency information) but there did not seem a simple way to
+        actually engineer it such that ESXi would support it.
+
+        After some effort, it was determined that the limitted 'sed' command
+        available on ESXi combined with some slight function trickery could
+        reproduce the same effect, but *only* if we stored the tiny sed script
+        in an external file (due to the fact that we had to insert a new-line
+        and different implimentations of sed handle this differently).
+
+        So there is our very long explanation for a very tiny file.
