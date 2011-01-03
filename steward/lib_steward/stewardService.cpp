@@ -182,8 +182,8 @@ CCMS_Command StewardService::QueryForClientCommands(
                 }
             }
         } else {
-            // FIXME - Might be nice to actually parse for specific error
-            // codes, see http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
+            // These codes are defined here:
+            // http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
 
             // Our default error state, should we not find anything else
             currentState = STATE_None;
