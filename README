@@ -171,9 +171,15 @@ following:
             - Unit testing framework for the client agent (requires shunit2,
               http://code.google.com/p/shunit2/).
 
-        * *** FIXME UPGRADE ***
-
-        *** FIXME MORE DETAILS ***
+        * clientagent-bootstrap.sh
+			- The clientagent-bootstrap.sh script handles the basic bootstrap
+			  install/upgrade process of the client agent itself. For more
+			  information see section (6.a) of the INSTALL file.
+			  
+		* update-checker.sh
+			- The update-checker.sh script is intended to be run from a cron
+			  job periodically to check for updates the client agent. See
+			  section (6.a) of the INSTALL file for more information.
 
 3) Documentation
 
