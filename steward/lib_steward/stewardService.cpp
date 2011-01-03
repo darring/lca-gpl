@@ -284,6 +284,45 @@ CCMS_Command StewardService::QueryForClientCommands(
                 case SOAP_DIME_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_DIME_ERROR 'DIME parsing error'");
                     break;
+                case SOAP_DIME_END:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_END 'End of DIME attachments protocol error'");
+                    break;
+                case SOAP_DIME_HREF:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_HREF 'DIME attachment has no href from SOAP body'");
+                    break;
+                case SOAP_DIME_MISMATCH:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_MISMATCH 'DIME version/transmission error'");
+                    break;
+                case SOAP_VERSIONMISMATCH:
+                    logger->QuickLog("StewardService> ERROR! SOAP_VERSIONMISMATCH 'SOAP version mismatch or no SOAP message'");
+                    break;
+                case SOAP_DATAENCODINGUNKNOWN:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DATAENCODINGUNKNOWN 'SOAP 1.2 DataEncodingUnknown fault'");
+                    break;
+                case SOAP_REQUIRED:
+                    logger->QuickLog("StewardService> ERROR! SOAP_REQUIRED 'Attributed required validation error'");
+                    break;
+                case SOAP_PROHIBITED:
+                    logger->QuickLog("StewardService> ERROR! SOAP_PROHIBITED 'Attributed prohibited validation error'");
+                    break;
+                case SOAP_OCCURS:
+                    logger->QuickLog("StewardService> ERROR! SOAP_OCCURS 'Element minOccurs/maxOccurs validation error'");
+                    break;
+                case SOAP_LENGTH:
+                    logger->QuickLog("StewardService> ERROR! SOAP_LENGTH 'Element length validation error'");
+                    break;
+                case SOAP_FD_EXCEEDED:
+                    logger->QuickLog("StewardService> ERROR! SOAP_FD_EXCEEDED 'Too many open sockets'");
+                    break;
+                case SOAP_EOF:
+                    logger->QuickLog("StewardService> ERROR! SOAP_EOF 'Unexpected end of file, no input, or timeout while receiving data'");
+                    break;
+                case SOAP_ERR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_ERR 'General internal error'");
+                    break;
+                default:
+                    logger->QuickLog("StewardService> ERROR! Undefined gSOAP error!");
+                    break;
             }
         }
         // FIXME Memory clean-up
