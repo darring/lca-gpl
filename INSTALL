@@ -251,8 +251,54 @@ with the '-p' purge option.
 
 5) Manually building the steward
 
+    One thing that is worth mentioning here is that when we say 'build the
+steward', we really mean 'build the steward *and* the elevate_script'. Both of
+these are C/C++ applications and must be built using the same process, so they
+tend to be bundled together.
+
+    When you use the install tool to build the steward, both applications are
+built automatically. When you manually build using the makefiles, however, you
+have the option of building them together or apart.
+
 5.a) Using the install tool
+
+    The install tool wraps the makefiles used to build the steward with a
+number of easy to use options.
+
+        * '--build' - This option builds the steward with the default settings.
+        Currently, the default setting is to build the steward dynamically.
+
+        * '--static' - This option builds the steward and elevate_script
+        staticly.
+
+        * '--clean' - This option cleans the steward and elevate_script's
+        build environments.
+
 5.b) Using the makefiles
+
+    Both the steward and elevate_script can be built by hand using the makefiles
+in their respective directories.
+
+    Changing into the respective directories, you can build each of the binaries
+in a variety of ways based upon the definitions in their makefiles. If you are
+comfortable reading makefiles, then you can open them up in a standard text
+editor and see the rules for yourself. For more information on GNU makefiles,
+see http://www.gnu.org/software/make/manual/make.html
+
+    The default rule (when 'make' is ran with no options) is to build the
+binary dynamically. But make can be run with a number of other options:
+
+        # make clean
+            This cleans the build environment
+
+        # make static
+            This builds a static binary
+
+    A typical build process for the steward would likely be the following:
+
+        # cd steward/
+        # make clean
+        # make static
 
 6) Technical details
 
@@ -318,3 +364,101 @@ automatically installs the client agent, expecting it to be laid out *exactly*
 as detailed in the archive above.
 
 6.b) Dispatcher install details
+
+    The dispatcher install process involves several scripts. We will now go
+over these scripts, what they do, and how to extend them.
+
+    * install.sh
+
+        This is the main install script for the dispatcher. As part of the
+        design requirements (see README) it *must* be compatible with as many
+        shells as possible (BASH, ASH, DASH, etc). If you check the hashbang at
+        the top of the file, you will see:
+            #!/usr/bin/env sh
+
+        this is to ensure that the script will be runnable on as many shells as
+        possible. Care must be given that any modifications made to this script
+        (and others it uses) are done such that they will run on all shells we
+        desire. For a list of compatibility, see this URL:
+            http://en.wikipedia.org/wiki/Comparison_of_computer_shells
+
+    * install-deps.sh
+
+        This helper script is not intended to be run by itself. Instead, it is
+        to be sourced by the install.sh script and the definitions it contains
+        to be utilized by said script.
+
+        If you open this script up in a text editor, you should see that it is
+        very well documented, and each variable is described in detail. In this
+        document we will only cover a few specific variables which need to be
+        explained in more detail.
+
+        * $LINKED_TOOLS
+
+            This variable describes the linkages between the tools defined
+            previously in $ALL_TOOLS and locally installed/linked versions.
+
+            The format, as described in the comments, is
+                scriptname:/path/to/link:cp-options
+
+            where:
+                scriptname is the name of the script (same as in $ALL_TOOLS)
+                /path/to/link is the absolute path on the filesystem to the
+                    resultant link (note- do not include the final filename)
+                cp-options are the options to pass to 'cp' (see 'man cp' for
+                    more information)
+
+            Let's look at a couple of examples to understand how to better
+            utilize this:
+
+                * clientagent-helper.sh:/usr/bin:-lf
+                Here, the tool is 'clientagent-helper.sh', and it is to be
+                linked to '/usr/bin/clientagent-helper.sh' using the cp options
+                '-lf' (which respectively are 'link' and 'force').
+
+                * eil_steward.sh:/etc/init.d:-f
+                Here, the tool is 'eil_steward.sh', and it is to be copied to
+                '/etc/init.d/eil_steward.sh' using the cp otpion '-f' (which
+                is 'force'). This differs from above because we are copying
+                the file instead of linking. We do this because on most Linux
+                distributions init.d scripts cannot be linked outside of /etc.
+
+        * $SOURCE_SCRIPTS
+
+            This is the master list of the scripts to install on the system.
+            These are the scripts that do the actual work for the dispatcher,
+            and should be installed with specific user and group IDs.
+
+            The format of this variable is as follows
+                uid.gid:script_name
+
+            where:
+                uid is the User ID
+                gid is the Group ID
+                script_name is the name of the script
+
+    * dep-cleaner.sed
+
+        This is a very simple sed script which is used to break down the
+        variables used in the install-deps.sh file for consumption by
+        install.sh. It was introduced in Hg changeset 285 (ID effe1f6d8fd7) to
+        solve compatibility problems on ESXi.
+
+        Previously, an array BASHism (http://tldp.org/LDP/abs/html/arrays.html)
+        combined with the command-line utility 'tr' (see 'man tr') had been used
+        to split up the above dependencies defined in 'install-deps.sh'.
+
+        However, neither the array BASHism nor the 'tr' command were supported
+        in the version of BusyBox utilized in ESXi (though later versions of
+        BusyBox supported both). This caused a certain degree of difficulty in
+        that this functionality was needed (we did need a simple way to store
+        the dependency information) but there did not seem a simple way to
+        actually engineer it such that ESXi would support it.
+
+        After some effort, it was determined that the limitted 'sed' command
+        available on ESXi combined with some slight function trickery could
+        reproduce the same effect, but *only* if we stored the tiny sed script
+        in an external file (due to the fact that we had to insert a new-line
+        and different implimentations of sed handle this differently).
+
+        So there is our very long explanation for a very tiny file.
