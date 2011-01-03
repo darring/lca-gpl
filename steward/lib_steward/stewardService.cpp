@@ -251,6 +251,39 @@ CCMS_Command StewardService::QueryForClientCommands(
                 case SOAP_MISSING_ID:
                     logger->QuickLog("StewardService> ERROR! SOAP_DUPLICATE_ID 'Element ID missing for an href/ref (SOAP encoding)'");
                     break;
+                case SOAP_HREF:
+                    logger->QuickLog("StewardService> ERROR! SOAP_HREF 'Reference to object is incompatible with the object refered to'");
+                    break;
+                case SOAP_UDP_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_UDP_ERROR 'Message too large to store in UDP packet'");
+                    break;
+                case SOAP_TCP_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_TCP_ERROR 'A connection error occured'");
+                    break;
+                case SOAP_HTTP_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_HTTP_ERROR 'An HTTP error occured'");
+                    break;
+                case SOAP_SSL_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_SSL_ERROR 'An SSL error occured'");
+                    break;
+                case SOAP_ZLIB_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_ZLIB_ERROR 'A Zlib error occured'");
+                    break;
+                case SOAP_PLUGIN_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_PLUGIN_ERROR 'Failed to register plugin'");
+                    break;
+                case SOAP_MIME_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_MIME_ERROR 'MIME parsing error'");
+                    break;
+                case SOAP_MIME_HREF:
+                    logger->QuickLog("StewardService> ERROR! SOAP_MIME_HREF 'MIME attachment has no href from SOAP body error'");
+                    break;
+                case SOAP_MIME_END:
+                    logger->QuickLog("StewardService> ERROR! SOAP_MIME_END 'End of MIME attachments protocol error'");
+                    break;
+                case SOAP_DIME_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_ERROR 'DIME parsing error'");
+                    break;
             }
         }
         // FIXME Memory clean-up
