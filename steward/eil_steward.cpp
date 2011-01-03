@@ -23,6 +23,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <signal.h>
+#include <strings.h>
 
 #define HOSTNAME_LEN 50
 
@@ -221,7 +222,7 @@ int main(int argc, char *argv[])
 
     /* Sanity checks */
     // Check that hostname isn't localhost
-    if (strncmp(hostname, "localhost", 9) == 0) {
+    if (strncasecmp(hostname, "localhost", 9) == 0) {
         logger.QuickLog("Hostname is set to 'localhost', which is not a unique identifier");
         logger.QuickLog("Please set hostname properly and restart the steward");
         S_STATE = S_STATE_Shutdown;
