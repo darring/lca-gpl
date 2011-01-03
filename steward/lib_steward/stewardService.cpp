@@ -317,9 +317,6 @@ CCMS_Command StewardService::QueryForClientCommands(
                 case SOAP_EOF:
                     logger->QuickLog("StewardService> ERROR! SOAP_EOF 'Unexpected end of file, no input, or timeout while receiving data'");
                     break;
-                case SOAP_ERR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_ERR 'General internal error'");
-                    break;
                 default:
                     logger->QuickLog("StewardService> ERROR! Undefined gSOAP error!");
                     break;
