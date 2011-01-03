@@ -8,6 +8,7 @@ Table of Contents
     1.b) Linux Client Agent Re-Write Requirements
 2) Linux Client Agent
     2.a) Steward
+		2.a.1) The script permission elevator
     2.b) Dispatcher
         2.b.1) Client helper tools
 3) Documentation
@@ -90,6 +91,11 @@ more native Linux way. The final design requirements were as follows:
 
             - Only GNU make and simple Makefiles along with basic BASH shell
               scripts are to be used in the project.
+			  
+		* Client agent should monitor network and restart interface if CCMS (or
+		  other server) is unreachable.
+			- Unsure how to handle the situation where we have multiple
+			  interfaces.
 
         * Client agent must interact with current .NET-based CCMS
             - Current .NET-based CCMS runs WCF (Windows Communication
@@ -138,13 +144,32 @@ dispatcher.
            an undefined state (for example, the log might not be flushed, any
            soap interactions may not be properly closed, etc.)
 
+2.a.1) The script permission elevator
+
+	Due to security risks, the setuid bit is ignored on modern Linux
+distributions when set on shell scripts. This is a problem for us as we need our
+scripts to run with elevated permissions.
+
+	The issue is explained here:
+		http://www.faqs.org/faqs/unix-faq/faq/part4/section-7.html
+		
+	We do not want to disable this security feature generally as it helps keep
+our Linux systems safe, however, we do need a way to elevate the privileges of
+our scripts as needed.
+
+	The script elevator is our secure solution to this problem. It is a tiny
+binary which, when called, will elevate a script it is passed as an argument
+to whatever it is setuid as *provided* that the calling GID is a the same as the
+owner GID of the script.
+
+	This is not a perfect solution from a security standpoint, but it is
+sufficient for our needs.
+
 2.b) Dispatcher
 
     The dispatcher is the BASH component of the agent which handles the
 distribution-dependent functionality of the client agent. It is a wrapper
 around a suite of scripts which execute various commands for the Steward.
-
-    *** FIXME DETAILS ***
 
 2.b.1) Client helper tools
 
@@ -168,9 +193,15 @@ following:
             - Unit testing framework for the client agent (requires shunit2,
               http://code.google.com/p/shunit2/).
 
-        * *** FIXME UPGRADE ***
-
-        *** FIXME MORE DETAILS ***
+        * clientagent-bootstrap.sh
+			- The clientagent-bootstrap.sh script handles the basic bootstrap
+			  install/upgrade process of the client agent itself. For more
+			  information see section (6.a) of the INSTALL file.
+			  
+		* update-checker.sh
+			- The update-checker.sh script is intended to be run from a cron
+			  job periodically to check for updates the client agent. See
+			  section (6.a) of the INSTALL file for more information.
 
 3) Documentation
 
