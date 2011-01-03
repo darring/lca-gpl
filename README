@@ -122,8 +122,10 @@ interacts with CCMS. It runs as a daemon.
 queued commands. If a command exists, it will hand that command over to the
 Dispatcher.
 
-    The Steward should intercept standard Linux signals
-    *** FIXME DETAILS ***
+    The Steward intercepts the following standard Linux signals:
+
+        * SIGHUP - Changes the state of the steward to 'shutdown'. In this
+           state, the steward will attempt to shut
 
 2.b) Dispatcher
 
