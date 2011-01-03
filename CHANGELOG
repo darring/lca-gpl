@@ -13,3 +13,8 @@
 - Change hard BASH requirements to generalized /bin/sh requirements in scripts
   where this is acceptable (again, due to ESXi limitations). One exception is
   install_tool.sh where we now need a second, custom ESXi install_tool.
+
+* Mon Jan 3 2011 - Sam Hart <samx.hart@intel.com>
+- Wrap up quite a bit of Gnits documentation.
+- Add check for localhost
+- Flesh out the reboot functionality
