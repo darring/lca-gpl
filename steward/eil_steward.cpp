@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
     /* Sanity checks */
     // Check that hostname isn't localhost
     if (strncmp(hostname, "localhost", 9) == 0) {
-        logger.QuickLog("Hostname is set to 'localhost', which is
+        logger.QuickLog("Hostname is set to 'localhost', which is not a unique hostname..");
     }
 
     S_STATE = S_STATE_Running;
