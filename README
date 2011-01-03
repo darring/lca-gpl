@@ -149,8 +149,6 @@ dispatcher.
 distribution-dependent functionality of the client agent. It is a wrapper
 around a suite of scripts which execute various commands for the Steward.
 
-    *** FIXME DETAILS ***
-
 2.b.1) Client helper tools
 
     In addition to command handling, the Dispatcher also provides helper tools
