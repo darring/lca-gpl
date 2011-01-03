@@ -8,6 +8,7 @@ Table of Contents
     1.b) Linux Client Agent Re-Write Requirements
 2) Linux Client Agent
     2.a) Steward
+		2.a.1) The script permission elevator
     2.b) Dispatcher
         2.b.1) Client helper tools
 3) Documentation
@@ -142,6 +143,27 @@ dispatcher.
            in extreme circumstances as it may leave elements of the steward in
            an undefined state (for example, the log might not be flushed, any
            soap interactions may not be properly closed, etc.)
+
+2.a.1) The script permission elevator
+
+	Due to security risks, the setuid bit is ignored on modern Linux
+distributions when set on shell scripts. This is a problem for us as we need our
+scripts to run with elevated permissions.
+
+	The issue is explained here:
+		http://www.faqs.org/faqs/unix-faq/faq/part4/section-7.html
+		
+	We do not want to disable this security feature generally as it helps keep
+our Linux systems safe, however, we do need a way to elevate the privileges of
+our scripts as needed.
+
+	The script elevator is our secure solution to this problem. It is a tiny
+binary which, when called, will elevate a script it is passed as an argument
+to whatever it is setuid as *provided* that the calling GID is a the same as the
+owner GID of the script.
+
+	This is not a perfect solution from a security standpoint, but it is
+sufficient for our needs.
 
 2.b) Dispatcher
 
