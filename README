@@ -90,6 +90,11 @@ more native Linux way. The final design requirements were as follows:
 
             - Only GNU make and simple Makefiles along with basic BASH shell
               scripts are to be used in the project.
+			  
+		* Client agent should monitor network and restart interface if CCMS (or
+		  other server) is unreachable.
+			- Unsure how to handle the situation where we have multiple
+			  interfaces.
 
         * Client agent must interact with current .NET-based CCMS
             - Current .NET-based CCMS runs WCF (Windows Communication
