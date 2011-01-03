@@ -184,9 +184,44 @@ CCMS_Command StewardService::QueryForClientCommands(
         } else {
             // FIXME - Might be nice to actually parse for specific error
             // codes, see http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
+
+            // Our default error state, should we not find anything else
             currentState = STATE_None;
             returnCommand.ReturnState = COMMAND_ERROR;
             returnCommand.Command = NO_COMMAND;
+            switch (op_codes)
+            {
+                case SOAP_CLI_FAULT:
+                    logger->QuickLog("StewardService> ERROR! SOAP_CLI_FAULT 'The service returned a client fault (SOAP 1.2 Sender fault)'");
+                    break;
+                case SOAP_SVR_FAULT:
+                    logger->QuickLog("StewardService> ERROR! SOAP_SVR_FAULT 'The service returned a server fault (SOAP 1.2 Receiver fault)'");
+                    break;
+                case SOAP_TAG_MISMATCH:
+                    logger->QuickLog("StewardService> ERROR! SOAP_TAG_MISMATCH 'An XML element didn't correspond to anything expected'");
+                    break;
+                case SOAP_TYPE:
+                    logger->QuickLog("StewardService> ERROR! SOAP_TYPE 'XML Schema type mismatch'");
+                    break;
+                case SOAP_SYNTAX_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_SYNTAX_ERROR 'An XML syntax error occurred on the input'");
+                    break;
+                case SOAP_NO_TAG:
+                    logger->QuickLog("StewardService> ERROR! SOAP_NO_TAG 'Begin of an element expected, but not found'");
+                    break;
+                case SOAP_IOB:
+                    logger->QuickLog("StewardService> ERROR! SOAP_IOB 'Array index out of bounds'");
+                    break;
+                case SOAP_MUSTUNDERSTAND:
+                    logger->QuickLog("StewardService> ERROR! SOAP_MUSTUNDERSTAND 'An element needs to be ignored that need to be understood'");
+                    break;
+                case SOAP_NAMESPACE:
+                    logger->QuickLog("StewardService> ERROR! SOAP_NAMESPACE 'Namespace name mismatch (validation error)'");
+                    break;
+                case SOAP_FATAL_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_FATAL_ERROR 'Internal error'");
+                    break;
+            }
         }
         // FIXME Memory clean-up
     }
