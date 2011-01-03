@@ -251,7 +251,22 @@ with the '-p' purge option.
 
 5) Manually building the steward
 
+    One thing that is worth mentioning here is that when we say 'build the
+steward', we really mean 'build the steward *and* the elevate_script'. Both of
+these are C/C++ applications and must be built using the same process, so they
+tend to be bundled together.
+
+    When you use the install tool to build the steward, both applications are
+built automatically. When you manually build using the makefiles, however, you
+have the option of building them together or apart.
+
 5.a) Using the install tool
+
+    The install tool wraps the makefiles used to build the steward with a
+number of easy to use options.
+
+        * '--build' - This option builds the steward
+
 5.b) Using the makefiles
 
 6) Technical details
