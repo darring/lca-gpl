@@ -387,3 +387,44 @@ over these scripts, what they do, and how to extend them.
         This helper script is not intended to be run by itself. Instead, it is
         to be sourced by the install.sh script and the definitions it contains
         to be utilized by said script.
+
+        If you open this script up in a text editor, you should see that it is
+        very well documented, and each variable is described in detail. In this
+        document we will only cover a few specific variables which need to be
+        explained in more detail.
+
+        * $LINKED_TOOLS
+
+            This variable describes the linkages between the tools defined
+            previously in $ALL_TOOLS and locally installed/linked versions.
+
+            The format, as described in the comments, is
+                scriptname:/path/to/link:cp-options
+
+            where:
+                scriptname is the name of the script (same as in $ALL_TOOLS)
+                /path/to/link is the absolute path on the filesystem to the
+                    resultant link (note- do not include the final filename)
+                cp-options are the options to pass to 'cp' (see 'man cp' for
+                    more information)
+
+            Let's look at a couple of examples to understand how to better
+            utilize this:
+
+                * clientagent-helper.sh:/usr/bin:-lf
+                Here, the tool is 'clientagent-helper.sh', and it is to be
+                linked to '/usr/bin/clientagent-helper.sh' using the cp options
+                '-lf' (which respectively are 'link' and 'force').
+
+                * eil_steward.sh:/etc/init.d:-f
+                Here, the tool is 'eil_steward.sh', and it is to be copied to
+                '/etc/init.d/eil_steward.sh' using the cp otpion '-f' (which
+                is 'force'). This differs from above because we are copying
+                the file instead of linking. We do this because on most Linux
+                distributions init.d scripts cannot be linked outside of /etc.
+
+        * $SOURCE_SCRIPTS
+
+            This is the master list of the scripts to install on the system.
+            These are the scripts that do the actual work for the dispatcher,
+            and should be installed with specific user and group IDs.
