@@ -265,9 +265,40 @@ have the option of building them together or apart.
     The install tool wraps the makefiles used to build the steward with a
 number of easy to use options.
 
-        * '--build' - This option builds the steward
+        * '--build' - This option builds the steward with the default settings.
+        Currently, the default setting is to build the steward dynamically.
+
+        * '--static' - This option builds the steward and elevate_script
+        staticly.
+
+        * '--clean' - This option cleans the steward and elevate_script's
+        build environments.
 
 5.b) Using the makefiles
+
+    Both the steward and elevate_script can be built by hand using the makefiles
+in their respective directories.
+
+    Changing into the respective directories, you can build each of the binaries
+in a variety of ways based upon the definitions in their makefiles. If you are
+comfortable reading makefiles, then you can open them up in a standard text
+editor and see the rules for yourself. For more information on GNU makefiles,
+see http://www.gnu.org/software/make/manual/make.html
+
+    The default rule (when 'make' is ran with no options) is to build the
+binary dynamically. But make can be run with a number of other options:
+
+        # make clean
+            This cleans the build environment
+
+        # make static
+            This builds a static binary
+
+    A typical build process for the steward would likely be the following:
+
+        # cd steward/
+        # make clean
+        # make static
 
 6) Technical details
 
