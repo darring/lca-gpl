@@ -221,6 +221,36 @@ CCMS_Command StewardService::QueryForClientCommands(
                 case SOAP_FATAL_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_FATAL_ERROR 'Internal error'");
                     break;
+                case SOAP_USER_ERROR:
+                    logger->QuickLog("StewardService> ERROR! SOAP_USER_ERROR 'User error'");
+                    break;
+                case SOAP_FAULT:
+                    logger->QuickLog("StewardService> ERROR! SOAP_FAULT 'An exception raised by the service'");
+                    break;
+                case SOAP_NO_METHOD:
+                    logger->QuickLog("StewardService> ERROR! SOAP_NO_METHOD '[gSOAP] did not find a matching operation for the request'");
+                    break;
+                case SOAP_NO_DATA:
+                    logger->QuickLog("StewardService> ERROR! SOAP_NO_DATA 'No data in HTTP message'");
+                    break;
+                case SOAP_GET_METHOD:
+                    logger->QuickLog("StewardService> ERROR! SOAP_GET_METHOD 'HTTP GET operation not handled'");
+                    break;
+                case SOAP_EOM:
+                    logger->QuickLog("StewardService> ERROR! SOAP_EOM 'Out of memory'");
+                    break;
+                case SOAP_MOE:
+                    logger->QuickLog("StewardService> ERROR! SOAP_MOE 'Memory overflow/corruption error (DEBUG mode)'");
+                    break;
+                case SOAP_NULL:
+                    logger->QuickLog("StewardService> ERROR! SOAP_NULL 'An element was null, while it is not supposed to be null'");
+                    break;
+                case SOAP_DUPLICATE_ID:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DUPLICATE_ID 'Element's ID duplicated (SOAP encoding)'");
+                    break;
+                case SOAP_MISSING_ID:
+                    logger->QuickLog("StewardService> ERROR! SOAP_DUPLICATE_ID 'Element ID missing for an href/ref (SOAP encoding)'");
+                    break;
             }
         }
         // FIXME Memory clean-up
