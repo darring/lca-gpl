@@ -364,3 +364,26 @@ automatically installs the client agent, expecting it to be laid out *exactly*
 as detailed in the archive above.
 
 6.b) Dispatcher install details
+
+    The dispatcher install process involves several scripts. We will now go
+over these scripts, what they do, and how to extend them.
+
+    * install.sh
+
+        This is the main install script for the dispatcher. As part of the
+        design requirements (see README) it *must* be compatible with as many
+        shells as possible (BASH, ASH, DASH, etc). If you check the hashbang at
+        the top of the file, you will see:
+            #!/usr/bin/env sh
+
+        this is to ensure that the script will be runnable on as many shells as
+        possible. Care must be given that any modifications made to this script
+        (and others it uses) are done such that they will run on all shells we
+        desire. For a list of compatibility, see this URL:
+            http://en.wikipedia.org/wiki/Comparison_of_computer_shells
+
+    * install-deps.sh
+
+        This helper script is not intended to be run by itself. Instead, it is
+        to be sourced by the install.sh script and the definitions it contains
+        to be utilized by said script.
