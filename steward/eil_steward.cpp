@@ -217,13 +217,15 @@ int main(int argc, char *argv[])
     logger.QuickLog("Set up signal handlers...");
     setupSignalHandlers();
 
+    S_STATE = S_STATE_Running;
+
     /* Sanity checks */
     // Check that hostname isn't localhost
     if (strncmp(hostname, "localhost", 9) == 0) {
-        logger.QuickLog("Hostname is set to 'localhost', which is not a unique hostname..");
+        logger.QuickLog("Hostname is set to 'localhost', which is not a unique identifier");
+        logger.QuickLog("Please set hostname properly and restart the steward");
+        S_STATE = S_STATE_Shutdown;
     }
-
-    S_STATE = S_STATE_Running;
 
     // Main loop
     while (S_STATE == S_STATE_Running) {
