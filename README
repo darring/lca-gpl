@@ -115,19 +115,32 @@ respectively.
 
 2.a) Steward
 
-    The Steward is the C/C++ component of the agent which utilizes gSOAP and
+    The steward is the C/C++ component of the agent which utilizes gSOAP and
 interacts with CCMS. It runs as a daemon.
 
-    The Steward's job is to periodically report in with CCMS and check for any
+    The steward's job is to periodically report in with CCMS and check for any
 queued commands. If a command exists, it will hand that command over to the
-Dispatcher.
+dispatcher.
 
-    The Steward should intercept standard Linux signals
-    *** FIXME DETAILS ***
+    The Steward intercepts the following standard Linux signals:
+
+        * SIGHUP - Changes the state of the steward to 'shutdown'. In this
+           state, the steward will attempt to shut itself down cleanly and
+           correctly.
+
+        * SIGINT - Changes the state of the steward to 'shutdown'. This is
+           the same effect as sending 'SIGHUP' to the steward.
+
+        * SIGTERM - Changes the state of the steward to 'terminate'. This
+           tells the steward to terminate anything it is doing at the moment
+           and to stop execution as soon as possible. This should only be used
+           in extreme circumstances as it may leave elements of the steward in
+           an undefined state (for example, the log might not be flushed, any
+           soap interactions may not be properly closed, etc.)
 
 2.b) Dispatcher
 
-    The Dispatcher is the BASH component of the agent which handles the
+    The dispatcher is the BASH component of the agent which handles the
 distribution-dependent functionality of the client agent. It is a wrapper
 around a suite of scripts which execute various commands for the Steward.
 
