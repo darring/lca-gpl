@@ -63,7 +63,6 @@ CCMS_Command StewardService::QueryForClientCommands(
         getNewMessageID();
 
         header.wsa5__MessageID = last_MessageID;
-        logger->QuickLog(header.wsa5__MessageID);
 
         header.wsa5__ReplyTo = &replyTo;
         header.wsa5__To = EIL__CLIENTOPSERVICE;
