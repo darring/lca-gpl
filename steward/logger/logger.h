@@ -21,6 +21,7 @@
 
 //! Maximum length of the log line
 #define LOG_LINE_LENGTH 512
+#define TEMP_LINE_LENGTH 480
 
 //! Logger for the EIL Client Agent Steward
 class StewardLogger
@@ -31,9 +32,13 @@ class StewardLogger
         bool useAltPipe;
         FILE *logPipe;
         char logLine[LOG_LINE_LENGTH];
+        char tempLine[TEMP_LINE_LENGTH];
         time_t timer;
         struct tm *ts;
         char timeStamp[80];
+
+        //! private method for actually writing the log entry to the log file
+        bool innerLogEntry();
     public:
         //! Constructor for the EIL Client Agent Steward Logger
         /*!
@@ -87,7 +92,7 @@ class StewardLogger
          *
          * \return True if entry was successful, false if not.
          */
-        bool LogEntry(char *text);
+        bool LogEntry(char *text, ...);
 
         //! Quickly log an entry
         /*!
@@ -97,7 +102,7 @@ class StewardLogger
          * method should only be used when a quick one-liner is to be
          * logged, not when there are extended log entries to be written.
          */
-        void QuickLog(char *text);
+        void QuickLog(char *text, ...);
 };
 
 #endif

@@ -48,6 +48,7 @@ CCMS_Command StewardService::QueryForClientCommands(
 
     if (currentState == STATE_None)
     {
+        logger->QuickLog("StewardService> Checking for command from CCMS");
         /*
         First, we need to build up our header, which includes the various
         WS-Addressing bits that are needed by CCMS for routing of commands
