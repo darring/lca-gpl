@@ -164,6 +164,7 @@ CCMS_Command StewardService::QueryForClientCommands(
                 currentState = STATE_None;
                 returnCommand.ReturnState = COMMAND_SUCCESS;
                 returnCommand.Command = NO_COMMAND;
+                logger->QuickLog("StewardService> No command");
             } else {
                 // Parse *what* our command was
                 if(strcasecmp(
