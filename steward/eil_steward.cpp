@@ -164,6 +164,7 @@ int main(int argc, char *argv[])
     #endif
 
     logger.BeginLogging();
+    logger.LogEntry("-----------------------------------");
     logger.LogEntry("EIL Linux Client Agent");
     logger.LogEntry(EIL_VERSION_TEXT);
     logger.LogEntry("Startup daemon");
@@ -232,7 +233,7 @@ int main(int argc, char *argv[])
     while (S_STATE == S_STATE_Running) {
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
-        logger.QuickLog(hostname);
+        logger.QuickLog("My hostname is '%s'", hostname);
 
         issuedCommand = service.QueryForClientCommands(hostname, "1", HOST);
 
