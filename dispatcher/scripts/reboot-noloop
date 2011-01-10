@@ -12,29 +12,9 @@ TIMEOUT_IN_MINUTES=40
 # before the client agent is forceably stopped
 NUM_REBOOTS_ALLOWED=5
 
-# We use /opt for our installation location to adhere to LSB Linux
-# Filesystem Hierarchy Standards (this gives us maximum compatibility
-# across the various distros we aim to support).
-BASE_DIR=/opt
-
-# Intel has a registered provider name with the LSB
-LANANA=$BASE_DIR/intel
-
-# We want to have our own sub-directory under that specific to the
-# EIL namespace, additionally, we want our client agent to live there.
-if [ "$BOOTSTRAP_DIR" = "" ]; then
-    INSTALL_DIR=$LANANA/eil/clientagent
-else
-    INSTALL_DIR=$BOOTSTRAP_DIR
-fi
-
-EXEC=clientagent-base.sh
-
-LIB_DIR=$INSTALL_DIR/lib
-
 # Load our libraries
-. $LIB_DIR/helper.sh
-. $LIB_DIR/globals.sh
+. /opt/intel/eil/clientagent/lib/helper.sh
+. /opt/intel/eil/clientagent/lib/globals.sh
 
 LASTREBOOT=$HOME_DIR/.last_reboot
 NUMREBOOTS=$HOME_DIR/.num_reboots
@@ -53,11 +33,11 @@ if [ -f "$LASTREBOOT" ]; then
     # an infinite reboot cycle
     DTE1=$(cat $LASTREBOOT)
     DTE2=$(date_utc_stamp "now")
-    DELTA=$(date_delta -m $DTE1 $DTE2)
+    DELTA=$(date_utc_stamp_delta -m $DTE1 $DTE2)
     if [ "$DELTA" -lt "$TIMEOUT_IN_MINUTES" ]; then
         # Alright, let's count our number of times rebooted thus far
         COUNTREBOOTS=$(cat $NUMREBOOTS | wc -l)
-        if [ "$COUNTREBOOTS" -qt "$NUM_REBOOTS_ALLOWED" ]; then
+        if [ "$COUNTREBOOTS" -gt "$NUM_REBOOTS_ALLOWED" ]; then
             # Alright, that's enough CCMS, no soup for you!
             trace_error "--------------"
             trace_error "Maximum reboots exceeded within time limit!"

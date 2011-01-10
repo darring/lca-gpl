@@ -87,14 +87,10 @@ trace_error() {
 }
 
 date_utc_stamp () {
-    if [ "$1" = "now" ]; then
-        date --utc +%s
-    else
-        date --utc --date "$1" +%s
-    fi
+    date --utc --date "$1" +%s
 }
 
-date_delta (){
+date_utc_stamp_delta (){
     case $1 in
         -s)
             SEC=1
@@ -116,8 +112,8 @@ date_delta (){
             SEC=86400
             ;;
     esac
-    DTE1=$(date_utc_stamp $1)
-    DTE2=$(date_utc_stamp $2)
+    DTE1=$1
+    DTE2=$2
     DELTA=$((DTE2-DTE1))
     if ((DELTA < 0)); then VEC=-1; else VEC=1; fi
     echo $((DELTA/SEC*VEC))
