@@ -81,6 +81,11 @@ trace() {
     echo "${DATESTAMP} : ${*}" >> ${STANDARD_LOG_FILE}
 }
 
+trace_error() {
+    DATESTAMP=$(date +'%Y-%m-%d %H:%M:%S %Z')
+    echo "${DATESTAMP} : ${*}" >> ${ERROR_LOG_FILE}
+}
+
 date_utc_stamp () {
     if [ "$1" = "now" ];
         date --utc +%s

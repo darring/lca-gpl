@@ -3,6 +3,15 @@
 # More specific reboot tool with logic to detect reboot cycles
 # due to CCMS errors
 
+# This is the timeout in minutes
+# After this many minutes, it is considered okay to have another reboot
+TIMEOUT_IN_MINUTES=40
+
+# Num reboots before shutdown of agent
+# This is the number of reboots within the above allowed timeout we are allowed
+# before the client agent is forceably stopped
+NUM_REBOOTS_ALLOWED=5
+
 # We use /opt for our installation location to adhere to LSB Linux
 # Filesystem Hierarchy Standards (this gives us maximum compatibility
 # across the various distros we aim to support).
@@ -28,19 +37,49 @@ LIB_DIR=$INSTALL_DIR/lib
 . $LIB_DIR/globals.sh
 
 LASTREBOOT=$HOME_DIR/.last_reboot
+NUMREBOOTS=$HOME_DIR/.num_reboots
+
+normal_reboot() {
+    DTE=$(date_utc_stamp "now")
+    touch $LASTREBOOT
+    touch $NUMREBOOTS
+    echo $DTE > $LASTREBOOT
+    echo "1" >> $NUMREBOOTS
+    /sbin/shutdown -r now
+}
 
 if [ -f "$LASTREBOOT" ]; then
     # We have a last reboot, let's make sure that CCMS hasn't deadlocked into
     # an infinite reboot cycle
     DTE1=$(cat $LASTREBOOT)
     DTE2=$(date_utc_stamp "now")
-    
+    DELTA=$(date_delta -m $DTE1 $DTE2)
+    if [ "$DELTA" -lt "$TIMEOUT_IN_MINUTES" ]; then
+        # Alright, let's count our number of times rebooted thus far
+        COUNTREBOOTS=$(cat $NUMREBOOTS | wc -l)
+        if [ "$COUNTREBOOTS" -qt "$NUM_REBOOTS_ALLOWED" ]; then
+            # Alright, that's enough CCMS, no soup for you!
+            trace_error "--------------"
+            trace_error "Maximum reboots exceeded within time limit!"
+            trace_error "Linux client agent is assuming that CCMS has reached a deadlock state."
+            trace_error "Linux client agent shutting down!"
+            trace_error "--------------"
+            /etc/init.d/eil_steward.sh stop
+        else
+            # We're still within limits, handle our reboot
+            normal_reboot
+        fi
+    else
+        # Okay, we're fine, just reboot
+        rm -f $LASTREBOOT
+        rm -f $NUMREBOOTS
+        normal_reboot
+    fi
 else
     # Okay, no last reboot, let's touch it and reboot then
-    DTE=$(date_utc_stamp "now")
-    touch $LASTREBOOT
-    echo $DTE > $LASTREBOOT
-    /sbin/shutdown -r now
+    rm -f $LASTREBOOT
+    rm -f $NUMREBOOTS
+    normal_reboot
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
