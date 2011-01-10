@@ -87,7 +87,7 @@ trace_error() {
 }
 
 date_utc_stamp () {
-    if [ "$1" = "now" ];
+    if [ "$1" = "now" ]; then
         date --utc +%s
     else
         date --utc --date "$1" +%s
