@@ -78,6 +78,7 @@ EOF
 # scripts/ directory.
 SOURCE_SCRIPTS=$(cat <<EOF
 root.eil:reboot
+root.eil:reboot-noloop
 EOF
 )
 
