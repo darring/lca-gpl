@@ -260,7 +260,7 @@ CCMS_Command StewardService::QueryForClientCommands(
                     break;
                 case SOAP_TCP_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_TCP_ERROR 'A connection error occured'");
-                    returnCommand.returnstate = COMMAND_TCP_ERROR;
+                    returnCommand.ReturnState = COMMAND_TCP_ERROR;
                     returnCommand.Command = TCP_DIAGNOSE;
                 case SOAP_HTTP_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_HTTP_ERROR 'An HTTP error occured'");
