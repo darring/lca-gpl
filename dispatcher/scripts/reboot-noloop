@@ -43,7 +43,6 @@ if [ -f "$LASTREBOOT" ]; then
             trace_error "Maximum reboots exceeded within time limit!"
             trace_error "Linux client agent is assuming that CCMS has reached a deadlock state."
             trace_error "Linux client agent shutting down!"
-            trace_error "--------------"
             /etc/init.d/eil_steward.sh stop
         else
             # We're still within limits, handle our reboot
