@@ -3,6 +3,9 @@
 ------------------------------------------------------------------------------
 
 Table of Contents
+0) Development Environment
+    0.a) Mercurial
+    0.b) Windows Considerations
 1) Overview
     1.a) Project History
     1.b) Linux Client Agent Re-Write Requirements
@@ -14,6 +17,57 @@ Table of Contents
 3) Documentation
 
 ------------------------------------------------------------------------------
+
+0) Development Environment
+
+    Before we begin, we should touch on the development environment used in the
+Linux Client agent.
+
+    It is important that the Linux Client agent be developed under a proper
+environment which respects Linux/Unix line-endings, and that changes are tracked
+in the version control system.
+
+    For full build/development environment information, see the file BUILD_ENV.
+
+0.a) Mercurial
+
+    Mercurial (hg) was chosen as the distributed version control system (DVCS)
+because of its cross-platform nature and ease of use. It should be available on
+your development platform of choice, but can also be found online at its
+homepage here:
+
+        * http://mercurial.selenic.com/
+
+    If you are new to hg, then you should probably familiarize yourself with
+the guides and tutorials available on the following pages:
+
+        * http://mercurial.selenic.com/guide/
+        * http://mercurial.selenic.com/wiki/Tutorial
+        * http://hgbook.red-bean.com/read/
+
+0.b) Windows Considerations
+
+    The Linux Client agent can be developed under Windows, provided that care is
+given. Line endings MUST be respected, Mercurial MUST be used, etc.
+
+    In Windows, you should NOT use a Windows-centric IDE such as Visual Studio
+to develop the Linux Client agent. Instead, you should install a more platform-
+agnostic editor such as Notepad++, which is Open-Source software and available
+for free from its homepage here:
+
+        * http://hgbook.red-bean.com/read/
+
+    Additionally, you should install the Windows version of Mercurial along with
+the TortoiseHg extension. Additional extensions you may want to install to help
+prevent Windows-centric applications from clobbering the Linux development
+process include:
+
+        * http://mercurial.selenic.com/wiki/EolExtension
+        * http://mercurial.selenic.com/wiki/CasestopExtension
+
+    It is highly recommended that you do NOT develop Linux applications under
+Windows unless you know what you are doing. Instead, it is much safer to simply
+develop natively in Linux.
 
 1) Overview
 
