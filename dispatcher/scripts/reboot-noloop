@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# More specific reboot tool with logic to detect reboot cycles
+# due to CCMS errors
+
+# We use /opt for our installation location to adhere to LSB Linux
+# Filesystem Hierarchy Standards (this gives us maximum compatibility
+# across the various distros we aim to support).
+BASE_DIR=/opt
+
+# Intel has a registered provider name with the LSB
+LANANA=$BASE_DIR/intel
+
+# We want to have our own sub-directory under that specific to the
+# EIL namespace, additionally, we want our client agent to live there.
+if [ "$BOOTSTRAP_DIR" = "" ]; then
+    INSTALL_DIR=$LANANA/eil/clientagent
+else
+    INSTALL_DIR=$BOOTSTRAP_DIR
+fi
+
+EXEC=clientagent-base.sh
+
+LIB_DIR=$INSTALL_DIR/lib
+
+# Load our libraries
+. $LIB_DIR/helper.sh
+. $LIB_DIR/globals.sh
+
+LASTREBOOT=$HOME_DIR/.last_reboot
+
+if [ -f "$LASTREBOOT" ]; then
+    # We have a last reboot, let's make sure that CCMS hasn't deadlocked into
+    # an infinite reboot cycle
+    DTE1=$(cat $LASTREBOOT)
+    DTE2=$(date_utc_stamp "now")
+    
+else
+    # Okay, no last reboot, let's touch it and reboot then
+    DTE=$(date_utc_stamp "now")
+    touch $LASTREBOOT
+    echo $DTE > $LASTREBOOT
+    /sbin/shutdown -r now
+fi
+
+# vim:set ai et sts=4 sw=4 tw=80:
