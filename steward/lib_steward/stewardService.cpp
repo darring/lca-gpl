@@ -260,7 +260,7 @@ CCMS_Command StewardService::QueryForClientCommands(
                     break;
                 case SOAP_TCP_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_TCP_ERROR 'A connection error occured'");
-                    break;
+                    returnCommand.returnstate = COMMAND_TCP_ERROR;
                 case SOAP_HTTP_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_HTTP_ERROR 'An HTTP error occured'");
                     break;
@@ -348,3 +348,4 @@ void StewardService::getNewMessageID()
     snprintf(last_MessageID, MAX_MESSAGEID_LEN,
             "urn:uuid:%s", messageID);
 }
+

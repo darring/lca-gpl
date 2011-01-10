@@ -6,6 +6,7 @@ enum CCMS_ReturnState
 {
     COMMAND_SUCCESS,
     COMMAND_ERROR,
+    COMMAND_TCP_ERROR,
     COMMAND_ERROR_STATE,
 };
 
@@ -35,3 +36,4 @@ struct Dispatcher_Command_Status
 };
 
 #endif
+
