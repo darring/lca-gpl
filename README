@@ -58,7 +58,7 @@ to develop the Linux Client agent. Instead, you should install a more platform-
 agnostic editor such as Notepad++, which is Open-Source software and available
 for free from its homepage here:
 
-        * http://hgbook.red-bean.com/read/
+        * http://notepad-plus-plus.org/
 
     Additionally, you should install the Windows version of Mercurial along with
 the TortoiseHg extension. Additional extensions you may want to install to help
