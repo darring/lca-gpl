@@ -45,6 +45,9 @@ the guides and tutorials available on the following pages:
         * http://mercurial.selenic.com/wiki/Tutorial
         * http://hgbook.red-bean.com/read/
 
+    NOTE: hg cannot integrate with TFS (neither can git, which we tried as well)
+See dispatcher/docs/TFS_Notes.txt for more information.
+
 0.b) Windows Considerations
 
     The Linux Client agent can be developed under Windows, provided that care is

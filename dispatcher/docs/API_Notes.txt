@@ -55,28 +55,28 @@ it as well.
 
 2.c.1) Platform specification
 
-	By simply sourcing the helper.sh script, you will gain access to information
+    By simply sourcing the helper.sh script, you will gain access to information
 about the underlying Linux distribution. A number of environmental variables
 will be defined describing the distribution.
 
-		* IS_RHEL
-		* IS_DEB
-		* IS_SLES
-		* IS_ESX
-		* IS_XEN
+        * IS_RHEL
+        * IS_DEB
+        * IS_SLES
+        * IS_ESX
+        * IS_XEN
 
-	One of the above will be set to 'yes' (with the others remaining unset)
+    One of the above will be set to 'yes' (with the others remaining unset)
 which will define the general distribution flavor.
 
-	Beyond the flavor of the distribution, you can additionally check the
+    Beyond the flavor of the distribution, you can additionally check the
 variable
 
-		* PLATFORM_NAME
+        * PLATFORM_NAME
 
 which will contain a string detailing the more specific dialect of the
 distribution.
 
-	For example, CentOS would be defined as:
-	
-		* IS_RHEL=yes
-		* PLATFORM_NAME="centos"
+    For example, CentOS would be defined as:
+
+        * IS_RHEL=yes
+        * PLATFORM_NAME="centos"
