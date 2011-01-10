@@ -64,7 +64,7 @@ will be defined describing the distribution.
 		* IS_SLES
 		* IS_ESX
 		* IS_XEN
-		
+
 	One of the above will be set to 'yes' (with the others remaining unset)
 which will define the general distribution flavor.
 
