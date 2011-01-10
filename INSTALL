@@ -12,14 +12,14 @@ Table of Contents
     3.c) Installing a package using the bootstrap
     3.d) Installing a package manually
 4) Manually installing the dispatcher
-	4.a) Using the install tool
-	4.b) Using the dispatcher installer
+    4.a) Using the install tool
+    4.b) Using the dispatcher installer
 5) Manually building the steward
-	5.a) Using the install tool
-	5.b) Using the makefiles
+    5.a) Using the install tool
+    5.b) Using the makefiles
 6) Technical details
     6.a) Details of the cross-distribution package
-	6.b) Dispatcher install details
+    6.b) Dispatcher install details
 ------------------------------------------------------------------------------
 
 1) Overview
@@ -127,40 +127,40 @@ linked binaries, and name it:
 where ${VERSION} is the current version of the EIL Linux Client Agent (as
 defined in the top-level VERSION file in the repository).
 
-	If you wish to create a release package instead of a named version package,
+    If you wish to create a release package instead of a named version package,
 then you will want to run the install tool with the '-r' option in addition to
 the '--pkg' option:
 
-			# install_tool.sh -r --pkg
+            # install_tool.sh -r --pkg
 
-	The package created by either of these processes can be used in a repository
+    The package created by either of these processes can be used in a repository
 (section (3.b)), by the bootstrap tool (3.c), or installed manually (3.d).
-			
+
 3.b) Making a repository
 
-	The install tool can be used to create a repository suitable for use with
+    The install tool can be used to create a repository suitable for use with
 the client agent bootstrap tool (see section (3.c) below). The option to make
 a repository is '--makerepo', and requires an additional parameter of a URI
 specially formatted to work with the 'scp' command (see 'man scp' for more
 information). scp can be used to copy the resulting repository over SSH to
 another server (preferred) or to a locally mounted filesystem.
 
-	* Making a repository over an SSH connection onto another server:
+    * Making a repository over an SSH connection onto another server:
 
-			# install_tool.sh --makerepo pilot:/path/to/repo/.
-			
-	* Making a repository in a locally mounted filesystem:
-	
-			# install_tool.sh --makerepo /local/path/to/repo/.
-			
-	When called with '--makerepo', the install tool currently assumes that the
+            # install_tool.sh --makerepo pilot:/path/to/repo/.
+
+    * Making a repository in a locally mounted filesystem:
+
+            # install_tool.sh --makerepo /local/path/to/repo/.
+
+    When called with '--makerepo', the install tool currently assumes that the
 resultant binary is to be linked staticly, and that the package is to be set as
 a release (not a named version). Thus, it cleans/rebuilds the binaries, and
 bundles up a freshly built package.
 
 3.c) Installing a package using the bootstrap
 
-	Inside the dispatcher tools directory you will find the client agent
+    Inside the dispatcher tools directory you will find the client agent
 bootstrap tool, 'clientagent-bootstrap.sh'. This tool is used to bootstrap an
 EIL Linux Client Agent onto a running Linux system either upgrading from a
 previous install or installing from scratch. It can be run manually to force
@@ -168,12 +168,12 @@ an install/upgrade, or it can be run automatically from the update checker tool
 (which is run from a cron job) or fired from a request from the dispatcher
 itself.
 
-	Inside the script, you will find the following toggles:
+    Inside the script, you will find the following toggles:
 
-		# Uncomment whichever of the following is correct for this install
-		IS_STAGING=yes
-		#IS_RELEASE=yes
-		
+        # Uncomment whichever of the following is correct for this install
+        IS_STAGING=yes
+        #IS_RELEASE=yes
+
 At any given time, one and *ONLY* one of these two toggles should be enabled. If
 'IS_STAGING' is set to 'yes', then the bootstrap tool checks the currently set
 staging server for updates. If 'IS_RELEASE' is set to 'yes', then the bootstrap
@@ -182,21 +182,21 @@ is being developed, it is important to keep a staging server active for testing
 the EIL Linux Client Agent before release, and this toggle allows for easy
 switching between staging and release.
 
-	It is considered best practice to keep 'IS_STAGING' set to 'yes' and
+    It is considered best practice to keep 'IS_STAGING' set to 'yes' and
 'IS_RELEASE' commented out in the main repository and only toggle them upon
 official releases.
 
-	Above these toggles, you will find the following settings:
-	
-		# EIL IP configs
-		EIL_AUTO="172.16.3.10"
-		EIL_RELEASE="172.16.3.10"
-		EIL_STAGING="10.4.0.26"
+    Above these toggles, you will find the following settings:
+
+        # EIL IP configs
+        EIL_AUTO="172.16.3.10"
+        EIL_RELEASE="172.16.3.10"
+        EIL_STAGING="10.4.0.26"
 
 These specifically define the various IP addresses used by the client agent
 globally.
 
-	During the bootstrap process, the 'clientagent-bootstrap.sh' script will
+    During the bootstrap process, the 'clientagent-bootstrap.sh' script will
 append the above IP addresses to the '/etc/hosts' file (depending upon the
 'IS_RELEASE'/'IS_STAGING' toggle setting) for use globally with the entire
 Linux client agent (steward, dispatcher, tests, scripts, and tools). If these
@@ -205,49 +205,49 @@ the edit must occur.
 
 3.d) Installing a package manually
 
-	A package is just a gzipped tar archive containing the files for the Linux
+    A package is just a gzipped tar archive containing the files for the Linux
 client agent in a very specific layout. Inside the root directory of the archive
 can be found the 'install_root.sh' script, which can be used to install the
 client agent from the package archive.
 
-	To install manually from a package, simply un-archive the package, and run
+    To install manually from a package, simply un-archive the package, and run
 the install tool using the '--pkginstall' option. If the package was created
 using the '-r' option (as a 'release') then you will want to pass that option
 here as well.
 
-		# tar xvfz eil_clientagent-${VERSION}.tar.gz
-		# cd eil_clientagent-${VERSION}/
-		# ./install_tool.sh --pkginstall
+        # tar xvfz eil_clientagent-${VERSION}.tar.gz
+        # cd eil_clientagent-${VERSION}/
+        # ./install_tool.sh --pkginstall
 
 4) Manually installing the dispatcher
 
 4.a) Using the install tool
 
-	The dispatcher can be installed using the 'install_tool.sh' script with
+    The dispatcher can be installed using the 'install_tool.sh' script with
 the '--instdisp' option. This simply wraps the manual process detailed in (4.b)
 inside the 'install_tool.sh' script.
 
-		# install_tool.sh --instdisp
-		
-	An installed dispatcher can be uninstalled using the install tool with the
+        # install_tool.sh --instdisp
+
+    An installed dispatcher can be uninstalled using the install tool with the
 '--uninstdisp' option. This wraps the 'purge' option detailed in (4.b).
 
-		# install_tool.sh --uninstdisp
-	
+        # install_tool.sh --uninstdisp
+
 4.b) Using the dispatcher installer
 
-	Inside the dispatcher directory you will find an install script and several
+    Inside the dispatcher directory you will find an install script and several
 helper files for this install script:
 
-		* 'install.sh' - The install script for the dispatcher
-		* 'install-deps.sh' - Dependency information for the install script
-		* 'dep-cleaner.sed' - sed script used by the install script
-		
-	To install the dispatcher manually, simply run the 'install.sh' script
+        * 'install.sh' - The install script for the dispatcher
+        * 'install-deps.sh' - Dependency information for the install script
+        * 'dep-cleaner.sed' - sed script used by the install script
+
+    To install the dispatcher manually, simply run the 'install.sh' script
 without any arguments. To uninstall the dispatcher, run the 'install.sh' script
 with the '-p' purge option.
 
-	For more information on the 'install-deps.sh' file, see section (6.b).
+    For more information on the 'install-deps.sh' file, see section (6.b).
 
 5) Manually building the steward
 

@@ -10,6 +10,8 @@ Table of Contents
     2.b) globals.sh
     2.c) helper.sh
         2.c.1) Platform specification
+        2.c.2) Logging functions
+        2.c.3) Date functions
 ------------------------------------------------------------------------------
 1) Overview
 
@@ -55,28 +57,60 @@ it as well.
 
 2.c.1) Platform specification
 
-	By simply sourcing the helper.sh script, you will gain access to information
+    By simply sourcing the helper.sh script, you will gain access to information
 about the underlying Linux distribution. A number of environmental variables
 will be defined describing the distribution.
 
-		* IS_RHEL
-		* IS_DEB
-		* IS_SLES
-		* IS_ESX
-		* IS_XEN
-		
-	One of the above will be set to 'yes' (with the others remaining unset)
+        * IS_RHEL
+        * IS_DEB
+        * IS_SLES
+        * IS_ESX
+        * IS_XEN
+
+    One of the above will be set to 'yes' (with the others remaining unset)
 which will define the general distribution flavor.
 
-	Beyond the flavor of the distribution, you can additionally check the
+    Beyond the flavor of the distribution, you can additionally check the
 variable
 
-		* PLATFORM_NAME
+        * PLATFORM_NAME
 
 which will contain a string detailing the more specific dialect of the
 distribution.
 
-	For example, CentOS would be defined as:
-	
-		* IS_RHEL=yes
-		* PLATFORM_NAME="centos"
+    For example, CentOS would be defined as:
+
+        * IS_RHEL=yes
+        * PLATFORM_NAME="centos"
+
+2.c.2) Logging functions
+
+    The helper library contains two functions for logging:
+
+        * trace()
+            - This function will log to the standard client agent log file,
+              which defaults to ${HOME_DIR}/client-agent-base.log .
+
+        * trace_error()
+            - This function will log to the client agent error log file, which
+              defaults to ${HOME_DIR}/client-agent-error.log .
+
+2.c.3) Date functions
+
+    The helper library provides a number of functions which assist in high-level
+date logic.
+
+        * date_utc_stamp()
+            - This function takes a parameter of a date string (or "now" to
+              indicate the current time) and returns a specially formatted UTC
+              stamp which can be used by the other date functions.
+
+        * date_utc_stamp_delta()
+            - This function takes three parameters. The first parameter is one
+              of:
+                 -s : second
+                 -m : minute
+                 -d : day
+              The next two parameters are UTC date stamps (returned from
+              date_utc_stamp). It will compute and return the delta (in whatever
+              format you request) between the two date stamps.

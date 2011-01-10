@@ -78,6 +78,7 @@ EOF
 # scripts/ directory.
 SOURCE_SCRIPTS=$(cat <<EOF
 root.eil:reboot
+root.eil:reboot-noloop
 EOF
 )
 
@@ -98,9 +99,9 @@ EOF
 #  source_script_name is the original script_name as detailed in
 #           SOURCE_SCRIPTS above.
 LINKED_SCRIPTS=$(cat <<EOF
-ubuntu_reboot:reboot
+ubuntu_reboot:reboot-noloop
 rhel_reboot:reboot
-suse_reboot:reboot
+suse_reboot:reboot-noloop
 centos_reboot:reboot
 xen_reboot:reboot
 esx_reboot:reboot
