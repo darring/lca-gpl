@@ -86,11 +86,11 @@ trace_error() {
     echo "${DATESTAMP} : ${*}" >> ${ERROR_LOG_FILE}
 }
 
-date_utc_stamp () {
+date_utc_stamp() {
     date --utc --date "$1" +%s
 }
 
-date_utc_stamp_delta (){
+date_utc_stamp_delta() {
     case $1 in
         -s)
             SEC=1
