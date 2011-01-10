@@ -119,4 +119,8 @@ date_utc_stamp_delta() {
     echo $((DELTA/SEC*VEC))
 }
 
+get_system_ip() {
+    /sbin/ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'
+}
+
 # vim:set ai et sts=4 sw=4 tw=80:

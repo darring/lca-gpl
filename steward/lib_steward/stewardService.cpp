@@ -260,6 +260,13 @@ CCMS_Command StewardService::QueryForClientCommands(
                     break;
                 case SOAP_TCP_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_TCP_ERROR 'A connection error occured'");
+                    /*
+                      This actually could mean a variety of things, however, one
+                      of the more serious causes is that we have just switched
+                      VLANs and need to re-up our network interfaces. This is
+                      beyond the mental faculties of the steward, so we offload
+                      the workload to an external script to diagnose the problem
+                     */
                     returnCommand.ReturnState = COMMAND_TCP_ERROR;
                     returnCommand.Command = TCP_DIAGNOSE;
                 case SOAP_HTTP_ERROR:

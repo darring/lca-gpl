@@ -12,6 +12,7 @@ Table of Contents
         2.c.1) Platform specification
         2.c.2) Logging functions
         2.c.3) Date functions
+        2.c.4) Network functions
 ------------------------------------------------------------------------------
 1) Overview
 
@@ -114,3 +115,12 @@ date logic.
               The next two parameters are UTC date stamps (returned from
               date_utc_stamp). It will compute and return the delta (in whatever
               format you request) between the two date stamps.
+
+2.c.4) Network functions
+
+    The helper library provides a number of functions which assist with various
+network items.
+
+        * get_system_ip()
+            - This function returns the system's IP information. It requires
+              working grep, cut and awk commands.
