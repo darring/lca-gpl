@@ -15,6 +15,7 @@ enum CCMS_CommandIssued
 {
     NO_COMMAND,
     REBOOT,
+    TCP_DIAGNOSE,
 };
 
 //! The command structure issued from CCMS

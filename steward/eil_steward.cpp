@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
                 // TODO - This shouldn't happen, need to figure out what to do
                 break;
             default:
-                // COMMAND_SUCCESS
+                // COMMAND_SUCCESS or a TCP_ERROR
                 if(issuedCommand.Command != NO_COMMAND)
                     dispatcher.ExecuteCommand(&issuedCommand);
                 // If no command, we just pass
