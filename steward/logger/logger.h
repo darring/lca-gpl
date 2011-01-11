@@ -17,6 +17,9 @@
 #ifndef logger_H
 #define logger_H
 
+#include <stdio.h>
+#include <time.h>
+
 // Constants
 
 //! Maximum length of the log line
