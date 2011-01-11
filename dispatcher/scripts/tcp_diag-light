@@ -1,85 +1,11 @@
 #!/usr/bin/env sh
 
-# TCP diagnostic tool for the client agent (full version)
+# TCP diagnostic tool for the client agent (light version)
 
 # This tool is to be called when the steward has detected a TCP error from a
 # SOAP connection (e.g., it has tried to connect to CCMS, and a general TCP
 # error was the result). This tool well determine what the problem was, and try
 # to fix it.
 
-# Load our libraries
-. /opt/intel/eil/clientagent/lib/helper.sh
-. /opt/intel/eil/clientagent/lib/globals.sh
-
-# Number of times we try pinging
-NUM_PINGS=5
-
-# The minimum percentage we allow
-MIN_PERCENTAGE=50
-
-# The timeout (in minutes) after which it's considered okay to re-up the network
-# interfaces again
-TIMEOUT_IN_MINUTES=40
-
-# The maximum number of network re-ups allowed
-MAX_REUP_ALLOWED=5
-
-LASTREUP=$HOME_DIR/.last_reup
-NUMREUP=$HOME_DIR/.num_reup
-
-HOST_IP=$(get_system_ip)
-
-# Obtain our gateway info
-GATEWAY=$(echo $HOST_IP | cut -d. -f1-3)
-GATEWAY=${GATEWAY}.1
-
-PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${GATEWAY} | \
-    grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
-
-re_up() {
-    trace "Network issues detected, reconfiguring networking"
-    DTE=$(date_utc_stamp "now")
-    touch $LASTREUP
-    touch $NUMREUP
-    echo $DTE > $LASTREUP
-    echo "1" >> $NUMREUP
-    # Trigger our platform specific networking restart
-    if [ -n "$IS_DEB" ]; then
-        /etc/init.d/networking restart
-    elif [ -n "$IS_RHEL" ]; then
-        # This is pretty iffy- we may want to double check that this actually
-        # works
-        # NOTE - restart just wraps stop/start in RHEL
-        /etc/init.d/network stop
-        /etc/init.d/network start
-    elif [ -n "$IS_SLES" ]; then
-        /etc/init.d/network restart
-    else
-        # Okay, we really shouldn't be here, but just in case, we fall back
-        # on the old *nix standby's of ifdown/ifup
-        ifdown --force -a
-        ifup --force -a
-    fi
-}
-
-if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
-    if [ -f "$LASTREUP" ]; then
-        DTE1=$(cat $LASTREUP)
-        DTE2=$(date_utc_stamp "now")
-        DELTA=$(date_utc_stamp_delta -m $DTE1 $DTE2)
-        if [ "$DELTA" -lt "$TIMEOUT_IN_MINUTES" ]; then
-        else
-            # Outside of the limit, just reset things
-            rm -f $LASTREUP
-            rm -f $NUMREUP
-            re_up
-        fi
-    else
-        # Just re up the network then
-        rm -f $LASTREUP
-        rm -f $NUMREUP
-        re_up
-    fi
-fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
