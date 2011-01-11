@@ -3,7 +3,7 @@
 
 Table of Contents
 1) Overview of build requirements
-
+    1.a) Building gSOAP in the development environment
 ------------------------------------------------------------------------------
 
 1) Overview of build requirements
@@ -37,3 +37,5 @@ Linux client agent:
             - Versions of bash in the 3.x to 4.x range have been tested with
             the code in the EIL Linux client agent. Realistically, any version
             of bash within the last decade and into the future should work fine.
+
+1.a) Building gSOAP in the development environment
