@@ -68,6 +68,18 @@ if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
         DTE2=$(date_utc_stamp "now")
         DELTA=$(date_utc_stamp_delta -m $DTE1 $DTE2)
         if [ "$DELTA" -lt "$TIMEOUT_IN_MINUTES" ]; then
+            # Alright, let's count our number of times re-up'd thus far
+            COUNTREUPS=$(cat $NUMREUP | wc -l)
+            if [ "$COUNTREUPS" -gt "$MAX_REUP_ALLOWED" ]; then
+                # Okay, something seriously wrong, shut down
+                trace_error "--------------"
+                trace_error "Network reconfiguration attempted a maximum number of times, yet still no viable network!"
+                trace_error "Linux client agent is shutting down"
+                /etc/init.d/eil_steward.sh stop
+            else
+                # keep trying
+                re_up
+            fi
         else
             # Outside of the limit, just reset things
             rm -f $LASTREUP

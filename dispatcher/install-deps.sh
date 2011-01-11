@@ -102,10 +102,10 @@ EOF
 #           SOURCE_SCRIPTS above.
 LINKED_SCRIPTS=$(cat <<EOF
 ubuntu_reboot:reboot-noloop
-rhel_reboot:reboot
+rhel_reboot:reboot-noloop
 suse_reboot:reboot-noloop
-centos_reboot:reboot
-xen_reboot:reboot
+centos_reboot:reboot-noloop
+xen_reboot:reboot-noloop
 esx_reboot:reboot
 esxi_reboot:reboot
 ubuntu_tcp_diag:tcp_diag-full
