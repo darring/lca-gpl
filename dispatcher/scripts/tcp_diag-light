@@ -33,6 +33,8 @@ if [ -n "$IS_ESX" ]; then
 
         if [ "$PERCENTAGE" -gt "$MIN_PERCENTAGE" ]; then
             # Re-up
+            # NOTE - This may need some double checking, there's all manner of
+            # wackiness going on in ESXi, and this may not re-up all interfaces
             dhclient-uw
         else
             # We seem to have a working interface, get out of the loop
