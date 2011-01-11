@@ -28,7 +28,7 @@ if [ -n "$IS_ESX" ]; then
     # Systematically run through the lease info, and try to re-up
     for ROUTER in $ROUTERS
     do
-        PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${ROUTER} | \
+        PERCENTAGE=$(ping -c ${NUM_PINGS} ${ROUTER} | \
             grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
 
         if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
@@ -41,7 +41,7 @@ if [ -n "$IS_ESX" ]; then
     done
     # If we make it here and still don't have a working network, then we shut
     # down the steward
-    PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${ROUTER} | \
+    PERCENTAGE=$(ping -c ${NUM_PINGS} ${ROUTER} | \
         grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
 
     if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
