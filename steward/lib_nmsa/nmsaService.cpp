@@ -4,6 +4,7 @@
  A basic helper class which wraps the service bindings for the NMSA interface
  */
 
+#include "logger.h"
 #include "nmsaService.h"
 
 NMSA_Service::NMSA_Service(StewardLogger *myLogger)
@@ -16,7 +17,7 @@ NMSA_Service::NMSA_Service(StewardLogger *myLogger)
     logger->QuickLog("NMSA_Service> Service initialized...");
 }
 
-~NMSA_Service::NMSA_Service()
+NMSA_Service::~NMSA_Service()
 {
     // TODO
 }

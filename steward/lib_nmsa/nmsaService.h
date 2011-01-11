@@ -19,6 +19,7 @@ class NMSA_Service
 {
     private:
         StewardLogger *logger;
+
     public:
         //! Constructor for the NMSA service wrapper
         /*!
