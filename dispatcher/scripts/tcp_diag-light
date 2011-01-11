@@ -28,15 +28,34 @@ if [ -n "$IS_ESX" ]; then
     # Systematically run through the lease info, and try to re-up
     for ROUTER in $ROUTERS
     do
-        PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${GATEWAY} | \
+        PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${ROUTER} | \
             grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
 
         if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
             # Re-up
+            dhclient-uw
         else
+            # We seem to have a working interface, get out of the loop
+            break
         fi
     done
+    # If we make it here and still don't have a working network, then we shut
+    # down the steward
+    PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${ROUTER} | \
+        grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
+
+    if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
+        trace_error "--------------"
+        trace_error "Network reconfiguration attempted a maximum number of times, yet still no viable network!"
+        trace_error "Linux client agent is shutting down"
+        /etc/init.d/eil_steward.sh stop
+    fi
 else
+    # We have no clue how to handle this case, shutting down the agent
+    trace_error "--------------"
+    trace_error "Network unreachable and on a system which we don't seem to support!"
+    trace_error "Linux client agent is shutting down"
+    /etc/init.d/eil_steward.sh stop
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
