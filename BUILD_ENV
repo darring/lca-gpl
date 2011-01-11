@@ -4,3 +4,36 @@
 Table of Contents
 1) Overview of build requirements
 
+------------------------------------------------------------------------------
+
+1) Overview of build requirements
+
+    The EIL Linux client agent requires a number of items in order to build.
+These items are too numerous, and many are defined dynamically based upon
+external dependency build processes, to be listed in great detail. However, from
+a very high level, the following items are required in order to build the EIL
+Linux client agent:
+
+        * gSOAP 2.8.0
+            - Newer versions of gSOAP might work as well, but older versions
+            will not. We depend on very specific WS-Addressing plugins only
+            available in versions past 2.8.0 . It is left up to the developer to
+            establish if a newer version of gSOAP will work, and what (if any)
+            modifications to the Linux client agent codebase must happen in
+            order to support it.
+
+        * gcc 4.4.x
+            - A minimum of gcc 4.4.x is required. Older versions may work as
+            well, but are untested.
+
+        * make 3.81
+            - Realistically, any recent version of make should work, however,
+            3.81 was the exact version present on all distros at the time of
+            initial development. Due to design constraints (simple build) we
+            wind up having relatively simple makefiles that should work in any
+            version of GNU make.
+
+        * bash 3.x
+            - Versions of bash in the 3.x to 4.x range have been tested with
+            the code in the EIL Linux client agent. Realistically, any version
+            of bash within the last decade and into the future should work fine.
