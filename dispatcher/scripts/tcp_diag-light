@@ -17,7 +17,7 @@
 # Number of times we try pinging
 NUM_PINGS=5
 
-# The minimum percentage we allow
+# The minimum percentage we require
 MIN_PERCENTAGE=50
 
 if [ -n "$IS_ESX" ]; then
@@ -31,7 +31,7 @@ if [ -n "$IS_ESX" ]; then
         PERCENTAGE=$(ping -c ${NUM_PINGS} ${ROUTER} | \
             grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
 
-        if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
+        if [ "$PERCENTAGE" -gt "$MIN_PERCENTAGE" ]; then
             # Re-up
             dhclient-uw
         else
@@ -44,7 +44,7 @@ if [ -n "$IS_ESX" ]; then
     PERCENTAGE=$(ping -c ${NUM_PINGS} ${ROUTER} | \
         grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
 
-    if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
+    if [ "$PERCENTAGE" -gt "$MIN_PERCENTAGE" ]; then
         trace_error "--------------"
         trace_error "Network reconfiguration attempted a maximum number of times, yet still no viable network!"
         trace_error "Linux client agent is shutting down"

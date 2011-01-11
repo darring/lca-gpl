@@ -14,7 +14,7 @@
 # Number of times we try pinging
 NUM_PINGS=5
 
-# The minimum percentage we allow
+# The minimum percentage we require
 MIN_PERCENTAGE=50
 
 # The timeout (in minutes) after which it's considered okay to re-up the network
@@ -62,7 +62,7 @@ re_up() {
     fi
 }
 
-if [ "$PERCENTAGE" -lt "$MIN_PERCENTAGE" ]; then
+if [ "$PERCENTAGE" -gt "$MIN_PERCENTAGE" ]; then
     if [ -f "$LASTREUP" ]; then
         DTE1=$(cat $LASTREUP)
         DTE2=$(date_utc_stamp "now")
