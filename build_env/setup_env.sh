@@ -21,6 +21,12 @@ libssl-dev
 EOF
 )
 
+# Must be run as root
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root!"
+    exit 1
+fi
+
 # Check we're running debian/ubuntu
 if [ ! -f "/etc/debian_version" ]; then
     cat <<EOF
@@ -57,12 +63,37 @@ read -p "Press [Enter] to continue : "
 
 # Install the dependencies
 
+cat <<EOF
+
+ Updating aptitude....
+
+EOF
+aptitude update
+
+cat <<EOF
+
+ Installing dependencies...
+
+ Select "Yes" if prompted...
+
+EOF
+
+aptitude install ${ALL_DEBS}
+
 # Set up gsoap sources in a tmp directory
+
+cat <<EOF
+
+ Setting up gSOAP sources in a tmp build directory...
+
+EOF
+
+
 
 # configure and checkinstall
 
-configure
-make
-checkinstall
+#configure
+#make
+#checkinstall
 
 # vim:set ai et sts=4 sw=4 tw=80:
