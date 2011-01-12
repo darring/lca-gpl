@@ -18,3 +18,9 @@
 - Wrap up quite a bit of Gnits documentation.
 - Add check for localhost
 - Flesh out the reboot functionality
+
+* Tue Jan 11 2011 - Sam Hart <samx.hart@intel.com>
+- Add secondary reboot command which prevents a CCMS deadlock condition.
+- Add two versions of a TCP diagnose tool which can be used to fix VLAN switch
+  issues.
+- Add work on build/dev environment setup.
