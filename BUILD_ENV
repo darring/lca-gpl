@@ -5,7 +5,8 @@ Table of Contents
 1) Overview of build requirements
     1.a) Building gSOAP in the development environment
 2) Building in a Debian/Ubuntu install
-    2.a) using the setup_env.sh script
+    2.a) Building in a chroot
+    2.b) Using the setup_env.sh script
 ------------------------------------------------------------------------------
 
 1) Overview of build requirements
@@ -65,4 +66,11 @@ developers on the project to find out if this is the case.
 
 2) Building in a Debian/Ubuntu install
 
-2.a) using the setup_env.sh script
+2.a) Building in a chroot
+
+deb http://archive.ubuntu.com/ubuntu lucid main
+deb http://archive.ubuntu.com/ubuntu lucid universe
+deb http://archive.ubuntu.com/ubuntu lucid multiverse
+
+
+2.b) Using the setup_env.sh script

@@ -106,9 +106,20 @@ cat <<EOF
 
 EOF
 
+read -p "Press [Enter] to continue : "
+
+# This is an ugly hack, but there's a strange heisenbug where sometimes the
+# aclocal is recognized, and sometimes it is not. I've spent a few days trying
+# to trace the exact cause of this bug, and have now given up because I need to
+# move on to other things. So, to side-step it entirely, we do the following
+# symlink. - Sam
+ln -s /usr/bin/aclocal-1.11 /usr/bin/aclocal-1.10
+
 ./configure
 make
 checkinstall
+
+unlink /usr/bin/aclocal-1.10
 
 # Package install
 
