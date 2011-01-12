@@ -18,8 +18,12 @@ autotools-dev
 byacc
 bison
 libssl-dev
+shunit2
+mercurial
 EOF
 )
+
+MY_CWD=`pwd`
 
 # Must be run as root
 if [ "$(id -u)" != "0" ]; then
@@ -88,12 +92,43 @@ cat <<EOF
 
 EOF
 
-
+TMP_BASE=`mktemp -d`
+cp -frv gsoap-2.8 ${TMP_BASE}/.
+cd ${TMP_BASE}/gsoap-2.8/
 
 # configure and checkinstall
 
-#configure
-#make
-#checkinstall
+cat <<EOF
+
+ Performing configure and package build for gsoap...
+
+ Answer any questions asked...
+
+EOF
+
+./configure
+make
+checkinstall
+
+# Package install
+
+cat <<EOF
+
+ Installing gSOAP deb package...
+
+EOF
+
+dpkg -i *.deb
+
+# Cleanup
+
+cat <<EOF
+
+ Done... cleaning up...
+
+EOF
+
+cd $MY_CWD
+rm -fr ${TMP_BASE}
 
 # vim:set ai et sts=4 sw=4 tw=80:
