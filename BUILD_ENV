@@ -4,6 +4,9 @@
 Table of Contents
 1) Overview of build requirements
     1.a) Building gSOAP in the development environment
+2) Building in a Debian/Ubuntu install
+    2.a) Building in a chroot
+    2.b) Using the setup_env.sh script
 ------------------------------------------------------------------------------
 
 1) Overview of build requirements
@@ -39,3 +42,35 @@ Linux client agent:
             of bash within the last decade and into the future should work fine.
 
 1.a) Building gSOAP in the development environment
+
+    The gSOAP development libraries need a variety of items in order to be built
+in your build environment. These include (but are not limitted to):
+
+        * flex
+        * automake
+        * autoconf
+        * autotools-dev
+        * byacc
+        * bison
+        * libssl-dev
+
+    These are the names of the packages as they are listed in Debian/Ubuntu, if
+you are building gSOAP under another distribution you will have to find other
+equivalent options.
+
+    byacc and bison provide similar functionality, but different sections of
+the gSOAP build process apparently use different aspects of their features in
+different ways, so they are both included for completeness. There may be a way
+to reduce these requirements down a single parser, but it is left up to later
+developers on the project to find out if this is the case.
+
+2) Building in a Debian/Ubuntu install
+
+2.a) Building in a chroot
+
+deb http://archive.ubuntu.com/ubuntu lucid main
+deb http://archive.ubuntu.com/ubuntu lucid universe
+deb http://archive.ubuntu.com/ubuntu lucid multiverse
+
+
+2.b) Using the setup_env.sh script
