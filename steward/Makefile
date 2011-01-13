@@ -54,6 +54,8 @@ GSOAP_WSAAPI_O: eil_steward.o
 eil_steward.o: $(SOURCES) $(HEADERS)
 	$(CPP) $(CP_FLAGS) $(INCLUDES) $(GSOAP_INCLUDES) $(GSOAP_SOURCES) $(SOURCES)
 
+.PHONY: clean
+
 clean:
 	@echo Cleaning the build environment
 	@rm -f *~ *.o *.so core core.* lib_hash/*~ lib_clientagent/*~
