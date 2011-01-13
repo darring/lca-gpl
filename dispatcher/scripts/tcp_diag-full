@@ -34,7 +34,8 @@ GATEWAY=$(echo $HOST_IP | cut -d. -f1-3)
 GATEWAY=${GATEWAY}.1
 
 PERCENTAGE=$(ping -q -c ${NUM_PINGS} ${GATEWAY} | \
-    grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
+    grep "${NUM_PINGS} packets transmitted" | sed ${LIB_DIR}/comma_split.sed | \
+    grep "packet loss" | cut -d% -f1)
 
 re_up() {
     trace "Network issues detected, reconfiguring networking"

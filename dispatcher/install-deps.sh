@@ -11,6 +11,7 @@ ALL_LIBS=$(cat <<EOF
 dispatcher.sh
 globals.sh
 helper.sh
+comma_split.sed
 EOF
 )
 
