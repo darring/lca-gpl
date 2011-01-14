@@ -7,6 +7,12 @@
 # error was the result). This tool well determine what the problem was, and try
 # to fix it.
 
+# The setward binary
+BIN_STEWARD="/opt/intel/eil/clientagent/bin/eil_steward"
+
+# The time for the agent to restart (in minutes)
+RESTART_TIME_MINUTES=15
+
 # Load our libraries
 . /opt/intel/eil/clientagent/lib/helper.sh
 . /opt/intel/eil/clientagent/lib/globals.sh
@@ -77,6 +83,9 @@ if [ "$PERCENTAGE" -gt "$MIN_PERCENTAGE" ]; then
                 trace_error "Network reconfiguration attempted a maximum number of times, yet still no viable network!"
                 trace_error "Linux client agent is shutting down"
                 /etc/init.d/eil_steward.sh stop
+                trace_error "Setting Linux client agent to restart in ${RESTART_TIME_MINUTES} minutes"
+                OUTPUT=$(at -f ${BIN_STEWARD} -v now + ${RESTART_TIME_MINUTES} minutes)
+                trace_error "${OUTPUT}"
             else
                 # keep trying
                 re_up

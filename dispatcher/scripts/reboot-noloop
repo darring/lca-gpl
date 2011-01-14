@@ -3,9 +3,15 @@
 # More specific reboot tool with logic to detect reboot cycles
 # due to CCMS errors
 
+# The setward binary
+BIN_STEWARD="/opt/intel/eil/clientagent/bin/eil_steward"
+
 # This is the timeout in minutes
 # After this many minutes, it is considered okay to have another reboot
 TIMEOUT_IN_MINUTES=40
+
+# The time for the agent to restart (in minutes)
+RESTART_TIME_MINUTES=15
 
 # Num reboots before shutdown of agent
 # This is the number of reboots within the above allowed timeout we are allowed
@@ -44,6 +50,9 @@ if [ -f "$LASTREBOOT" ]; then
             trace_error "Linux client agent is assuming that CCMS has reached a deadlock state."
             trace_error "Linux client agent shutting down!"
             /etc/init.d/eil_steward.sh stop
+            trace_error "Setting Linux client agent to restart in ${RESTART_TIME_MINUTES} minutes"
+            OUTPUT=$(at -f ${BIN_STEWARD} -v now + ${RESTART_TIME_MINUTES} minutes)
+            trace_error "${OUTPUT}"
         else
             # We're still within limits, handle our reboot
             normal_reboot

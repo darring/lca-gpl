@@ -14,11 +14,17 @@
 . /opt/intel/eil/clientagent/lib/helper.sh
 . /opt/intel/eil/clientagent/lib/globals.sh
 
+# The setward binary
+BIN_STEWARD="/opt/intel/eil/clientagent/bin/eil_steward"
+
 # Number of times we try pinging
 NUM_PINGS=5
 
 # The minimum percentage we require
 MIN_PERCENTAGE=50
+
+# The time for the agent to restart (in minutes)
+RESTART_TIME_MINUTES=15
 
 if [ -n "$IS_ESX" ]; then
     # ESX is very peculiar
@@ -52,6 +58,9 @@ if [ -n "$IS_ESX" ]; then
         trace_error "Network reconfiguration attempted a maximum number of times, yet still no viable network!"
         trace_error "Linux client agent is shutting down"
         /etc/init.d/eil_steward.sh stop
+        trace_error "Setting Linux client agent to restart in ${RESTART_TIME_MINUTES} minutes"
+        OUTPUT=$(at -f ${BIN_STEWARD} -v now + ${RESTART_TIME_MINUTES} minutes)
+        trace_error "${OUTPUT}"
     fi
 else
     # We have no clue how to handle this case, shutting down the agent
@@ -59,6 +68,9 @@ else
     trace_error "Network unreachable and on a system which we don't seem to support!"
     trace_error "Linux client agent is shutting down"
     /etc/init.d/eil_steward.sh stop
+    trace_error "Setting Linux client agent to restart in ${RESTART_TIME_MINUTES} minutes"
+    OUTPUT=$(at -f ${BIN_STEWARD} -v now + ${RESTART_TIME_MINUTES} minutes)
+    trace_error "${OUTPUT}"
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
