@@ -59,11 +59,15 @@ Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46">ServiceState</a> { <a class="el" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46aa166ab42500e771c1058eb27180f4141">STATE_None</a>, 
 <a class="el" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46af85bbb01a7d1809f7b0ea0e37f79ee95">STATE_ExecutingCommand</a>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The state of the steward service wrapper. </p>
+ <a href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73">StewardState</a> { <a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73a5fe392230b06d4ed2e563a8367f368e9">S_STATE_Null</a>, 
 <a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73ab859905f5ee12090c8cd5f636d7bd6e4">S_STATE_Running</a>, 
 <a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73a08ccf67b34fbfdcf2d91b8a875bfb113">S_STATE_Shutdown</a>, 
 <a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73aee885aaac574466e3a299efb32e77cf1">S_STATE_Terminate</a>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The state of the steward daemon itself. </p>
+ <a href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73">More...</a><br/></td></tr>
 </table>
 <hr/><h2>Enumeration Type Documentation</h2>
 <a class="anchor" id="af709fedda5c43309eac7faf560909e46"></a><!-- doxytag: member="serviceState.h::ServiceState" ref="af709fedda5c43309eac7faf560909e46" args="" -->
@@ -76,6 +80,12 @@ Enumerations</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The state of the steward service wrapper. </p>
+<ul>
+<li><code>STATE_None</code> A base state when no operations are being executed </li>
+<li><code>STATE_ExecutingCommand</code> State when we are executing a command </li>
+</ul>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="af709fedda5c43309eac7faf560909e46aa166ab42500e771c1058eb27180f4141"></a><!-- doxytag: member="STATE_None" ref="af709fedda5c43309eac7faf560909e46aa166ab42500e771c1058eb27180f4141" args="" -->STATE_None</em>&nbsp;</td><td>
 </td></tr>
@@ -97,6 +107,15 @@ Enumerations</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The state of the steward daemon itself. </p>
+<p>This enum defines the various states the daemon can be in. When signals are sent to the daemon, the signal handlers set the daemon in one of these states to control execution of the daemon code. </p>
+<ul>
+<li><code>S_STATE_Null</code> This is an undefined state, the daemon should only be in this state when it is in startup mode. </li>
+<li><code>S_STATE_Running</code> Normal running state. When the daemon is operating normally, this is the state it is in. </li>
+<li><code>S_STATE_Shutdown</code> This is the state the daemon switches to when it has received a SIGHUP or SIGINT. In this state it closes "nicely", meaning it attempts to shut everything down properly and exit cleanly. </li>
+<li><code>S_STATE_Terminate</code> This the state the daemon switches to when it has received a SIGTERM. This state tells the daemon to terminate execution as soon as possible, and not worry about closing things down cleanly. </li>
+</ul>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="ab41c39af56d7080f8baeaee74b33fc73a5fe392230b06d4ed2e563a8367f368e9"></a><!-- doxytag: member="S_STATE_Null" ref="ab41c39af56d7080f8baeaee74b33fc73a5fe392230b06d4ed2e563a8367f368e9" args="" -->S_STATE_Null</em>&nbsp;</td><td>
 </td></tr>
@@ -127,7 +146,7 @@ Enumerations</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 14 2011 10:25:19 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 14 2011 11:45:51 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
