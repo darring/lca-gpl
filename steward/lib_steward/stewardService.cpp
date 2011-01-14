@@ -166,6 +166,14 @@ CCMS_Command StewardService::QueryForClientCommands(
                 returnCommand.Command = NO_COMMAND;
                 logger->QuickLog("StewardService> No command");
             } else {
+                /*
+                 First we need to get our responses ready
+                 */
+                _ns1__UpdateCommandStatus updateCmdStat;
+                _ns1__UpdateCommandStatusResponse updateCmdStatResp;
+
+                updateCmdStat.ctx = &ctx;
+
                 // Parse *what* our command was
                 if(strcasecmp(
                     response.GetCommandToExecuteResult->CommandName, "reboot")
@@ -174,6 +182,15 @@ CCMS_Command StewardService::QueryForClientCommands(
                     currentState = STATE_ExecutingCommand;
                     returnCommand.ReturnState = COMMAND_SUCCESS;
                     returnCommand.Command = REBOOT;
+
+                    updateCmdStat.cmd->CommandResult = "Reboot Successful";
+                    ns4__EILCommandStatus complete =
+                        ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
+                    int errorcode = 0;
+                    updateCmdStat.cmd->CommandStatus = &complete;
+                    updateCmdStat.cmd->ErrorCode = &errorcode;
+                    service.UpdateCommandStatus(
+                        &updateCmdStat, &updateCmdStatResp);
                 } // Other commands go here
                 else
                 {
