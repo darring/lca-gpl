@@ -45,8 +45,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <h2><a class="anchor" id="Introduction"></a>
 Introduction</h2>
+<p>This is the service wrapper for the steward in the EIL Linux Client agent. The main purpose of this service wrapper is to serve as a barrier between the gSOAP interfaces (which may change based upon the upstream SOAP server's whims) and the rest of the steward and client agent.</p>
+<p>We isolate the gSOAP calls and interfaces in this service wrapper to minimize where changes must be made in the event that radical external changes occur that would otherwise affect the client agent in adverse ways.</p>
 <h2><a class="anchor" id="Usage"></a>
 Usage</h2>
+<p>To use the steward service, create an instance of the class StewardServce, and call the QueryForClientCommands method every NN seconds (where NN is determined by some external criteria). </p>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -62,7 +65,7 @@ Usage</h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 14 2011 10:08:27 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 14 2011 10:17:00 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

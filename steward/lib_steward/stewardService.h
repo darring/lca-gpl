@@ -5,9 +5,19 @@
 /*! \mainpage Steward service wrapper for the EIL Linux Client Agent
  *
  * \section Introduction Introduction
+ *  This is the service wrapper for the steward in the EIL Linux Client agent.
+ * The main purpose of this service wrapper is to serve as a barrier between the
+ * gSOAP interfaces (which may change based upon the upstream SOAP server's
+ * whims) and the rest of the steward and client agent.
+ *
+ *  We isolate the gSOAP calls and interfaces in this service wrapper to
+ * minimize where changes must be made in the event that radical external
+ * changes occur that would otherwise affect the client agent in adverse ways.
  *
  * \section Usage Usage
- *
+ *  To use the steward service, create an instance of the class StewardServce,
+ * and call the QueryForClientCommands method every NN seconds (where NN is
+ * determined by some external criteria).
  */
 
 #ifndef stewardService_H
