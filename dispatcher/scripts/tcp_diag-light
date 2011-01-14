@@ -29,7 +29,8 @@ if [ -n "$IS_ESX" ]; then
     for ROUTER in $ROUTERS
     do
         PERCENTAGE=$(ping -c ${NUM_PINGS} ${ROUTER} | \
-            grep "${NUM_PINGS} packets transmitted" | cut -d, -f3 | cut -d% -f1)
+            grep "${NUM_PINGS} packets transmitted" | \
+            sed -f ${LIB_DIR}/comma_split.sed | grep "packet loss" | cut -d% -f1)
 
         if [ "$PERCENTAGE" -gt "$MIN_PERCENTAGE" ]; then
             # Re-up

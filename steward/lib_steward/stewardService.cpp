@@ -269,6 +269,7 @@ CCMS_Command StewardService::QueryForClientCommands(
                      */
                     returnCommand.ReturnState = COMMAND_TCP_ERROR;
                     returnCommand.Command = TCP_DIAGNOSE;
+                    break;
                 case SOAP_HTTP_ERROR:
                     logger->QuickLog("StewardService> ERROR! SOAP_HTTP_ERROR 'An HTTP error occured'");
                     break;
