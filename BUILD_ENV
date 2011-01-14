@@ -94,3 +94,11 @@ look like for their particular distribution.
 the Linux client agent as well as a script called 'setup_env.sh' which can be
 used to automatically set-up a Debian-based distribution (such as Ubuntu) for
 development and building of the EIL Linux client agent.
+
+    This script must be run as root, and must be run on a Debian-derived system.
+Running on another system (even if that system has apt available on it) will have
+undefined results.
+
+    The script is not entirely automated, and will require some user intervention
+during key moments. It is recommended that you read the instructions carefully.
+
