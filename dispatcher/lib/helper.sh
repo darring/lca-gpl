@@ -2,8 +2,7 @@
 
 # Determine what we're running. This is a bit messy, but hey, we're
 # running in bash, we can't *really* use anything more advanced.
-unset IS_RHEL IS_DEB IS_SLES IS_ESX IS_XEN || true
-unset PLATFORM_NAME || true
+unset IS_RHEL IS_DEB IS_SLES IS_ESX PLATFORM_NAME || true
 
 # Given that we are running a Debian-derived distribution, find the
 # specific Debian variant we are running.
