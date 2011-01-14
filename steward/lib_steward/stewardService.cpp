@@ -189,6 +189,7 @@ CCMS_Command StewardService::QueryForClientCommands(
                     int errorcode = 0;
                     updateCmdStat.cmd->CommandStatus = &complete;
                     updateCmdStat.cmd->ErrorCode = &errorcode;
+                    // FIXME - Do we want to deal with op_codes here as well?
                     service.UpdateCommandStatus(
                         &updateCmdStat, &updateCmdStatResp);
                 } // Other commands go here
