@@ -115,12 +115,18 @@ read -p "Press [Enter] to continue : "
 # move on to other things. So, to side-step it entirely, we do the following
 # symlink. - Sam
 ln -s /usr/bin/aclocal-1.11 /usr/bin/aclocal-1.10
+ln -s /usr/bin/aclocal-1.11 /bin/alocal-1.10
+ln -s /usr/bin/automake-1.11 /usr/bin/automake-1.10
+ln -s /usr/bin/automake-1.11 /bin/automake-1.10
 
 ./configure
 make
 checkinstall
 
 unlink /usr/bin/aclocal-1.10
+unlink /bin/aclocal-1.10
+unlink /usr/bin/automake-1.10
+unlink /bin/automake-1.10
 
 # Package install
 
