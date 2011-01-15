@@ -68,9 +68,37 @@ developers on the project to find out if this is the case.
 
 2.a) Building in a chroot
 
-deb http://archive.ubuntu.com/ubuntu lucid main
-deb http://archive.ubuntu.com/ubuntu lucid universe
-deb http://archive.ubuntu.com/ubuntu lucid multiverse
+    A good practice for isolating your development environment from your build/
+test environment is splitting them between a simple chroot barrier. Depending
+upon your distribution of choice, the difficulty in creating a chroot can vary.
+For our purposes, we assume you are developing in a Debian derived distribution
+(such as Ubuntu, or stock Debian) and have access to the debootstrap tool (or a
+debootstrap-like tool). debootstrap is apt-gettable and part of a stock Debian or
+Ubuntu install.
 
+    Once you have a chroot installed, be sure to enable the full sources in the
+/etc/apt/sources.list file, as generally they will just have the basic one(s)
+enabled. For example, if I was installing Ubuntu 10.04 LTS "Lucid Lynx", my
+sources.list might look like:
+
+        deb http://archive.ubuntu.com/ubuntu lucid main
+        deb http://archive.ubuntu.com/ubuntu lucid universe
+        deb http://archive.ubuntu.com/ubuntu lucid multiverse
+
+    It is left up to the reader to determine what their full sources.list must
+look like for their particular distribution.
 
 2.b) Using the setup_env.sh script
+
+    Included in the source repository is the current gSOAP source tree used by
+the Linux client agent as well as a script called 'setup_env.sh' which can be
+used to automatically set-up a Debian-based distribution (such as Ubuntu) for
+development and building of the EIL Linux client agent.
+
+    This script must be run as root, and must be run on a Debian-derived system.
+Running on another system (even if that system has apt available on it) will have
+undefined results.
+
+    The script is not entirely automated, and will require some user intervention
+during key moments. It is recommended that you read the instructions carefully.
+
