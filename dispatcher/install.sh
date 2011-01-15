@@ -337,9 +337,6 @@ elif [ -n "$IS_ESX" ]; then
     # Yay! Manual labor!
     mkdir -p /etc/rc.local.d/
     ln -s /etc/init.d/eil_steward.sh /etc/rc.local.d/eil_steward.sh
-elif [ -n "$IS_XEN" ]; then
-    echo "XEN RC setup not yet done"
-    # FIXME TODO
 else
     # Undefined thing! This is very very bad!
     echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
