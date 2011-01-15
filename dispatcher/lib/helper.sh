@@ -24,16 +24,16 @@ find_specific_redhat() {
         # Okay, let's see if we're CentOS
         egrep -i "centos" /etc/redhat-release > /dev/null
         if [ $? -ne 0 ]; then
-			egrep -i "xen" /etc/redhat-release > /dev/null
-			if [ $? -ne 0 ]; then
-				# Hmm, we don't know what to do here... Perhaps we should
-				# exit with failure
-				echo "ERROR! Unsupported Red Hat derivative!"
-				echo "Check /etc/redhat-release for more information!"
-				exit 1
-			else
-				# We're Xen
-				PLATFORM_NAME="xen"
+            egrep -i "xen" /etc/redhat-release > /dev/null
+            if [ $? -ne 0 ]; then
+                # Hmm, we don't know what to do here... Perhaps we should
+                # exit with failure
+                echo "ERROR! Unsupported Red Hat derivative!"
+                echo "Check /etc/redhat-release for more information!"
+                exit 1
+            else
+                # We're Xen
+                PLATFORM_NAME="xen"
             fi
         else
             # We're CentOS
@@ -79,6 +79,48 @@ fi
 trace() {
     DATESTAMP=$(date +'%Y-%m-%d %H:%M:%S %Z')
     echo "${DATESTAMP} : ${*}" >> ${STANDARD_LOG_FILE}
+}
+
+trace_error() {
+    DATESTAMP=$(date +'%Y-%m-%d %H:%M:%S %Z')
+    echo "${DATESTAMP} : ${*}" >> ${ERROR_LOG_FILE}
+}
+
+date_utc_stamp() {
+    date --utc --date "$1" +%s
+}
+
+date_utc_stamp_delta() {
+    case $1 in
+        -s)
+            SEC=1
+            shift
+            ;;
+        -m)
+            SEC=60
+            shift
+            ;;
+        -h)
+            SEC=3600
+            shift
+            ;;
+        -d)
+            SEC=86400
+            shift
+            ;;
+        *)
+            SEC=86400
+            ;;
+    esac
+    DTE1=$1
+    DTE2=$2
+    DELTA=$((DTE2-DTE1))
+    if ((DELTA < 0)); then VEC=-1; else VEC=1; fi
+    echo $((DELTA/SEC*VEC))
+}
+
+get_system_ip() {
+    /sbin/ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'
 }
 
 # vim:set ai et sts=4 sw=4 tw=80:

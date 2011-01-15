@@ -1,0 +1,76 @@
+                            Build Environment
+------------------------------------------------------------------------------
+
+Table of Contents
+1) Overview of build requirements
+    1.a) Building gSOAP in the development environment
+2) Building in a Debian/Ubuntu install
+    2.a) Building in a chroot
+    2.b) Using the setup_env.sh script
+------------------------------------------------------------------------------
+
+1) Overview of build requirements
+
+    The EIL Linux client agent requires a number of items in order to build.
+These items are too numerous, and many are defined dynamically based upon
+external dependency build processes, to be listed in great detail. However, from
+a very high level, the following items are required in order to build the EIL
+Linux client agent:
+
+        * gSOAP 2.8.0
+            - Newer versions of gSOAP might work as well, but older versions
+            will not. We depend on very specific WS-Addressing plugins only
+            available in versions past 2.8.0 . It is left up to the developer to
+            establish if a newer version of gSOAP will work, and what (if any)
+            modifications to the Linux client agent codebase must happen in
+            order to support it.
+
+        * gcc 4.4.x
+            - A minimum of gcc 4.4.x is required. Older versions may work as
+            well, but are untested.
+
+        * make 3.81
+            - Realistically, any recent version of make should work, however,
+            3.81 was the exact version present on all distros at the time of
+            initial development. Due to design constraints (simple build) we
+            wind up having relatively simple makefiles that should work in any
+            version of GNU make.
+
+        * bash 3.x
+            - Versions of bash in the 3.x to 4.x range have been tested with
+            the code in the EIL Linux client agent. Realistically, any version
+            of bash within the last decade and into the future should work fine.
+
+1.a) Building gSOAP in the development environment
+
+    The gSOAP development libraries need a variety of items in order to be built
+in your build environment. These include (but are not limitted to):
+
+        * flex
+        * automake
+        * autoconf
+        * autotools-dev
+        * byacc
+        * bison
+        * libssl-dev
+
+    These are the names of the packages as they are listed in Debian/Ubuntu, if
+you are building gSOAP under another distribution you will have to find other
+equivalent options.
+
+    byacc and bison provide similar functionality, but different sections of
+the gSOAP build process apparently use different aspects of their features in
+different ways, so they are both included for completeness. There may be a way
+to reduce these requirements down a single parser, but it is left up to later
+developers on the project to find out if this is the case.
+
+2) Building in a Debian/Ubuntu install
+
+2.a) Building in a chroot
+
+deb http://archive.ubuntu.com/ubuntu lucid main
+deb http://archive.ubuntu.com/ubuntu lucid universe
+deb http://archive.ubuntu.com/ubuntu lucid multiverse
+
+
+2.b) Using the setup_env.sh script

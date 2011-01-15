@@ -2,6 +2,10 @@
 
 # Platform agnostic (hopefully) reboot tool
 
+# Does *no* checks to verify that we aren't caught in an endless reboot cycle.
+# For that, we rely on a more intelligent reboot tool that only works on certain
+# platforms
+
 # NOTE: We don't use 'reboot' because that is not part of the LSB, thus it is
 # NOT guaranteed to be on every Linux platform (even though it probably will
 # be) nor is its behavior guaranteed (even though it probably will be)

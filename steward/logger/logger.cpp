@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 #include "logger.h"
 
@@ -72,23 +73,10 @@ bool StewardLogger::InLoggingSession()
     return isLogging;
 }
 
-bool StewardLogger::LogEntry(char *text)
+bool StewardLogger::innerLogEntry()
 {
     if(isLogging)
     {
-        timer = time(NULL);
-        ts = localtime(&timer);
-        strftime(timeStamp, sizeof(timeStamp),
-                 "%Y-%m-%d %H:%M:%S %Z", ts);
-        if( !(snprintf(
-            logLine, LOG_LINE_LENGTH,
-            "%s : %s\n", timeStamp, text)) )
-        {
-            perror("Log entry too long!");
-            perror(text);
-            return false;
-        }
-
         fputs(logLine, logPipe);
         return true;
     } else {
@@ -96,7 +84,41 @@ bool StewardLogger::LogEntry(char *text)
     }
 }
 
-void StewardLogger::QuickLog(char *text)
+bool StewardLogger::LogEntry(char *text, ...)
+{
+    if(isLogging)
+    {
+        va_list argp;
+        timer = time(NULL);
+        ts = localtime(&timer);
+        strftime(timeStamp, sizeof(timeStamp),
+                 "%Y-%m-%d %H:%M:%S %Z", ts);
+        va_start(argp, text);
+        if( !(vsnprintf(tempLine, TEMP_LINE_LENGTH,
+            text, argp)) )
+        {
+            perror("Log entry too long!");
+            perror(text);
+            return false;
+        }
+        va_end(argp);
+
+        if( !(snprintf(
+            logLine, LOG_LINE_LENGTH,
+            "%s : %s\n", timeStamp, tempLine)) )
+        {
+            perror("Log entry too long!");
+            perror(text);
+            return false;
+        }
+
+        return innerLogEntry();
+    } else {
+        return false;
+    }
+}
+
+void StewardLogger::QuickLog(char *text, ...)
 {
     if(isLogging) {
         // If we are already logging, then we must do the logical thing for
@@ -104,12 +126,56 @@ void StewardLogger::QuickLog(char *text)
         // - Log our entry
         // - Flush the cache
         // - Begin logging again, thus restoring state
-        LogEntry(text);
+        va_list argp;
+        timer = time(NULL);
+        ts = localtime(&timer);
+        strftime(timeStamp, sizeof(timeStamp),
+                 "%Y-%m-%d %H:%M:%S %Z", ts);
+        va_start(argp, text);
+        if( !(vsnprintf(tempLine, TEMP_LINE_LENGTH,
+            text, argp)) )
+        {
+            perror("Log entry too long!");
+            perror(text);
+        }
+        va_end(argp);
+
+        if( !(snprintf(
+            logLine, LOG_LINE_LENGTH,
+            "%s : %s\n", timeStamp, tempLine)) )
+        {
+            perror("Log entry too long!");
+            perror(text);
+        }
+
+        innerLogEntry();
         EndLogging();
         BeginLogging();
     } else {
         BeginLogging();
-        LogEntry(text);
+        va_list argp;
+        timer = time(NULL);
+        ts = localtime(&timer);
+        strftime(timeStamp, sizeof(timeStamp),
+                 "%Y-%m-%d %H:%M:%S %Z", ts);
+        va_start(argp, text);
+        if( !(vsnprintf(tempLine, TEMP_LINE_LENGTH,
+            text, argp)) )
+        {
+            perror("Log entry too long!");
+            perror(text);
+        }
+        va_end(argp);
+
+        if( !(snprintf(
+            logLine, LOG_LINE_LENGTH,
+            "%s : %s\n", timeStamp, tempLine)) )
+        {
+            perror("Log entry too long!");
+            perror(text);
+        }
+
+        innerLogEntry();
         EndLogging();
     }
 }

@@ -11,6 +11,7 @@ ALL_LIBS=$(cat <<EOF
 dispatcher.sh
 globals.sh
 helper.sh
+comma_split.sed
 EOF
 )
 
@@ -78,6 +79,9 @@ EOF
 # scripts/ directory.
 SOURCE_SCRIPTS=$(cat <<EOF
 root.eil:reboot
+root.eil:reboot-noloop
+root.eil:tcp_diag-full
+root.eil:tcp_diag-light
 EOF
 )
 
@@ -98,13 +102,20 @@ EOF
 #  source_script_name is the original script_name as detailed in
 #           SOURCE_SCRIPTS above.
 LINKED_SCRIPTS=$(cat <<EOF
-ubuntu_reboot:reboot
-rhel_reboot:reboot
-suse_reboot:reboot
-centos_reboot:reboot
-xen_reboot:reboot
+ubuntu_reboot:reboot-noloop
+rhel_reboot:reboot-noloop
+suse_reboot:reboot-noloop
+centos_reboot:reboot-noloop
+xen_reboot:reboot-noloop
 esx_reboot:reboot
 esxi_reboot:reboot
+ubuntu_tcp_diag:tcp_diag-full
+rhel_tcp_diag:tcp_diag-full
+suse_tcp_diag:tcp_diag-full
+centos_tcp_diag:tcp_diag-full
+xen_tcp_diag:tcp_diag-full
+esx_tcp_diag:tcp_diag-light
+esxi_tcp_diag:tcp_diag-light
 EOF
 )
 

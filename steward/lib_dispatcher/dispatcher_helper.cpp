@@ -53,7 +53,8 @@ Dispatcher_Command_Status DispatcherHelper::runDispatcher()
 void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
 {
     // It never hurts to have redundancy
-    if(commandIssued->ReturnState == COMMAND_SUCCESS)
+    if(commandIssued->ReturnState == COMMAND_SUCCESS ||
+       commandIssued->ReturnState == COMMAND_TCP_ERROR)
     {
         FILE *filePipe;
         switch (commandIssued->Command)
@@ -65,6 +66,21 @@ void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
                 if ( !(filePipe = (FILE*)fopen(rebootCmd, "w")) )
                 {
                     logger->QuickLog("DispatcherHelper> Could not open reboot command directory for writing!");
+                    exit(1);
+                }
+                // For reboot, this could be anything
+                fputc(102, filePipe);
+                fclose(filePipe);
+
+                runDispatcher();
+                break;
+            case TCP_DIAGNOSE:
+                logger->QuickLog("DispatcherHelper> TCP diagnose command requested");
+                char diagCmd[512];
+                snprintf(diagCmd, 512, "%s/tcp_diag", comPath);
+                if ( !(filePipe = (FILE*)fopen(diagCmd, "w")) )
+                {
+                    logger->QuickLog("DispatcherHelper> Could not open diagnose command directory for writing!");
                     exit(1);
                 }
                 // For reboot, this could be anything

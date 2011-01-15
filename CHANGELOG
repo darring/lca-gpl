@@ -13,3 +13,19 @@
 - Change hard BASH requirements to generalized /bin/sh requirements in scripts
   where this is acceptable (again, due to ESXi limitations). One exception is
   install_tool.sh where we now need a second, custom ESXi install_tool.
+
+* Mon Jan 3 2011 - Sam Hart <samx.hart@intel.com>
+- Wrap up quite a bit of Gnits documentation.
+- Add check for localhost
+- Flesh out the reboot functionality
+
+* Tue Jan 11 2011 - Sam Hart <samx.hart@intel.com>
+- Add secondary reboot command which prevents a CCMS deadlock condition.
+- Add two versions of a TCP diagnose tool which can be used to fix VLAN switch
+  issues.
+- Add work on build/dev environment setup.
+
+* Fri Jan 14 2011 - Sam Hart <samx.hart@intel.com>
+- Add update status notifiers back to CCMS upon command consumption.
+- Change behavior of reboot-noloop to sleep steward instead of shutting down.
+- Change behavior of TCP diagnose to sleep steward instead of shutting down.
