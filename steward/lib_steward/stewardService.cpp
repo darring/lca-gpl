@@ -202,11 +202,11 @@ CCMS_Command StewardService::QueryForClientCommands(
                     ns4__EILCommandStatus complete =
                         ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
                     int errorcode = 0;
-                    //updateCmdStat.cmd->CommandStatus = &complete;
-                    //updateCmdStat.cmd->ErrorCode = &errorcode;
                     cmd.CommandResult = "Reboot Successful";
                     cmd.CommandStatus = &complete;
                     cmd.ErrorCode = &errorcode;
+                    cmd.CommandName =
+                        response.GetCommandToExecuteResult->CommandName;
 
                     updateCmdStat.cmd = &cmd;
                     updateCmdStat.cmd->OperationID =
