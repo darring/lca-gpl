@@ -170,6 +170,7 @@ CCMS_Command StewardService::QueryForClientCommands(
                  First we need to get our responses ready
                  */
                 _ns1__UpdateCommandStatus updateCmdStat;
+                ns4__EILCommand cmd;
                 _ns1__UpdateCommandStatusResponse updateCmdStatResp;
 
                 updateCmdStat.ctx = &ctx;
@@ -183,12 +184,18 @@ CCMS_Command StewardService::QueryForClientCommands(
                     returnCommand.ReturnState = COMMAND_SUCCESS;
                     returnCommand.Command = REBOOT;
 
-                    updateCmdStat.cmd->CommandResult = "Reboot Successful";
+                    //updateCmdStat.cmd->CommandResult = cResult;
                     ns4__EILCommandStatus complete =
                         ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
                     int errorcode = 0;
-                    updateCmdStat.cmd->CommandStatus = &complete;
-                    updateCmdStat.cmd->ErrorCode = &errorcode;
+                    //updateCmdStat.cmd->CommandStatus = &complete;
+                    //updateCmdStat.cmd->ErrorCode = &errorcode;
+                    cmd.CommandResult = "Reboot Successful";
+                    cmd.CommandStatus = &complete;
+                    cmd.ErrorCode = &errorcode;
+
+                    updateCmdStat.cmd = &cmd;
+
                     // FIXME - Do we want to deal with op_codes here as well?
                     service.UpdateCommandStatus(
                         &updateCmdStat, &updateCmdStatResp);
