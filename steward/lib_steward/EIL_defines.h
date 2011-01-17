@@ -19,4 +19,8 @@
 #define EIL__GETCOMMANDTOEXECUTE "http://tempuri.org/IEILClientOperations/GetCommandToExecute"
 #endif
 
+#ifndef EIL__UPDATECOMMANDSTATUS
+#define EIL__UPDATECOMMANDSTATUS "http://tempuri.org/IEILClientOperations/UpdateCommandStatus"
+#endif
+
 #endif
