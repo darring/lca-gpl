@@ -45,6 +45,12 @@ if [ -n "$1" ]; then
     mount --bind /proc ${CHROOT_PATH}/proc
     mount --bind /dev ${CHROOT_PATH}/dev
 
+    # Make sure we have universe and multiverse in our sources list
+    echo "deb http://archive.ubuntu.com/ubuntu lucid universe" /
+        >> ${CHROOT_PATH}/etc/apt/sources.list
+    echo "deb http://archive.ubuntu.com/ubuntu lucid multiverse" /
+        >> ${CHROOT_PATH}/etc/apt/sources.list
+
     # run the setup_env from the chroot
     chroot ${CHROOT_PATH} /root/setup_env.sh
 
