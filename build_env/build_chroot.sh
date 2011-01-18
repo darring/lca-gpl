@@ -52,7 +52,13 @@ if [ -n "$1" ]; then
         >> ${CHROOT_PATH}/etc/apt/sources.list
 
     # run the setup_env from the chroot
-    chroot ${CHROOT_PATH} /root/setup_env.sh
+    echo "#!/bin/sh" >> ${CHROOT_PATH}/root/run_once.sh
+    echo "cd /root" >> ${CHROOT_PATH}/root/run_once.sh
+    echo "./setup_env.sh" >> ${CHROOT_PATH}/root/run_once.sh
+
+    chmod a+x ${CHROOT_PATH}/root/run_once.sh
+
+    chroot ${CHROOT_PATH} /root/run_once.sh
 
     cat <<EOF
 
