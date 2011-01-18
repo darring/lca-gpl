@@ -119,6 +119,8 @@ ln -s /usr/bin/aclocal-1.11 /bin/alocal-1.10
 ln -s /usr/bin/automake-1.11 /usr/bin/automake-1.10
 ln -s /usr/bin/automake-1.11 /bin/automake-1.10
 
+chmod a+x configure
+
 ./configure
 make
 checkinstall
