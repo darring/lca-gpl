@@ -4,3 +4,7 @@ connect: Network is unreachable
 
 /etc/init.d/network restart
 
+
+
+/opt/xensource/bin/xe general commands
+
