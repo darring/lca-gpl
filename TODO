@@ -5,10 +5,6 @@
 * Find out why steward is crashing on ESXi after we attempt to call CCMS
   (debugging is going to be hard there...)
 
-* Continue work on steward command interpreting
-
-* Once steward is accepting commands, continue work on dispatcher
-
 * Fully isolate gSOAP interfaces to stewardService, and instrument
   stewardService as a possible dynamically loadable library (optional build
   parameter). This is in the event that we decide to move the client agent off
