@@ -248,6 +248,8 @@ if [ -n "$OPT_FIXME" ]; then
         --exclude=Doxyfile --exclude=*~ "FIXME" *
     grep -Haunr --exclude-dir=build_env --exclude-dir=html \
         --exclude=Doxyfile --exclude=*~ "TODO" *
+    grep -Haunr --exclude-dir=build_env --exclude-dir=html \
+        --exclude=Doxyfile --exclude=*~ "NOTE" *
 fi
 
 if [ -n "$OPT_DOC" ]; then
