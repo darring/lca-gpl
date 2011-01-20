@@ -307,3 +307,5 @@ fi
 if [ -n "$DUMP_PLATFORM" ]; then
     trace "$PLATFORM_NAME"
 fi
+
+# vim:set ai et sts=4 sw=4 tw=80:
