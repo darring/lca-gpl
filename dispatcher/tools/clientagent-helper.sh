@@ -11,8 +11,8 @@
 # require a recompile of the steward agent.
 
 unset DUMP_BASE DUMP_INSTALL DUMP_BIN DUMP_LIB DUMP_DOC DUMP_PID || true
-unset DUMP_TOOL DUMP_HOME DUMP_SCRIPTS DUMP_COMDIR DUMP_UID || true
-unset DUMP_GID DUMP_STDLOG DUMP_CCMSLOG DUMP_ERRLOG TMPFILE || true
+unset DUMP_TOOL DUMP_HOME DUMP_SCRIPTS DUMP_COMDIR DUMP_UID DUMP_SYSID || true
+unset DUMP_GID DUMP_STDLOG DUMP_CCMSLOG DUMP_ERRLOG TMPFILE DUMP_PLATFORM || true
 
 PROGNAME=${0##*/}
 
@@ -84,6 +84,10 @@ Where [OPTION] is one of the following
     --pidfile       Returns the path to the process ID file used by the client
                     agent
 
+    --sysid         Returns the system identification tag.
+
+    --platform      Returns the platform name.
+
 If ran without any options, this usage text will be displayed.
 EOF
 }
@@ -114,6 +118,8 @@ gid,\
 stdlog,\
 ccmslog,\
 pidfile,\
+sysid,\
+platform,\
 errlog -- $*)
 
     if [ $? -ne 0 ]; then
@@ -188,6 +194,14 @@ while [ $1 != -- ]; do
             ;;
         --pidfile)
             DUMP_PID=yes
+            shift
+            ;;
+        --sysid)
+            DUMP_SYSID=yes
+            shift
+            ;;
+        --platform)
+            DUMP_PLATFORM=yes
             shift
             ;;
         -h)
@@ -275,4 +289,21 @@ fi
 
 if [ -n "$DUMP_PID" ]; then
     trace "$PID_FILE"
+fi
+
+if [ -n "$DUMP_SYSID" ]; then
+    # Messy
+    if [ -n "$IS_DEB" ]; then
+        trace "DEB"
+    elif [ -n "$IS_RHEL" ]; then
+        trace "RHEL"
+    elif [ -n "$IS_ESX" ]; then
+        trace "ESX"
+    elif [ -n "$IS_SLES" ]; then
+        trace "SLES"
+    fi
+fi
+
+if [ -n "$DUMP_PLATFORM" ]; then
+    trace "$PLATFORM_NAME"
 fi
