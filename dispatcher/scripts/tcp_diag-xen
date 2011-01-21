@@ -33,6 +33,9 @@ re_up() {
     ${XE} pif-plug uuid=${*}
 }
 
+# Start, by turning off the management console, unfortunately
+${XE} host-management-disable
+
 # loop through the PIF list
 for UUID in $PIF_LIST
 do
