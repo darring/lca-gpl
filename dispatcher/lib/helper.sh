@@ -119,6 +119,8 @@ date_utc_stamp_delta() {
 }
 
 get_system_ip() {
+    # FIXME - Right now, this will only work for systems with one ethernet
+    # adapter!
     /sbin/ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'
 }
 
