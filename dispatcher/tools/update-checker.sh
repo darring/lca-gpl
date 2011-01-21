@@ -33,6 +33,7 @@ HOME_DIR=$INSTALL_DIR/home
 SCRIPTS_DIR=$INSTALL_DIR/scripts
 
 . ${LIB_DIR}/globals.sh
+. ${LIB_DIR}/helper.sh
 
 EIL_VERSION=$(cat ${LIB_DIR}/VERSION)
 
@@ -45,10 +46,13 @@ wget -q "${URL_RELEASE}/VERSION"
 EIL_UPDATE_VERSION=$(cat ${TMP_WORKSPACE}/VERSION)
 
 if [ "$EIL_UPDATE_VERSION" != "$EIL_VERSION" ]; then
+    trace "Update available - Old version '${EIL_VERSION}', New version '${EIL_UPDATE_VERSION}'"
+    trace "Attempting to fetch update..."
     # Update available
     wget -q "${URL_RELEASE}/clientagent-bootstrap.sh"
     chmod a+x clientagent-bootstrap.sh
     ./clientagent-bootstrap.sh
+    rm -fr ${TMP_WORKSPACE}
 fi
 
 exit 0
