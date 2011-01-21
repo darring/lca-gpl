@@ -20,6 +20,8 @@ XSFeatureInterface.py seems to be where the actual UI calls the above.
 .ReconfigureManagement(pif, 'DHCP', '', '', '')
 .Update()  (XSConsoleData)
 
+xe host-management-disable
+
 obtaining a pif:
     xe pif-list | grep "^uuid" | cut -d ":" -f 2 | cut -d " " -f 2
     stick that in a $UUID
