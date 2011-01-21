@@ -82,6 +82,7 @@ root.eil:reboot
 root.eil:reboot-noloop
 root.eil:tcp_diag-full
 root.eil:tcp_diag-light
+root.eil:tcp_diag-xen
 EOF
 )
 
@@ -113,7 +114,7 @@ ubuntu_tcp_diag:tcp_diag-full
 rhel_tcp_diag:tcp_diag-full
 suse_tcp_diag:tcp_diag-full
 centos_tcp_diag:tcp_diag-full
-xen_tcp_diag:tcp_diag-full
+xen_tcp_diag:tcp_diag-xen
 esx_tcp_diag:tcp_diag-light
 esxi_tcp_diag:tcp_diag-light
 EOF
