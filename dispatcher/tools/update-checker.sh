@@ -41,9 +41,9 @@ TMP_WORKSPACE=`mktemp -d /tmp/eil-XXXXXX`
 
 cd $TMP_WORKSPACE
 
-wget -q "${URL_RELEASE}/VERSION"
+wget -q "${URL_RELEASE}/VERSION.txt"
 
-EIL_UPDATE_VERSION=$(cat ${TMP_WORKSPACE}/VERSION)
+EIL_UPDATE_VERSION=$(cat ${TMP_WORKSPACE}/VERSION.txt)
 
 if [ "$EIL_UPDATE_VERSION" != "$EIL_VERSION" ]; then
     trace "Update available - Old version '${EIL_VERSION}', New version '${EIL_UPDATE_VERSION}'"
