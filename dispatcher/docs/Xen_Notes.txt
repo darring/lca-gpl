@@ -29,3 +29,6 @@ obtaining a pif:
 
     for each variable from the above list
 
+finding the ip after it's gone:
+    IP=$(xe pif-param-get uuid="${UUID}" param-name="IP")
+
