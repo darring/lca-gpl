@@ -1,6 +1,0 @@
-ping:
-
-connect: Network is unreachable
-
-/etc/init.d/network restart
-
