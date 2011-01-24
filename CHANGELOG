@@ -29,3 +29,8 @@
 - Add update status notifiers back to CCMS upon command consumption.
 - Change behavior of reboot-noloop to sleep steward instead of shutting down.
 - Change behavior of TCP diagnose to sleep steward instead of shutting down.
+
+* Wed Jan 19 2011 - Sam Hart <samx.hart@intel.com>
+- update/upgrade script brought in-line with current URI requirements.
+- Finalize update status notifiers with full detail callbacks.
+- Issue alpha release of 0.0.3

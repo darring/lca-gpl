@@ -84,6 +84,9 @@ displayed:
 
         --doc           Install just the documentation
 
+        --fixme         Search the project for fixme's in code that might need to be
+                        worked on.
+
         --pkg           Build an installable package (static linked)
 
         --makerepo      Build installable package and make a repo.

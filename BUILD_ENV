@@ -6,6 +6,7 @@ Table of Contents
     1.a) Building gSOAP in the development environment
 2) Building in a Debian/Ubuntu install
     2.a) Building in a chroot
+        2.a.1) Using the chroot script
     2.b) Using the setup_env.sh script
 ------------------------------------------------------------------------------
 
@@ -87,6 +88,15 @@ sources.list might look like:
 
     It is left up to the reader to determine what their full sources.list must
 look like for their particular distribution.
+
+2.a.1) Using the chroot script
+
+    Included in the repository is a script which will set up a chroot build and
+development environment in a Debian/Ubuntu install. The script's name is
+"build_chroot.sh", and takes a single parameter specifying the path to the
+chroot to build, e.g.:
+
+        # ./build_chroot.sh /path/to/work/chroots/lucid-buildenv
 
 2.b) Using the setup_env.sh script
 

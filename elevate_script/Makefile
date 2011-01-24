@@ -18,6 +18,8 @@ static: $(OBJECTS)
 elevate_script.o: $(SOURCES) $(HEADERS)
 	$(CPP) $(CP_FLAGS) $(SOURCES)
 
+.PHONY: clean
+
 clean:
 	@echo Cleaning the build environment
 	@rm -f *~ *.o *.so core core.*

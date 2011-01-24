@@ -326,7 +326,6 @@ do
 done
 
 # Set up the rc files
-# FIXME TODO
 if [ -n "$IS_RHEL" ]; then
     chkconfig --add eil_steward.sh
 elif [ -n "$IS_DEB" ]; then

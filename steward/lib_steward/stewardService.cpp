@@ -167,6 +167,20 @@ CCMS_Command StewardService::QueryForClientCommands(
                 logger->QuickLog("StewardService> No command");
             } else {
                 /*
+                 Be sure to update the header with the proper HTTP SOAP
+                 action! (or else we will get an "ActionMismatch" error
+                 */
+                header.wsa5__Action = EIL__UPDATECOMMANDSTATUS;
+                service.soap_header(
+                    header.wsa5__MessageID,
+                    header.wsa5__RelatesTo,
+                    header.wsa5__From,
+                    header.wsa5__ReplyTo,
+                    header.wsa5__FaultTo,
+                    header.wsa5__To,
+                    header.wsa5__Action);
+
+                /*
                  First we need to get our responses ready
                  */
                 _ns1__UpdateCommandStatus updateCmdStat;
@@ -188,13 +202,15 @@ CCMS_Command StewardService::QueryForClientCommands(
                     ns4__EILCommandStatus complete =
                         ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
                     int errorcode = 0;
-                    //updateCmdStat.cmd->CommandStatus = &complete;
-                    //updateCmdStat.cmd->ErrorCode = &errorcode;
                     cmd.CommandResult = "Reboot Successful";
                     cmd.CommandStatus = &complete;
                     cmd.ErrorCode = &errorcode;
+                    cmd.CommandName =
+                        response.GetCommandToExecuteResult->CommandName;
 
                     updateCmdStat.cmd = &cmd;
+                    updateCmdStat.cmd->OperationID =
+                        response.GetCommandToExecuteResult->OperationID;
 
                     // FIXME - Do we want to deal with op_codes here as well?
                     service.UpdateCommandStatus(

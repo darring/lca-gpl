@@ -19,5 +19,7 @@ _run_command() {
 process_command() {
     if [ "$*" = "reboot" ]; then
         _run_command "reboot"
+    elif [ "$*" = "tcp_diag" ]; then
+        _run_command "tcp_diag"
     fi
 }
