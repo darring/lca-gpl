@@ -239,7 +239,7 @@ add_user_if_not_exist
 # Set ownership of the proper directories
 chown ${INSTALL_UID}.${INSTALL_GID} ${HOME_DIR}
 chown ${INSTALL_UID}.${INSTALL_GID} $COMMAND_DIR
-chmod 1777 ${HOME_DIR}
+chmod 1775 ${HOME_DIR}
 
 # Install the libs
 for LIB_FILE in $ALL_LIBS
