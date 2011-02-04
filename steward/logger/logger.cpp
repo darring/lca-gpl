@@ -84,7 +84,7 @@ bool StewardLogger::innerLogEntry()
     }
 }
 
-bool StewardLogger::LogEntry(char *text, ...)
+bool StewardLogger::LogEntry(int priority, char *text, ...)
 {
     if(isLogging)
     {
@@ -118,7 +118,7 @@ bool StewardLogger::LogEntry(char *text, ...)
     }
 }
 
-void StewardLogger::QuickLog(char *text, ...)
+void StewardLogger::QuickLog(int priority, char *text, ...)
 {
     if(isLogging) {
         // If we are already logging, then we must do the logical thing for

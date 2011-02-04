@@ -19,6 +19,7 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <syslog.h>
 
 // Constants
 
@@ -93,9 +94,10 @@ class StewardLogger
          * BeginLogging() and EndLogging()). If in doubt, consult
          * InLoggingSession().
          *
+         * \param priority The syslog priority value.
          * \return True if entry was successful, false if not.
          */
-        bool LogEntry(char *text, ...);
+        bool LogEntry(int priority, char *text, ...);
 
         //! Quickly log an entry
         /*!
@@ -104,8 +106,10 @@ class StewardLogger
          * required to enable logging, it simply masks them. This log
          * method should only be used when a quick one-liner is to be
          * logged, not when there are extended log entries to be written.
+         *
+         * \param priority The syslog priority value.
          */
-        void QuickLog(char *text, ...);
+        void QuickLog(int priority, char *text, ...);
 };
 
 #endif
