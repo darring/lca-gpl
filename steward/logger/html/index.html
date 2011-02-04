@@ -46,9 +46,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2><a class="anchor" id="intro_sec"></a>
 Introduction</h2>
 <p>This is the class which handles the logging for the EIL Linux Client Agent.</p>
-<h2><a class="anchor" id="TODO_sec"></a>
-TODO</h2>
-<p>It might be nice to also utilize syslog calls so we can integrate with whatever solution might be used for system monitoring. </p>
+<h2><a class="anchor" id="capa_sec"></a>
+Details</h2>
+<p>This logging class is intended to provide an abstracted interface which wraps multiple ways to log to system files. It can be used in one of two ways:</p>
+<h3><a class="anchor" id="dual_log"></a>
+Dual system and private logging</h3>
+<p>This is the standard way to envoke and create the logging class instance. When created this way, the class instance will log to a specified file (a private log) as well as to syslog. This allows for a private log which can be retained, moved, etc. and which <b>only</b> contains the log details for this daemon. But at the same time, we will also be logging to a system-wide log which will allow for external monitoring software which may be aggregating data across multple systems to collect the log information from our daemon.</p>
+<p>To envoke this logger class in this way, you must call <a class="el" href="classStewardLogger.html#a4a52242b548bf51d50636f36297c2184" title="Constructor for the EIL Client Agent Steward Logger.">StewardLogger::StewardLogger(char *logFile)</a>;</p>
+<h3><a class="anchor" id="pipe_log"></a>
+Named pipe logging</h3>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -64,7 +70,7 @@ TODO</h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 10:50:09 for EILClientAgentLoggerClass by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:05:07 for EILClientAgentLoggerClass by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

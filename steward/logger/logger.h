@@ -8,10 +8,27 @@
  *
  * This is the class which handles the logging for the EIL Linux Client Agent.
  *
- * \section TODO_sec TODO
+ * \section capa_sec Details
  *
- * It might be nice to also utilize syslog calls so we can integrate with
- * whatever solution might be used for system monitoring.
+ * This logging class is intended to provide an abstracted interface which
+ * wraps multiple ways to log to system files. It can be used in one of two
+ * ways:
+ *
+ * \subsection dual_log Dual system and private logging
+ *
+ * This is the standard way to envoke and create the logging class instance.
+ * When created this way, the class instance will log to a specified file
+ * (a private log) as well as to syslog. This allows for a private log which
+ * can be retained, moved, etc. and which \b only contains the log details for
+ * this daemon. But at the same time, we will also be logging to a system-wide
+ * log which will allow for external monitoring software which may be
+ * aggregating data across multple systems to collect the log information from
+ * our daemon.
+ *
+ * To envoke this logger class in this way, you must call
+ * StewardLogger::StewardLogger(char *logFile);
+ *
+ * \subsection pipe_log Named pipe logging
  */
 
 #ifndef logger_H
@@ -110,7 +127,6 @@ class StewardLogger
          * BeginLogging() and EndLogging()). If in doubt, consult
          * InLoggingSession().
          *
-         * \param priority The syslog priority value.
          * \return True if entry was successful, false if not.
          */
         bool LogEntry(char *text, ...);
@@ -122,8 +138,6 @@ class StewardLogger
          * required to enable logging, it simply masks them. This log
          * method should only be used when a quick one-liner is to be
          * logged, not when there are extended log entries to be written.
-         *
-         * \param priority The syslog priority value.
          */
         void QuickLog(char *text, ...);
 };
