@@ -67,16 +67,18 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Alternative constructor which forces the use of a specific pipe.  <a href="#a72c38851e58da4c9caeada1ef250db1a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#ad17541f9d6641b40325aee66e88f0172">~StewardLogger</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor for the EIL Client Agent Steward Logger.  <a href="#ad17541f9d6641b40325aee66e88f0172"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#ad562ba82be804cb0cf8d4cd03f336b0a">SetPriority</a> (int priority)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the priority for syslog.  <a href="#ad562ba82be804cb0cf8d4cd03f336b0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#ad57f004a8807d46d719ff9e97b631bfb">BeginLogging</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Begin a logging session.  <a href="#ad57f004a8807d46d719ff9e97b631bfb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a743821f9acfce328903821e863c27332">EndLogging</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">End a logging session.  <a href="#a743821f9acfce328903821e863c27332"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#adeacf019f403943ed0d24ccbda2ed93f">InLoggingSession</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determine if we are in a logging session or not.  <a href="#adeacf019f403943ed0d24ccbda2ed93f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a9cea9e7f5b85682757d508095c832c02">LogEntry</a> (char *text)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Log an entry.  <a href="#a9cea9e7f5b85682757d508095c832c02"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a138fe022aa960dcfa6be4150dfea797b">QuickLog</a> (char *text)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quickly log an entry.  <a href="#a138fe022aa960dcfa6be4150dfea797b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#adcfb587a8df82dfa6a359ac486597828">LogEntry</a> (char *text,...)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Log an entry.  <a href="#adcfb587a8df82dfa6a359ac486597828"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a42447a35033fdf155eb89ff216d98c6a">QuickLog</a> (char *text,...)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quickly log an entry.  <a href="#a42447a35033fdf155eb89ff216d98c6a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Logger for the EIL Client Agent Steward. </p>
@@ -216,7 +218,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9cea9e7f5b85682757d508095c832c02"></a><!-- doxytag: member="StewardLogger::LogEntry" ref="a9cea9e7f5b85682757d508095c832c02" args="(char *text)" -->
+<a class="anchor" id="adcfb587a8df82dfa6a359ac486597828"></a><!-- doxytag: member="StewardLogger::LogEntry" ref="adcfb587a8df82dfa6a359ac486597828" args="(char *text,...)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -224,9 +226,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">bool StewardLogger::LogEntry </td>
           <td>(</td>
           <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>text</em></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramname"> <em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&nbsp;</td>
+          <td class="paramname"> <em>...</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -234,11 +245,17 @@ Public Member Functions</h2></td></tr>
 
 <p>Log an entry. </p>
 <p>Called when you wish to log an entry. Note that you should only call this during a logging session (between calls to <a class="el" href="classStewardLogger.html#ad57f004a8807d46d719ff9e97b631bfb" title="Begin a logging session.">BeginLogging()</a> and <a class="el" href="classStewardLogger.html#a743821f9acfce328903821e863c27332" title="End a logging session.">EndLogging()</a>). If in doubt, consult <a class="el" href="classStewardLogger.html#adeacf019f403943ed0d24ccbda2ed93f" title="Determine if we are in a logging session or not.">InLoggingSession()</a>.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>priority</em>&nbsp;</td><td>The syslog priority value. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if entry was successful, false if not. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a138fe022aa960dcfa6be4150dfea797b"></a><!-- doxytag: member="StewardLogger::QuickLog" ref="a138fe022aa960dcfa6be4150dfea797b" args="(char *text)" -->
+<a class="anchor" id="a42447a35033fdf155eb89ff216d98c6a"></a><!-- doxytag: member="StewardLogger::QuickLog" ref="a42447a35033fdf155eb89ff216d98c6a" args="(char *text,...)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -246,7 +263,43 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void StewardLogger::QuickLog </td>
           <td>(</td>
           <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>text</em></td>
+          <td class="paramname"> <em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&nbsp;</td>
+          <td class="paramname"> <em>...</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Quickly log an entry. </p>
+<p>Call this when you wish to quickly log an entry without having to call begin/end. Note that this does NOT eliminate the steps required to enable logging, it simply masks them. This log method should only be used when a quick one-liner is to be logged, not when there are extended log entries to be written.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>priority</em>&nbsp;</td><td>The syslog priority value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad562ba82be804cb0cf8d4cd03f336b0a"></a><!-- doxytag: member="StewardLogger::SetPriority" ref="ad562ba82be804cb0cf8d4cd03f336b0a" args="(int priority)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StewardLogger::SetPriority </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>priority</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -254,8 +307,15 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Quickly log an entry. </p>
-<p>Call this when you wish to quickly log an entry without having to call begin/end. Note that this does NOT eliminate the steps required to enable logging, it simply masks them. This log method should only be used when a quick one-liner is to be logged, not when there are extended log entries to be written. </p>
+<p>Set the priority for syslog. </p>
+<p>This sets the priority for future syslog calls. Rather than doing priority changes on each call to log entries, we decided to just set them periodically as needed (since, in our case, they wont be changing much). Might not be the best in practice, but we'll find out as this thing gets more widely used :-)</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>The default priority for this logging class will be <b>LOG_INFO</b> </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>priority</em>&nbsp;</td><td>Bitwise ORed syslog priority level </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -278,7 +338,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 3 2010 12:53:40 for EILClientAgentLoggerClass by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 10:50:09 for EILClientAgentLoggerClass by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
