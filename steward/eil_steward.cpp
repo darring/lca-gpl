@@ -27,9 +27,6 @@
 
 #define HOSTNAME_LEN 50
 
-//! Debugging toggle- Enable to force not to run as daemon
-//#define DEBUG
-
 // Various helper libraries
 #include "logger.h"
 #include "stewardService.h"
