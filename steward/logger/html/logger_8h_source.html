@@ -52,63 +52,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00002"></a>00002 <span class="comment"> * StewardLogger header</span>
 <a name="l00003"></a>00003 <span class="comment"> */</span>
 <a name="l00004"></a>00004 
-<a name="l00034"></a>00034 <span class="preprocessor">#ifndef logger_H</span>
-<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="preprocessor">#define logger_H</span>
-<a name="l00036"></a>00036 <span class="preprocessor"></span>
-<a name="l00037"></a>00037 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
-<a name="l00038"></a>00038 <span class="preprocessor">#include &lt;time.h&gt;</span>
-<a name="l00039"></a>00039 <span class="preprocessor">#include &lt;syslog.h&gt;</span>
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="comment">// Constants</span>
-<a name="l00042"></a>00042 
-<a name="l00044"></a><a class="code" href="logger_8h.html#a43c08bc07431e4aa2418c7f237c833cf">00044</a> <span class="preprocessor">#define LOG_LINE_LENGTH 512</span>
-<a name="l00045"></a><a class="code" href="logger_8h.html#aeb826553a8e0d1a6fffd7866bb5c8f1b">00045</a> <span class="preprocessor"></span><span class="preprocessor">#define TEMP_LINE_LENGTH 480</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#ifndef logger_H</span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span><span class="preprocessor">#define logger_H</span>
 <a name="l00046"></a>00046 <span class="preprocessor"></span>
-<a name="l00048"></a><a class="code" href="classStewardLogger.html">00048</a> <span class="keyword">class </span><a class="code" href="classStewardLogger.html" title="Logger for the EIL Client Agent Steward.">StewardLogger</a>
-<a name="l00049"></a>00049 {
-<a name="l00050"></a>00050     <span class="keyword">private</span>:
-<a name="l00051"></a>00051         <span class="keywordtype">char</span> *logFilename;
-<a name="l00052"></a>00052         <span class="keywordtype">bool</span> isLogging;
-<a name="l00053"></a>00053         <span class="keywordtype">bool</span> useAltPipe;
-<a name="l00054"></a>00054         <span class="keywordtype">bool</span> useSyslog;
-<a name="l00055"></a>00055         <span class="keywordtype">int</span> syslogPriority;
-<a name="l00056"></a>00056         FILE *logPipe;
-<a name="l00057"></a>00057         <span class="keywordtype">char</span> logLine[LOG_LINE_LENGTH];
-<a name="l00058"></a>00058         <span class="keywordtype">char</span> tempLine[TEMP_LINE_LENGTH];
-<a name="l00059"></a>00059         time_t timer;
-<a name="l00060"></a>00060         <span class="keyword">struct </span>tm *ts;
-<a name="l00061"></a>00061         <span class="keywordtype">char</span> timeStamp[80];
-<a name="l00062"></a>00062 
-<a name="l00064"></a>00064         <span class="keywordtype">bool</span> innerLogEntry();
-<a name="l00065"></a>00065     <span class="keyword">public</span>:
-<a name="l00067"></a>00067 
-<a name="l00070"></a>00070         <a class="code" href="classStewardLogger.html#a4a52242b548bf51d50636f36297c2184" title="Constructor for the EIL Client Agent Steward Logger.">StewardLogger</a>(<span class="keywordtype">char</span> *logFile);
-<a name="l00071"></a>00071 
-<a name="l00073"></a>00073 
-<a name="l00078"></a>00078         <a class="code" href="classStewardLogger.html#a4a52242b548bf51d50636f36297c2184" title="Constructor for the EIL Client Agent Steward Logger.">StewardLogger</a>(FILE *altPipe);
-<a name="l00079"></a>00079 
-<a name="l00081"></a>00081         <a class="code" href="classStewardLogger.html#ad17541f9d6641b40325aee66e88f0172" title="Destructor for the EIL Client Agent Steward Logger.">~StewardLogger</a>();
-<a name="l00082"></a>00082 
-<a name="l00084"></a>00084 
-<a name="l00095"></a>00095         <span class="keywordtype">void</span> <a class="code" href="classStewardLogger.html#ad562ba82be804cb0cf8d4cd03f336b0a" title="Set the priority for syslog.">SetPriority</a>(<span class="keywordtype">int</span> priority);
-<a name="l00096"></a>00096 
-<a name="l00098"></a>00098 
-<a name="l00105"></a>00105         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#ad57f004a8807d46d719ff9e97b631bfb" title="Begin a logging session.">BeginLogging</a>();
+<a name="l00047"></a>00047 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &lt;time.h&gt;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &lt;syslog.h&gt;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="comment">// Constants</span>
+<a name="l00052"></a>00052 
+<a name="l00054"></a><a class="code" href="logger_8h.html#a43c08bc07431e4aa2418c7f237c833cf">00054</a> <span class="preprocessor">#define LOG_LINE_LENGTH 512</span>
+<a name="l00055"></a><a class="code" href="logger_8h.html#aeb826553a8e0d1a6fffd7866bb5c8f1b">00055</a> <span class="preprocessor"></span><span class="preprocessor">#define TEMP_LINE_LENGTH 480</span>
+<a name="l00056"></a>00056 <span class="preprocessor"></span>
+<a name="l00058"></a><a class="code" href="classStewardLogger.html">00058</a> <span class="keyword">class </span><a class="code" href="classStewardLogger.html" title="Logger for the EIL Client Agent Steward.">StewardLogger</a>
+<a name="l00059"></a>00059 {
+<a name="l00060"></a>00060     <span class="keyword">private</span>:
+<a name="l00061"></a>00061         <span class="keywordtype">char</span> *logFilename;
+<a name="l00062"></a>00062         <span class="keywordtype">bool</span> isLogging;
+<a name="l00063"></a>00063         <span class="keywordtype">bool</span> useAltPipe;
+<a name="l00064"></a>00064         <span class="keywordtype">bool</span> useSyslog;
+<a name="l00065"></a>00065         <span class="keywordtype">int</span> syslogPriority;
+<a name="l00066"></a>00066         FILE *logPipe;
+<a name="l00067"></a>00067         <span class="keywordtype">char</span> logLine[LOG_LINE_LENGTH];
+<a name="l00068"></a>00068         <span class="keywordtype">char</span> tempLine[TEMP_LINE_LENGTH];
+<a name="l00069"></a>00069         time_t timer;
+<a name="l00070"></a>00070         <span class="keyword">struct </span>tm *ts;
+<a name="l00071"></a>00071         <span class="keywordtype">char</span> timeStamp[80];
+<a name="l00072"></a>00072 
+<a name="l00074"></a>00074         <span class="keywordtype">bool</span> innerLogEntry();
+<a name="l00075"></a>00075     <span class="keyword">public</span>:
+<a name="l00077"></a>00077 
+<a name="l00080"></a>00080         <a class="code" href="classStewardLogger.html#a4a52242b548bf51d50636f36297c2184" title="Constructor for the EIL Client Agent Steward Logger.">StewardLogger</a>(<span class="keywordtype">char</span> *logFile);
+<a name="l00081"></a>00081 
+<a name="l00083"></a>00083 
+<a name="l00088"></a>00088         <a class="code" href="classStewardLogger.html#a4a52242b548bf51d50636f36297c2184" title="Constructor for the EIL Client Agent Steward Logger.">StewardLogger</a>(FILE *altPipe);
+<a name="l00089"></a>00089 
+<a name="l00091"></a>00091         <a class="code" href="classStewardLogger.html#ad17541f9d6641b40325aee66e88f0172" title="Destructor for the EIL Client Agent Steward Logger.">~StewardLogger</a>();
+<a name="l00092"></a>00092 
+<a name="l00094"></a>00094 
+<a name="l00105"></a>00105         <span class="keywordtype">void</span> <a class="code" href="classStewardLogger.html#ad562ba82be804cb0cf8d4cd03f336b0a" title="Set the priority for syslog.">SetPriority</a>(<span class="keywordtype">int</span> priority);
 <a name="l00106"></a>00106 
 <a name="l00108"></a>00108 
-<a name="l00115"></a>00115         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#a743821f9acfce328903821e863c27332" title="End a logging session.">EndLogging</a>();
+<a name="l00115"></a>00115         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#ad57f004a8807d46d719ff9e97b631bfb" title="Begin a logging session.">BeginLogging</a>();
 <a name="l00116"></a>00116 
 <a name="l00118"></a>00118 
-<a name="l00121"></a>00121         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#adeacf019f403943ed0d24ccbda2ed93f" title="Determine if we are in a logging session or not.">InLoggingSession</a>();
-<a name="l00122"></a>00122 
-<a name="l00124"></a>00124 
-<a name="l00132"></a>00132         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#adcfb587a8df82dfa6a359ac486597828" title="Log an entry.">LogEntry</a>(<span class="keywordtype">char</span> *text, ...);
-<a name="l00133"></a>00133 
-<a name="l00135"></a>00135 
-<a name="l00142"></a>00142         <span class="keywordtype">void</span> <a class="code" href="classStewardLogger.html#a42447a35033fdf155eb89ff216d98c6a" title="Quickly log an entry.">QuickLog</a>(<span class="keywordtype">char</span> *text, ...);
-<a name="l00143"></a>00143 };
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145 <span class="preprocessor">#endif</span>
+<a name="l00125"></a>00125         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#a743821f9acfce328903821e863c27332" title="End a logging session.">EndLogging</a>();
+<a name="l00126"></a>00126 
+<a name="l00128"></a>00128 
+<a name="l00131"></a>00131         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#adeacf019f403943ed0d24ccbda2ed93f" title="Determine if we are in a logging session or not.">InLoggingSession</a>();
+<a name="l00132"></a>00132 
+<a name="l00134"></a>00134 
+<a name="l00142"></a>00142         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#adcfb587a8df82dfa6a359ac486597828" title="Log an entry.">LogEntry</a>(<span class="keywordtype">char</span> *text, ...);
+<a name="l00143"></a>00143 
+<a name="l00145"></a>00145 
+<a name="l00152"></a>00152         <span class="keywordtype">void</span> <a class="code" href="classStewardLogger.html#a42447a35033fdf155eb89ff216d98c6a" title="Quickly log an entry.">QuickLog</a>(<span class="keywordtype">char</span> *text, ...);
+<a name="l00153"></a>00153 };
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -125,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:05:07 for EILClientAgentLoggerClass by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:09:29 for EILClientAgentLoggerClass by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

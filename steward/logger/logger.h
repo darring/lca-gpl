@@ -16,7 +16,7 @@
  *
  * \subsection dual_log Dual system and private logging
  *
- * This is the standard way to envoke and create the logging class instance.
+ * This is the standard way to invoke and create the logging class instance.
  * When created this way, the class instance will log to a specified file
  * (a private log) as well as to syslog. This allows for a private log which
  * can be retained, moved, etc. and which \b only contains the log details for
@@ -25,10 +25,20 @@
  * aggregating data across multple systems to collect the log information from
  * our daemon.
  *
- * To envoke this logger class in this way, you must call
- * StewardLogger::StewardLogger(char *logFile);
+ * To invoke this logger class in this way, you must call
+ * StewardLogger::StewardLogger(char *logFile).
  *
  * \subsection pipe_log Named pipe logging
+ *
+ * In this alternative way of invoking the logger class, we instead opt to
+ * send all logging to a specific file pipe. This is generally used when we are
+ * running our daemon in a debug mode and wish to send logging information to
+ * STDOUT.
+ *
+ * When called this way, the syslog logging is disabled.
+ *
+ * To invoke this logger class in this way, you must call
+ * StewardLogger::StewardLogger(FILE *altPipe).
  */
 
 #ifndef logger_H
