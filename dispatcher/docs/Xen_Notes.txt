@@ -34,3 +34,4 @@ obtaining a pif:
 finding the ip after it's gone:
     IP=$(xe pif-param-get uuid="${UUID}" param-name="IP")
 
+Xen client is special - to get to console it's CTRL-SHFT-T

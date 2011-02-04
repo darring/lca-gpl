@@ -201,6 +201,14 @@ dispatcher.
            an undefined state (for example, the log might not be flushed, any
            soap interactions may not be properly closed, etc.)
 
+    The steward can log in one of two places. It has a flexible logging class
+which automatically wraps logging in a client agent specific location (which
+is determined by the client agent helper script, see 2.b.1) as well as logging
+information to syslog. This makes the steward able to log in a standard Linux
+daemon way (via syslog) which allows us to make use of log rotate as well as
+the security features syslogs proffers, yet also gives us the flexibility to
+maintain our own logging which can survive OS provisioning.
+
 2.a.1) The script permission elevator
 
     Due to security risks, the setuid bit is ignored on modern Linux
