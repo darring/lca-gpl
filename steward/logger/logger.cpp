@@ -15,8 +15,16 @@ StewardLogger::StewardLogger(char *logFile)
 {
     logFilename = logFile;
 
+    /*
+    LOG_NOWAIT has no effect on Linux, but I'm trying to think ahead,
+    just in case this daemon is ported to "Some Other Unix(tm) in the future.
+    -Sam Hart
+    */
+    openlog("eil_steward", LOG_PID | LOG_CONS | LOG_NOWAIT, LOG_DAEMON);
+
     isLogging = false;
     useAltPipe = false;
+    useSyslog = true;
 }
 
 StewardLogger::StewardLogger(FILE *altPipe)
@@ -24,14 +32,20 @@ StewardLogger::StewardLogger(FILE *altPipe)
     logPipe = altPipe;
     useAltPipe = true;
     isLogging = true;
+    /*
+    If we are called with an alternative pipe, we assume no syslog services are
+    needed or wanted.
+    */
+    useSyslog = false;
 }
 
 StewardLogger::~StewardLogger()
 {
     if(isLogging)
     {
-        // TODO close out logging
         EndLogging();
+        if(useSyslog)
+            closelog();
     }
 }
 
@@ -84,7 +98,7 @@ bool StewardLogger::innerLogEntry()
     }
 }
 
-bool StewardLogger::LogEntry(int priority, char *text, ...)
+bool StewardLogger::LogEntry(char *text, ...)
 {
     if(isLogging)
     {
@@ -118,7 +132,7 @@ bool StewardLogger::LogEntry(int priority, char *text, ...)
     }
 }
 
-void StewardLogger::QuickLog(int priority, char *text, ...)
+void StewardLogger::QuickLog(char *text, ...)
 {
     if(isLogging) {
         // If we are already logging, then we must do the logical thing for
