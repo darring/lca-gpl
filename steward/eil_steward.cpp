@@ -195,8 +195,8 @@ int main(int argc, char *argv[])
 
     logger.QuickLog("Hostname obtained");
 
-    // TODO - Change to working directory
-    // should be determined by a helper script from the dispatcher
+    // Change to working directory to prevent locking
+    chdir("/");
 
     #ifndef DEBUG
     // File descriptors are a security hazard in a daemon
