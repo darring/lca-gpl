@@ -19,6 +19,7 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <syslog.h>
 
 // Constants
 
@@ -33,6 +34,8 @@ class StewardLogger
         char *logFilename;
         bool isLogging;
         bool useAltPipe;
+        bool useSyslog;
+        int syslogPriority;
         FILE *logPipe;
         char logLine[LOG_LINE_LENGTH];
         char tempLine[TEMP_LINE_LENGTH];
@@ -59,6 +62,20 @@ class StewardLogger
 
         //! Destructor for the EIL Client Agent Steward Logger
         ~StewardLogger();
+
+        //! Set the priority for syslog
+        /*!
+         * This sets the priority for future syslog calls. Rather than doing
+         * priority changes on each call to log entries, we decided to just
+         * set them periodically as needed (since, in our case, they wont be
+         * changing much). Might not be the best in practice, but we'll find
+         * out as this thing gets more widely used :-)
+         *
+         * \note The default priority for this logging class will be \b LOG_INFO
+         *
+         * \param priority Bitwise ORed syslog priority level
+         */
+        void SetPriority(int priority);
 
         //! Begin a logging session
         /*!
@@ -93,6 +110,7 @@ class StewardLogger
          * BeginLogging() and EndLogging()). If in doubt, consult
          * InLoggingSession().
          *
+         * \param priority The syslog priority value.
          * \return True if entry was successful, false if not.
          */
         bool LogEntry(char *text, ...);
@@ -104,6 +122,8 @@ class StewardLogger
          * required to enable logging, it simply masks them. This log
          * method should only be used when a quick one-liner is to be
          * logged, not when there are extended log entries to be written.
+         *
+         * \param priority The syslog priority value.
          */
         void QuickLog(char *text, ...);
 };

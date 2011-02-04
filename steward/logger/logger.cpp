@@ -15,8 +15,17 @@ StewardLogger::StewardLogger(char *logFile)
 {
     logFilename = logFile;
 
+    /*
+    LOG_NOWAIT has no effect on Linux, but I'm trying to think ahead,
+    just in case this daemon is ported to "Some Other Unix(tm) in the future.
+    -Sam Hart
+    */
+    openlog("eil_steward", LOG_PID | LOG_CONS | LOG_NOWAIT, LOG_DAEMON);
+
     isLogging = false;
     useAltPipe = false;
+    useSyslog = true;
+    syslogPriority = LOG_INFO;
 }
 
 StewardLogger::StewardLogger(FILE *altPipe)
@@ -24,15 +33,27 @@ StewardLogger::StewardLogger(FILE *altPipe)
     logPipe = altPipe;
     useAltPipe = true;
     isLogging = true;
+    /*
+    If we are called with an alternative pipe, we assume no syslog services are
+    needed or wanted.
+    */
+    useSyslog = false;
+    syslogPriority = LOG_INFO; // Don't need it, but may as well set it
 }
 
 StewardLogger::~StewardLogger()
 {
     if(isLogging)
     {
-        // TODO close out logging
         EndLogging();
+        if(useSyslog)
+            closelog();
     }
+}
+
+void StewardLogger::SetPriority(int priority)
+{
+    syslogPriority = priority;
 }
 
 bool StewardLogger::BeginLogging()
@@ -103,6 +124,10 @@ bool StewardLogger::LogEntry(char *text, ...)
         }
         va_end(argp);
 
+        // First, syslog (which is a 'fire-n-forget' op)
+        if(useSyslog)
+            syslog(syslogPriority, "%s", tempLine);
+
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
             "%s : %s\n", timeStamp, tempLine)) )
@@ -139,6 +164,10 @@ void StewardLogger::QuickLog(char *text, ...)
             perror(text);
         }
         va_end(argp);
+
+        // First, syslog (which is a 'fire-n-forget' op)
+        if(useSyslog)
+            syslog(syslogPriority, "%s", tempLine);
 
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
