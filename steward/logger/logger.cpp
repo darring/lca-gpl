@@ -126,7 +126,7 @@ bool StewardLogger::LogEntry(char *text, ...)
 
         // First, syslog (which is a 'fire-n-forget' op)
         if(useSyslog)
-            syslog(syslogPriority, tempLine);
+            syslog(syslogPriority, "%s", tempLine);
 
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
@@ -167,7 +167,7 @@ void StewardLogger::QuickLog(char *text, ...)
 
         // First, syslog (which is a 'fire-n-forget' op)
         if(useSyslog)
-            syslog(syslogPriority, tempLine);
+            syslog(syslogPriority, "%s", tempLine);
 
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
