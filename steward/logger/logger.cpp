@@ -25,6 +25,7 @@ StewardLogger::StewardLogger(char *logFile)
     isLogging = false;
     useAltPipe = false;
     useSyslog = true;
+    syslogPriority = LOG_INFO;
 }
 
 StewardLogger::StewardLogger(FILE *altPipe)
@@ -37,6 +38,7 @@ StewardLogger::StewardLogger(FILE *altPipe)
     needed or wanted.
     */
     useSyslog = false;
+    syslogPriority = LOG_INFO; // Don't need it, but may as well set it
 }
 
 StewardLogger::~StewardLogger()
@@ -47,6 +49,11 @@ StewardLogger::~StewardLogger()
         if(useSyslog)
             closelog();
     }
+}
+
+void StewardLogger::SetPriority(int priority)
+{
+    syslogPriority = priority;
 }
 
 bool StewardLogger::BeginLogging()
@@ -117,6 +124,10 @@ bool StewardLogger::LogEntry(char *text, ...)
         }
         va_end(argp);
 
+        // First, syslog (which is a 'fire-n-forget' op)
+        if(useSyslog)
+            syslog(syslogPriority, tempLine);
+
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
             "%s : %s\n", timeStamp, tempLine)) )
@@ -153,6 +164,10 @@ void StewardLogger::QuickLog(char *text, ...)
             perror(text);
         }
         va_end(argp);
+
+        // First, syslog (which is a 'fire-n-forget' op)
+        if(useSyslog)
+            syslog(syslogPriority, tempLine);
 
         if( !(snprintf(
             logLine, LOG_LINE_LENGTH,
