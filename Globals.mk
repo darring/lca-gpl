@@ -3,16 +3,13 @@
 # Our debugging levels.
 # Each level determines how extreme we make our debugging as we are developing.
 
-# DEBUG0 - This is NO debugging. E.g., production release.
-DEBUG0=
-
 # DEBUG1 - This is the standard level, useful for general development. All we
 #          enable here is gdb runtime options
-DEBUG1=$(DEBUG0) -g
+DEBUG1=-g
 
 # DEBUG2 - This is switches the daemon to a pure-command-line runnable program.
 #          All logging will go to STDOUT, and the process will not fork.
-DEBUG2=$(DEBUG1) -D 'DEBUG'
+DEBUG2=$(DEBUG1) -D EIL_DEBUG
 
 # Set the DEBUG variable to the level which we want
 DEBUG=$(DEBUG2)

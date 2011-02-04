@@ -104,7 +104,7 @@ void setupSignalHandlers()
 int main(int argc, char *argv[])
 {
     // Misc variables to be used by the daemon
-    #ifndef DEBUG
+    #ifndef EIL_DEBUG
     pid_t pid, sid;
     FILE *filePipe;
     #endif
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
     // Just like the logFile, we assume an upper limit of 256 characters for
     // full path plus filename, could be bad?
     char pidFile[256];
-    #ifndef DEBUG
+    #ifndef EIL_DEBUG
     char pidOut[256];
     #endif
 
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
     ClientAgentHelper agentHelper;
     CCMS_Command issuedCommand;
 
-    #ifndef DEBUG
+    #ifndef EIL_DEBUG
     // Obtain the PID file
     agentHelper.Get(pidFile, 256, PIDFILE);
 
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
     agentHelper.Get(binPath, 256, BINDIR);
     agentHelper.Get(comPath, 256, COMDIR);
 
-    #ifndef DEBUG
+    #ifndef EIL_DEBUG
     StewardLogger logger(logFile);
     #else
     StewardLogger logger(stdout);
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     logger.LogEntry("Startup daemon");
     logger.EndLogging();
 
-    #ifndef DEBUG
+    #ifndef EIL_DEBUG
     // Obtain a new session ID for child process
     sid = setsid();
     if (sid < 0) {
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
     // Change to working directory to prevent locking
     chdir("/");
 
-    #ifndef DEBUG
+    #ifndef EIL_DEBUG
     // File descriptors are a security hazard in a daemon
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
