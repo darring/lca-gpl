@@ -106,8 +106,8 @@ int main(int argc, char *argv[])
     // Misc variables to be used by the daemon
     #ifndef DEBUG
     pid_t pid, sid;
-    #endif
     FILE *filePipe;
+    #endif
 
     char hostname[HOSTNAME_LEN];
 
@@ -120,7 +120,9 @@ int main(int argc, char *argv[])
     // Just like the logFile, we assume an upper limit of 256 characters for
     // full path plus filename, could be bad?
     char pidFile[256];
+    #ifndef DEBUG
     char pidOut[256];
+    #endif
 
     // The bin and dispatcher related variables
     char binPath[256];
