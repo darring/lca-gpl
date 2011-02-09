@@ -1,3 +1,7 @@
+* Add Xen Client support
+
+* Add MAC address alternative support to hostname
+
 * Further re-test items now that we have done massive re-working of installer
   items to make ESXi happy (especially on systems where BASH/ash/dash will be
   an issue).
