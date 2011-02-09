@@ -61,6 +61,10 @@ add_user_if_not_exist() {
         # Group does not exist, add it
         if [ -n "$IS_SLES" ] || [ -n "$IS_ESX" ]; then
             /usr/sbin/groupadd $LGID
+        elif [ -n "$IS_ANGSTROM" ]; then
+            # FIXME - Again, as I've said elsewhere, we assume that XenClient
+            # is the only Angstrom-based distro we're using
+            /bin/addgroup $LGID
         else
             /usr/sbin/groupadd -f $LGID
         fi
@@ -77,6 +81,9 @@ add_user_if_not_exist() {
             # This would be a security problem- if we were persistent
             /usr/sbin/useradd -d $HOME_DIR -c eil_client \
                 -s /bin/ash -g $LGID $LUID
+        elif [ -n "$IS_ANGSTROM" ]; then
+            # FIXME - Same Angstrom warning as elsewhere
+            /bin/adduser -G $LGID -H -s /bin/false -h $HOME_DIR $LUID
         else
             /usr/sbin/useradd -d /dev/null -c eil_client \
                 -s /dev/null -g $LGID -M $LUID
@@ -89,6 +96,8 @@ del_user_if_exist() {
     if [ $? -eq 0 ]; then
         if [ -n "$IS_ESX" ]; then
             /usr/sbin/userdel $INSTALL_UID
+        elif [ -n "$IS_ANGSTROM" ]; then
+            /bin/deluser $INSTALL_UID
         else
             /usr/sbin/userdel -f $INSTALL_UID
         fi
@@ -96,7 +105,11 @@ del_user_if_exist() {
 
     egrep -i "^$INSTALL_GID" /etc/group > /dev/null
     if [ $? -eq 0 ]; then
-        /usr/sbin/groupdel $INSTALL_GID
+        if [ -n "$IS_ANGSTROM" ]; then
+            /bin/delgroup $INSTALL_GID
+        else
+            /usr/sbin/groupdel $INSTALL_GID
+        fi
     fi
 }
 
