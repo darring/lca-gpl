@@ -166,6 +166,7 @@ while [ $1 != -- ]; do
             shift
             ;;
         --pkg)
+            OPT_INSTALL_DISPATCHER=yes
             OPT_STATIC=yes
             OPT_PKG=yes
             shift
@@ -175,6 +176,7 @@ while [ $1 != -- ]; do
             shift
             ;;
         --makerepo)
+            OPT_INSTALL_DISPATCHER=yes
             OPT_STATIC=yes
             OPT_PKG=yes
             OPT_MAKEREPO=yes

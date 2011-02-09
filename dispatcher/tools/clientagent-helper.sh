@@ -301,6 +301,8 @@ if [ -n "$DUMP_SYSID" ]; then
         trace "ESX"
     elif [ -n "$IS_SLES" ]; then
         trace "SLES"
+    elif [ -n "$IS_ANGSTROM" ]; then
+        trace "ANGSTROM"
     fi
 fi
 
