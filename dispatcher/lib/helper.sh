@@ -2,7 +2,7 @@
 
 # Determine what we're running. This is a bit messy, but hey, we're
 # running in bash, we can't *really* use anything more advanced.
-unset IS_RHEL IS_DEB IS_SLES IS_ESX PLATFORM_NAME || true
+unset IS_RHEL IS_DEB IS_SLES IS_ESX IS_ANGSTROM PLATFORM_NAME || true
 
 # Given that we are running a Debian-derived distribution, find the
 # specific Debian variant we are running.
@@ -60,6 +60,13 @@ find_specific_esx() {
     fi
 }
 
+find_specific_angstrom() {
+    # TODO - Right now, we assume that our only angstrom-based distro is
+    # XenClient. In the future, if we encounter exceptions to this, we will
+    # want to add alternate checks here
+    PLATFORM_NAME="xenclient"
+}
+
 if [ -f "/etc/debian_version" ]; then
     find_specific_debian
     IS_DEB=yes
@@ -69,6 +76,9 @@ elif [ -f "/etc/redhat-release" ]; then
 elif [ -f "/etc/novell-release" ] || [ -f "/etc/SuSE-release" ]; then
     find_specific_suse
     IS_SLES=yes
+elif [ -f "/etc/angstrom-version" ]; then
+    find_specific_angstrom
+    IS_ANGSTROM=yes
 elif [ -f "/.emptytgz" ]; then
     find_specific_esx
     IS_ESX=yes
