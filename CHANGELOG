@@ -34,3 +34,9 @@
 - update/upgrade script brought in-line with current URI requirements.
 - Finalize update status notifiers with full detail callbacks.
 - Issue alpha release of 0.0.3
+
+* Fri Feb 4 2011 - Sam Hart <samx.hart@intel.com>
+- Change working directory to prevent filesystem locking
+- Add syslog functionality to logger class
+- SECURITY: Fix string injection issue
+- SECURITY: Fix permission problems on suite scripts
