@@ -23,7 +23,8 @@
  * order interface.
  *
  * \param hwaddr The char pointer for the hardware address string
+ * \return A bool determining the success of the operation
  */
-void getHwAddr(char *hwaddr);
+bool getHwAddr(char *hwaddr);
 
 #endif

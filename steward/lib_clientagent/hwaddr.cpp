@@ -13,7 +13,7 @@
 
 #include "hwaddr.h"
 
-void getHwAddr(char *hwaddr)
+bool getHwAddr(char *hwaddr)
 {
 
 }
