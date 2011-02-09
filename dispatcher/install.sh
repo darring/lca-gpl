@@ -328,7 +328,7 @@ done
 # Set up the rc files
 if [ -n "$IS_RHEL" ]; then
     chkconfig --add eil_steward.sh
-elif [ -n "$IS_DEB" ]; then
+elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
     update-rc.d eil_steward.sh defaults
 elif [ -n "$IS_SLES" ]; then
     /usr/lib/lsb/install_initd /etc/init.d/eil_steward.sh

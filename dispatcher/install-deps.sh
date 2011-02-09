@@ -110,6 +110,7 @@ centos_reboot:reboot-noloop
 xen_reboot:reboot-noloop
 esx_reboot:reboot
 esxi_reboot:reboot
+xenclient_reboot:reboot
 ubuntu_tcp_diag:tcp_diag-full
 rhel_tcp_diag:tcp_diag-full
 suse_tcp_diag:tcp_diag-full
@@ -117,6 +118,7 @@ centos_tcp_diag:tcp_diag-full
 xen_tcp_diag:tcp_diag-xen
 esx_tcp_diag:tcp_diag-light
 esxi_tcp_diag:tcp_diag-light
+xenclient_tcp_diag:tcp_diag-light
 EOF
 )
 

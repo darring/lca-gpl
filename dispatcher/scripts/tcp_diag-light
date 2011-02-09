@@ -62,6 +62,13 @@ if [ -n "$IS_ESX" ]; then
         OUTPUT=$(at -f ${BIN_STEWARD} -v now + ${RESTART_TIME_MINUTES} minutes)
         trace_error "${OUTPUT}"
     fi
+elif [ -n "$IS_ANGSTROM" ]; then
+    # FIXME - This assumes we're running XenClient, if we encounter another
+    # Angstrom-based distro in the future, we will want additional logic here
+    # to deal with it
+    trace "Attempting to restart network on Angstrom-based XenClient"
+    trace "If this does not work, we have no way to repair it!"
+    /etc/init.d/xenclient-network restart
 else
     # We have no clue how to handle this case, shutting down the agent
     trace_error "--------------"
