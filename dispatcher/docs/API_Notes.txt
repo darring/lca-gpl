@@ -41,8 +41,6 @@ agnostic way is to use the dot-execute directive:
     The dispatcher.sh library abstracts the underlying platform for running
 commands. It requires the 'globals.sh' library to be loaded.
 
-    *** TODO ***
-
 2.b) globals.sh
 
     This library defines a number of global variables utilized by the EIL
