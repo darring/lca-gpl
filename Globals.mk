@@ -12,7 +12,7 @@ DEBUG1=-g
 DEBUG2=$(DEBUG1) -D EIL_DEBUG
 
 # Set the DEBUG variable to the level which we want
-DEBUG=$(DEBUG2)
+DEBUG=$(DEBUG1)
 
 EIL_VERSION=$(shell cat ../VERSION)
 EIL_VERSION_TEXT=Version $(EIL_VERSION)

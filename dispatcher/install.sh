@@ -83,7 +83,7 @@ add_user_if_not_exist() {
                 -s /bin/ash -g $LGID $LUID
         elif [ -n "$IS_ANGSTROM" ]; then
             # FIXME - Same Angstrom warning as elsewhere
-            /bin/adduser -G $LGID -H -s /bin/false -h $HOME_DIR $LUID
+            /bin/adduser -D -G $LGID -H -s /bin/false -h $HOME_DIR $LUID
         else
             /usr/sbin/useradd -d /dev/null -c eil_client \
                 -s /dev/null -g $LGID -M $LUID
