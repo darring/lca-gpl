@@ -9,8 +9,11 @@
  * This class provides the interface to the client agent helper scripts provided
  * by the dispatcher.
  *
- * \section TODO_sec TODO
+ * \section usage_sec Usage
  *
+ * Once you have a ClientAgentHelper instance, use the
+ * ClientAgentHelper::Get(char *result, int size, ClientAgentOptions option)
+ * method to interact with the external client agent helper script.
  */
 
 #ifndef clientagent_helper_H
