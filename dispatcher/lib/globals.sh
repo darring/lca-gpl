@@ -29,6 +29,7 @@ if [ -z "$BASE_DIR" ]; then
     TOOL_DIR=$INSTALL_DIR/tools
     HOME_DIR=$INSTALL_DIR/home
     SCRIPTS_DIR=$INSTALL_DIR/scripts
+    POSTINST_DIR=$INSTALL_DIR/postinst
 fi
 
 ###################

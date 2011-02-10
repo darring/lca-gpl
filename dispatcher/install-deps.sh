@@ -122,4 +122,11 @@ xenclient_tcp_diag:tcp_diag-light
 EOF
 )
 
+# The POSTINST_SCRIPTS contains a list of the scripts to be installed for
+# post-install requirements
+POSTINST_SCRIPTS=$(cat <<EOF
+xenclient.sh
+EOF
+)
+
 # vim:set ai et sts=4 sw=4 tw=80:
