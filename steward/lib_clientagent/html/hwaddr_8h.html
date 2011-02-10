@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Clientagentabstractinterface: Class Members</title>
+<title>Clientagentabstractinterface: hwaddr.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -40,24 +40,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li class="current"><a href="globals.html"><span>File&nbsp;Members</span></a></li>
-    </ul>
-  </div>
-  <div class="tabs2">
-    <ul class="tablist">
-      <li><a href="globals.html"><span>All</span></a></li>
-      <li><a href="globals_func.html"><span>Functions</span></a></li>
-      <li class="current"><a href="globals_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 </div>
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<h1>hwaddr.h File Reference</h1>  </div>
+</div>
 <div class="contents">
-&nbsp;<ul>
-<li>ClientAgentOptions
-: <a class="el" href="clientagent__helper_8h.html#a17c55f775b214ba79ec23cfc91e96394">clientagent_helper.h</a>
-</li>
-</ul>
+
+<p><a href="hwaddr_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="hwaddr_8h.html#ab57403d86f6bdfbd290b17cd10dfc2cd">getHwAddr</a> (char *hwaddr)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Obtains the lowest order hardware address.  <a href="#ab57403d86f6bdfbd290b17cd10dfc2cd"></a><br/></td></tr>
+</table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ab57403d86f6bdfbd290b17cd10dfc2cd"></a><!-- doxytag: member="hwaddr.h::getHwAddr" ref="ab57403d86f6bdfbd290b17cd10dfc2cd" args="(char *hwaddr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool getHwAddr </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>hwaddr</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Obtains the lowest order hardware address. </p>
+<p>When called, will attempt to run through the potential network interfaces on the system and return a string for the hardware address of the lowest order interface.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>hwaddr</em>&nbsp;</td><td>The char pointer for the hardware address string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A bool determining the success of the operation </dd></dl>
+
+</div>
+</div>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
