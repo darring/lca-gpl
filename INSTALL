@@ -20,6 +20,7 @@ Table of Contents
 6) Technical details
     6.a) Details of the cross-distribution package
     6.b) Dispatcher install details
+    6.c) Platform-specific post-install scripts
 ------------------------------------------------------------------------------
 
 1) Overview
@@ -465,3 +466,18 @@ over these scripts, what they do, and how to extend them.
         and different implimentations of sed handle this differently).
 
         So there is our very long explanation for a very tiny file.
+
+6.c) Platform-specific post-install scripts
+
+    Certain distributions need some platform-specific post-installation fixes
+to overcome differences or limitations which they have that other distributions
+do not have. Because of this, a post-install script sequence was added to the
+installation process.
+
+    After installation is complete, the installer searches the installed client
+agent's home directory for a "postinst" sub-directory, and there it looks for a
+script which is named after the platform it currently is running on (specified
+by the $PLATFORM_NAME variable as defined in the helper.sh include, see the
+API_Notes.txt document for more information). If a named script is found, it
+will execute it post-install, thus giving us any chance to make right any
+platform-specific problems that might arise during the install.

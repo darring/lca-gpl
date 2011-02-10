@@ -124,7 +124,7 @@ uninstall_everything() {
     if [ -n "$IS_RHEL" ]; then
         /etc/init.d/eil_steward.sh stop
         chkconfig --del eil_steward.sh
-    elif [ -n "$IS_DEB" ]; then
+    elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         /etc/init.d/eil_steward.sh stop
         update-rc.d -f eil_steward.sh remove
     elif [ -n "$IS_SLES" ]; then
@@ -135,9 +135,6 @@ uninstall_everything() {
         /etc/init.d/eil_steward.sh stop
         rm -f /etc/init.d/eil_steward.sh
         rm -f /etc/rc.local.d/eil_steward.sh
-    elif [ -n "$IS_XEN" ]; then
-        echo "XEN RC setup not yet done"
-        # FIXME TODO
     fi
 
     # uninstall the tools
@@ -180,6 +177,7 @@ DOC_DIR=$INSTALL_DIR/doc
 TOOL_DIR=$INSTALL_DIR/tools
 HOME_DIR=$INSTALL_DIR/home
 SCRIPTS_DIR=$INSTALL_DIR/scripts
+POSTINST_DIR=$INSTALL_DIR/postinst
 
 if [ $# != 0 ] ; then
     while true ; do
@@ -245,6 +243,7 @@ mkdir -p $TOOL_DIR
 mkdir -p $HOME_DIR
 mkdir -p $SCRIPTS_DIR
 mkdir -p $COMMAND_DIR
+mkdir -p $POSTINST_DIR
 
 # Set up the users
 add_user_if_not_exist
@@ -338,6 +337,15 @@ do
     _setup_script_linking ${LARR}
 done
 
+# - Next do the post install scripts
+for POSTINST in $POSTINST_SCRIPTS
+do
+    cp -fr postinst/${POSTINST} ${POSTINST_DIR}/${POSTINST}
+    # For these, only root can do anything with them
+    chown root.root ${POSTINST_DIR}/${POSTINST}
+    chmod 700 ${POSTINST_DIR}/${POSTINST}
+done
+
 # Set up the rc files
 if [ -n "$IS_RHEL" ]; then
     chkconfig --add eil_steward.sh
@@ -358,6 +366,13 @@ fi
 
 # Finally, set up logrotate (or equivalent)
 # FIXME TODO
+
+# Last, but not least, we run any POSTINST scripts
+if [ -n "$PLATFORM_NAME" ]; then
+    if [ -e "${POSTINST_DIR}/${POSTINST}" ]; then
+        ${POSTINST_DIR}/${POSTINST}
+    fi
+fi
 
 echo "clientagent dispatcher installed successfully"
 
