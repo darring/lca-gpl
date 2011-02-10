@@ -124,7 +124,7 @@ uninstall_everything() {
     if [ -n "$IS_RHEL" ]; then
         /etc/init.d/eil_steward.sh stop
         chkconfig --del eil_steward.sh
-    elif [ -n "$IS_DEB" ]; then
+    elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         /etc/init.d/eil_steward.sh stop
         update-rc.d -f eil_steward.sh remove
     elif [ -n "$IS_SLES" ]; then
@@ -135,9 +135,6 @@ uninstall_everything() {
         /etc/init.d/eil_steward.sh stop
         rm -f /etc/init.d/eil_steward.sh
         rm -f /etc/rc.local.d/eil_steward.sh
-    elif [ -n "$IS_XEN" ]; then
-        echo "XEN RC setup not yet done"
-        # FIXME TODO
     fi
 
     # uninstall the tools
