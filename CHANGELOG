@@ -40,3 +40,9 @@
 - Add syslog functionality to logger class
 - SECURITY: Fix string injection issue
 - SECURITY: Fix permission problems on suite scripts
+
+* Fri Feb 11 2011 - Sam Hart <samx.hart@intel.com>
+- Add Ångström-distro (XenClient) support for dispatcher install scripts.
+- Add post-install tweaking scripts to support for items not covered by
+  installer.
+- Add support in lib clientagent for HW address checks.
