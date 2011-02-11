@@ -3,6 +3,10 @@
 # Our debugging levels.
 # Each level determines how extreme we make our debugging as we are developing.
 
+# DEBUG0 - This can be considered the "release" level. It disables all
+#          debugging.
+DEBUG0=
+
 # DEBUG1 - This is the standard level, useful for general development. All we
 #          enable here is gdb runtime options
 DEBUG1=-g
