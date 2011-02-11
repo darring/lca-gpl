@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
+<a href="#define-members">Defines</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>hwaddr.cpp File Reference</h1>  </div>
@@ -59,11 +60,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="hwaddr_8h_source.html">hwaddr.h</a>&quot;</code><br/>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="hwaddr_8cpp.html#ab44d92c45e9155a2b343f0372630ec35">MAX_NICS</a>&nbsp;&nbsp;&nbsp;8</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The maximum number of nics we will run through looking for activity before giving up.  <a href="#ab44d92c45e9155a2b343f0372630ec35"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="hwaddr_8cpp.html#a5a909096068e1af04aad469346054eda">MAX_HWADDR</a>&nbsp;&nbsp;&nbsp;32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The maximum length of a HW address.  <a href="#a5a909096068e1af04aad469346054eda"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="hwaddr_8cpp.html#ab57403d86f6bdfbd290b17cd10dfc2cd">getHwAddr</a> (char *hwaddr)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Obtains the lowest order hardware address.  <a href="#ab57403d86f6bdfbd290b17cd10dfc2cd"></a><br/></td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a5a909096068e1af04aad469346054eda"></a><!-- doxytag: member="hwaddr.cpp::MAX_HWADDR" ref="a5a909096068e1af04aad469346054eda" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_HWADDR&nbsp;&nbsp;&nbsp;32</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The maximum length of a HW address. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab44d92c45e9155a2b343f0372630ec35"></a><!-- doxytag: member="hwaddr.cpp::MAX_NICS" ref="ab44d92c45e9155a2b343f0372630ec35" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_NICS&nbsp;&nbsp;&nbsp;8</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The maximum number of nics we will run through looking for activity before giving up. </p>
+
+</div>
+</div>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="ab57403d86f6bdfbd290b17cd10dfc2cd"></a><!-- doxytag: member="hwaddr.cpp::getHwAddr" ref="ab57403d86f6bdfbd290b17cd10dfc2cd" args="(char *hwaddr)" -->
 <div class="memitem">
@@ -99,7 +137,7 @@ Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,7 +146,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 10:49:38 for Clientagentabstractinterface by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 14:58:33 for Clientagentabstractinterface by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
