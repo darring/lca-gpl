@@ -55,8 +55,6 @@ Where [OPTION] is one of the following
 
     --doc           Install just the documentation
 
-    --regendoc      Regenerate the Doxygen documentation
-
     --fixme         Search the project for fixme's in code that might need to be
                     worked on.
 
