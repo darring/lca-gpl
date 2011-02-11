@@ -2,7 +2,7 @@
  * Hardware Address tools header
  */
 
-/*! \mainpage Hardware Address Tools
+/*! \page hwaddr_page Hardware Address Tools
  *
  * \section intro_sec Introduction
  *
@@ -11,6 +11,9 @@
  *
  * \section usage_sec Usage
  *
+ * The main interface is getHwAddr(char *hwaddr), which you call with a char
+ * pointer that will be filled with the hardware address of the first ethernet
+ * device on the system.
  */
 
 #ifndef hwaddr_h

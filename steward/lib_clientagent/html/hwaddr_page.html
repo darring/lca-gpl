@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Clientagentabstractinterface: Class Members</title>
+<title>Clientagentabstractinterface: Hardware Address Tools</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -18,7 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -37,43 +37,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-  <div class="tabs2">
-    <ul class="tablist">
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li class="current"><a href="globals.html"><span>File&nbsp;Members</span></a></li>
-    </ul>
-  </div>
-  <div class="tabs2">
-    <ul class="tablist">
-      <li class="current"><a href="globals.html"><span>All</span></a></li>
-      <li><a href="globals_func.html"><span>Functions</span></a></li>
-      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
+  <div class="navpath">
+    <ul>
+      <li><a class="el" href="index.html">ClientAgentHelper Interface</a>      </li>
     </ul>
   </div>
 </div>
+<div class="header">
+  <div class="headertitle">
+<h1>Hardware Address Tools </h1>  </div>
+</div>
 <div class="contents">
-Here is a list of all file members with links to the files they belong to:<ul>
-<li>BINDIR
-: <a class="el" href="clientagent__helper_8h.html#a17c55f775b214ba79ec23cfc91e96394a90392fb87d6d7d579fadcfc01e123a83">clientagent_helper.h</a>
-</li>
-<li>CCMSLOG
-: <a class="el" href="clientagent__helper_8h.html#a17c55f775b214ba79ec23cfc91e96394a91bb9d5e11cdcbecf9dcc62b6bb24285">clientagent_helper.h</a>
-</li>
-<li>ClientAgentOptions
-: <a class="el" href="clientagent__helper_8h.html#a17c55f775b214ba79ec23cfc91e96394">clientagent_helper.h</a>
-</li>
-<li>COMDIR
-: <a class="el" href="clientagent__helper_8h.html#a17c55f775b214ba79ec23cfc91e96394a0fbf3cc897839be04ef4bbf5a8c695a3">clientagent_helper.h</a>
-</li>
-<li>getHwAddr()
-: <a class="el" href="hwaddr_8cpp.html#ab57403d86f6bdfbd290b17cd10dfc2cd">hwaddr.cpp</a>
-, <a class="el" href="hwaddr_8h.html#ab57403d86f6bdfbd290b17cd10dfc2cd">hwaddr.h</a>
-</li>
-<li>PIDFILE
-: <a class="el" href="clientagent__helper_8h.html#a17c55f775b214ba79ec23cfc91e96394aacdcb6f9fcecdc2e0eefe657b6eab958">clientagent_helper.h</a>
-</li>
-</ul>
+<h2><a class="anchor" id="intro_sec"></a>
+Introduction</h2>
+<p>This file provides interfaces which abstract access to the hardware address for the EIL Linux client agent.</p>
+<h2><a class="anchor" id="usage_sec"></a>
+Usage</h2>
+<p>The main interface is <a class="el" href="hwaddr_8h.html#ab57403d86f6bdfbd290b17cd10dfc2cd" title="Obtains the lowest order hardware address.">getHwAddr(char *hwaddr)</a>, which you call with a char pointer that will be filled with the hardware address of the first ethernet device on the system. </p>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"

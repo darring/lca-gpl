@@ -14,6 +14,8 @@
  * Once you have a ClientAgentHelper instance, use the
  * ClientAgentHelper::Get(char *result, int size, ClientAgentOptions option)
  * method to interact with the external client agent helper script.
+ *
+ * \subpage hwaddr_page "Hardware Address Tools"
  */
 
 #ifndef clientagent_helper_H
