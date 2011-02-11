@@ -21,7 +21,7 @@
  * can be found which are associated with client agent assistance and are
  * included under the ClientAgentHelper namespace:
  *
- * \subpage hwaddr_page "Hardware Address Tools"
+ * \li \subpage hwaddr_page "Hardware Address Tools"
  */
 
 #ifndef clientagent_helper_H
