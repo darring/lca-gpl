@@ -15,6 +15,12 @@
  * ClientAgentHelper::Get(char *result, int size, ClientAgentOptions option)
  * method to interact with the external client agent helper script.
  *
+ * \section subsections Subsections
+ *
+ * In addition to the main ClientAgentHelper interface, the following tools
+ * can be found which are associated with client agent assistance and are
+ * included under the ClientAgentHelper namespace:
+ *
  * \subpage hwaddr_page "Hardware Address Tools"
  */
 
