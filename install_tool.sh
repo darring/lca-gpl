@@ -9,7 +9,7 @@ unset OPT_BUILD OPT_STATIC OPT_DOC OPT_PKG OPT_INSTALL_PKG || true
 unset OPT_INSTALL_DISPATCHER OPT_INSTALL_STEWARD LOG_FILE || true
 unset OPT_CLEAN OPT_UNINSTALL_DISPATCHER OPT_UNINSTALL_STEWARD || true
 unset TMP_WORKSPACE TMP_BASE TMP_ROOT IS_RELEASE OPT_MAKEREPO || true
-unset REMOTE_REPO OPT_RUNTEST OPT_FIXME || true
+unset REMOTE_REPO OPT_RUNTEST OPT_FIXME OPT_REGDOC || true
 
 PROGNAME=${0##*/}
 
@@ -54,6 +54,8 @@ Where [OPTION] is one of the following
     --runtest       Run all the unit tests
 
     --doc           Install just the documentation
+
+    --regendoc      Regenerate the Doxygen documentation
 
     --fixme         Search the project for fixme's in code that might need to be
                     worked on.
