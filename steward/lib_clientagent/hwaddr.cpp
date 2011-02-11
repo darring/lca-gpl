@@ -37,22 +37,40 @@ bool getHwAddr(char *hwaddr)
         "eth7"
     };
 
-    int s;
+    int s, i;
     int retval;
     struct ifreq buffer;
     char rethwaddr[MAX_HWADDR];
+    bool found = false;
 
     s = socket(PF_INET, SOCK_DGRAM, 0);
 
     memset(&buffer, 0x00, sizeof(buffer));
 
-    for(int i = 0; i < MAX_NICS; i++) {
+    for(i = 0; i < MAX_NICS; i++) {
         strcpy(buffer.ifr_name, potential_nics[i]);
 
         retval = ioctl(s, SIOCGIFHWADDR, &buffer);
-        if (retval > 0)
+        if (retval > 0) {
             break;
+            found = true;
+        }
     }
 
     close(s);
+
+    i = 0;
+    if(found) {
+        for( s = 0; s < 6; s++ )
+        {
+            snprintf(&rethwaddr[i], MAX_HWADDR, "%.2X",
+                    (unsigned char)buffer.ifr_hwaddr.sa_data[s]);
+            if(s < 5)
+                sprintf(&rethwaddr[i+2], ":");
+            i += 3;
+        }
+        hwaddr = rethwaddr;
+    }
+
+    return found;
 }
