@@ -30,7 +30,7 @@ setup_hosts_on_boot() {
 
     chown root.root /etc/init.d/xen_host_replace.sh
     chmod a+x /etc/init.d/xen_host_replace.sh
-    update-rc.d xen_host_replace.sh start defaults 19 19
+    update-rc.d xen_host_replace.sh defaults 19 19
 }
 
 clean_crontab_file
