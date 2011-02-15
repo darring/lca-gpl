@@ -46,3 +46,9 @@
 - Add post-install tweaking scripts to support for items not covered by
   installer.
 - Add support in lib clientagent for HW address checks.
+
+* Tue Feb 15 2011 - Sam Hart <samx.hart@intel.com>
+- Finalize Ångström-distro (XenClient) support post-install support
+- Finalize Ångström-distro (XenClient) support for TCP diagnostic scripts
+- Add hosts logic to helper script
+- Bump version to 4.1.1 to sync with Windows client for release
