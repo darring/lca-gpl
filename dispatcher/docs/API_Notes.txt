@@ -122,3 +122,15 @@ network items.
         * get_system_ip()
             - This function returns the system's IP information. It requires
               working grep, cut and awk commands.
+
+        * is_hosts_setup()
+            - This function queries the /etc/hosts file to verify whether or
+              not the EIL entries are in place. It returns 0 upon success
+              (meaning the entries are there) or 1 on failure (meaning the
+              entries are not there).
+
+              The main reason this function exists (though it can easily have
+              uses elsewhere) was because of a need on XenClient where the
+              hosts file was being destroyed at odd times after boot causing
+              TCP diagnostic script runs which resulted in Linux client agent
+              hangs.

@@ -134,4 +134,15 @@ get_system_ip() {
     /sbin/ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'
 }
 
+is_hosts_setup() {
+    STAT=$(sed '/## EIL_BEGIN/,/## EIL_END/!d' /etc/hosts)
+    if [ -n "$STAT" ]; then
+        return 0
+    else
+        return 1
+    fi
+    # We'll never get here
+    return 1
+}
+
 # vim:set ai et sts=4 sw=4 tw=80:
