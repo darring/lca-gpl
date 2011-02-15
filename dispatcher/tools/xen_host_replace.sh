@@ -7,9 +7,9 @@
 # LSB install information
 ### BEGIN INIT INFO
 # Provides:             xen_host_replace
-# Required-Start:       $remote_fs $syslog $network $time
-# Required-Stop:        $remote_fs $syslog $network $time
-# Default-Start:        2 3 4 5
+# Required-Start:
+# Required-Stop:
+# Default-Start:        1 2 3 4 5 6
 # Default-Stop:
 # Short-Description:    The XenClient host replacer init script
 ### END INIT INFO
@@ -50,6 +50,7 @@ status)
         echo "Hosts file is not ready for client agent!"
         echo "Client agent is broken! Please run this init script with 'start'"
         echo "option!"
+    fi
     exit 0
     ;;
 *)
