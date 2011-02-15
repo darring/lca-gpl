@@ -19,10 +19,21 @@ clean_crontab_file() {
     rm -f ${TMP_FILE}
 }
 
+setup_hosts_on_boot() {
+    # Okay, this is just an ugly, ugly hack, but one which we have to do
+    # because XenClient nukes the hosts file on reboot
+    sed '/## EIL_BEGIN/,/## EIL_END/!d' /etc/hosts > \
+        /opt/intel/eil/clientagent/home/xen_hosts
+
+    
+}
+
 clean_crontab_file
 
 echo "## EIL_BEGIN" >> ${crontab}
 echo "${crontab_line}" >> ${crontab}
 echo "## EIL_END" >> ${crontab}
+
+setup_hosts_on_boot
 
 # vim:set ai et sts=4 sw=4 tw=80:
