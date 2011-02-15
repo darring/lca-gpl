@@ -11,7 +11,7 @@
 # Required-Stop:        $remote_fs $syslog $network $time
 # Default-Start:        2 3 4 5
 # Default-Stop:
-# Short-Description:    The EIL Linux Client Agent steward
+# Short-Description:    The XenClient host replacer init script
 ### END INIT INFO
 
 # Make sure we have an appropriate path
