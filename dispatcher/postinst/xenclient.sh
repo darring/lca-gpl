@@ -25,7 +25,12 @@ setup_hosts_on_boot() {
     sed '/## EIL_BEGIN/,/## EIL_END/!d' /etc/hosts > \
         /opt/intel/eil/clientagent/home/xen_hosts
 
-    
+    cp /opt/intel/eil/clientagent/tools/xen_host_replace.sh \
+        /etc/init.d/xen_host_replace.sh
+
+    chown root.root /etc/init.d/xen_host_replace.sh
+    chmod a+x /etc/init.d/xen_host_replace.sh
+    update-rc.d xen_host_replace.sh start defaults 19
 }
 
 clean_crontab_file
