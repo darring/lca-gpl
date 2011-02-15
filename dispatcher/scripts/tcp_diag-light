@@ -71,9 +71,6 @@ elif [ -n "$IS_ANGSTROM" ]; then
     is_hosts_setup
     _STATUS=$?
     if [ "${_STATUS}" -eq "0" ]; then
-        #trace "Attempting to restart network on Angstrom-based XenClient"
-        #trace "If this does not work, we have no way to repair it!"
-        #/etc/init.d/xenclient-network restart
         trace "Angstrom-based XenClient, NetworkManager must repair our connection, it is out of our hands..."
     else
         trace "Angstrom-based XenClient has obliterated our hosts file,"
