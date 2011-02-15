@@ -5,6 +5,7 @@
 Table of Contents
 0) Development Environment
     0.a) Mercurial
+        0.a.1) Branches, tags and naming conventions
     0.b) Windows Considerations
 1) Overview
     1.a) Project History
@@ -47,6 +48,20 @@ the guides and tutorials available on the following pages:
 
     NOTE: hg cannot integrate with TFS (neither can git, which we tried as well)
 See dispatcher/docs/TFS_Notes.txt for more information.
+
+0.a.1) Branches, tags and naming conventions
+
+    Inside of our Mercurial repository, we will adhere to the following naming
+conventions:
+
+        * Tagging - Tags will be used for major releases and will be the same
+                    as the version
+
+        * Branches - Branches will be used for experimental and/or disruptive
+                    changes that might break the code. The general branch
+                    "bigdev" is used for any large and disruptive changes and
+                    can be re-used, provided no active development is currently
+                    going on in it.
 
 0.b) Windows Considerations
 
