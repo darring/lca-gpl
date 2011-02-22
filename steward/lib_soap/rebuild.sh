@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#CCMS_SERVER=172.16.3.10
-CCMS_SERVER=172.16.3.12
+CCMS_SERVER=172.16.3.10
+#CCMS_SERVER=172.16.3.12
 
 # gSOAP rebuild script
 
