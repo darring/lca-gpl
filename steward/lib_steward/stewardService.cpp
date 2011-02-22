@@ -119,7 +119,7 @@ CCMS_Command StewardService::QueryForClientCommands(
             hwaddr_kv.Key = "MAC_ADDR";
             hwaddr_kv.Value= hwaddr;
             _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hw[1];
-            hw[0] = hostname_kv;
+            hw[0] = hwaddr_kv;
             ns5__ArrayOfKeyValueOfstringstring k2;
             k2.__sizeKeyValueOfstringstring = 1;
             k2.KeyValueOfstringstring = &hw[0];
