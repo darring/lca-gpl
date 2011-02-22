@@ -12,7 +12,7 @@
 
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.0 2011-02-15 21:11:29 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.cpp ver 2.8.0 2011-02-22 19:24:09 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -304,18 +304,34 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		s = soap_in_wsa5__RelationshipTypeOpenEnum(soap, NULL, NULL, "wsa5:RelationshipTypeOpenEnum");
 		return s ? *s : NULL;
 	}
+	case SOAP_TYPE_PointerTo_ns1__UpdateAssetInformationResponse:
+		return soap_in_PointerTo_ns1__UpdateAssetInformationResponse(soap, NULL, NULL, "ns1:UpdateAssetInformationResponse");
+	case SOAP_TYPE_PointerTo_ns1__UpdateAssetInformation:
+		return soap_in_PointerTo_ns1__UpdateAssetInformation(soap, NULL, NULL, "ns1:UpdateAssetInformation");
+	case SOAP_TYPE_PointerTo_ns1__InitiateRDPRequestResponse:
+		return soap_in_PointerTo_ns1__InitiateRDPRequestResponse(soap, NULL, NULL, "ns1:InitiateRDPRequestResponse");
+	case SOAP_TYPE_PointerTo_ns1__InitiateRDPRequest:
+		return soap_in_PointerTo_ns1__InitiateRDPRequest(soap, NULL, NULL, "ns1:InitiateRDPRequest");
+	case SOAP_TYPE_PointerTo_ns1__GetRDPConnectionStringResponse:
+		return soap_in_PointerTo_ns1__GetRDPConnectionStringResponse(soap, NULL, NULL, "ns1:GetRDPConnectionStringResponse");
+	case SOAP_TYPE_PointerTo_ns1__GetRDPConnectionString:
+		return soap_in_PointerTo_ns1__GetRDPConnectionString(soap, NULL, NULL, "ns1:GetRDPConnectionString");
+	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMacResponse:
+		return soap_in_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(soap, NULL, NULL, "ns1:InitiateClientCommandsUsingMacResponse");
+	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMac:
+		return soap_in_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, NULL, NULL, "ns1:InitiateClientCommandsUsingMac");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsResponse:
 		return soap_in_PointerTo_ns1__InitiateClientCommandsResponse(soap, NULL, NULL, "ns1:InitiateClientCommandsResponse");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommands:
 		return soap_in_PointerTo_ns1__InitiateClientCommands(soap, NULL, NULL, "ns1:InitiateClientCommands");
-	case SOAP_TYPE_PointerTo_ns1__GetCommandStatusResponse:
-		return soap_in_PointerTo_ns1__GetCommandStatusResponse(soap, NULL, NULL, "ns1:GetCommandStatusResponse");
-	case SOAP_TYPE_PointerTo_ns1__GetCommandStatus:
-		return soap_in_PointerTo_ns1__GetCommandStatus(soap, NULL, NULL, "ns1:GetCommandStatus");
 	case SOAP_TYPE_PointerTo_ns1__UpdateCommandStatusResponse:
 		return soap_in_PointerTo_ns1__UpdateCommandStatusResponse(soap, NULL, NULL, "ns1:UpdateCommandStatusResponse");
 	case SOAP_TYPE_PointerTo_ns1__UpdateCommandStatus:
 		return soap_in_PointerTo_ns1__UpdateCommandStatus(soap, NULL, NULL, "ns1:UpdateCommandStatus");
+	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse:
+		return soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(soap, NULL, NULL, "ns1:GetCommandToExecuteUsingMacAddressResponse");
+	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddress:
+		return soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, NULL, NULL, "ns1:GetCommandToExecuteUsingMacAddress");
 	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteResponse:
 		return soap_in_PointerTo_ns1__GetCommandToExecuteResponse(soap, NULL, NULL, "ns1:GetCommandToExecuteResponse");
 	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecute:
@@ -802,6 +818,38 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring;
 			return soap_in__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring(soap, NULL, NULL, NULL);
 		}
+		if (!soap_match_tag(soap, t, "ns1:UpdateAssetInformationResponse"))
+		{	*type = SOAP_TYPE__ns1__UpdateAssetInformationResponse;
+			return soap_in__ns1__UpdateAssetInformationResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:UpdateAssetInformation"))
+		{	*type = SOAP_TYPE__ns1__UpdateAssetInformation;
+			return soap_in__ns1__UpdateAssetInformation(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:InitiateRDPRequestResponse"))
+		{	*type = SOAP_TYPE__ns1__InitiateRDPRequestResponse;
+			return soap_in__ns1__InitiateRDPRequestResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:InitiateRDPRequest"))
+		{	*type = SOAP_TYPE__ns1__InitiateRDPRequest;
+			return soap_in__ns1__InitiateRDPRequest(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:GetRDPConnectionStringResponse"))
+		{	*type = SOAP_TYPE__ns1__GetRDPConnectionStringResponse;
+			return soap_in__ns1__GetRDPConnectionStringResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:GetRDPConnectionString"))
+		{	*type = SOAP_TYPE__ns1__GetRDPConnectionString;
+			return soap_in__ns1__GetRDPConnectionString(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:InitiateClientCommandsUsingMacResponse"))
+		{	*type = SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse;
+			return soap_in__ns1__InitiateClientCommandsUsingMacResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:InitiateClientCommandsUsingMac"))
+		{	*type = SOAP_TYPE__ns1__InitiateClientCommandsUsingMac;
+			return soap_in__ns1__InitiateClientCommandsUsingMac(soap, NULL, NULL, NULL);
+		}
 		if (!soap_match_tag(soap, t, "ns1:InitiateClientCommandsResponse"))
 		{	*type = SOAP_TYPE__ns1__InitiateClientCommandsResponse;
 			return soap_in__ns1__InitiateClientCommandsResponse(soap, NULL, NULL, NULL);
@@ -810,14 +858,6 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE__ns1__InitiateClientCommands;
 			return soap_in__ns1__InitiateClientCommands(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns1:GetCommandStatusResponse"))
-		{	*type = SOAP_TYPE__ns1__GetCommandStatusResponse;
-			return soap_in__ns1__GetCommandStatusResponse(soap, NULL, NULL, NULL);
-		}
-		if (!soap_match_tag(soap, t, "ns1:GetCommandStatus"))
-		{	*type = SOAP_TYPE__ns1__GetCommandStatus;
-			return soap_in__ns1__GetCommandStatus(soap, NULL, NULL, NULL);
-		}
 		if (!soap_match_tag(soap, t, "ns1:UpdateCommandStatusResponse"))
 		{	*type = SOAP_TYPE__ns1__UpdateCommandStatusResponse;
 			return soap_in__ns1__UpdateCommandStatusResponse(soap, NULL, NULL, NULL);
@@ -825,6 +865,14 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		if (!soap_match_tag(soap, t, "ns1:UpdateCommandStatus"))
 		{	*type = SOAP_TYPE__ns1__UpdateCommandStatus;
 			return soap_in__ns1__UpdateCommandStatus(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:GetCommandToExecuteUsingMacAddressResponse"))
+		{	*type = SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse;
+			return soap_in__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:GetCommandToExecuteUsingMacAddress"))
+		{	*type = SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress;
+			return soap_in__ns1__GetCommandToExecuteUsingMacAddress(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns1:GetCommandToExecuteResponse"))
 		{	*type = SOAP_TYPE__ns1__GetCommandToExecuteResponse;
@@ -1101,18 +1149,34 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return ((ns4__EILCommand *)ptr)->soap_out(soap, tag, id, "ns4:EILCommand");
 	case SOAP_TYPE_ns4__MachineContext:
 		return ((ns4__MachineContext *)ptr)->soap_out(soap, tag, id, "ns4:MachineContext");
+	case SOAP_TYPE__ns1__UpdateAssetInformationResponse:
+		return ((_ns1__UpdateAssetInformationResponse *)ptr)->soap_out(soap, "ns1:UpdateAssetInformationResponse", id, NULL);
+	case SOAP_TYPE__ns1__UpdateAssetInformation:
+		return ((_ns1__UpdateAssetInformation *)ptr)->soap_out(soap, "ns1:UpdateAssetInformation", id, NULL);
+	case SOAP_TYPE__ns1__InitiateRDPRequestResponse:
+		return ((_ns1__InitiateRDPRequestResponse *)ptr)->soap_out(soap, "ns1:InitiateRDPRequestResponse", id, NULL);
+	case SOAP_TYPE__ns1__InitiateRDPRequest:
+		return ((_ns1__InitiateRDPRequest *)ptr)->soap_out(soap, "ns1:InitiateRDPRequest", id, NULL);
+	case SOAP_TYPE__ns1__GetRDPConnectionStringResponse:
+		return ((_ns1__GetRDPConnectionStringResponse *)ptr)->soap_out(soap, "ns1:GetRDPConnectionStringResponse", id, NULL);
+	case SOAP_TYPE__ns1__GetRDPConnectionString:
+		return ((_ns1__GetRDPConnectionString *)ptr)->soap_out(soap, "ns1:GetRDPConnectionString", id, NULL);
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse:
+		return ((_ns1__InitiateClientCommandsUsingMacResponse *)ptr)->soap_out(soap, "ns1:InitiateClientCommandsUsingMacResponse", id, NULL);
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMac:
+		return ((_ns1__InitiateClientCommandsUsingMac *)ptr)->soap_out(soap, "ns1:InitiateClientCommandsUsingMac", id, NULL);
 	case SOAP_TYPE__ns1__InitiateClientCommandsResponse:
 		return ((_ns1__InitiateClientCommandsResponse *)ptr)->soap_out(soap, "ns1:InitiateClientCommandsResponse", id, NULL);
 	case SOAP_TYPE__ns1__InitiateClientCommands:
 		return ((_ns1__InitiateClientCommands *)ptr)->soap_out(soap, "ns1:InitiateClientCommands", id, NULL);
-	case SOAP_TYPE__ns1__GetCommandStatusResponse:
-		return ((_ns1__GetCommandStatusResponse *)ptr)->soap_out(soap, "ns1:GetCommandStatusResponse", id, NULL);
-	case SOAP_TYPE__ns1__GetCommandStatus:
-		return ((_ns1__GetCommandStatus *)ptr)->soap_out(soap, "ns1:GetCommandStatus", id, NULL);
 	case SOAP_TYPE__ns1__UpdateCommandStatusResponse:
 		return ((_ns1__UpdateCommandStatusResponse *)ptr)->soap_out(soap, "ns1:UpdateCommandStatusResponse", id, NULL);
 	case SOAP_TYPE__ns1__UpdateCommandStatus:
 		return ((_ns1__UpdateCommandStatus *)ptr)->soap_out(soap, "ns1:UpdateCommandStatus", id, NULL);
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse:
+		return ((_ns1__GetCommandToExecuteUsingMacAddressResponse *)ptr)->soap_out(soap, "ns1:GetCommandToExecuteUsingMacAddressResponse", id, NULL);
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress:
+		return ((_ns1__GetCommandToExecuteUsingMacAddress *)ptr)->soap_out(soap, "ns1:GetCommandToExecuteUsingMacAddress", id, NULL);
 	case SOAP_TYPE__ns1__GetCommandToExecuteResponse:
 		return ((_ns1__GetCommandToExecuteResponse *)ptr)->soap_out(soap, "ns1:GetCommandToExecuteResponse", id, NULL);
 	case SOAP_TYPE__ns1__GetCommandToExecute:
@@ -1213,18 +1277,34 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_string(soap, tag, id, (char*const*)&ptr, "wsa5:FaultCodesOpenEnumType");
 	case SOAP_TYPE_wsa5__RelationshipTypeOpenEnum:
 		return soap_out_string(soap, tag, id, (char*const*)&ptr, "wsa5:RelationshipTypeOpenEnum");
+	case SOAP_TYPE_PointerTo_ns1__UpdateAssetInformationResponse:
+		return soap_out_PointerTo_ns1__UpdateAssetInformationResponse(soap, tag, id, (_ns1__UpdateAssetInformationResponse *const*)ptr, "ns1:UpdateAssetInformationResponse");
+	case SOAP_TYPE_PointerTo_ns1__UpdateAssetInformation:
+		return soap_out_PointerTo_ns1__UpdateAssetInformation(soap, tag, id, (_ns1__UpdateAssetInformation *const*)ptr, "ns1:UpdateAssetInformation");
+	case SOAP_TYPE_PointerTo_ns1__InitiateRDPRequestResponse:
+		return soap_out_PointerTo_ns1__InitiateRDPRequestResponse(soap, tag, id, (_ns1__InitiateRDPRequestResponse *const*)ptr, "ns1:InitiateRDPRequestResponse");
+	case SOAP_TYPE_PointerTo_ns1__InitiateRDPRequest:
+		return soap_out_PointerTo_ns1__InitiateRDPRequest(soap, tag, id, (_ns1__InitiateRDPRequest *const*)ptr, "ns1:InitiateRDPRequest");
+	case SOAP_TYPE_PointerTo_ns1__GetRDPConnectionStringResponse:
+		return soap_out_PointerTo_ns1__GetRDPConnectionStringResponse(soap, tag, id, (_ns1__GetRDPConnectionStringResponse *const*)ptr, "ns1:GetRDPConnectionStringResponse");
+	case SOAP_TYPE_PointerTo_ns1__GetRDPConnectionString:
+		return soap_out_PointerTo_ns1__GetRDPConnectionString(soap, tag, id, (_ns1__GetRDPConnectionString *const*)ptr, "ns1:GetRDPConnectionString");
+	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMacResponse:
+		return soap_out_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(soap, tag, id, (_ns1__InitiateClientCommandsUsingMacResponse *const*)ptr, "ns1:InitiateClientCommandsUsingMacResponse");
+	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMac:
+		return soap_out_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, tag, id, (_ns1__InitiateClientCommandsUsingMac *const*)ptr, "ns1:InitiateClientCommandsUsingMac");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsResponse:
 		return soap_out_PointerTo_ns1__InitiateClientCommandsResponse(soap, tag, id, (_ns1__InitiateClientCommandsResponse *const*)ptr, "ns1:InitiateClientCommandsResponse");
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommands:
 		return soap_out_PointerTo_ns1__InitiateClientCommands(soap, tag, id, (_ns1__InitiateClientCommands *const*)ptr, "ns1:InitiateClientCommands");
-	case SOAP_TYPE_PointerTo_ns1__GetCommandStatusResponse:
-		return soap_out_PointerTo_ns1__GetCommandStatusResponse(soap, tag, id, (_ns1__GetCommandStatusResponse *const*)ptr, "ns1:GetCommandStatusResponse");
-	case SOAP_TYPE_PointerTo_ns1__GetCommandStatus:
-		return soap_out_PointerTo_ns1__GetCommandStatus(soap, tag, id, (_ns1__GetCommandStatus *const*)ptr, "ns1:GetCommandStatus");
 	case SOAP_TYPE_PointerTo_ns1__UpdateCommandStatusResponse:
 		return soap_out_PointerTo_ns1__UpdateCommandStatusResponse(soap, tag, id, (_ns1__UpdateCommandStatusResponse *const*)ptr, "ns1:UpdateCommandStatusResponse");
 	case SOAP_TYPE_PointerTo_ns1__UpdateCommandStatus:
 		return soap_out_PointerTo_ns1__UpdateCommandStatus(soap, tag, id, (_ns1__UpdateCommandStatus *const*)ptr, "ns1:UpdateCommandStatus");
+	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse:
+		return soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(soap, tag, id, (_ns1__GetCommandToExecuteUsingMacAddressResponse *const*)ptr, "ns1:GetCommandToExecuteUsingMacAddressResponse");
+	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddress:
+		return soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, tag, id, (_ns1__GetCommandToExecuteUsingMacAddress *const*)ptr, "ns1:GetCommandToExecuteUsingMacAddress");
 	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteResponse:
 		return soap_out_PointerTo_ns1__GetCommandToExecuteResponse(soap, tag, id, (_ns1__GetCommandToExecuteResponse *const*)ptr, "ns1:GetCommandToExecuteResponse");
 	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecute:
@@ -1354,23 +1434,47 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_ns4__MachineContext:
 		((ns4__MachineContext *)ptr)->soap_serialize(soap);
 		break;
+	case SOAP_TYPE__ns1__UpdateAssetInformationResponse:
+		((_ns1__UpdateAssetInformationResponse *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__UpdateAssetInformation:
+		((_ns1__UpdateAssetInformation *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__InitiateRDPRequestResponse:
+		((_ns1__InitiateRDPRequestResponse *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__InitiateRDPRequest:
+		((_ns1__InitiateRDPRequest *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__GetRDPConnectionStringResponse:
+		((_ns1__GetRDPConnectionStringResponse *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__GetRDPConnectionString:
+		((_ns1__GetRDPConnectionString *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse:
+		((_ns1__InitiateClientCommandsUsingMacResponse *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMac:
+		((_ns1__InitiateClientCommandsUsingMac *)ptr)->soap_serialize(soap);
+		break;
 	case SOAP_TYPE__ns1__InitiateClientCommandsResponse:
 		((_ns1__InitiateClientCommandsResponse *)ptr)->soap_serialize(soap);
 		break;
 	case SOAP_TYPE__ns1__InitiateClientCommands:
 		((_ns1__InitiateClientCommands *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE__ns1__GetCommandStatusResponse:
-		((_ns1__GetCommandStatusResponse *)ptr)->soap_serialize(soap);
-		break;
-	case SOAP_TYPE__ns1__GetCommandStatus:
-		((_ns1__GetCommandStatus *)ptr)->soap_serialize(soap);
-		break;
 	case SOAP_TYPE__ns1__UpdateCommandStatusResponse:
 		((_ns1__UpdateCommandStatusResponse *)ptr)->soap_serialize(soap);
 		break;
 	case SOAP_TYPE__ns1__UpdateCommandStatus:
 		((_ns1__UpdateCommandStatus *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse:
+		((_ns1__GetCommandToExecuteUsingMacAddressResponse *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress:
+		((_ns1__GetCommandToExecuteUsingMacAddress *)ptr)->soap_serialize(soap);
 		break;
 	case SOAP_TYPE__ns1__GetCommandToExecuteResponse:
 		((_ns1__GetCommandToExecuteResponse *)ptr)->soap_serialize(soap);
@@ -1483,14 +1587,26 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_wsa5__EndpointReferenceType:
 		soap_serialize_wsa5__EndpointReferenceType(soap, (const struct wsa5__EndpointReferenceType *)ptr);
 		break;
+	case SOAP_TYPE___ns1__UpdateAssetInformation:
+		soap_serialize___ns1__UpdateAssetInformation(soap, (const struct __ns1__UpdateAssetInformation *)ptr);
+		break;
+	case SOAP_TYPE___ns1__InitiateRDPRequest:
+		soap_serialize___ns1__InitiateRDPRequest(soap, (const struct __ns1__InitiateRDPRequest *)ptr);
+		break;
+	case SOAP_TYPE___ns1__GetRDPConnectionString:
+		soap_serialize___ns1__GetRDPConnectionString(soap, (const struct __ns1__GetRDPConnectionString *)ptr);
+		break;
+	case SOAP_TYPE___ns1__InitiateClientCommandsUsingMac:
+		soap_serialize___ns1__InitiateClientCommandsUsingMac(soap, (const struct __ns1__InitiateClientCommandsUsingMac *)ptr);
+		break;
 	case SOAP_TYPE___ns1__InitiateClientCommands:
 		soap_serialize___ns1__InitiateClientCommands(soap, (const struct __ns1__InitiateClientCommands *)ptr);
 		break;
-	case SOAP_TYPE___ns1__GetCommandStatus:
-		soap_serialize___ns1__GetCommandStatus(soap, (const struct __ns1__GetCommandStatus *)ptr);
-		break;
 	case SOAP_TYPE___ns1__UpdateCommandStatus:
 		soap_serialize___ns1__UpdateCommandStatus(soap, (const struct __ns1__UpdateCommandStatus *)ptr);
+		break;
+	case SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress:
+		soap_serialize___ns1__GetCommandToExecuteUsingMacAddress(soap, (const struct __ns1__GetCommandToExecuteUsingMacAddress *)ptr);
 		break;
 	case SOAP_TYPE___ns1__GetCommandToExecute:
 		soap_serialize___ns1__GetCommandToExecute(soap, (const struct __ns1__GetCommandToExecute *)ptr);
@@ -1534,23 +1650,47 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_wsa5__RelationshipTypeOpenEnum:
 		soap_serialize_string(soap, (char*const*)&ptr);
 		break;
+	case SOAP_TYPE_PointerTo_ns1__UpdateAssetInformationResponse:
+		soap_serialize_PointerTo_ns1__UpdateAssetInformationResponse(soap, (_ns1__UpdateAssetInformationResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__UpdateAssetInformation:
+		soap_serialize_PointerTo_ns1__UpdateAssetInformation(soap, (_ns1__UpdateAssetInformation *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__InitiateRDPRequestResponse:
+		soap_serialize_PointerTo_ns1__InitiateRDPRequestResponse(soap, (_ns1__InitiateRDPRequestResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__InitiateRDPRequest:
+		soap_serialize_PointerTo_ns1__InitiateRDPRequest(soap, (_ns1__InitiateRDPRequest *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__GetRDPConnectionStringResponse:
+		soap_serialize_PointerTo_ns1__GetRDPConnectionStringResponse(soap, (_ns1__GetRDPConnectionStringResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__GetRDPConnectionString:
+		soap_serialize_PointerTo_ns1__GetRDPConnectionString(soap, (_ns1__GetRDPConnectionString *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMacResponse:
+		soap_serialize_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(soap, (_ns1__InitiateClientCommandsUsingMacResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMac:
+		soap_serialize_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, (_ns1__InitiateClientCommandsUsingMac *const*)ptr);
+		break;
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsResponse:
 		soap_serialize_PointerTo_ns1__InitiateClientCommandsResponse(soap, (_ns1__InitiateClientCommandsResponse *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTo_ns1__InitiateClientCommands:
 		soap_serialize_PointerTo_ns1__InitiateClientCommands(soap, (_ns1__InitiateClientCommands *const*)ptr);
 		break;
-	case SOAP_TYPE_PointerTo_ns1__GetCommandStatusResponse:
-		soap_serialize_PointerTo_ns1__GetCommandStatusResponse(soap, (_ns1__GetCommandStatusResponse *const*)ptr);
-		break;
-	case SOAP_TYPE_PointerTo_ns1__GetCommandStatus:
-		soap_serialize_PointerTo_ns1__GetCommandStatus(soap, (_ns1__GetCommandStatus *const*)ptr);
-		break;
 	case SOAP_TYPE_PointerTo_ns1__UpdateCommandStatusResponse:
 		soap_serialize_PointerTo_ns1__UpdateCommandStatusResponse(soap, (_ns1__UpdateCommandStatusResponse *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTo_ns1__UpdateCommandStatus:
 		soap_serialize_PointerTo_ns1__UpdateCommandStatus(soap, (_ns1__UpdateCommandStatus *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse:
+		soap_serialize_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(soap, (_ns1__GetCommandToExecuteUsingMacAddressResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddress:
+		soap_serialize_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, (_ns1__GetCommandToExecuteUsingMacAddress *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteResponse:
 		soap_serialize_PointerTo_ns1__GetCommandToExecuteResponse(soap, (_ns1__GetCommandToExecuteResponse *const*)ptr);
@@ -1715,18 +1855,34 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate__ns1__GetCommandToExecute(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__ns1__GetCommandToExecuteResponse:
 		return (void*)soap_instantiate__ns1__GetCommandToExecuteResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress:
+		return (void*)soap_instantiate__ns1__GetCommandToExecuteUsingMacAddress(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse:
+		return (void*)soap_instantiate__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__ns1__UpdateCommandStatus:
 		return (void*)soap_instantiate__ns1__UpdateCommandStatus(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__ns1__UpdateCommandStatusResponse:
 		return (void*)soap_instantiate__ns1__UpdateCommandStatusResponse(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__ns1__GetCommandStatus:
-		return (void*)soap_instantiate__ns1__GetCommandStatus(soap, -1, type, arrayType, n);
-	case SOAP_TYPE__ns1__GetCommandStatusResponse:
-		return (void*)soap_instantiate__ns1__GetCommandStatusResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__ns1__InitiateClientCommands:
 		return (void*)soap_instantiate__ns1__InitiateClientCommands(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__ns1__InitiateClientCommandsResponse:
 		return (void*)soap_instantiate__ns1__InitiateClientCommandsResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMac:
+		return (void*)soap_instantiate__ns1__InitiateClientCommandsUsingMac(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse:
+		return (void*)soap_instantiate__ns1__InitiateClientCommandsUsingMacResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__GetRDPConnectionString:
+		return (void*)soap_instantiate__ns1__GetRDPConnectionString(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__GetRDPConnectionStringResponse:
+		return (void*)soap_instantiate__ns1__GetRDPConnectionStringResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__InitiateRDPRequest:
+		return (void*)soap_instantiate__ns1__InitiateRDPRequest(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__InitiateRDPRequestResponse:
+		return (void*)soap_instantiate__ns1__InitiateRDPRequestResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__UpdateAssetInformation:
+		return (void*)soap_instantiate__ns1__UpdateAssetInformation(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__ns1__UpdateAssetInformationResponse:
+		return (void*)soap_instantiate__ns1__UpdateAssetInformationResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_ns4__MachineContext:
 		return (void*)soap_instantiate_ns4__MachineContext(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_ns4__EILCommand:
@@ -1739,12 +1895,20 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate_ns5__ArrayOfKeyValueOfstringstring(soap, -1, type, arrayType, n);
 	case SOAP_TYPE___ns1__GetCommandToExecute:
 		return (void*)soap_instantiate___ns1__GetCommandToExecute(soap, -1, type, arrayType, n);
+	case SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress:
+		return (void*)soap_instantiate___ns1__GetCommandToExecuteUsingMacAddress(soap, -1, type, arrayType, n);
 	case SOAP_TYPE___ns1__UpdateCommandStatus:
 		return (void*)soap_instantiate___ns1__UpdateCommandStatus(soap, -1, type, arrayType, n);
-	case SOAP_TYPE___ns1__GetCommandStatus:
-		return (void*)soap_instantiate___ns1__GetCommandStatus(soap, -1, type, arrayType, n);
 	case SOAP_TYPE___ns1__InitiateClientCommands:
 		return (void*)soap_instantiate___ns1__InitiateClientCommands(soap, -1, type, arrayType, n);
+	case SOAP_TYPE___ns1__InitiateClientCommandsUsingMac:
+		return (void*)soap_instantiate___ns1__InitiateClientCommandsUsingMac(soap, -1, type, arrayType, n);
+	case SOAP_TYPE___ns1__GetRDPConnectionString:
+		return (void*)soap_instantiate___ns1__GetRDPConnectionString(soap, -1, type, arrayType, n);
+	case SOAP_TYPE___ns1__InitiateRDPRequest:
+		return (void*)soap_instantiate___ns1__InitiateRDPRequest(soap, -1, type, arrayType, n);
+	case SOAP_TYPE___ns1__UpdateAssetInformation:
+		return (void*)soap_instantiate___ns1__UpdateAssetInformation(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_wsa5__EndpointReferenceType:
 		return (void*)soap_instantiate_wsa5__EndpointReferenceType(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_wsa5__ReferenceParametersType:
@@ -1984,6 +2148,18 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((_ns1__GetCommandToExecuteResponse*)p->ptr);
 		break;
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__GetCommandToExecuteUsingMacAddress*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__GetCommandToExecuteUsingMacAddress*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__GetCommandToExecuteUsingMacAddressResponse*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__GetCommandToExecuteUsingMacAddressResponse*)p->ptr);
+		break;
 	case SOAP_TYPE__ns1__UpdateCommandStatus:
 		if (p->size < 0)
 			SOAP_DELETE((_ns1__UpdateCommandStatus*)p->ptr);
@@ -1996,18 +2172,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((_ns1__UpdateCommandStatusResponse*)p->ptr);
 		break;
-	case SOAP_TYPE__ns1__GetCommandStatus:
-		if (p->size < 0)
-			SOAP_DELETE((_ns1__GetCommandStatus*)p->ptr);
-		else
-			SOAP_DELETE_ARRAY((_ns1__GetCommandStatus*)p->ptr);
-		break;
-	case SOAP_TYPE__ns1__GetCommandStatusResponse:
-		if (p->size < 0)
-			SOAP_DELETE((_ns1__GetCommandStatusResponse*)p->ptr);
-		else
-			SOAP_DELETE_ARRAY((_ns1__GetCommandStatusResponse*)p->ptr);
-		break;
 	case SOAP_TYPE__ns1__InitiateClientCommands:
 		if (p->size < 0)
 			SOAP_DELETE((_ns1__InitiateClientCommands*)p->ptr);
@@ -2019,6 +2183,54 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 			SOAP_DELETE((_ns1__InitiateClientCommandsResponse*)p->ptr);
 		else
 			SOAP_DELETE_ARRAY((_ns1__InitiateClientCommandsResponse*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMac:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__InitiateClientCommandsUsingMac*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__InitiateClientCommandsUsingMac*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__InitiateClientCommandsUsingMacResponse*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__InitiateClientCommandsUsingMacResponse*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__GetRDPConnectionString:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__GetRDPConnectionString*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__GetRDPConnectionString*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__GetRDPConnectionStringResponse:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__GetRDPConnectionStringResponse*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__GetRDPConnectionStringResponse*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__InitiateRDPRequest:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__InitiateRDPRequest*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__InitiateRDPRequest*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__InitiateRDPRequestResponse:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__InitiateRDPRequestResponse*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__InitiateRDPRequestResponse*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__UpdateAssetInformation:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__UpdateAssetInformation*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__UpdateAssetInformation*)p->ptr);
+		break;
+	case SOAP_TYPE__ns1__UpdateAssetInformationResponse:
+		if (p->size < 0)
+			SOAP_DELETE((_ns1__UpdateAssetInformationResponse*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((_ns1__UpdateAssetInformationResponse*)p->ptr);
 		break;
 	case SOAP_TYPE_ns4__MachineContext:
 		if (p->size < 0)
@@ -2056,23 +2268,47 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			SOAP_DELETE_ARRAY((struct __ns1__GetCommandToExecute*)p->ptr);
 		break;
+	case SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress:
+		if (p->size < 0)
+			SOAP_DELETE((struct __ns1__GetCommandToExecuteUsingMacAddress*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct __ns1__GetCommandToExecuteUsingMacAddress*)p->ptr);
+		break;
 	case SOAP_TYPE___ns1__UpdateCommandStatus:
 		if (p->size < 0)
 			SOAP_DELETE((struct __ns1__UpdateCommandStatus*)p->ptr);
 		else
 			SOAP_DELETE_ARRAY((struct __ns1__UpdateCommandStatus*)p->ptr);
 		break;
-	case SOAP_TYPE___ns1__GetCommandStatus:
-		if (p->size < 0)
-			SOAP_DELETE((struct __ns1__GetCommandStatus*)p->ptr);
-		else
-			SOAP_DELETE_ARRAY((struct __ns1__GetCommandStatus*)p->ptr);
-		break;
 	case SOAP_TYPE___ns1__InitiateClientCommands:
 		if (p->size < 0)
 			SOAP_DELETE((struct __ns1__InitiateClientCommands*)p->ptr);
 		else
 			SOAP_DELETE_ARRAY((struct __ns1__InitiateClientCommands*)p->ptr);
+		break;
+	case SOAP_TYPE___ns1__InitiateClientCommandsUsingMac:
+		if (p->size < 0)
+			SOAP_DELETE((struct __ns1__InitiateClientCommandsUsingMac*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct __ns1__InitiateClientCommandsUsingMac*)p->ptr);
+		break;
+	case SOAP_TYPE___ns1__GetRDPConnectionString:
+		if (p->size < 0)
+			SOAP_DELETE((struct __ns1__GetRDPConnectionString*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct __ns1__GetRDPConnectionString*)p->ptr);
+		break;
+	case SOAP_TYPE___ns1__InitiateRDPRequest:
+		if (p->size < 0)
+			SOAP_DELETE((struct __ns1__InitiateRDPRequest*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct __ns1__InitiateRDPRequest*)p->ptr);
+		break;
+	case SOAP_TYPE___ns1__UpdateAssetInformation:
+		if (p->size < 0)
+			SOAP_DELETE((struct __ns1__UpdateAssetInformation*)p->ptr);
+		else
+			SOAP_DELETE_ARRAY((struct __ns1__UpdateAssetInformation*)p->ptr);
 		break;
 	case SOAP_TYPE_wsa5__EndpointReferenceType:
 		if (p->size < 0)
@@ -4542,6 +4778,7 @@ void ns4__MachineContext::soap_default(struct soap *soap)
 	this->soap = soap;
 	this->ns4__MachineContext::mContext = NULL;
 	this->ns4__MachineContext::mList = NULL;
+	this->ns4__MachineContext::mMacs = NULL;
 	this->ns4__MachineContext::mParams = NULL;
 	this->ns4__MachineContext::mType = NULL;
 	this->xsd__anyType::__item = NULL;
@@ -4553,6 +4790,7 @@ void ns4__MachineContext::soap_serialize(struct soap *soap) const
 	(void)soap; /* appease -Wall -Werror */
 	soap_serialize_PointerTons5__ArrayOfstring(soap, &this->ns4__MachineContext::mContext);
 	soap_serialize_PointerTons5__ArrayOfstring(soap, &this->ns4__MachineContext::mList);
+	soap_serialize_PointerTons5__ArrayOfKeyValueOfstringstring(soap, &this->ns4__MachineContext::mMacs);
 	soap_serialize_PointerTons5__ArrayOfKeyValueOfstringstring(soap, &this->ns4__MachineContext::mParams);
 	soap_serialize_PointerTons4__MachineType(soap, &this->ns4__MachineContext::mType);
 	/* transient soap skipped */
@@ -4571,6 +4809,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns4__MachineContext(struct soap *soap, const 
 	if (soap_out_PointerTons5__ArrayOfstring(soap, "ns4:mContext", -1, &(a->ns4__MachineContext::mContext), ""))
 		return soap->error;
 	if (soap_out_PointerTons5__ArrayOfstring(soap, "ns4:mList", -1, &(a->ns4__MachineContext::mList), ""))
+		return soap->error;
+	if (soap_out_PointerTons5__ArrayOfKeyValueOfstringstring(soap, "ns4:mMacs", -1, &(a->ns4__MachineContext::mMacs), ""))
 		return soap->error;
 	if (soap_out_PointerTons5__ArrayOfKeyValueOfstringstring(soap, "ns4:mParams", -1, &(a->ns4__MachineContext::mParams), ""))
 		return soap->error;
@@ -4602,6 +4842,7 @@ SOAP_FMAC3 ns4__MachineContext * SOAP_FMAC4 soap_in_ns4__MachineContext(struct s
 	size_t soap_flag___item2 = 1;
 	size_t soap_flag_mContext1 = 1;
 	size_t soap_flag_mList1 = 1;
+	size_t soap_flag_mMacs1 = 1;
 	size_t soap_flag_mParams1 = 1;
 	size_t soap_flag_mType1 = 1;
 	if (soap->body && !*soap->href)
@@ -4617,6 +4858,11 @@ SOAP_FMAC3 ns4__MachineContext * SOAP_FMAC4 soap_in_ns4__MachineContext(struct s
 			if (soap_flag_mList1 && soap->error == SOAP_TAG_MISMATCH)
 				if (soap_in_PointerTons5__ArrayOfstring(soap, "ns4:mList", &(a->ns4__MachineContext::mList), "ns5:ArrayOfstring"))
 				{	soap_flag_mList1--;
+					continue;
+				}
+			if (soap_flag_mMacs1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons5__ArrayOfKeyValueOfstringstring(soap, "ns4:mMacs", &(a->ns4__MachineContext::mMacs), "ns5:ArrayOfKeyValueOfstringstring"))
+				{	soap_flag_mMacs1--;
 					continue;
 				}
 			if (soap_flag_mParams1 && soap->error == SOAP_TAG_MISMATCH)
@@ -4706,6 +4952,1127 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns4__MachineContext(struct soap *soap, int 
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns4__MachineContext %p -> %p\n", q, p));
 	*(ns4__MachineContext*)p = *(ns4__MachineContext*)q;
+}
+
+void _ns1__UpdateAssetInformationResponse::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	this->_ns1__UpdateAssetInformationResponse::UpdateAssetInformationResult = NULL;
+	/* transient soap skipped */
+}
+
+void _ns1__UpdateAssetInformationResponse::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_PointerTobool(soap, &this->_ns1__UpdateAssetInformationResponse::UpdateAssetInformationResult);
+	/* transient soap skipped */
+}
+
+int _ns1__UpdateAssetInformationResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__UpdateAssetInformationResponse(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__UpdateAssetInformationResponse(struct soap *soap, const char *tag, int id, const _ns1__UpdateAssetInformationResponse *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__UpdateAssetInformationResponse), type))
+		return soap->error;
+	if (a->UpdateAssetInformationResult)
+		soap_element_result(soap, "ns1:UpdateAssetInformationResult");
+	if (soap_out_PointerTobool(soap, "ns1:UpdateAssetInformationResult", -1, &(a->_ns1__UpdateAssetInformationResponse::UpdateAssetInformationResult), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__UpdateAssetInformationResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__UpdateAssetInformationResponse(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformationResponse * SOAP_FMAC4 soap_in__ns1__UpdateAssetInformationResponse(struct soap *soap, const char *tag, _ns1__UpdateAssetInformationResponse *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__UpdateAssetInformationResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__UpdateAssetInformationResponse, sizeof(_ns1__UpdateAssetInformationResponse), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__UpdateAssetInformationResponse)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__UpdateAssetInformationResponse *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_UpdateAssetInformationResult1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_UpdateAssetInformationResult1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTobool(soap, "ns1:UpdateAssetInformationResult", &(a->_ns1__UpdateAssetInformationResponse::UpdateAssetInformationResult), "xsd:boolean"))
+				{	soap_flag_UpdateAssetInformationResult1--;
+					continue;
+				}
+			/* transient soap skipped */
+			soap_check_result(soap, "ns1:UpdateAssetInformationResult");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__UpdateAssetInformationResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__UpdateAssetInformationResponse, 0, sizeof(_ns1__UpdateAssetInformationResponse), 0, soap_copy__ns1__UpdateAssetInformationResponse);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__UpdateAssetInformationResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__UpdateAssetInformationResponse);
+	if (this->soap_out(soap, tag?tag:"ns1:UpdateAssetInformationResponse", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__UpdateAssetInformationResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__UpdateAssetInformationResponse(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformationResponse * SOAP_FMAC4 soap_get__ns1__UpdateAssetInformationResponse(struct soap *soap, _ns1__UpdateAssetInformationResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__UpdateAssetInformationResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__UpdateAssetInformationResponse * SOAP_FMAC2 soap_instantiate__ns1__UpdateAssetInformationResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__UpdateAssetInformationResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__UpdateAssetInformationResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__UpdateAssetInformationResponse);
+		if (size)
+			*size = sizeof(_ns1__UpdateAssetInformationResponse);
+		((_ns1__UpdateAssetInformationResponse*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__UpdateAssetInformationResponse[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__UpdateAssetInformationResponse);
+		for (int i = 0; i < n; i++)
+			((_ns1__UpdateAssetInformationResponse*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__UpdateAssetInformationResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__UpdateAssetInformationResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__UpdateAssetInformationResponse %p -> %p\n", q, p));
+	*(_ns1__UpdateAssetInformationResponse*)p = *(_ns1__UpdateAssetInformationResponse*)q;
+}
+
+void _ns1__UpdateAssetInformation::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	soap_default_string(soap, &this->_ns1__UpdateAssetInformation::hostName);
+	soap_default_string(soap, &this->_ns1__UpdateAssetInformation::macAddr);
+	soap_default_string(soap, &this->_ns1__UpdateAssetInformation::xmlAssetInfo);
+	/* transient soap skipped */
+}
+
+void _ns1__UpdateAssetInformation::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &this->_ns1__UpdateAssetInformation::hostName);
+	soap_serialize_string(soap, &this->_ns1__UpdateAssetInformation::macAddr);
+	soap_serialize_string(soap, &this->_ns1__UpdateAssetInformation::xmlAssetInfo);
+	/* transient soap skipped */
+}
+
+int _ns1__UpdateAssetInformation::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__UpdateAssetInformation(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__UpdateAssetInformation(struct soap *soap, const char *tag, int id, const _ns1__UpdateAssetInformation *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__UpdateAssetInformation), type))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:hostName", -1, &(a->_ns1__UpdateAssetInformation::hostName), ""))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:macAddr", -1, &(a->_ns1__UpdateAssetInformation::macAddr), ""))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:xmlAssetInfo", -1, &(a->_ns1__UpdateAssetInformation::xmlAssetInfo), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__UpdateAssetInformation::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__UpdateAssetInformation(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformation * SOAP_FMAC4 soap_in__ns1__UpdateAssetInformation(struct soap *soap, const char *tag, _ns1__UpdateAssetInformation *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__UpdateAssetInformation *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__UpdateAssetInformation, sizeof(_ns1__UpdateAssetInformation), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__UpdateAssetInformation)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__UpdateAssetInformation *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_hostName1 = 1;
+	size_t soap_flag_macAddr1 = 1;
+	size_t soap_flag_xmlAssetInfo1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_hostName1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:hostName", &(a->_ns1__UpdateAssetInformation::hostName), "xsd:string"))
+				{	soap_flag_hostName1--;
+					continue;
+				}
+			if (soap_flag_macAddr1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:macAddr", &(a->_ns1__UpdateAssetInformation::macAddr), "xsd:string"))
+				{	soap_flag_macAddr1--;
+					continue;
+				}
+			if (soap_flag_xmlAssetInfo1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:xmlAssetInfo", &(a->_ns1__UpdateAssetInformation::xmlAssetInfo), "xsd:string"))
+				{	soap_flag_xmlAssetInfo1--;
+					continue;
+				}
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__UpdateAssetInformation *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__UpdateAssetInformation, 0, sizeof(_ns1__UpdateAssetInformation), 0, soap_copy__ns1__UpdateAssetInformation);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__UpdateAssetInformation::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__UpdateAssetInformation);
+	if (this->soap_out(soap, tag?tag:"ns1:UpdateAssetInformation", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__UpdateAssetInformation::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__UpdateAssetInformation(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformation * SOAP_FMAC4 soap_get__ns1__UpdateAssetInformation(struct soap *soap, _ns1__UpdateAssetInformation *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__UpdateAssetInformation(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__UpdateAssetInformation * SOAP_FMAC2 soap_instantiate__ns1__UpdateAssetInformation(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__UpdateAssetInformation(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__UpdateAssetInformation, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__UpdateAssetInformation);
+		if (size)
+			*size = sizeof(_ns1__UpdateAssetInformation);
+		((_ns1__UpdateAssetInformation*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__UpdateAssetInformation[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__UpdateAssetInformation);
+		for (int i = 0; i < n; i++)
+			((_ns1__UpdateAssetInformation*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__UpdateAssetInformation*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__UpdateAssetInformation(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__UpdateAssetInformation %p -> %p\n", q, p));
+	*(_ns1__UpdateAssetInformation*)p = *(_ns1__UpdateAssetInformation*)q;
+}
+
+void _ns1__InitiateRDPRequestResponse::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	/* transient soap skipped */
+}
+
+void _ns1__InitiateRDPRequestResponse::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	/* transient soap skipped */
+}
+
+int _ns1__InitiateRDPRequestResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__InitiateRDPRequestResponse(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__InitiateRDPRequestResponse(struct soap *soap, const char *tag, int id, const _ns1__InitiateRDPRequestResponse *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__InitiateRDPRequestResponse), type))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__InitiateRDPRequestResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__InitiateRDPRequestResponse(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequestResponse * SOAP_FMAC4 soap_in__ns1__InitiateRDPRequestResponse(struct soap *soap, const char *tag, _ns1__InitiateRDPRequestResponse *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__InitiateRDPRequestResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__InitiateRDPRequestResponse, sizeof(_ns1__InitiateRDPRequestResponse), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__InitiateRDPRequestResponse)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__InitiateRDPRequestResponse *)a->soap_in(soap, tag, type);
+		}
+	}
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__InitiateRDPRequestResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__InitiateRDPRequestResponse, 0, sizeof(_ns1__InitiateRDPRequestResponse), 0, soap_copy__ns1__InitiateRDPRequestResponse);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__InitiateRDPRequestResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__InitiateRDPRequestResponse);
+	if (this->soap_out(soap, tag?tag:"ns1:InitiateRDPRequestResponse", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__InitiateRDPRequestResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__InitiateRDPRequestResponse(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequestResponse * SOAP_FMAC4 soap_get__ns1__InitiateRDPRequestResponse(struct soap *soap, _ns1__InitiateRDPRequestResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__InitiateRDPRequestResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__InitiateRDPRequestResponse * SOAP_FMAC2 soap_instantiate__ns1__InitiateRDPRequestResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__InitiateRDPRequestResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__InitiateRDPRequestResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateRDPRequestResponse);
+		if (size)
+			*size = sizeof(_ns1__InitiateRDPRequestResponse);
+		((_ns1__InitiateRDPRequestResponse*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateRDPRequestResponse[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__InitiateRDPRequestResponse);
+		for (int i = 0; i < n; i++)
+			((_ns1__InitiateRDPRequestResponse*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__InitiateRDPRequestResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__InitiateRDPRequestResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__InitiateRDPRequestResponse %p -> %p\n", q, p));
+	*(_ns1__InitiateRDPRequestResponse*)p = *(_ns1__InitiateRDPRequestResponse*)q;
+}
+
+void _ns1__InitiateRDPRequest::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	soap_default_string(soap, &this->_ns1__InitiateRDPRequest::envNum);
+	soap_default_string(soap, &this->_ns1__InitiateRDPRequest::mcName);
+	soap_default_string(soap, &this->_ns1__InitiateRDPRequest::macAddress);
+	/* transient soap skipped */
+}
+
+void _ns1__InitiateRDPRequest::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &this->_ns1__InitiateRDPRequest::envNum);
+	soap_serialize_string(soap, &this->_ns1__InitiateRDPRequest::mcName);
+	soap_serialize_string(soap, &this->_ns1__InitiateRDPRequest::macAddress);
+	/* transient soap skipped */
+}
+
+int _ns1__InitiateRDPRequest::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__InitiateRDPRequest(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__InitiateRDPRequest(struct soap *soap, const char *tag, int id, const _ns1__InitiateRDPRequest *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__InitiateRDPRequest), type))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:envNum", -1, &(a->_ns1__InitiateRDPRequest::envNum), ""))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:mcName", -1, &(a->_ns1__InitiateRDPRequest::mcName), ""))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:macAddress", -1, &(a->_ns1__InitiateRDPRequest::macAddress), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__InitiateRDPRequest::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__InitiateRDPRequest(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequest * SOAP_FMAC4 soap_in__ns1__InitiateRDPRequest(struct soap *soap, const char *tag, _ns1__InitiateRDPRequest *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__InitiateRDPRequest *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__InitiateRDPRequest, sizeof(_ns1__InitiateRDPRequest), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__InitiateRDPRequest)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__InitiateRDPRequest *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_envNum1 = 1;
+	size_t soap_flag_mcName1 = 1;
+	size_t soap_flag_macAddress1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_envNum1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:envNum", &(a->_ns1__InitiateRDPRequest::envNum), "xsd:string"))
+				{	soap_flag_envNum1--;
+					continue;
+				}
+			if (soap_flag_mcName1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:mcName", &(a->_ns1__InitiateRDPRequest::mcName), "xsd:string"))
+				{	soap_flag_mcName1--;
+					continue;
+				}
+			if (soap_flag_macAddress1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:macAddress", &(a->_ns1__InitiateRDPRequest::macAddress), "xsd:string"))
+				{	soap_flag_macAddress1--;
+					continue;
+				}
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__InitiateRDPRequest *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__InitiateRDPRequest, 0, sizeof(_ns1__InitiateRDPRequest), 0, soap_copy__ns1__InitiateRDPRequest);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__InitiateRDPRequest::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__InitiateRDPRequest);
+	if (this->soap_out(soap, tag?tag:"ns1:InitiateRDPRequest", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__InitiateRDPRequest::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__InitiateRDPRequest(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequest * SOAP_FMAC4 soap_get__ns1__InitiateRDPRequest(struct soap *soap, _ns1__InitiateRDPRequest *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__InitiateRDPRequest(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__InitiateRDPRequest * SOAP_FMAC2 soap_instantiate__ns1__InitiateRDPRequest(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__InitiateRDPRequest(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__InitiateRDPRequest, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateRDPRequest);
+		if (size)
+			*size = sizeof(_ns1__InitiateRDPRequest);
+		((_ns1__InitiateRDPRequest*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateRDPRequest[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__InitiateRDPRequest);
+		for (int i = 0; i < n; i++)
+			((_ns1__InitiateRDPRequest*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__InitiateRDPRequest*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__InitiateRDPRequest(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__InitiateRDPRequest %p -> %p\n", q, p));
+	*(_ns1__InitiateRDPRequest*)p = *(_ns1__InitiateRDPRequest*)q;
+}
+
+void _ns1__GetRDPConnectionStringResponse::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	soap_default_string(soap, &this->_ns1__GetRDPConnectionStringResponse::GetRDPConnectionStringResult);
+	/* transient soap skipped */
+}
+
+void _ns1__GetRDPConnectionStringResponse::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &this->_ns1__GetRDPConnectionStringResponse::GetRDPConnectionStringResult);
+	/* transient soap skipped */
+}
+
+int _ns1__GetRDPConnectionStringResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__GetRDPConnectionStringResponse(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__GetRDPConnectionStringResponse(struct soap *soap, const char *tag, int id, const _ns1__GetRDPConnectionStringResponse *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__GetRDPConnectionStringResponse), type))
+		return soap->error;
+	if (a->GetRDPConnectionStringResult)
+		soap_element_result(soap, "ns1:GetRDPConnectionStringResult");
+	if (soap_out_string(soap, "ns1:GetRDPConnectionStringResult", -1, &(a->_ns1__GetRDPConnectionStringResponse::GetRDPConnectionStringResult), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__GetRDPConnectionStringResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__GetRDPConnectionStringResponse(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionStringResponse * SOAP_FMAC4 soap_in__ns1__GetRDPConnectionStringResponse(struct soap *soap, const char *tag, _ns1__GetRDPConnectionStringResponse *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__GetRDPConnectionStringResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__GetRDPConnectionStringResponse, sizeof(_ns1__GetRDPConnectionStringResponse), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__GetRDPConnectionStringResponse)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__GetRDPConnectionStringResponse *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_GetRDPConnectionStringResult1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_GetRDPConnectionStringResult1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:GetRDPConnectionStringResult", &(a->_ns1__GetRDPConnectionStringResponse::GetRDPConnectionStringResult), "xsd:string"))
+				{	soap_flag_GetRDPConnectionStringResult1--;
+					continue;
+				}
+			/* transient soap skipped */
+			soap_check_result(soap, "ns1:GetRDPConnectionStringResult");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__GetRDPConnectionStringResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__GetRDPConnectionStringResponse, 0, sizeof(_ns1__GetRDPConnectionStringResponse), 0, soap_copy__ns1__GetRDPConnectionStringResponse);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__GetRDPConnectionStringResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__GetRDPConnectionStringResponse);
+	if (this->soap_out(soap, tag?tag:"ns1:GetRDPConnectionStringResponse", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__GetRDPConnectionStringResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__GetRDPConnectionStringResponse(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionStringResponse * SOAP_FMAC4 soap_get__ns1__GetRDPConnectionStringResponse(struct soap *soap, _ns1__GetRDPConnectionStringResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__GetRDPConnectionStringResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__GetRDPConnectionStringResponse * SOAP_FMAC2 soap_instantiate__ns1__GetRDPConnectionStringResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__GetRDPConnectionStringResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__GetRDPConnectionStringResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetRDPConnectionStringResponse);
+		if (size)
+			*size = sizeof(_ns1__GetRDPConnectionStringResponse);
+		((_ns1__GetRDPConnectionStringResponse*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetRDPConnectionStringResponse[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__GetRDPConnectionStringResponse);
+		for (int i = 0; i < n; i++)
+			((_ns1__GetRDPConnectionStringResponse*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__GetRDPConnectionStringResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__GetRDPConnectionStringResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__GetRDPConnectionStringResponse %p -> %p\n", q, p));
+	*(_ns1__GetRDPConnectionStringResponse*)p = *(_ns1__GetRDPConnectionStringResponse*)q;
+}
+
+void _ns1__GetRDPConnectionString::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	/* transient soap skipped */
+}
+
+void _ns1__GetRDPConnectionString::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	/* transient soap skipped */
+}
+
+int _ns1__GetRDPConnectionString::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__GetRDPConnectionString(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__GetRDPConnectionString(struct soap *soap, const char *tag, int id, const _ns1__GetRDPConnectionString *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__GetRDPConnectionString), type))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__GetRDPConnectionString::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__GetRDPConnectionString(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionString * SOAP_FMAC4 soap_in__ns1__GetRDPConnectionString(struct soap *soap, const char *tag, _ns1__GetRDPConnectionString *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__GetRDPConnectionString *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__GetRDPConnectionString, sizeof(_ns1__GetRDPConnectionString), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__GetRDPConnectionString)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__GetRDPConnectionString *)a->soap_in(soap, tag, type);
+		}
+	}
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__GetRDPConnectionString *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__GetRDPConnectionString, 0, sizeof(_ns1__GetRDPConnectionString), 0, soap_copy__ns1__GetRDPConnectionString);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__GetRDPConnectionString::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__GetRDPConnectionString);
+	if (this->soap_out(soap, tag?tag:"ns1:GetRDPConnectionString", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__GetRDPConnectionString::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__GetRDPConnectionString(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionString * SOAP_FMAC4 soap_get__ns1__GetRDPConnectionString(struct soap *soap, _ns1__GetRDPConnectionString *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__GetRDPConnectionString(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__GetRDPConnectionString * SOAP_FMAC2 soap_instantiate__ns1__GetRDPConnectionString(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__GetRDPConnectionString(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__GetRDPConnectionString, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetRDPConnectionString);
+		if (size)
+			*size = sizeof(_ns1__GetRDPConnectionString);
+		((_ns1__GetRDPConnectionString*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetRDPConnectionString[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__GetRDPConnectionString);
+		for (int i = 0; i < n; i++)
+			((_ns1__GetRDPConnectionString*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__GetRDPConnectionString*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__GetRDPConnectionString(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__GetRDPConnectionString %p -> %p\n", q, p));
+	*(_ns1__GetRDPConnectionString*)p = *(_ns1__GetRDPConnectionString*)q;
+}
+
+void _ns1__InitiateClientCommandsUsingMacResponse::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	soap_default_string(soap, &this->_ns1__InitiateClientCommandsUsingMacResponse::InitiateClientCommandsUsingMacResult);
+	/* transient soap skipped */
+}
+
+void _ns1__InitiateClientCommandsUsingMacResponse::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &this->_ns1__InitiateClientCommandsUsingMacResponse::InitiateClientCommandsUsingMacResult);
+	/* transient soap skipped */
+}
+
+int _ns1__InitiateClientCommandsUsingMacResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__InitiateClientCommandsUsingMacResponse(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, const char *tag, int id, const _ns1__InitiateClientCommandsUsingMacResponse *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse), type))
+		return soap->error;
+	if (a->InitiateClientCommandsUsingMacResult)
+		soap_element_result(soap, "ns1:InitiateClientCommandsUsingMacResult");
+	if (soap_out_string(soap, "ns1:InitiateClientCommandsUsingMacResult", -1, &(a->_ns1__InitiateClientCommandsUsingMacResponse::InitiateClientCommandsUsingMacResult), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__InitiateClientCommandsUsingMacResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__InitiateClientCommandsUsingMacResponse(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMacResponse * SOAP_FMAC4 soap_in__ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, const char *tag, _ns1__InitiateClientCommandsUsingMacResponse *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__InitiateClientCommandsUsingMacResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse, sizeof(_ns1__InitiateClientCommandsUsingMacResponse), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__InitiateClientCommandsUsingMacResponse *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_InitiateClientCommandsUsingMacResult1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_InitiateClientCommandsUsingMacResult1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:InitiateClientCommandsUsingMacResult", &(a->_ns1__InitiateClientCommandsUsingMacResponse::InitiateClientCommandsUsingMacResult), "xsd:string"))
+				{	soap_flag_InitiateClientCommandsUsingMacResult1--;
+					continue;
+				}
+			/* transient soap skipped */
+			soap_check_result(soap, "ns1:InitiateClientCommandsUsingMacResult");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__InitiateClientCommandsUsingMacResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse, 0, sizeof(_ns1__InitiateClientCommandsUsingMacResponse), 0, soap_copy__ns1__InitiateClientCommandsUsingMacResponse);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__InitiateClientCommandsUsingMacResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse);
+	if (this->soap_out(soap, tag?tag:"ns1:InitiateClientCommandsUsingMacResponse", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__InitiateClientCommandsUsingMacResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__InitiateClientCommandsUsingMacResponse(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMacResponse * SOAP_FMAC4 soap_get__ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, _ns1__InitiateClientCommandsUsingMacResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__InitiateClientCommandsUsingMacResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__InitiateClientCommandsUsingMacResponse * SOAP_FMAC2 soap_instantiate__ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__InitiateClientCommandsUsingMacResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateClientCommandsUsingMacResponse);
+		if (size)
+			*size = sizeof(_ns1__InitiateClientCommandsUsingMacResponse);
+		((_ns1__InitiateClientCommandsUsingMacResponse*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateClientCommandsUsingMacResponse[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__InitiateClientCommandsUsingMacResponse);
+		for (int i = 0; i < n; i++)
+			((_ns1__InitiateClientCommandsUsingMacResponse*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__InitiateClientCommandsUsingMacResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__InitiateClientCommandsUsingMacResponse %p -> %p\n", q, p));
+	*(_ns1__InitiateClientCommandsUsingMacResponse*)p = *(_ns1__InitiateClientCommandsUsingMacResponse*)q;
+}
+
+void _ns1__InitiateClientCommandsUsingMac::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	this->_ns1__InitiateClientCommandsUsingMac::ctx = NULL;
+	this->_ns1__InitiateClientCommandsUsingMac::cmd = NULL;
+	soap_default_string(soap, &this->_ns1__InitiateClientCommandsUsingMac::ownrID);
+	/* transient soap skipped */
+}
+
+void _ns1__InitiateClientCommandsUsingMac::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_PointerTons4__MachineContext(soap, &this->_ns1__InitiateClientCommandsUsingMac::ctx);
+	soap_serialize_PointerTons4__EILCommand(soap, &this->_ns1__InitiateClientCommandsUsingMac::cmd);
+	soap_serialize_string(soap, &this->_ns1__InitiateClientCommandsUsingMac::ownrID);
+	/* transient soap skipped */
+}
+
+int _ns1__InitiateClientCommandsUsingMac::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__InitiateClientCommandsUsingMac(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__InitiateClientCommandsUsingMac(struct soap *soap, const char *tag, int id, const _ns1__InitiateClientCommandsUsingMac *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac), type))
+		return soap->error;
+	if (soap_out_PointerTons4__MachineContext(soap, "ns1:ctx", -1, &(a->_ns1__InitiateClientCommandsUsingMac::ctx), ""))
+		return soap->error;
+	if (soap_out_PointerTons4__EILCommand(soap, "ns1:cmd", -1, &(a->_ns1__InitiateClientCommandsUsingMac::cmd), ""))
+		return soap->error;
+	if (soap_out_string(soap, "ns1:ownrID", -1, &(a->_ns1__InitiateClientCommandsUsingMac::ownrID), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__InitiateClientCommandsUsingMac::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__InitiateClientCommandsUsingMac(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMac * SOAP_FMAC4 soap_in__ns1__InitiateClientCommandsUsingMac(struct soap *soap, const char *tag, _ns1__InitiateClientCommandsUsingMac *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__InitiateClientCommandsUsingMac *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac, sizeof(_ns1__InitiateClientCommandsUsingMac), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__InitiateClientCommandsUsingMac)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__InitiateClientCommandsUsingMac *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_ctx1 = 1;
+	size_t soap_flag_cmd1 = 1;
+	size_t soap_flag_ownrID1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ctx1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons4__MachineContext(soap, "ns1:ctx", &(a->_ns1__InitiateClientCommandsUsingMac::ctx), "ns4:MachineContext"))
+				{	soap_flag_ctx1--;
+					continue;
+				}
+			if (soap_flag_cmd1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons4__EILCommand(soap, "ns1:cmd", &(a->_ns1__InitiateClientCommandsUsingMac::cmd), "ns4:EILCommand"))
+				{	soap_flag_cmd1--;
+					continue;
+				}
+			if (soap_flag_ownrID1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "ns1:ownrID", &(a->_ns1__InitiateClientCommandsUsingMac::ownrID), "xsd:string"))
+				{	soap_flag_ownrID1--;
+					continue;
+				}
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__InitiateClientCommandsUsingMac *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac, 0, sizeof(_ns1__InitiateClientCommandsUsingMac), 0, soap_copy__ns1__InitiateClientCommandsUsingMac);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__InitiateClientCommandsUsingMac::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac);
+	if (this->soap_out(soap, tag?tag:"ns1:InitiateClientCommandsUsingMac", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__InitiateClientCommandsUsingMac::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__InitiateClientCommandsUsingMac(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMac * SOAP_FMAC4 soap_get__ns1__InitiateClientCommandsUsingMac(struct soap *soap, _ns1__InitiateClientCommandsUsingMac *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__InitiateClientCommandsUsingMac(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__InitiateClientCommandsUsingMac * SOAP_FMAC2 soap_instantiate__ns1__InitiateClientCommandsUsingMac(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__InitiateClientCommandsUsingMac(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateClientCommandsUsingMac);
+		if (size)
+			*size = sizeof(_ns1__InitiateClientCommandsUsingMac);
+		((_ns1__InitiateClientCommandsUsingMac*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__InitiateClientCommandsUsingMac[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__InitiateClientCommandsUsingMac);
+		for (int i = 0; i < n; i++)
+			((_ns1__InitiateClientCommandsUsingMac*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__InitiateClientCommandsUsingMac*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__InitiateClientCommandsUsingMac(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__InitiateClientCommandsUsingMac %p -> %p\n", q, p));
+	*(_ns1__InitiateClientCommandsUsingMac*)p = *(_ns1__InitiateClientCommandsUsingMac*)q;
 }
 
 void _ns1__InitiateClientCommandsResponse::soap_default(struct soap *soap)
@@ -4999,277 +6366,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__InitiateClientCommands(struct soap *s
 	*(_ns1__InitiateClientCommands*)p = *(_ns1__InitiateClientCommands*)q;
 }
 
-void _ns1__GetCommandStatusResponse::soap_default(struct soap *soap)
-{
-	this->soap = soap;
-	this->_ns1__GetCommandStatusResponse::GetCommandStatusResult = NULL;
-	/* transient soap skipped */
-}
-
-void _ns1__GetCommandStatusResponse::soap_serialize(struct soap *soap) const
-{
-	(void)soap; /* appease -Wall -Werror */
-	soap_serialize_PointerTons4__MachineContext(soap, &this->_ns1__GetCommandStatusResponse::GetCommandStatusResult);
-	/* transient soap skipped */
-}
-
-int _ns1__GetCommandStatusResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
-{
-	return soap_out__ns1__GetCommandStatusResponse(soap, tag, id, this, type);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__GetCommandStatusResponse(struct soap *soap, const char *tag, int id, const _ns1__GetCommandStatusResponse *a, const char *type)
-{
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__GetCommandStatusResponse), type))
-		return soap->error;
-	if (a->GetCommandStatusResult)
-		soap_element_result(soap, "ns1:GetCommandStatusResult");
-	if (soap_out_PointerTons4__MachineContext(soap, "ns1:GetCommandStatusResult", -1, &(a->_ns1__GetCommandStatusResponse::GetCommandStatusResult), ""))
-		return soap->error;
-	/* transient soap skipped */
-	return soap_element_end_out(soap, tag);
-}
-
-void *_ns1__GetCommandStatusResponse::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in__ns1__GetCommandStatusResponse(soap, tag, this, type);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatusResponse * SOAP_FMAC4 soap_in__ns1__GetCommandStatusResponse(struct soap *soap, const char *tag, _ns1__GetCommandStatusResponse *a, const char *type)
-{
-	(void)type; /* appease -Wall -Werror */
-	if (soap_element_begin_in(soap, tag, 0, NULL))
-		return NULL;
-	a = (_ns1__GetCommandStatusResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__GetCommandStatusResponse, sizeof(_ns1__GetCommandStatusResponse), soap->type, soap->arrayType);
-	if (!a)
-		return NULL;
-	if (soap->alloced)
-	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE__ns1__GetCommandStatusResponse)
-		{	soap_revert(soap);
-			*soap->id = '\0';
-			return (_ns1__GetCommandStatusResponse *)a->soap_in(soap, tag, type);
-		}
-	}
-	size_t soap_flag_GetCommandStatusResult1 = 1;
-	if (soap->body && !*soap->href)
-	{
-		for (;;)
-		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag_GetCommandStatusResult1 && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTons4__MachineContext(soap, "ns1:GetCommandStatusResult", &(a->_ns1__GetCommandStatusResponse::GetCommandStatusResult), "ns4:MachineContext"))
-				{	soap_flag_GetCommandStatusResult1--;
-					continue;
-				}
-			/* transient soap skipped */
-			soap_check_result(soap, "ns1:GetCommandStatusResult");
-			if (soap->error == SOAP_TAG_MISMATCH)
-				soap->error = soap_ignore_element(soap);
-			if (soap->error == SOAP_NO_TAG)
-				break;
-			if (soap->error)
-				return NULL;
-		}
-		if (soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	else
-	{	a = (_ns1__GetCommandStatusResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__GetCommandStatusResponse, 0, sizeof(_ns1__GetCommandStatusResponse), 0, soap_copy__ns1__GetCommandStatusResponse);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-int _ns1__GetCommandStatusResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
-{
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__GetCommandStatusResponse);
-	if (this->soap_out(soap, tag?tag:"ns1:GetCommandStatusResponse", id, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-void *_ns1__GetCommandStatusResponse::soap_get(struct soap *soap, const char *tag, const char *type)
-{
-	return soap_get__ns1__GetCommandStatusResponse(soap, this, tag, type);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatusResponse * SOAP_FMAC4 soap_get__ns1__GetCommandStatusResponse(struct soap *soap, _ns1__GetCommandStatusResponse *p, const char *tag, const char *type)
-{
-	if ((p = soap_in__ns1__GetCommandStatusResponse(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC1 _ns1__GetCommandStatusResponse * SOAP_FMAC2 soap_instantiate__ns1__GetCommandStatusResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
-{
-	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__GetCommandStatusResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__GetCommandStatusResponse, n, soap_fdelete);
-	if (!cp)
-		return NULL;
-	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandStatusResponse);
-		if (size)
-			*size = sizeof(_ns1__GetCommandStatusResponse);
-		((_ns1__GetCommandStatusResponse*)cp->ptr)->soap = soap;
-	}
-	else
-	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandStatusResponse[n]);
-		if (!cp->ptr)
-		{	soap->error = SOAP_EOM;
-			return NULL;
-		}
-		if (size)
-			*size = n * sizeof(_ns1__GetCommandStatusResponse);
-		for (int i = 0; i < n; i++)
-			((_ns1__GetCommandStatusResponse*)cp->ptr)[i].soap = soap;
-	}
-		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (_ns1__GetCommandStatusResponse*)cp->ptr;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__GetCommandStatusResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
-{
-	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__GetCommandStatusResponse %p -> %p\n", q, p));
-	*(_ns1__GetCommandStatusResponse*)p = *(_ns1__GetCommandStatusResponse*)q;
-}
-
-void _ns1__GetCommandStatus::soap_default(struct soap *soap)
-{
-	this->soap = soap;
-	this->_ns1__GetCommandStatus::ctx = NULL;
-	/* transient soap skipped */
-}
-
-void _ns1__GetCommandStatus::soap_serialize(struct soap *soap) const
-{
-	(void)soap; /* appease -Wall -Werror */
-	soap_serialize_PointerTons4__MachineContext(soap, &this->_ns1__GetCommandStatus::ctx);
-	/* transient soap skipped */
-}
-
-int _ns1__GetCommandStatus::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
-{
-	return soap_out__ns1__GetCommandStatus(soap, tag, id, this, type);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__GetCommandStatus(struct soap *soap, const char *tag, int id, const _ns1__GetCommandStatus *a, const char *type)
-{
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__GetCommandStatus), type))
-		return soap->error;
-	if (soap_out_PointerTons4__MachineContext(soap, "ns1:ctx", -1, &(a->_ns1__GetCommandStatus::ctx), ""))
-		return soap->error;
-	/* transient soap skipped */
-	return soap_element_end_out(soap, tag);
-}
-
-void *_ns1__GetCommandStatus::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in__ns1__GetCommandStatus(soap, tag, this, type);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatus * SOAP_FMAC4 soap_in__ns1__GetCommandStatus(struct soap *soap, const char *tag, _ns1__GetCommandStatus *a, const char *type)
-{
-	(void)type; /* appease -Wall -Werror */
-	if (soap_element_begin_in(soap, tag, 0, NULL))
-		return NULL;
-	a = (_ns1__GetCommandStatus *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__GetCommandStatus, sizeof(_ns1__GetCommandStatus), soap->type, soap->arrayType);
-	if (!a)
-		return NULL;
-	if (soap->alloced)
-	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE__ns1__GetCommandStatus)
-		{	soap_revert(soap);
-			*soap->id = '\0';
-			return (_ns1__GetCommandStatus *)a->soap_in(soap, tag, type);
-		}
-	}
-	size_t soap_flag_ctx1 = 1;
-	if (soap->body && !*soap->href)
-	{
-		for (;;)
-		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag_ctx1 && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTons4__MachineContext(soap, "ns1:ctx", &(a->_ns1__GetCommandStatus::ctx), "ns4:MachineContext"))
-				{	soap_flag_ctx1--;
-					continue;
-				}
-			/* transient soap skipped */
-			if (soap->error == SOAP_TAG_MISMATCH)
-				soap->error = soap_ignore_element(soap);
-			if (soap->error == SOAP_NO_TAG)
-				break;
-			if (soap->error)
-				return NULL;
-		}
-		if (soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	else
-	{	a = (_ns1__GetCommandStatus *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__GetCommandStatus, 0, sizeof(_ns1__GetCommandStatus), 0, soap_copy__ns1__GetCommandStatus);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-int _ns1__GetCommandStatus::soap_put(struct soap *soap, const char *tag, const  char *type) const
-{
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__GetCommandStatus);
-	if (this->soap_out(soap, tag?tag:"ns1:GetCommandStatus", id, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-void *_ns1__GetCommandStatus::soap_get(struct soap *soap, const char *tag, const char *type)
-{
-	return soap_get__ns1__GetCommandStatus(soap, this, tag, type);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatus * SOAP_FMAC4 soap_get__ns1__GetCommandStatus(struct soap *soap, _ns1__GetCommandStatus *p, const char *tag, const char *type)
-{
-	if ((p = soap_in__ns1__GetCommandStatus(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC1 _ns1__GetCommandStatus * SOAP_FMAC2 soap_instantiate__ns1__GetCommandStatus(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
-{
-	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__GetCommandStatus(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__GetCommandStatus, n, soap_fdelete);
-	if (!cp)
-		return NULL;
-	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandStatus);
-		if (size)
-			*size = sizeof(_ns1__GetCommandStatus);
-		((_ns1__GetCommandStatus*)cp->ptr)->soap = soap;
-	}
-	else
-	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandStatus[n]);
-		if (!cp->ptr)
-		{	soap->error = SOAP_EOM;
-			return NULL;
-		}
-		if (size)
-			*size = n * sizeof(_ns1__GetCommandStatus);
-		for (int i = 0; i < n; i++)
-			((_ns1__GetCommandStatus*)cp->ptr)[i].soap = soap;
-	}
-		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (_ns1__GetCommandStatus*)cp->ptr;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__GetCommandStatus(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
-{
-	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__GetCommandStatus %p -> %p\n", q, p));
-	*(_ns1__GetCommandStatus*)p = *(_ns1__GetCommandStatus*)q;
-}
-
 void _ns1__UpdateCommandStatusResponse::soap_default(struct soap *soap)
 {
 	this->soap = soap;
@@ -5549,6 +6645,277 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__UpdateCommandStatus(struct soap *soap
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__UpdateCommandStatus %p -> %p\n", q, p));
 	*(_ns1__UpdateCommandStatus*)p = *(_ns1__UpdateCommandStatus*)q;
+}
+
+void _ns1__GetCommandToExecuteUsingMacAddressResponse::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	this->_ns1__GetCommandToExecuteUsingMacAddressResponse::GetCommandToExecuteUsingMacAddressResult = NULL;
+	/* transient soap skipped */
+}
+
+void _ns1__GetCommandToExecuteUsingMacAddressResponse::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_PointerTons4__EILCommand(soap, &this->_ns1__GetCommandToExecuteUsingMacAddressResponse::GetCommandToExecuteUsingMacAddressResult);
+	/* transient soap skipped */
+}
+
+int _ns1__GetCommandToExecuteUsingMacAddressResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, const char *tag, int id, const _ns1__GetCommandToExecuteUsingMacAddressResponse *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse), type))
+		return soap->error;
+	if (a->GetCommandToExecuteUsingMacAddressResult)
+		soap_element_result(soap, "ns1:GetCommandToExecuteUsingMacAddressResult");
+	if (soap_out_PointerTons4__EILCommand(soap, "ns1:GetCommandToExecuteUsingMacAddressResult", -1, &(a->_ns1__GetCommandToExecuteUsingMacAddressResponse::GetCommandToExecuteUsingMacAddressResult), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__GetCommandToExecuteUsingMacAddressResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddressResponse * SOAP_FMAC4 soap_in__ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, const char *tag, _ns1__GetCommandToExecuteUsingMacAddressResponse *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__GetCommandToExecuteUsingMacAddressResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse, sizeof(_ns1__GetCommandToExecuteUsingMacAddressResponse), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__GetCommandToExecuteUsingMacAddressResponse *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_GetCommandToExecuteUsingMacAddressResult1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_GetCommandToExecuteUsingMacAddressResult1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons4__EILCommand(soap, "ns1:GetCommandToExecuteUsingMacAddressResult", &(a->_ns1__GetCommandToExecuteUsingMacAddressResponse::GetCommandToExecuteUsingMacAddressResult), "ns4:EILCommand"))
+				{	soap_flag_GetCommandToExecuteUsingMacAddressResult1--;
+					continue;
+				}
+			/* transient soap skipped */
+			soap_check_result(soap, "ns1:GetCommandToExecuteUsingMacAddressResult");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__GetCommandToExecuteUsingMacAddressResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse, 0, sizeof(_ns1__GetCommandToExecuteUsingMacAddressResponse), 0, soap_copy__ns1__GetCommandToExecuteUsingMacAddressResponse);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__GetCommandToExecuteUsingMacAddressResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse);
+	if (this->soap_out(soap, tag?tag:"ns1:GetCommandToExecuteUsingMacAddressResponse", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__GetCommandToExecuteUsingMacAddressResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddressResponse * SOAP_FMAC4 soap_get__ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddressResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__GetCommandToExecuteUsingMacAddressResponse * SOAP_FMAC2 soap_instantiate__ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__GetCommandToExecuteUsingMacAddressResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandToExecuteUsingMacAddressResponse);
+		if (size)
+			*size = sizeof(_ns1__GetCommandToExecuteUsingMacAddressResponse);
+		((_ns1__GetCommandToExecuteUsingMacAddressResponse*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandToExecuteUsingMacAddressResponse[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__GetCommandToExecuteUsingMacAddressResponse);
+		for (int i = 0; i < n; i++)
+			((_ns1__GetCommandToExecuteUsingMacAddressResponse*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__GetCommandToExecuteUsingMacAddressResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__GetCommandToExecuteUsingMacAddressResponse %p -> %p\n", q, p));
+	*(_ns1__GetCommandToExecuteUsingMacAddressResponse*)p = *(_ns1__GetCommandToExecuteUsingMacAddressResponse*)q;
+}
+
+void _ns1__GetCommandToExecuteUsingMacAddress::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	this->_ns1__GetCommandToExecuteUsingMacAddress::ctx = NULL;
+	/* transient soap skipped */
+}
+
+void _ns1__GetCommandToExecuteUsingMacAddress::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_PointerTons4__MachineContext(soap, &this->_ns1__GetCommandToExecuteUsingMacAddress::ctx);
+	/* transient soap skipped */
+}
+
+int _ns1__GetCommandToExecuteUsingMacAddress::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__ns1__GetCommandToExecuteUsingMacAddress(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const char *tag, int id, const _ns1__GetCommandToExecuteUsingMacAddress *a, const char *type)
+{
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress), type))
+		return soap->error;
+	if (soap_out_PointerTons4__MachineContext(soap, "ns1:ctx", -1, &(a->_ns1__GetCommandToExecuteUsingMacAddress::ctx), ""))
+		return soap->error;
+	/* transient soap skipped */
+	return soap_element_end_out(soap, tag);
+}
+
+void *_ns1__GetCommandToExecuteUsingMacAddress::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__ns1__GetCommandToExecuteUsingMacAddress(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddress * SOAP_FMAC4 soap_in__ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const char *tag, _ns1__GetCommandToExecuteUsingMacAddress *a, const char *type)
+{
+	(void)type; /* appease -Wall -Werror */
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_ns1__GetCommandToExecuteUsingMacAddress *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress, sizeof(_ns1__GetCommandToExecuteUsingMacAddress), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_ns1__GetCommandToExecuteUsingMacAddress *)a->soap_in(soap, tag, type);
+		}
+	}
+	size_t soap_flag_ctx1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ctx1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons4__MachineContext(soap, "ns1:ctx", &(a->_ns1__GetCommandToExecuteUsingMacAddress::ctx), "ns4:MachineContext"))
+				{	soap_flag_ctx1--;
+					continue;
+				}
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_ns1__GetCommandToExecuteUsingMacAddress *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress, 0, sizeof(_ns1__GetCommandToExecuteUsingMacAddress), 0, soap_copy__ns1__GetCommandToExecuteUsingMacAddress);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+int _ns1__GetCommandToExecuteUsingMacAddress::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress);
+	if (this->soap_out(soap, tag?tag:"ns1:GetCommandToExecuteUsingMacAddress", id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+void *_ns1__GetCommandToExecuteUsingMacAddress::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__ns1__GetCommandToExecuteUsingMacAddress(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddress * SOAP_FMAC4 soap_get__ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddress *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__ns1__GetCommandToExecuteUsingMacAddress(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 _ns1__GetCommandToExecuteUsingMacAddress * SOAP_FMAC2 soap_instantiate__ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__ns1__GetCommandToExecuteUsingMacAddress(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandToExecuteUsingMacAddress);
+		if (size)
+			*size = sizeof(_ns1__GetCommandToExecuteUsingMacAddress);
+		((_ns1__GetCommandToExecuteUsingMacAddress*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(_ns1__GetCommandToExecuteUsingMacAddress[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(_ns1__GetCommandToExecuteUsingMacAddress);
+		for (int i = 0; i < n; i++)
+			((_ns1__GetCommandToExecuteUsingMacAddress*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_ns1__GetCommandToExecuteUsingMacAddress*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _ns1__GetCommandToExecuteUsingMacAddress %p -> %p\n", q, p));
+	*(_ns1__GetCommandToExecuteUsingMacAddress*)p = *(_ns1__GetCommandToExecuteUsingMacAddress*)q;
 }
 
 void _ns1__GetCommandToExecuteResponse::soap_default(struct soap *soap)
@@ -10168,6 +11535,386 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_wsa5__EndpointReferenceType(struct soap *so
 	*(struct wsa5__EndpointReferenceType*)p = *(struct wsa5__EndpointReferenceType*)q;
 }
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__UpdateAssetInformation(struct soap *soap, struct __ns1__UpdateAssetInformation *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->ns1__UpdateAssetInformation = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___ns1__UpdateAssetInformation(struct soap *soap, const struct __ns1__UpdateAssetInformation *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerTo_ns1__UpdateAssetInformation(soap, &a->ns1__UpdateAssetInformation);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___ns1__UpdateAssetInformation(struct soap *soap, const char *tag, int id, const struct __ns1__UpdateAssetInformation *a, const char *type)
+{
+	if (soap_out_PointerTo_ns1__UpdateAssetInformation(soap, "ns1:UpdateAssetInformation", -1, &a->ns1__UpdateAssetInformation, ""))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__UpdateAssetInformation * SOAP_FMAC4 soap_in___ns1__UpdateAssetInformation(struct soap *soap, const char *tag, struct __ns1__UpdateAssetInformation *a, const char *type)
+{
+	size_t soap_flag_ns1__UpdateAssetInformation = 1;
+	short soap_flag;
+	a = (struct __ns1__UpdateAssetInformation *)soap_id_enter(soap, "", a, SOAP_TYPE___ns1__UpdateAssetInformation, sizeof(struct __ns1__UpdateAssetInformation), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default___ns1__UpdateAssetInformation(soap, a);
+		for (soap_flag = 0;; soap_flag = 1)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ns1__UpdateAssetInformation && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_ns1__UpdateAssetInformation(soap, "ns1:UpdateAssetInformation", &a->ns1__UpdateAssetInformation, ""))
+				{	soap_flag_ns1__UpdateAssetInformation--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				if (soap_flag)
+				{	soap->error = SOAP_OK;
+					break;
+				}
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___ns1__UpdateAssetInformation(struct soap *soap, const struct __ns1__UpdateAssetInformation *a, const char *tag, const char *type)
+{
+	register int id = 0;
+	if (soap_out___ns1__UpdateAssetInformation(soap, tag?tag:"-ns1:UpdateAssetInformation", id, a, type))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__UpdateAssetInformation * SOAP_FMAC4 soap_get___ns1__UpdateAssetInformation(struct soap *soap, struct __ns1__UpdateAssetInformation *p, const char *tag, const char *type)
+{
+	if ((p = soap_in___ns1__UpdateAssetInformation(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 struct __ns1__UpdateAssetInformation * SOAP_FMAC2 soap_instantiate___ns1__UpdateAssetInformation(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate___ns1__UpdateAssetInformation(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE___ns1__UpdateAssetInformation, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__UpdateAssetInformation);
+		if (size)
+			*size = sizeof(struct __ns1__UpdateAssetInformation);
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__UpdateAssetInformation[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(struct __ns1__UpdateAssetInformation);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct __ns1__UpdateAssetInformation*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__UpdateAssetInformation(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__UpdateAssetInformation %p -> %p\n", q, p));
+	*(struct __ns1__UpdateAssetInformation*)p = *(struct __ns1__UpdateAssetInformation*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__InitiateRDPRequest(struct soap *soap, struct __ns1__InitiateRDPRequest *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->ns1__InitiateRDPRequest = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___ns1__InitiateRDPRequest(struct soap *soap, const struct __ns1__InitiateRDPRequest *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerTo_ns1__InitiateRDPRequest(soap, &a->ns1__InitiateRDPRequest);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___ns1__InitiateRDPRequest(struct soap *soap, const char *tag, int id, const struct __ns1__InitiateRDPRequest *a, const char *type)
+{
+	if (soap_out_PointerTo_ns1__InitiateRDPRequest(soap, "ns1:InitiateRDPRequest", -1, &a->ns1__InitiateRDPRequest, ""))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__InitiateRDPRequest * SOAP_FMAC4 soap_in___ns1__InitiateRDPRequest(struct soap *soap, const char *tag, struct __ns1__InitiateRDPRequest *a, const char *type)
+{
+	size_t soap_flag_ns1__InitiateRDPRequest = 1;
+	short soap_flag;
+	a = (struct __ns1__InitiateRDPRequest *)soap_id_enter(soap, "", a, SOAP_TYPE___ns1__InitiateRDPRequest, sizeof(struct __ns1__InitiateRDPRequest), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default___ns1__InitiateRDPRequest(soap, a);
+		for (soap_flag = 0;; soap_flag = 1)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ns1__InitiateRDPRequest && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_ns1__InitiateRDPRequest(soap, "ns1:InitiateRDPRequest", &a->ns1__InitiateRDPRequest, ""))
+				{	soap_flag_ns1__InitiateRDPRequest--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				if (soap_flag)
+				{	soap->error = SOAP_OK;
+					break;
+				}
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___ns1__InitiateRDPRequest(struct soap *soap, const struct __ns1__InitiateRDPRequest *a, const char *tag, const char *type)
+{
+	register int id = 0;
+	if (soap_out___ns1__InitiateRDPRequest(soap, tag?tag:"-ns1:InitiateRDPRequest", id, a, type))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__InitiateRDPRequest * SOAP_FMAC4 soap_get___ns1__InitiateRDPRequest(struct soap *soap, struct __ns1__InitiateRDPRequest *p, const char *tag, const char *type)
+{
+	if ((p = soap_in___ns1__InitiateRDPRequest(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 struct __ns1__InitiateRDPRequest * SOAP_FMAC2 soap_instantiate___ns1__InitiateRDPRequest(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate___ns1__InitiateRDPRequest(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE___ns1__InitiateRDPRequest, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__InitiateRDPRequest);
+		if (size)
+			*size = sizeof(struct __ns1__InitiateRDPRequest);
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__InitiateRDPRequest[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(struct __ns1__InitiateRDPRequest);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct __ns1__InitiateRDPRequest*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__InitiateRDPRequest(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__InitiateRDPRequest %p -> %p\n", q, p));
+	*(struct __ns1__InitiateRDPRequest*)p = *(struct __ns1__InitiateRDPRequest*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__GetRDPConnectionString(struct soap *soap, struct __ns1__GetRDPConnectionString *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->ns1__GetRDPConnectionString = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___ns1__GetRDPConnectionString(struct soap *soap, const struct __ns1__GetRDPConnectionString *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerTo_ns1__GetRDPConnectionString(soap, &a->ns1__GetRDPConnectionString);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___ns1__GetRDPConnectionString(struct soap *soap, const char *tag, int id, const struct __ns1__GetRDPConnectionString *a, const char *type)
+{
+	if (soap_out_PointerTo_ns1__GetRDPConnectionString(soap, "ns1:GetRDPConnectionString", -1, &a->ns1__GetRDPConnectionString, ""))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__GetRDPConnectionString * SOAP_FMAC4 soap_in___ns1__GetRDPConnectionString(struct soap *soap, const char *tag, struct __ns1__GetRDPConnectionString *a, const char *type)
+{
+	size_t soap_flag_ns1__GetRDPConnectionString = 1;
+	short soap_flag;
+	a = (struct __ns1__GetRDPConnectionString *)soap_id_enter(soap, "", a, SOAP_TYPE___ns1__GetRDPConnectionString, sizeof(struct __ns1__GetRDPConnectionString), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default___ns1__GetRDPConnectionString(soap, a);
+		for (soap_flag = 0;; soap_flag = 1)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ns1__GetRDPConnectionString && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_ns1__GetRDPConnectionString(soap, "ns1:GetRDPConnectionString", &a->ns1__GetRDPConnectionString, ""))
+				{	soap_flag_ns1__GetRDPConnectionString--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				if (soap_flag)
+				{	soap->error = SOAP_OK;
+					break;
+				}
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___ns1__GetRDPConnectionString(struct soap *soap, const struct __ns1__GetRDPConnectionString *a, const char *tag, const char *type)
+{
+	register int id = 0;
+	if (soap_out___ns1__GetRDPConnectionString(soap, tag?tag:"-ns1:GetRDPConnectionString", id, a, type))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__GetRDPConnectionString * SOAP_FMAC4 soap_get___ns1__GetRDPConnectionString(struct soap *soap, struct __ns1__GetRDPConnectionString *p, const char *tag, const char *type)
+{
+	if ((p = soap_in___ns1__GetRDPConnectionString(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 struct __ns1__GetRDPConnectionString * SOAP_FMAC2 soap_instantiate___ns1__GetRDPConnectionString(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate___ns1__GetRDPConnectionString(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE___ns1__GetRDPConnectionString, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__GetRDPConnectionString);
+		if (size)
+			*size = sizeof(struct __ns1__GetRDPConnectionString);
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__GetRDPConnectionString[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(struct __ns1__GetRDPConnectionString);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct __ns1__GetRDPConnectionString*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__GetRDPConnectionString(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__GetRDPConnectionString %p -> %p\n", q, p));
+	*(struct __ns1__GetRDPConnectionString*)p = *(struct __ns1__GetRDPConnectionString*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__InitiateClientCommandsUsingMac(struct soap *soap, struct __ns1__InitiateClientCommandsUsingMac *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->ns1__InitiateClientCommandsUsingMac = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___ns1__InitiateClientCommandsUsingMac(struct soap *soap, const struct __ns1__InitiateClientCommandsUsingMac *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, &a->ns1__InitiateClientCommandsUsingMac);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___ns1__InitiateClientCommandsUsingMac(struct soap *soap, const char *tag, int id, const struct __ns1__InitiateClientCommandsUsingMac *a, const char *type)
+{
+	if (soap_out_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, "ns1:InitiateClientCommandsUsingMac", -1, &a->ns1__InitiateClientCommandsUsingMac, ""))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__InitiateClientCommandsUsingMac * SOAP_FMAC4 soap_in___ns1__InitiateClientCommandsUsingMac(struct soap *soap, const char *tag, struct __ns1__InitiateClientCommandsUsingMac *a, const char *type)
+{
+	size_t soap_flag_ns1__InitiateClientCommandsUsingMac = 1;
+	short soap_flag;
+	a = (struct __ns1__InitiateClientCommandsUsingMac *)soap_id_enter(soap, "", a, SOAP_TYPE___ns1__InitiateClientCommandsUsingMac, sizeof(struct __ns1__InitiateClientCommandsUsingMac), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default___ns1__InitiateClientCommandsUsingMac(soap, a);
+		for (soap_flag = 0;; soap_flag = 1)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ns1__InitiateClientCommandsUsingMac && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, "ns1:InitiateClientCommandsUsingMac", &a->ns1__InitiateClientCommandsUsingMac, ""))
+				{	soap_flag_ns1__InitiateClientCommandsUsingMac--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				if (soap_flag)
+				{	soap->error = SOAP_OK;
+					break;
+				}
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___ns1__InitiateClientCommandsUsingMac(struct soap *soap, const struct __ns1__InitiateClientCommandsUsingMac *a, const char *tag, const char *type)
+{
+	register int id = 0;
+	if (soap_out___ns1__InitiateClientCommandsUsingMac(soap, tag?tag:"-ns1:InitiateClientCommandsUsingMac", id, a, type))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__InitiateClientCommandsUsingMac * SOAP_FMAC4 soap_get___ns1__InitiateClientCommandsUsingMac(struct soap *soap, struct __ns1__InitiateClientCommandsUsingMac *p, const char *tag, const char *type)
+{
+	if ((p = soap_in___ns1__InitiateClientCommandsUsingMac(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 struct __ns1__InitiateClientCommandsUsingMac * SOAP_FMAC2 soap_instantiate___ns1__InitiateClientCommandsUsingMac(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate___ns1__InitiateClientCommandsUsingMac(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE___ns1__InitiateClientCommandsUsingMac, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__InitiateClientCommandsUsingMac);
+		if (size)
+			*size = sizeof(struct __ns1__InitiateClientCommandsUsingMac);
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__InitiateClientCommandsUsingMac[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(struct __ns1__InitiateClientCommandsUsingMac);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct __ns1__InitiateClientCommandsUsingMac*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__InitiateClientCommandsUsingMac(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__InitiateClientCommandsUsingMac %p -> %p\n", q, p));
+	*(struct __ns1__InitiateClientCommandsUsingMac*)p = *(struct __ns1__InitiateClientCommandsUsingMac*)q;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__InitiateClientCommands(struct soap *soap, struct __ns1__InitiateClientCommands *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
@@ -10263,101 +12010,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__InitiateClientCommands(struct soap *
 	*(struct __ns1__InitiateClientCommands*)p = *(struct __ns1__InitiateClientCommands*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__GetCommandStatus(struct soap *soap, struct __ns1__GetCommandStatus *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->ns1__GetCommandStatus = NULL;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___ns1__GetCommandStatus(struct soap *soap, const struct __ns1__GetCommandStatus *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_PointerTo_ns1__GetCommandStatus(soap, &a->ns1__GetCommandStatus);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out___ns1__GetCommandStatus(struct soap *soap, const char *tag, int id, const struct __ns1__GetCommandStatus *a, const char *type)
-{
-	if (soap_out_PointerTo_ns1__GetCommandStatus(soap, "ns1:GetCommandStatus", -1, &a->ns1__GetCommandStatus, ""))
-		return soap->error;
-	return SOAP_OK;
-}
-
-SOAP_FMAC3 struct __ns1__GetCommandStatus * SOAP_FMAC4 soap_in___ns1__GetCommandStatus(struct soap *soap, const char *tag, struct __ns1__GetCommandStatus *a, const char *type)
-{
-	size_t soap_flag_ns1__GetCommandStatus = 1;
-	short soap_flag;
-	a = (struct __ns1__GetCommandStatus *)soap_id_enter(soap, "", a, SOAP_TYPE___ns1__GetCommandStatus, sizeof(struct __ns1__GetCommandStatus), 0, NULL, NULL, NULL);
-	if (!a)
-		return NULL;
-	soap_default___ns1__GetCommandStatus(soap, a);
-		for (soap_flag = 0;; soap_flag = 1)
-		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag_ns1__GetCommandStatus && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTo_ns1__GetCommandStatus(soap, "ns1:GetCommandStatus", &a->ns1__GetCommandStatus, ""))
-				{	soap_flag_ns1__GetCommandStatus--;
-					continue;
-				}
-			if (soap->error == SOAP_TAG_MISMATCH)
-				if (soap_flag)
-				{	soap->error = SOAP_OK;
-					break;
-				}
-			if (soap->error == SOAP_NO_TAG)
-				break;
-			if (soap->error)
-				return NULL;
-		}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put___ns1__GetCommandStatus(struct soap *soap, const struct __ns1__GetCommandStatus *a, const char *tag, const char *type)
-{
-	register int id = 0;
-	if (soap_out___ns1__GetCommandStatus(soap, tag?tag:"-ns1:GetCommandStatus", id, a, type))
-		return soap->error;
-	return SOAP_OK;
-}
-
-SOAP_FMAC3 struct __ns1__GetCommandStatus * SOAP_FMAC4 soap_get___ns1__GetCommandStatus(struct soap *soap, struct __ns1__GetCommandStatus *p, const char *tag, const char *type)
-{
-	if ((p = soap_in___ns1__GetCommandStatus(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC1 struct __ns1__GetCommandStatus * SOAP_FMAC2 soap_instantiate___ns1__GetCommandStatus(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
-{
-	(void)type; (void)arrayType; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate___ns1__GetCommandStatus(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE___ns1__GetCommandStatus, n, soap_fdelete);
-	if (!cp)
-		return NULL;
-	if (n < 0)
-	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__GetCommandStatus);
-		if (size)
-			*size = sizeof(struct __ns1__GetCommandStatus);
-	}
-	else
-	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__GetCommandStatus[n]);
-		if (!cp->ptr)
-		{	soap->error = SOAP_EOM;
-			return NULL;
-		}
-		if (size)
-			*size = n * sizeof(struct __ns1__GetCommandStatus);
-	}
-		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct __ns1__GetCommandStatus*)cp->ptr;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__GetCommandStatus(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
-{
-	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__GetCommandStatus %p -> %p\n", q, p));
-	*(struct __ns1__GetCommandStatus*)p = *(struct __ns1__GetCommandStatus*)q;
-}
-
 SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__UpdateCommandStatus(struct soap *soap, struct __ns1__UpdateCommandStatus *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
@@ -10451,6 +12103,101 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__UpdateCommandStatus(struct soap *soa
 	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__UpdateCommandStatus %p -> %p\n", q, p));
 	*(struct __ns1__UpdateCommandStatus*)p = *(struct __ns1__UpdateCommandStatus*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, struct __ns1__GetCommandToExecuteUsingMacAddress *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->ns1__GetCommandToExecuteUsingMacAddress = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const struct __ns1__GetCommandToExecuteUsingMacAddress *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, &a->ns1__GetCommandToExecuteUsingMacAddress);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const char *tag, int id, const struct __ns1__GetCommandToExecuteUsingMacAddress *a, const char *type)
+{
+	if (soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, "ns1:GetCommandToExecuteUsingMacAddress", -1, &a->ns1__GetCommandToExecuteUsingMacAddress, ""))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__GetCommandToExecuteUsingMacAddress * SOAP_FMAC4 soap_in___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const char *tag, struct __ns1__GetCommandToExecuteUsingMacAddress *a, const char *type)
+{
+	size_t soap_flag_ns1__GetCommandToExecuteUsingMacAddress = 1;
+	short soap_flag;
+	a = (struct __ns1__GetCommandToExecuteUsingMacAddress *)soap_id_enter(soap, "", a, SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress, sizeof(struct __ns1__GetCommandToExecuteUsingMacAddress), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default___ns1__GetCommandToExecuteUsingMacAddress(soap, a);
+		for (soap_flag = 0;; soap_flag = 1)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_ns1__GetCommandToExecuteUsingMacAddress && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, "ns1:GetCommandToExecuteUsingMacAddress", &a->ns1__GetCommandToExecuteUsingMacAddress, ""))
+				{	soap_flag_ns1__GetCommandToExecuteUsingMacAddress--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				if (soap_flag)
+				{	soap->error = SOAP_OK;
+					break;
+				}
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const struct __ns1__GetCommandToExecuteUsingMacAddress *a, const char *tag, const char *type)
+{
+	register int id = 0;
+	if (soap_out___ns1__GetCommandToExecuteUsingMacAddress(soap, tag?tag:"-ns1:GetCommandToExecuteUsingMacAddress", id, a, type))
+		return soap->error;
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct __ns1__GetCommandToExecuteUsingMacAddress * SOAP_FMAC4 soap_get___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, struct __ns1__GetCommandToExecuteUsingMacAddress *p, const char *tag, const char *type)
+{
+	if ((p = soap_in___ns1__GetCommandToExecuteUsingMacAddress(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC1 struct __ns1__GetCommandToExecuteUsingMacAddress * SOAP_FMAC2 soap_instantiate___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	(void)type; (void)arrayType; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate___ns1__GetCommandToExecuteUsingMacAddress(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__GetCommandToExecuteUsingMacAddress);
+		if (size)
+			*size = sizeof(struct __ns1__GetCommandToExecuteUsingMacAddress);
+	}
+	else
+	{	cp->ptr = (void*)SOAP_NEW(struct __ns1__GetCommandToExecuteUsingMacAddress[n]);
+		if (!cp->ptr)
+		{	soap->error = SOAP_EOM;
+			return NULL;
+		}
+		if (size)
+			*size = n * sizeof(struct __ns1__GetCommandToExecuteUsingMacAddress);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct __ns1__GetCommandToExecuteUsingMacAddress*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	(void)soap; (void)st; (void)len; (void)n; /* appease -Wall -Werror */
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct __ns1__GetCommandToExecuteUsingMacAddress %p -> %p\n", q, p));
+	*(struct __ns1__GetCommandToExecuteUsingMacAddress*)p = *(struct __ns1__GetCommandToExecuteUsingMacAddress*)q;
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_default___ns1__GetCommandToExecute(struct soap *soap, struct __ns1__GetCommandToExecute *a)
@@ -11100,6 +12847,446 @@ SOAP_FMAC3 char ** SOAP_FMAC4 soap_get_wsa5__RelationshipTypeOpenEnum(struct soa
 	return p;
 }
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__UpdateAssetInformationResponse(struct soap *soap, _ns1__UpdateAssetInformationResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__UpdateAssetInformationResponse))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__UpdateAssetInformationResponse(struct soap *soap, const char *tag, int id, _ns1__UpdateAssetInformationResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__UpdateAssetInformationResponse);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformationResponse ** SOAP_FMAC4 soap_in_PointerTo_ns1__UpdateAssetInformationResponse(struct soap *soap, const char *tag, _ns1__UpdateAssetInformationResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__UpdateAssetInformationResponse **)soap_malloc(soap, sizeof(_ns1__UpdateAssetInformationResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__UpdateAssetInformationResponse *)soap_instantiate__ns1__UpdateAssetInformationResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__UpdateAssetInformationResponse ** p = (_ns1__UpdateAssetInformationResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__UpdateAssetInformationResponse, sizeof(_ns1__UpdateAssetInformationResponse), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__UpdateAssetInformationResponse(struct soap *soap, _ns1__UpdateAssetInformationResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__UpdateAssetInformationResponse);
+	if (soap_out_PointerTo_ns1__UpdateAssetInformationResponse(soap, tag?tag:"ns1:UpdateAssetInformationResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformationResponse ** SOAP_FMAC4 soap_get_PointerTo_ns1__UpdateAssetInformationResponse(struct soap *soap, _ns1__UpdateAssetInformationResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__UpdateAssetInformationResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__UpdateAssetInformation(struct soap *soap, _ns1__UpdateAssetInformation *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__UpdateAssetInformation))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__UpdateAssetInformation(struct soap *soap, const char *tag, int id, _ns1__UpdateAssetInformation *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__UpdateAssetInformation);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformation ** SOAP_FMAC4 soap_in_PointerTo_ns1__UpdateAssetInformation(struct soap *soap, const char *tag, _ns1__UpdateAssetInformation **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__UpdateAssetInformation **)soap_malloc(soap, sizeof(_ns1__UpdateAssetInformation *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__UpdateAssetInformation *)soap_instantiate__ns1__UpdateAssetInformation(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__UpdateAssetInformation ** p = (_ns1__UpdateAssetInformation **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__UpdateAssetInformation, sizeof(_ns1__UpdateAssetInformation), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__UpdateAssetInformation(struct soap *soap, _ns1__UpdateAssetInformation *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__UpdateAssetInformation);
+	if (soap_out_PointerTo_ns1__UpdateAssetInformation(soap, tag?tag:"ns1:UpdateAssetInformation", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__UpdateAssetInformation ** SOAP_FMAC4 soap_get_PointerTo_ns1__UpdateAssetInformation(struct soap *soap, _ns1__UpdateAssetInformation **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__UpdateAssetInformation(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__InitiateRDPRequestResponse(struct soap *soap, _ns1__InitiateRDPRequestResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__InitiateRDPRequestResponse))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__InitiateRDPRequestResponse(struct soap *soap, const char *tag, int id, _ns1__InitiateRDPRequestResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__InitiateRDPRequestResponse);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequestResponse ** SOAP_FMAC4 soap_in_PointerTo_ns1__InitiateRDPRequestResponse(struct soap *soap, const char *tag, _ns1__InitiateRDPRequestResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__InitiateRDPRequestResponse **)soap_malloc(soap, sizeof(_ns1__InitiateRDPRequestResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__InitiateRDPRequestResponse *)soap_instantiate__ns1__InitiateRDPRequestResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__InitiateRDPRequestResponse ** p = (_ns1__InitiateRDPRequestResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__InitiateRDPRequestResponse, sizeof(_ns1__InitiateRDPRequestResponse), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__InitiateRDPRequestResponse(struct soap *soap, _ns1__InitiateRDPRequestResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__InitiateRDPRequestResponse);
+	if (soap_out_PointerTo_ns1__InitiateRDPRequestResponse(soap, tag?tag:"ns1:InitiateRDPRequestResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequestResponse ** SOAP_FMAC4 soap_get_PointerTo_ns1__InitiateRDPRequestResponse(struct soap *soap, _ns1__InitiateRDPRequestResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__InitiateRDPRequestResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__InitiateRDPRequest(struct soap *soap, _ns1__InitiateRDPRequest *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__InitiateRDPRequest))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__InitiateRDPRequest(struct soap *soap, const char *tag, int id, _ns1__InitiateRDPRequest *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__InitiateRDPRequest);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequest ** SOAP_FMAC4 soap_in_PointerTo_ns1__InitiateRDPRequest(struct soap *soap, const char *tag, _ns1__InitiateRDPRequest **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__InitiateRDPRequest **)soap_malloc(soap, sizeof(_ns1__InitiateRDPRequest *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__InitiateRDPRequest *)soap_instantiate__ns1__InitiateRDPRequest(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__InitiateRDPRequest ** p = (_ns1__InitiateRDPRequest **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__InitiateRDPRequest, sizeof(_ns1__InitiateRDPRequest), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__InitiateRDPRequest(struct soap *soap, _ns1__InitiateRDPRequest *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__InitiateRDPRequest);
+	if (soap_out_PointerTo_ns1__InitiateRDPRequest(soap, tag?tag:"ns1:InitiateRDPRequest", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__InitiateRDPRequest ** SOAP_FMAC4 soap_get_PointerTo_ns1__InitiateRDPRequest(struct soap *soap, _ns1__InitiateRDPRequest **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__InitiateRDPRequest(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__GetRDPConnectionStringResponse(struct soap *soap, _ns1__GetRDPConnectionStringResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__GetRDPConnectionStringResponse))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__GetRDPConnectionStringResponse(struct soap *soap, const char *tag, int id, _ns1__GetRDPConnectionStringResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__GetRDPConnectionStringResponse);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionStringResponse ** SOAP_FMAC4 soap_in_PointerTo_ns1__GetRDPConnectionStringResponse(struct soap *soap, const char *tag, _ns1__GetRDPConnectionStringResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__GetRDPConnectionStringResponse **)soap_malloc(soap, sizeof(_ns1__GetRDPConnectionStringResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__GetRDPConnectionStringResponse *)soap_instantiate__ns1__GetRDPConnectionStringResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__GetRDPConnectionStringResponse ** p = (_ns1__GetRDPConnectionStringResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__GetRDPConnectionStringResponse, sizeof(_ns1__GetRDPConnectionStringResponse), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__GetRDPConnectionStringResponse(struct soap *soap, _ns1__GetRDPConnectionStringResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__GetRDPConnectionStringResponse);
+	if (soap_out_PointerTo_ns1__GetRDPConnectionStringResponse(soap, tag?tag:"ns1:GetRDPConnectionStringResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionStringResponse ** SOAP_FMAC4 soap_get_PointerTo_ns1__GetRDPConnectionStringResponse(struct soap *soap, _ns1__GetRDPConnectionStringResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__GetRDPConnectionStringResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__GetRDPConnectionString(struct soap *soap, _ns1__GetRDPConnectionString *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__GetRDPConnectionString))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__GetRDPConnectionString(struct soap *soap, const char *tag, int id, _ns1__GetRDPConnectionString *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__GetRDPConnectionString);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionString ** SOAP_FMAC4 soap_in_PointerTo_ns1__GetRDPConnectionString(struct soap *soap, const char *tag, _ns1__GetRDPConnectionString **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__GetRDPConnectionString **)soap_malloc(soap, sizeof(_ns1__GetRDPConnectionString *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__GetRDPConnectionString *)soap_instantiate__ns1__GetRDPConnectionString(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__GetRDPConnectionString ** p = (_ns1__GetRDPConnectionString **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__GetRDPConnectionString, sizeof(_ns1__GetRDPConnectionString), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__GetRDPConnectionString(struct soap *soap, _ns1__GetRDPConnectionString *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__GetRDPConnectionString);
+	if (soap_out_PointerTo_ns1__GetRDPConnectionString(soap, tag?tag:"ns1:GetRDPConnectionString", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__GetRDPConnectionString ** SOAP_FMAC4 soap_get_PointerTo_ns1__GetRDPConnectionString(struct soap *soap, _ns1__GetRDPConnectionString **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__GetRDPConnectionString(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, _ns1__InitiateClientCommandsUsingMacResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, const char *tag, int id, _ns1__InitiateClientCommandsUsingMacResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMacResponse ** SOAP_FMAC4 soap_in_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, const char *tag, _ns1__InitiateClientCommandsUsingMacResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__InitiateClientCommandsUsingMacResponse **)soap_malloc(soap, sizeof(_ns1__InitiateClientCommandsUsingMacResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__InitiateClientCommandsUsingMacResponse *)soap_instantiate__ns1__InitiateClientCommandsUsingMacResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__InitiateClientCommandsUsingMacResponse ** p = (_ns1__InitiateClientCommandsUsingMacResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse, sizeof(_ns1__InitiateClientCommandsUsingMacResponse), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, _ns1__InitiateClientCommandsUsingMacResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMacResponse);
+	if (soap_out_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(soap, tag?tag:"ns1:InitiateClientCommandsUsingMacResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMacResponse ** SOAP_FMAC4 soap_get_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(struct soap *soap, _ns1__InitiateClientCommandsUsingMacResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__InitiateClientCommandsUsingMacResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__InitiateClientCommandsUsingMac(struct soap *soap, _ns1__InitiateClientCommandsUsingMac *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__InitiateClientCommandsUsingMac(struct soap *soap, const char *tag, int id, _ns1__InitiateClientCommandsUsingMac *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMac ** SOAP_FMAC4 soap_in_PointerTo_ns1__InitiateClientCommandsUsingMac(struct soap *soap, const char *tag, _ns1__InitiateClientCommandsUsingMac **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__InitiateClientCommandsUsingMac **)soap_malloc(soap, sizeof(_ns1__InitiateClientCommandsUsingMac *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__InitiateClientCommandsUsingMac *)soap_instantiate__ns1__InitiateClientCommandsUsingMac(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__InitiateClientCommandsUsingMac ** p = (_ns1__InitiateClientCommandsUsingMac **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__InitiateClientCommandsUsingMac, sizeof(_ns1__InitiateClientCommandsUsingMac), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__InitiateClientCommandsUsingMac(struct soap *soap, _ns1__InitiateClientCommandsUsingMac *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__InitiateClientCommandsUsingMac);
+	if (soap_out_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, tag?tag:"ns1:InitiateClientCommandsUsingMac", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__InitiateClientCommandsUsingMac ** SOAP_FMAC4 soap_get_PointerTo_ns1__InitiateClientCommandsUsingMac(struct soap *soap, _ns1__InitiateClientCommandsUsingMac **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__InitiateClientCommandsUsingMac(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__InitiateClientCommandsResponse(struct soap *soap, _ns1__InitiateClientCommandsResponse *const*a)
 {
 	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__InitiateClientCommandsResponse))
@@ -11210,116 +13397,6 @@ SOAP_FMAC3 _ns1__InitiateClientCommands ** SOAP_FMAC4 soap_get_PointerTo_ns1__In
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__GetCommandStatusResponse(struct soap *soap, _ns1__GetCommandStatusResponse *const*a)
-{
-	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__GetCommandStatusResponse))
-		(*a)->soap_serialize(soap);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__GetCommandStatusResponse(struct soap *soap, const char *tag, int id, _ns1__GetCommandStatusResponse *const*a, const char *type)
-{
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__GetCommandStatusResponse);
-	if (id < 0)
-		return soap->error;
-	return (*a)->soap_out(soap, tag, id, type);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatusResponse ** SOAP_FMAC4 soap_in_PointerTo_ns1__GetCommandStatusResponse(struct soap *soap, const char *tag, _ns1__GetCommandStatusResponse **a, const char *type)
-{
-	if (soap_element_begin_in(soap, tag, 1, NULL))
-		return NULL;
-	if (!a)
-		if (!(a = (_ns1__GetCommandStatusResponse **)soap_malloc(soap, sizeof(_ns1__GetCommandStatusResponse *))))
-			return NULL;
-	*a = NULL;
-	if (!soap->null && *soap->href != '#')
-	{	soap_revert(soap);
-		if (!(*a = (_ns1__GetCommandStatusResponse *)soap_instantiate__ns1__GetCommandStatusResponse(soap, -1, soap->type, soap->arrayType, NULL)))
-			return NULL;
-		(*a)->soap_default(soap);
-		if (!(*a)->soap_in(soap, tag, NULL))
-			return NULL;
-	}
-	else
-	{	_ns1__GetCommandStatusResponse ** p = (_ns1__GetCommandStatusResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__GetCommandStatusResponse, sizeof(_ns1__GetCommandStatusResponse), 0);
-		a = p;
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__GetCommandStatusResponse(struct soap *soap, _ns1__GetCommandStatusResponse *const*a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__GetCommandStatusResponse);
-	if (soap_out_PointerTo_ns1__GetCommandStatusResponse(soap, tag?tag:"ns1:GetCommandStatusResponse", id, a, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatusResponse ** SOAP_FMAC4 soap_get_PointerTo_ns1__GetCommandStatusResponse(struct soap *soap, _ns1__GetCommandStatusResponse **p, const char *tag, const char *type)
-{
-	if ((p = soap_in_PointerTo_ns1__GetCommandStatusResponse(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__GetCommandStatus(struct soap *soap, _ns1__GetCommandStatus *const*a)
-{
-	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__GetCommandStatus))
-		(*a)->soap_serialize(soap);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__GetCommandStatus(struct soap *soap, const char *tag, int id, _ns1__GetCommandStatus *const*a, const char *type)
-{
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__GetCommandStatus);
-	if (id < 0)
-		return soap->error;
-	return (*a)->soap_out(soap, tag, id, type);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatus ** SOAP_FMAC4 soap_in_PointerTo_ns1__GetCommandStatus(struct soap *soap, const char *tag, _ns1__GetCommandStatus **a, const char *type)
-{
-	if (soap_element_begin_in(soap, tag, 1, NULL))
-		return NULL;
-	if (!a)
-		if (!(a = (_ns1__GetCommandStatus **)soap_malloc(soap, sizeof(_ns1__GetCommandStatus *))))
-			return NULL;
-	*a = NULL;
-	if (!soap->null && *soap->href != '#')
-	{	soap_revert(soap);
-		if (!(*a = (_ns1__GetCommandStatus *)soap_instantiate__ns1__GetCommandStatus(soap, -1, soap->type, soap->arrayType, NULL)))
-			return NULL;
-		(*a)->soap_default(soap);
-		if (!(*a)->soap_in(soap, tag, NULL))
-			return NULL;
-	}
-	else
-	{	_ns1__GetCommandStatus ** p = (_ns1__GetCommandStatus **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__GetCommandStatus, sizeof(_ns1__GetCommandStatus), 0);
-		a = p;
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__GetCommandStatus(struct soap *soap, _ns1__GetCommandStatus *const*a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__GetCommandStatus);
-	if (soap_out_PointerTo_ns1__GetCommandStatus(soap, tag?tag:"ns1:GetCommandStatus", id, a, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-SOAP_FMAC3 _ns1__GetCommandStatus ** SOAP_FMAC4 soap_get_PointerTo_ns1__GetCommandStatus(struct soap *soap, _ns1__GetCommandStatus **p, const char *tag, const char *type)
-{
-	if ((p = soap_in_PointerTo_ns1__GetCommandStatus(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__UpdateCommandStatusResponse(struct soap *soap, _ns1__UpdateCommandStatusResponse *const*a)
 {
 	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__UpdateCommandStatusResponse))
@@ -11425,6 +13502,116 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__UpdateCommandStatus(struct soa
 SOAP_FMAC3 _ns1__UpdateCommandStatus ** SOAP_FMAC4 soap_get_PointerTo_ns1__UpdateCommandStatus(struct soap *soap, _ns1__UpdateCommandStatus **p, const char *tag, const char *type)
 {
 	if ((p = soap_in_PointerTo_ns1__UpdateCommandStatus(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddressResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, const char *tag, int id, _ns1__GetCommandToExecuteUsingMacAddressResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddressResponse ** SOAP_FMAC4 soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, const char *tag, _ns1__GetCommandToExecuteUsingMacAddressResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__GetCommandToExecuteUsingMacAddressResponse **)soap_malloc(soap, sizeof(_ns1__GetCommandToExecuteUsingMacAddressResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__GetCommandToExecuteUsingMacAddressResponse *)soap_instantiate__ns1__GetCommandToExecuteUsingMacAddressResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__GetCommandToExecuteUsingMacAddressResponse ** p = (_ns1__GetCommandToExecuteUsingMacAddressResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse, sizeof(_ns1__GetCommandToExecuteUsingMacAddressResponse), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddressResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse);
+	if (soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(soap, tag?tag:"ns1:GetCommandToExecuteUsingMacAddressResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddressResponse ** SOAP_FMAC4 soap_get_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddressResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddressResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddress *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const char *tag, int id, _ns1__GetCommandToExecuteUsingMacAddress *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddress ** SOAP_FMAC4 soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, const char *tag, _ns1__GetCommandToExecuteUsingMacAddress **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (_ns1__GetCommandToExecuteUsingMacAddress **)soap_malloc(soap, sizeof(_ns1__GetCommandToExecuteUsingMacAddress *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (_ns1__GetCommandToExecuteUsingMacAddress *)soap_instantiate__ns1__GetCommandToExecuteUsingMacAddress(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	_ns1__GetCommandToExecuteUsingMacAddress ** p = (_ns1__GetCommandToExecuteUsingMacAddress **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress, sizeof(_ns1__GetCommandToExecuteUsingMacAddress), 0);
+		a = p;
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddress *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTo_ns1__GetCommandToExecuteUsingMacAddress);
+	if (soap_out_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, tag?tag:"ns1:GetCommandToExecuteUsingMacAddress", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 _ns1__GetCommandToExecuteUsingMacAddress ** SOAP_FMAC4 soap_get_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(struct soap *soap, _ns1__GetCommandToExecuteUsingMacAddress **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTo_ns1__GetCommandToExecuteUsingMacAddress(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;

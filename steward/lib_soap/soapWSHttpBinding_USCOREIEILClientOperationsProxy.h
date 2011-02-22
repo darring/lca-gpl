@@ -53,13 +53,25 @@ class SOAP_CMAC WSHttpBinding_USCOREIEILClientOperationsProxy : public soap
 	/// Web service operation 'GetCommandToExecute' (returns error code or SOAP_OK)
 	virtual	int GetCommandToExecute(_ns1__GetCommandToExecute *ns1__GetCommandToExecute, _ns1__GetCommandToExecuteResponse *ns1__GetCommandToExecuteResponse);
 
+	/// Web service operation 'GetCommandToExecuteUsingMacAddress' (returns error code or SOAP_OK)
+	virtual	int GetCommandToExecuteUsingMacAddress(_ns1__GetCommandToExecuteUsingMacAddress *ns1__GetCommandToExecuteUsingMacAddress, _ns1__GetCommandToExecuteUsingMacAddressResponse *ns1__GetCommandToExecuteUsingMacAddressResponse);
+
 	/// Web service operation 'UpdateCommandStatus' (returns error code or SOAP_OK)
 	virtual	int UpdateCommandStatus(_ns1__UpdateCommandStatus *ns1__UpdateCommandStatus, _ns1__UpdateCommandStatusResponse *ns1__UpdateCommandStatusResponse);
 
-	/// Web service operation 'GetCommandStatus' (returns error code or SOAP_OK)
-	virtual	int GetCommandStatus(_ns1__GetCommandStatus *ns1__GetCommandStatus, _ns1__GetCommandStatusResponse *ns1__GetCommandStatusResponse);
-
 	/// Web service operation 'InitiateClientCommands' (returns error code or SOAP_OK)
 	virtual	int InitiateClientCommands(_ns1__InitiateClientCommands *ns1__InitiateClientCommands, _ns1__InitiateClientCommandsResponse *ns1__InitiateClientCommandsResponse);
+
+	/// Web service operation 'InitiateClientCommandsUsingMac' (returns error code or SOAP_OK)
+	virtual	int InitiateClientCommandsUsingMac(_ns1__InitiateClientCommandsUsingMac *ns1__InitiateClientCommandsUsingMac, _ns1__InitiateClientCommandsUsingMacResponse *ns1__InitiateClientCommandsUsingMacResponse);
+
+	/// Web service operation 'GetRDPConnectionString' (returns error code or SOAP_OK)
+	virtual	int GetRDPConnectionString(_ns1__GetRDPConnectionString *ns1__GetRDPConnectionString, _ns1__GetRDPConnectionStringResponse *ns1__GetRDPConnectionStringResponse);
+
+	/// Web service operation 'InitiateRDPRequest' (returns error code or SOAP_OK)
+	virtual	int InitiateRDPRequest(_ns1__InitiateRDPRequest *ns1__InitiateRDPRequest, _ns1__InitiateRDPRequestResponse *ns1__InitiateRDPRequestResponse);
+
+	/// Web service operation 'UpdateAssetInformation' (returns error code or SOAP_OK)
+	virtual	int UpdateAssetInformation(_ns1__UpdateAssetInformation *ns1__UpdateAssetInformation, _ns1__UpdateAssetInformationResponse *ns1__UpdateAssetInformationResponse);
 };
 #endif

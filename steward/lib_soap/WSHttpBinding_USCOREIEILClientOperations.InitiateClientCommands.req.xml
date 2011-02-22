@@ -26,6 +26,18 @@
       <!-- extensibility element(s) -->
 
      </ns4:mList>
+     <ns4:mMacs>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+      <!-- extensibility element(s) -->
+
+     </ns4:mMacs>
      <ns4:mParams>
       <ns5:KeyValueOfstringstring>
        <ns5:Key></ns5:Key>
