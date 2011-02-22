@@ -61,6 +61,28 @@ class StewardService
          */
         void getNewMessageID();
 
+        //! Internal method for querying for client commands using the hostname
+        /*!
+         * \param hostname the hostname of the machine
+         * \param order_num value of the ORDER_NUM field
+         * \param mType the Machine Type
+         */
+        CCMS_Command queryForClientCommandsByHostname(
+            char *hostname,
+            char *order_num,
+            MachineType mType);
+
+        //! Internal method for querying for client commands using the hwaddr
+        /*!
+         * \param hwaddr the hardware address of the machine
+         * \param order_num value of the ORDER_NUM field
+         * \param mType the Machine Type
+         */
+        CCMS_Command queryForClientCommandsByHWAddr(
+            char *hwaddr,
+            char *order_num,
+            MachineType mType);
+
     public:
         //! Constructor for the Steward service wrapper
         /*!
@@ -76,13 +98,18 @@ class StewardService
          * Call this every NN seconds to query the web service for available
          * commands.
          * \param hostname is the hostname of this particular machine
+         * \param hwaddr is the hardware address of this particular machine
          * \param order_num is the value of the ORDER_NUM field
          * \param mType is the Machine Type
          * \return Command type (or error if an error occured)
          *
+         * \remarks One of hostname of hwaddr is required. The other may be
+         * NULL, and will not be used.
+         *
          */
         CCMS_Command QueryForClientCommands(
             char *hostname,
+            char *hwaddr,
             char *order_num,
             MachineType mType);
 };

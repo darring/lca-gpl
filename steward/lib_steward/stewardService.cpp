@@ -37,6 +37,7 @@ StewardService::~StewardService()
 
 CCMS_Command StewardService::QueryForClientCommands(
             char *hostname,
+            char *hwaddr,
             char *order_num,
             MachineType mType)
 {
@@ -399,3 +400,16 @@ void StewardService::getNewMessageID()
             "urn:uuid:%s", messageID);
 }
 
+CCMS_Command StewardService::queryForClientCommandsByHostname(
+            char *hostname,
+            char *order_num,
+            MachineType mType)
+{
+}
+
+CCMS_Command StewardService::queryForClientCommandsByHWAddr(
+            char *hwaddr,
+            char *order_num,
+            MachineType mType)
+{
+}
