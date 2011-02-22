@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+ xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+ xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns3="http://schemas.microsoft.com/2003/10/Serialization/"
+ xmlns:ns4="http://schemas.datacontract.org/2004/07/EILClientManagmentService"
+ xmlns:ns5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+ xmlns:ns1="http://tempuri.org/"
+ xmlns:wsa5="http://www.w3.org/2005/08/addressing">
+ <SOAP-ENV:Header>
+ </SOAP-ENV:Header>
+ <SOAP-ENV:Body>
+   <ns1:GetCommandToExecuteUsingMacAddress>
+    <ns1:ctx>
+     <ns4:mContext>
+      <ns5:string></ns5:string>
+      <ns5:string></ns5:string>
+      <!-- extensibility element(s) -->
+
+     </ns4:mContext>
+     <ns4:mList>
+      <ns5:string></ns5:string>
+      <ns5:string></ns5:string>
+      <!-- extensibility element(s) -->
+
+     </ns4:mList>
+     <ns4:mMacs>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+      <!-- extensibility element(s) -->
+
+     </ns4:mMacs>
+     <ns4:mParams>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+      <ns5:KeyValueOfstringstring>
+       <ns5:Key></ns5:Key>
+       <ns5:Value></ns5:Value>
+      </ns5:KeyValueOfstringstring>
+      <!-- extensibility element(s) -->
+
+     </ns4:mParams>
+     <ns4:mType>ANY</ns4:mType>
+     <!-- extensibility element(s) -->
+
+    </ns1:ctx>
+   </ns1:GetCommandToExecuteUsingMacAddress>
+
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

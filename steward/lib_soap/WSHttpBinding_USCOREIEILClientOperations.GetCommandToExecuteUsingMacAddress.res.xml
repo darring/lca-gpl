@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+ xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+ xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns3="http://schemas.microsoft.com/2003/10/Serialization/"
+ xmlns:ns4="http://schemas.datacontract.org/2004/07/EILClientManagmentService"
+ xmlns:ns5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+ xmlns:ns1="http://tempuri.org/"
+ xmlns:wsa5="http://www.w3.org/2005/08/addressing">
+ <SOAP-ENV:Header>
+ </SOAP-ENV:Header>
+ <SOAP-ENV:Body>
+  <ns1:GetCommandToExecuteUsingMacAddressResponse>
+   <ns1:GetCommandToExecuteUsingMacAddressResult>
+    <ns4:CommandExitMessage></ns4:CommandExitMessage>
+    <ns4:CommandName></ns4:CommandName>
+    <ns4:CommandParameters>
+     <ns5:KeyValueOfstringstring>
+      <ns5:Key></ns5:Key>
+      <ns5:Value></ns5:Value>
+     </ns5:KeyValueOfstringstring>
+     <ns5:KeyValueOfstringstring>
+      <ns5:Key></ns5:Key>
+      <ns5:Value></ns5:Value>
+     </ns5:KeyValueOfstringstring>
+     <!-- extensibility element(s) -->
+
+    </ns4:CommandParameters>
+    <ns4:CommandPath></ns4:CommandPath>
+    <ns4:CommandResult></ns4:CommandResult>
+    <ns4:CommandStatus>COMMAND_ISSUED</ns4:CommandStatus>
+    <ns4:CommandSuccessful>false</ns4:CommandSuccessful>
+    <ns4:ErrorCode>0</ns4:ErrorCode>
+    <ns4:ExpectedTimeOut>0</ns4:ExpectedTimeOut>
+    <ns4:OperationID></ns4:OperationID>
+    <ns4:SetMachineType></ns4:SetMachineType>
+    <!-- extensibility element(s) -->
+
+   </ns1:GetCommandToExecuteUsingMacAddressResult>
+  </ns1:GetCommandToExecuteUsingMacAddressResponse>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
