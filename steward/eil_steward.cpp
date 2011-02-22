@@ -234,7 +234,8 @@ int main(int argc, char *argv[])
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog("My hostname is '%s'", hostname);
 
-        issuedCommand = service.QueryForClientCommands(hostname, "1", HOST);
+        issuedCommand = service.QueryForClientCommands(
+            hostname, NULL, "1", HOST);
 
         switch (issuedCommand.ReturnState)
         {
