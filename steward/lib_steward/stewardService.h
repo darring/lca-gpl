@@ -16,8 +16,8 @@
  *
  * \section Usage Usage
  *  To use the steward service, create an instance of the class StewardServce,
- * and call the QueryForClientCommands(..) method every NN seconds (where NN is
- * determined by some external criteria).
+ * and call the StewardService::QueryForClientCommands method every NN seconds
+ * (where NN is determined by some external criteria).
  */
 
 #ifndef stewardService_H

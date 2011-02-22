@@ -63,8 +63,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor for the Steward service wrapper.  <a href="#a4c191fafdc30f058ca0efa2af547e876"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a5ca717d9c973e36d63b852ec6b4e3372">~StewardService</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor for the Steward service wrapper.  <a href="#a5ca717d9c973e36d63b852ec6b4e3372"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCCMS__Command.html">CCMS_Command</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#aa0a43ee7ea941ec7e534a2c31230315e">QueryForClientCommands</a> (char *hostname, char *order_num, <a class="el" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d">MachineType</a> mType)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Query for client commands from the web service.  <a href="#aa0a43ee7ea941ec7e534a2c31230315e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCCMS__Command.html">CCMS_Command</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#ad7458cbec72ae30065e57aeb9341b399">QueryForClientCommands</a> (char *hostname, char *hwaddr, char *order_num, <a class="el" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d">MachineType</a> mType)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Query for client commands from the web service.  <a href="#ad7458cbec72ae30065e57aeb9341b399"></a><br/></td></tr>
 </table>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4c191fafdc30f058ca0efa2af547e876"></a><!-- doxytag: member="StewardService::StewardService" ref="a4c191fafdc30f058ca0efa2af547e876" args="(StewardLogger *myLogger)" -->
@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aa0a43ee7ea941ec7e534a2c31230315e"></a><!-- doxytag: member="StewardService::QueryForClientCommands" ref="aa0a43ee7ea941ec7e534a2c31230315e" args="(char *hostname, char *order_num, MachineType mType)" -->
+<a class="anchor" id="ad7458cbec72ae30065e57aeb9341b399"></a><!-- doxytag: member="StewardService::QueryForClientCommands" ref="ad7458cbec72ae30065e57aeb9341b399" args="(char *hostname, char *hwaddr, char *order_num, MachineType mType)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -122,6 +122,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">char *&nbsp;</td>
           <td class="paramname"> <em>hostname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>hwaddr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -149,12 +155,14 @@ Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>hostname</em>&nbsp;</td><td>is the hostname of this particular machine </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>hwaddr</em>&nbsp;</td><td>is the hardware address of this particular machine </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>order_num</em>&nbsp;</td><td>is the value of the ORDER_NUM field </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>mType</em>&nbsp;</td><td>is the Machine Type </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Command type (or error if an error occured) </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Command type (or error if an error occured)</dd></dl>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>One of hostname of hwaddr is required. The other may be NULL, and will not be used. </dd></dl>
 
 </div>
 </div>
@@ -177,7 +185,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 14:57:31 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 22 2011 14:23:59 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
