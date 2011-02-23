@@ -222,7 +222,7 @@ void StewardService::queryForClientCommands_byHostname(
         } else {
             /*
             Be sure to update the header with the proper HTTP SOAP
-            action! (or else we will get an "ActionMismatch" error
+            action! (or else we will get an "ActionMismatch" error)
             */
             header.wsa5__Action = EIL__UPDATECOMMANDSTATUS;
             service.soap_header(
@@ -241,7 +241,7 @@ void StewardService::queryForClientCommands_byHostname(
             ns4__EILCommand cmd;
             _ns1__UpdateCommandStatusResponse updateCmdStatResp;
 
-            updateCmdStat.ctx = &ctx;
+            updateCmdStat.ctx = ctx;
 
             // Parse *what* our command was
             if(strcasecmp(
@@ -252,7 +252,6 @@ void StewardService::queryForClientCommands_byHostname(
                 returnCommand->ReturnState = COMMAND_SUCCESS;
                 returnCommand->Command = REBOOT;
 
-                //updateCmdStat.cmd->CommandResult = cResult;
                 ns4__EILCommandStatus complete =
                     ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
                 int errorcode = 0;
@@ -286,6 +285,86 @@ void StewardService::queryForClientCommands_byHWAddr(
             ns4__MachineContext *ctx,
             CCMS_Command *returnCommand)
 {
+    _ns1__GetCommandToExecuteUsingMacAddress getCommand;
+    getCommand.ctx = ctx;
+
+    _ns1__GetCommandToExecuteUsingMacAddressResponse response;
+
+    /*
+    Execute the getCommand request
+    */
+    op_codes = service.GetCommandToExecuteUsingMacAddress(
+        &getCommand, &response);
+
+    /*
+    Process the response
+    */
+    if(op_codes == SOAP_OK) {
+        if (response.GetCommandToExecuteUsingMacAddressResult == NULL) {
+            currentState = STATE_None;
+            returnCommand->ReturnState = COMMAND_SUCCESS;
+            returnCommand->Command = NO_COMMAND;
+            logger->QuickLog("StewardService> No command");
+        } else {
+            /*
+            Be sure to update the header with the proper HTTP SOAP
+            action! (or else we will get an "ActionMismatch" error)
+            */
+            header.wsa5__Action = EIL__UPDATECOMMANDSTATUS;
+            service.soap_header(
+                header.wsa5__MessageID,
+                header.wsa5__RelatesTo,
+                header.wsa5__From,
+                header.wsa5__ReplyTo,
+                header.wsa5__FaultTo,
+                header.wsa5__To,
+                header.wsa5__Action);
+
+            /*
+            First we need to get our responses ready
+            */
+            _ns1__UpdateCommandStatus updateCmdStat;
+            ns4__EILCommand cmd;
+            _ns1__UpdateCommandStatusResponse updateCmdStatResp;
+
+            updateCmdStat.ctx = ctx;
+
+            // Parse *what* our command was
+            if(strcasecmp(
+                response.GetCommandToExecuteUsingMacAddressResult->CommandName,
+                "reboot") == 0)
+            {
+                currentState = STATE_ExecutingCommand;
+                returnCommand->ReturnState = COMMAND_SUCCESS;
+                returnCommand->Command = REBOOT;
+
+                ns4__EILCommandStatus complete =
+                    ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
+                int errorcode = 0;
+                cmd.CommandResult = "Reboot Successful";
+                cmd.CommandStatus = &complete;
+                cmd.ErrorCode = &errorcode;
+                cmd.CommandName =
+                    response.GetCommandToExecuteUsingMacAddressResult->CommandName;
+
+                updateCmdStat.cmd = &cmd;
+                updateCmdStat.cmd->OperationID =
+                    response.GetCommandToExecuteUsingMacAddressResult->OperationID;
+
+                // FIXME - Do we want to deal with op_codes here as well?
+                service.UpdateCommandStatus(
+                    &updateCmdStat, &updateCmdStatResp);
+            } // Other commands go here
+            else
+            {
+                currentState = STATE_None;
+                returnCommand->ReturnState = COMMAND_ERROR;
+                returnCommand->Command = NO_COMMAND;
+            }
+        }
+    } else {
+        parseOpCode(returnCommand);
+    }
 }
 
 void StewardService::parseOpCode(
