@@ -47,7 +47,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>StewardService Class Reference</h1>  </div>
 </div>
@@ -65,6 +67,25 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor for the Steward service wrapper.  <a href="#a5ca717d9c973e36d63b852ec6b4e3372"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCCMS__Command.html">CCMS_Command</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#ad7458cbec72ae30065e57aeb9341b399">QueryForClientCommands</a> (char *hostname, char *hwaddr, char *order_num, <a class="el" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d">MachineType</a> mType)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Query for client commands from the web service.  <a href="#ad7458cbec72ae30065e57aeb9341b399"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a962cc3a61e18438430aa5a178dfd3a11">getNewMessageID</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Obtain a new message ID.  <a href="#a962cc3a61e18438430aa5a178dfd3a11"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#ac668d71fa4cd88d9dcf921f4e3f7e676">queryForClientCommands_byHostname</a> (ns4__MachineContext *ctx, <a class="el" href="structCCMS__Command.html">CCMS_Command</a> *returnCommand)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for querying client commands by hostname.  <a href="#ac668d71fa4cd88d9dcf921f4e3f7e676"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a4cd627ba1173627f0cbf5e57d1337ebf">queryForClientCommands_byHWAddr</a> (ns4__MachineContext *ctx, <a class="el" href="structCCMS__Command.html">CCMS_Command</a> *returnCommand)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for querying client commands by HW address.  <a href="#a4cd627ba1173627f0cbf5e57d1337ebf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a8a5d124f4b509a224f5a1e54ff276cee">parseOpCode</a> (<a class="el" href="structCCMS__Command.html">CCMS_Command</a> *returnCommand)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for parsing the opcode from various calls.  <a href="#a8a5d124f4b509a224f5a1e54ff276cee"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">WSHttpBinding_USCOREIEILClientOperationsProxy&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a6034c2c85012ec9c75a85a79ada61b92">service</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">soap</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">soap</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct SOAP_ENV__Header&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#ab20ea4a0a064122ddef2a84a7f738787">header</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">StewardLogger *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a17677f61d1ca99b501090c31dc172207">logger</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#afee6376f84a2e1ad7cd99546a6709dd8">op_codes</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#afd0717523d7091de68cc94e36c1bf338">last_MessageID</a> [MAX_MESSAGEID_LEN]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46">ServiceState</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a87a6778dd4ccb089ffb092bef7be99f7">currentState</a></td></tr>
 </table>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4c191fafdc30f058ca0efa2af547e876"></a><!-- doxytag: member="StewardService::StewardService" ref="a4c191fafdc30f058ca0efa2af547e876" args="(StewardLogger *myLogger)" -->
@@ -113,6 +134,55 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a962cc3a61e18438430aa5a178dfd3a11"></a><!-- doxytag: member="StewardService::getNewMessageID" ref="a962cc3a61e18438430aa5a178dfd3a11" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StewardService::getNewMessageID </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Obtain a new message ID. </p>
+<p>Internal method used to obtain a valid message ID used in WS-A </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Null byte terminated message ID </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8a5d124f4b509a224f5a1e54ff276cee"></a><!-- doxytag: member="StewardService::parseOpCode" ref="a8a5d124f4b509a224f5a1e54ff276cee" args="(CCMS_Command *returnCommand)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StewardService::parseOpCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCCMS__Command.html">CCMS_Command</a> *&nbsp;</td>
+          <td class="paramname"> <em>returnCommand</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal method for parsing the opcode from various calls. </p>
+<p>This method is intended to be highly generic, and should only be used when your local method has exhausted all custom opcode interpretations it has. Once called, it will parse the opcode, set the returnCommand and log as appropriate. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>returnCommand</em>&nbsp;</td><td>the CCMS return command struct</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>It is assumed that op_codes has been set previously by one of the various calls to the service. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ad7458cbec72ae30065e57aeb9341b399"></a><!-- doxytag: member="StewardService::QueryForClientCommands" ref="ad7458cbec72ae30065e57aeb9341b399" args="(char *hostname, char *hwaddr, char *order_num, MachineType mType)" -->
 <div class="memitem">
 <div class="memproto">
@@ -166,6 +236,172 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac668d71fa4cd88d9dcf921f4e3f7e676"></a><!-- doxytag: member="StewardService::queryForClientCommands_byHostname" ref="ac668d71fa4cd88d9dcf921f4e3f7e676" args="(ns4__MachineContext *ctx, CCMS_Command *returnCommand)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StewardService::queryForClientCommands_byHostname </td>
+          <td>(</td>
+          <td class="paramtype">ns4__MachineContext *&nbsp;</td>
+          <td class="paramname"> <em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCCMS__Command.html">CCMS_Command</a> *&nbsp;</td>
+          <td class="paramname"> <em>returnCommand</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal method for querying client commands by hostname. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ctx</em>&nbsp;</td><td>the machine context used for the call </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>returnCommand</em>&nbsp;</td><td>the CCMS return command struct</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>It is assumed that header information has already been set up and all other state data for service has been preset. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4cd627ba1173627f0cbf5e57d1337ebf"></a><!-- doxytag: member="StewardService::queryForClientCommands_byHWAddr" ref="a4cd627ba1173627f0cbf5e57d1337ebf" args="(ns4__MachineContext *ctx, CCMS_Command *returnCommand)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StewardService::queryForClientCommands_byHWAddr </td>
+          <td>(</td>
+          <td class="paramtype">ns4__MachineContext *&nbsp;</td>
+          <td class="paramname"> <em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCCMS__Command.html">CCMS_Command</a> *&nbsp;</td>
+          <td class="paramname"> <em>returnCommand</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal method for querying client commands by HW address. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ctx</em>&nbsp;</td><td>the machine context used for the call </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>returnCommand</em>&nbsp;</td><td>the CCMS return command struct</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>It is assumed that header information has already been set up and all other state data for service has been preset. </dd></dl>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a87a6778dd4ccb089ffb092bef7be99f7"></a><!-- doxytag: member="StewardService::currentState" ref="a87a6778dd4ccb089ffb092bef7be99f7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46">ServiceState</a> <a class="el" href="classStewardService.html#a87a6778dd4ccb089ffb092bef7be99f7">StewardService::currentState</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab20ea4a0a064122ddef2a84a7f738787"></a><!-- doxytag: member="StewardService::header" ref="ab20ea4a0a064122ddef2a84a7f738787" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct SOAP_ENV__Header <a class="el" href="classStewardService.html#ab20ea4a0a064122ddef2a84a7f738787">StewardService::header</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afd0717523d7091de68cc94e36c1bf338"></a><!-- doxytag: member="StewardService::last_MessageID" ref="afd0717523d7091de68cc94e36c1bf338" args="[MAX_MESSAGEID_LEN]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="classStewardService.html#afd0717523d7091de68cc94e36c1bf338">StewardService::last_MessageID</a>[MAX_MESSAGEID_LEN]<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a17677f61d1ca99b501090c31dc172207"></a><!-- doxytag: member="StewardService::logger" ref="a17677f61d1ca99b501090c31dc172207" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">StewardLogger* <a class="el" href="classStewardService.html#a17677f61d1ca99b501090c31dc172207">StewardService::logger</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afee6376f84a2e1ad7cd99546a6709dd8"></a><!-- doxytag: member="StewardService::op_codes" ref="afee6376f84a2e1ad7cd99546a6709dd8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classStewardService.html#afee6376f84a2e1ad7cd99546a6709dd8">StewardService::op_codes</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6034c2c85012ec9c75a85a79ada61b92"></a><!-- doxytag: member="StewardService::service" ref="a6034c2c85012ec9c75a85a79ada61b92" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WSHttpBinding_USCOREIEILClientOperationsProxy <a class="el" href="classStewardService.html#a6034c2c85012ec9c75a85a79ada61b92">StewardService::service</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae266a26494828dfbe564890bc5b3720d"></a><!-- doxytag: member="StewardService::soap" ref="ae266a26494828dfbe564890bc5b3720d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">soap</a> <a class="el" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">StewardService::soap</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="stewardService_8h_source.html">stewardService.h</a></li>
 <li><a class="el" href="stewardService_8cpp.html">stewardService.cpp</a></li>
@@ -185,7 +421,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:35:35 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:39:13 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
