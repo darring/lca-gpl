@@ -34,6 +34,7 @@
 #include "clientagent_helper.h"
 #include "serviceState.h"
 #include "dispatcher_helper.h"
+#include "hwaddr.h"
 
 //! The current steward system state
 static volatile StewardState S_STATE;
@@ -110,6 +111,7 @@ int main(int argc, char *argv[])
     #endif
 
     char hostname[HOSTNAME_LEN];
+    char *hwaddr;
 
     // The CCMS log related variables
     // We assume an upper limit of 256 characters for full path plus
@@ -192,7 +194,13 @@ int main(int argc, char *argv[])
     // Obtain our hostname information for the first time
     gethostname(hostname, HOSTNAME_LEN);
 
-    logger.QuickLog("Hostname obtained");
+    hwaddr = NULL;
+    // Obtain our hwaddr information now
+    if( !getHwAddr(hwaddr) ) {
+        hwaddr = NULL;
+    }
+
+    logger.QuickLog("Hostname and HW address obtained");
 
     // Change to working directory to prevent locking
     chdir("/");
@@ -235,7 +243,7 @@ int main(int argc, char *argv[])
         logger.QuickLog("My hostname is '%s'", hostname);
 
         issuedCommand = service.QueryForClientCommands(
-            hostname, NULL, "1", HOST);
+            hostname, hwaddr, "1", HOST);
 
         switch (issuedCommand.ReturnState)
         {

@@ -20,8 +20,8 @@ IS_STAGING=yes
 
 # Uncomment the following to determine whether we're using development or
 # production servers
-IS_PRO=yes
-#IS_DEV=yes
+#IS_PRO=yes
+IS_DEV=yes
 
 if [ -n "$IS_STAGING" ]; then
     EIL_LATEST=$EIL_STAGING

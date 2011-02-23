@@ -10,6 +10,7 @@
 #include <sys/socket.h>
 #include <net/if.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "hwaddr.h"
 
