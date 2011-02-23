@@ -198,6 +198,7 @@ int main(int argc, char *argv[])
     // Obtain our hwaddr information now
     if( !getHwAddr(hwaddr) ) {
         hwaddr = NULL;
+        logger.QuickLog("Could not obtain hwaddr!");
     }
 
     logger.QuickLog("Hostname and HW address obtained");
@@ -241,6 +242,7 @@ int main(int argc, char *argv[])
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog("My hostname is '%s'", hostname);
+        logger.QuickLog("My HW address is '%s'", hwaddr);
 
         issuedCommand = service.QueryForClientCommands(
             hostname, hwaddr, "1", HOST);
