@@ -153,12 +153,6 @@ CCMS_Command StewardService::QueryForClientCommands(
 
         ctx.mType = &l_mType;
 
-        /*
-        Finally, we're ready for the GetCommandToExecute class
-        */
-        _ns1__GetCommandToExecute getCommand;
-        getCommand.ctx = &ctx;
-
         service.soap_header(
             header.wsa5__MessageID,
             header.wsa5__RelatesTo,
@@ -168,13 +162,12 @@ CCMS_Command StewardService::QueryForClientCommands(
             header.wsa5__To,
             header.wsa5__Action);
 
-        _ns1__GetCommandToExecuteResponse response;
-
-        /*
-        Execute the getCommand request
-        */
-        op_codes = service.GetCommandToExecute(
-            &getCommand, &response);
+        // FIXME call the various private methods to for query commands
+        if(hwaddr == NULL) {
+            queryForClientCommands_byHostname(&ctx, &returnCommand);
+        } else {
+            queryForClientCommands_byHWAddr(&ctx, &returnCommand);
+        }
 
         /*
         Process the response
@@ -417,4 +410,32 @@ void StewardService::getNewMessageID()
     // urn:uuid:8d1d259a-bd87-4e9a-b28d-02c4bd420fb3
     snprintf(last_MessageID, MAX_MESSAGEID_LEN,
             "urn:uuid:%s", messageID);
+}
+
+void StewardService::queryForClientCommands_byHostname(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand)
+{
+    _ns1__GetCommandToExecute getCommand;
+    getCommand.ctx = ctx;
+
+    _ns1__GetCommandToExecuteResponse response;
+
+    /*
+    Execute the getCommand request
+    */
+    op_codes = service.GetCommandToExecute(
+        &getCommand, &response);
+
+}
+
+void StewardService::queryForClientCommands_byHWAddr(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand)
+{
+}
+
+void StewardService::parseOpCode(
+            CCMS_Command *returnCommand)
+{
 }

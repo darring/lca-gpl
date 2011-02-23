@@ -65,6 +65,9 @@ class StewardService
         /*!
          * \param ctx the machine context used for the call
          * \param returnCommand the CCMS return command struct
+         * 
+         * \remarks It is assumed that header information has already been set
+         * up and all other state data for service has been preset.
          */
         void queryForClientCommands_byHostname(
             ns4__MachineContext *ctx,
@@ -74,6 +77,9 @@ class StewardService
         /*!
          * \param ctx the machine context used for the call
          * \param returnCommand the CCMS return command struct
+         *
+         * \remarks It is assumed that header information has already been set
+         * up and all other state data for service has been preset.
          */
         void queryForClientCommands_byHWAddr(
             ns4__MachineContext *ctx,
@@ -85,11 +91,12 @@ class StewardService
          * used when your local method has exhausted all custom opcode
          * interpretations it has. Once called, it will parse the opcode,
          * set the returnCommand and log as appropriate.
-         * \param opcode the operation code as returned by calls to the client ops service
          * \param returnCommand the CCMS return command struct
+         *
+         * \remarks It is assumed that op_codes has been set previously by one
+         * of the various calls to the service.
          */
         void parseOpCode(
-            int opcode,
             CCMS_Command *returnCommand);
 
     public:
