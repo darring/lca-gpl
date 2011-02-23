@@ -86,21 +86,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058 
 <a name="l00062"></a>00062         <span class="keywordtype">void</span> getNewMessageID();
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064     <span class="keyword">public</span>:
-<a name="l00066"></a>00066 
-<a name="l00069"></a>00069         <a class="code" href="classStewardService.html#a4c191fafdc30f058ca0efa2af547e876" title="Constructor for the Steward service wrapper.">StewardService</a>(StewardLogger *myLogger);
-<a name="l00070"></a>00070 
-<a name="l00072"></a>00072         <a class="code" href="classStewardService.html#a5ca717d9c973e36d63b852ec6b4e3372" title="Destructor for the Steward service wrapper.">~StewardService</a>();
-<a name="l00073"></a>00073 
+<a name="l00065"></a>00065 
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> queryForClientCommands_byHostname(
+<a name="l00073"></a>00073             ns4__MachineContext *ctx,
+<a name="l00074"></a>00074             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
 <a name="l00075"></a>00075 
-<a name="l00088"></a>00088         <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> <a class="code" href="classStewardService.html#ad7458cbec72ae30065e57aeb9341b399" title="Query for client commands from the web service.">QueryForClientCommands</a>(
-<a name="l00089"></a>00089             <span class="keywordtype">char</span> *hostname,
-<a name="l00090"></a>00090             <span class="keywordtype">char</span> *hwaddr,
-<a name="l00091"></a>00091             <span class="keywordtype">char</span> *order_num,
-<a name="l00092"></a>00092             <a class="code" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d" title="Machine Type enumeration.">MachineType</a> mType);
-<a name="l00093"></a>00093 };
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="preprocessor">#endif</span>
+<a name="l00077"></a>00077 
+<a name="l00084"></a>00084         <span class="keywordtype">void</span> queryForClientCommands_byHWAddr(
+<a name="l00085"></a>00085             ns4__MachineContext *ctx,
+<a name="l00086"></a>00086             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
+<a name="l00087"></a>00087 
+<a name="l00089"></a>00089 
+<a name="l00099"></a>00099         <span class="keywordtype">void</span> parseOpCode(
+<a name="l00100"></a>00100             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102     <span class="keyword">public</span>:
+<a name="l00104"></a>00104 
+<a name="l00107"></a>00107         <a class="code" href="classStewardService.html#a4c191fafdc30f058ca0efa2af547e876" title="Constructor for the Steward service wrapper.">StewardService</a>(StewardLogger *myLogger);
+<a name="l00108"></a>00108 
+<a name="l00110"></a>00110         <a class="code" href="classStewardService.html#a5ca717d9c973e36d63b852ec6b4e3372" title="Destructor for the Steward service wrapper.">~StewardService</a>();
+<a name="l00111"></a>00111 
+<a name="l00113"></a>00113 
+<a name="l00126"></a>00126         <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> <a class="code" href="classStewardService.html#ad7458cbec72ae30065e57aeb9341b399" title="Query for client commands from the web service.">QueryForClientCommands</a>(
+<a name="l00127"></a>00127             <span class="keywordtype">char</span> *hostname,
+<a name="l00128"></a>00128             <span class="keywordtype">char</span> *hwaddr,
+<a name="l00129"></a>00129             <span class="keywordtype">char</span> *order_num,
+<a name="l00130"></a>00130             <a class="code" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d" title="Machine Type enumeration.">MachineType</a> mType);
+<a name="l00131"></a>00131 };
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -117,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 22 2011 14:23:59 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:35:35 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
