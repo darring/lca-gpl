@@ -67,19 +67,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a><a class="code" href="classStewardLogger.html">00058</a> <span class="keyword">class </span><a class="code" href="classStewardLogger.html" title="Logger for the EIL Client Agent Steward.">StewardLogger</a>
 <a name="l00059"></a>00059 {
 <a name="l00060"></a>00060     <span class="keyword">private</span>:
-<a name="l00061"></a>00061         <span class="keywordtype">char</span> *logFilename;
-<a name="l00062"></a>00062         <span class="keywordtype">bool</span> isLogging;
-<a name="l00063"></a>00063         <span class="keywordtype">bool</span> useAltPipe;
-<a name="l00064"></a>00064         <span class="keywordtype">bool</span> useSyslog;
-<a name="l00065"></a>00065         <span class="keywordtype">int</span> syslogPriority;
-<a name="l00066"></a>00066         FILE *logPipe;
-<a name="l00067"></a>00067         <span class="keywordtype">char</span> logLine[LOG_LINE_LENGTH];
-<a name="l00068"></a>00068         <span class="keywordtype">char</span> tempLine[TEMP_LINE_LENGTH];
-<a name="l00069"></a>00069         time_t timer;
-<a name="l00070"></a>00070         <span class="keyword">struct </span>tm *ts;
-<a name="l00071"></a>00071         <span class="keywordtype">char</span> timeStamp[80];
+<a name="l00061"></a><a class="code" href="classStewardLogger.html#a5ea44d76035ed98be7a132c6e06a2629">00061</a>         <span class="keywordtype">char</span> *<a class="code" href="classStewardLogger.html#a5ea44d76035ed98be7a132c6e06a2629">logFilename</a>;
+<a name="l00062"></a><a class="code" href="classStewardLogger.html#a174e39d5d659b97dc58db35c6b12766f">00062</a>         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#a174e39d5d659b97dc58db35c6b12766f">isLogging</a>;
+<a name="l00063"></a><a class="code" href="classStewardLogger.html#ad7da289b66a8dd4c26a43dc65a653ee2">00063</a>         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#ad7da289b66a8dd4c26a43dc65a653ee2">useAltPipe</a>;
+<a name="l00064"></a><a class="code" href="classStewardLogger.html#ae31f833d9213802815cd0dd464ace317">00064</a>         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#ae31f833d9213802815cd0dd464ace317">useSyslog</a>;
+<a name="l00065"></a><a class="code" href="classStewardLogger.html#a5ea8e2cd1f14a8b3b89c18cf55e21e8e">00065</a>         <span class="keywordtype">int</span> <a class="code" href="classStewardLogger.html#a5ea8e2cd1f14a8b3b89c18cf55e21e8e">syslogPriority</a>;
+<a name="l00066"></a><a class="code" href="classStewardLogger.html#a65305110d3b4984a4d217fd90f1e2304">00066</a>         FILE *<a class="code" href="classStewardLogger.html#a65305110d3b4984a4d217fd90f1e2304">logPipe</a>;
+<a name="l00067"></a><a class="code" href="classStewardLogger.html#ad331e7faaa9af7d1193bbb5273fa1ca6">00067</a>         <span class="keywordtype">char</span> <a class="code" href="classStewardLogger.html#ad331e7faaa9af7d1193bbb5273fa1ca6">logLine</a>[LOG_LINE_LENGTH];
+<a name="l00068"></a><a class="code" href="classStewardLogger.html#aa1463b1df97199a009e3b43c4d81cfac">00068</a>         <span class="keywordtype">char</span> <a class="code" href="classStewardLogger.html#aa1463b1df97199a009e3b43c4d81cfac">tempLine</a>[TEMP_LINE_LENGTH];
+<a name="l00069"></a><a class="code" href="classStewardLogger.html#a6668d4f6901707529dad64d07c28af2b">00069</a>         time_t <a class="code" href="classStewardLogger.html#a6668d4f6901707529dad64d07c28af2b">timer</a>;
+<a name="l00070"></a><a class="code" href="classStewardLogger.html#a5dd9195375107109b6cf3ce3969bb89e">00070</a>         <span class="keyword">struct </span>tm *<a class="code" href="classStewardLogger.html#a5dd9195375107109b6cf3ce3969bb89e">ts</a>;
+<a name="l00071"></a><a class="code" href="classStewardLogger.html#aa71822e2786269b092bd66fc527d827b">00071</a>         <span class="keywordtype">char</span> <a class="code" href="classStewardLogger.html#aa71822e2786269b092bd66fc527d827b">timeStamp</a>[80];
 <a name="l00072"></a>00072 
-<a name="l00074"></a>00074         <span class="keywordtype">bool</span> innerLogEntry();
+<a name="l00074"></a>00074         <span class="keywordtype">bool</span> <a class="code" href="classStewardLogger.html#a0f32edd1128d7f7af9afb34d1ccbb613" title="private method for actually writing the log entry to the log file">innerLogEntry</a>();
 <a name="l00075"></a>00075     <span class="keyword">public</span>:
 <a name="l00077"></a>00077 
 <a name="l00080"></a>00080         <a class="code" href="classStewardLogger.html#a4a52242b548bf51d50636f36297c2184" title="Constructor for the EIL Client Agent Steward Logger.">StewardLogger</a>(<span class="keywordtype">char</span> *logFile);
@@ -116,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -125,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:09:29 for EILClientAgentLoggerClass by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:47:02 for EILClientAgentLoggerClass by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
