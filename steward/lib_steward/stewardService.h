@@ -61,6 +61,37 @@ class StewardService
          */
         void getNewMessageID();
 
+        //! Internal method for querying client commands by hostname
+        /*!
+         * \param ctx the machine context used for the call
+         * \param returnCommand the CCMS return command struct
+         */
+        void queryForClientCommands_byHostname(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand);
+
+        //! Internal method for querying client commands by HW address
+        /*!
+         * \param ctx the machine context used for the call
+         * \param returnCommand the CCMS return command struct
+         */
+        void queryForClientCommands_byHWAddr(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand);
+
+        //! Internal method for parsing the opcode from various calls
+        /*!
+         * This method is intended to be highly generic, and should only be
+         * used when your local method has exhausted all custom opcode
+         * interpretations it has. Once called, it will parse the opcode,
+         * set the returnCommand and log as appropriate.
+         * \param opcode the operation code as returned by calls to the client ops service
+         * \param returnCommand the CCMS return command struct
+         */
+        void parseOpCode(
+            int opcode,
+            CCMS_Command *returnCommand);
+
     public:
         //! Constructor for the Steward service wrapper
         /*!
