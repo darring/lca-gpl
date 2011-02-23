@@ -22,6 +22,14 @@ EIL_VERSION=$(shell cat ../VERSION)
 EIL_VERSION_TEXT=Version $(EIL_VERSION)
 EIL_VERSION_DEF=-D 'EIL_VERSION_TEXT="$(EIL_VERSION_TEXT)"'
 
+# CCMS IP Address defines
+CCMS_DEV_SERVER=172.16.3.12
+CCMS_PRO_SERVER=172.16.3.10
+
+# Set the CCMS_SERVER variable to either development or production
+CCMS_SERVER=$(CCMS_PRO_SERVER)
+CCMS_SERVER_DEF=-D 'CCMS_SERVER="$(CCMS_SERVER)"'
+
 # gSOAP includes
 GSOAP_INCLUDES=-I/usr/local/share/gsoap/plugin/
 GSOAP_SOURCES=/usr/local/share/gsoap/plugin/wsaapi.c
@@ -38,8 +46,8 @@ INSTALL=install
 INSTALL_GID=eil
 INSTALL_UID=eil
 
-CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF)
-CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF)
+CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF) $(CCMS_SERVER_DEF)
+CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF) $(CCMS_SERVER_DEF)
 
 LDFLAGS=
 CP_LDFLAGS=-lgsoap++

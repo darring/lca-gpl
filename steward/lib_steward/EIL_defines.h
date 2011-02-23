@@ -12,7 +12,7 @@
 #endif
 
 #ifndef EIL__CLIENTOPSERVICE
-#define EIL__CLIENTOPSERVICE "http://172.16.3.10/CCMS/EILClientOperationsService.svc"
+#define EIL__CLIENTOPSERVICE "http://CCMS_SERVER/CCMS/EILClientOperationsService.svc"
 #endif
 
 #ifndef EIL__GETCOMMANDTOEXECUTE

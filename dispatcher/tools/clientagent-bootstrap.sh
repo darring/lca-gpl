@@ -7,20 +7,32 @@
 # This script must be completely self-contained (unfortunately)
 
 # EIL IP configs
-EIL_AUTO="172.16.3.10"
+EIL_AUTO_PRO="172.16.3.10"
+EIL_AUTO_DEV="172.16.3.12"
 EIL_RELEASE="172.16.3.10"
 EIL_STAGING="10.4.0.26"
 
-unset IS_STAGING IS_RELEASE EIL_LATEST INSTALL_TOOL || true
+unset IS_STAGING IS_RELEASE EIL_LATEST EIL_AUTO INSTALL_TOOL IS_DEV IS_PRO || true
 
 # Uncomment whichever of the following is correct for this install
 IS_STAGING=yes
 #IS_RELEASE=yes
 
+# Uncomment the following to determine whether we're using development or
+# production servers
+IS_PRO=yes
+#IS_DEV=yes
+
 if [ -n "$IS_STAGING" ]; then
     EIL_LATEST=$EIL_STAGING
 else
     EIL_LATEST=$EIL_RELEASE
+fi
+
+if [ -n "$IS_DEV" ]; then
+    EIL_AUTO=$EIL_AUTO_DEV
+else
+    EIL_AUTO=$EIL_AUTO_PRO
 fi
 
 PROGNAME=${0##*/}
