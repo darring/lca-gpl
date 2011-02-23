@@ -47,7 +47,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>DispatcherHelper Class Reference</h1>  </div>
 </div>
@@ -68,6 +70,16 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor for the abstract interface to the dispatcher.  <a href="#acae281f0aa16f6bb4b1e54de3158cbbe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#ace6bf51dea1174c90993e84cbf397c69">ExecuteCommand</a> (CCMS_Command *commandIssued)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Actually execute the command.  <a href="#ace6bf51dea1174c90993e84cbf397c69"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Dispatcher_Command_Status&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#a0e343e7c27420c48adc7d007c6962e01">runDispatcher</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method used to actually run the dispatcher.  <a href="#a0e343e7c27420c48adc7d007c6962e01"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">binPath</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">comPath</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">dispatcherPath</a> [512]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">StewardLogger *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">logger</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Abstract interface to the dispatcher shell script. </p>
@@ -161,6 +173,80 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0e343e7c27420c48adc7d007c6962e01"></a><!-- doxytag: member="DispatcherHelper::runDispatcher" ref="a0e343e7c27420c48adc7d007c6962e01" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dispatcher_Command_Status DispatcherHelper::runDispatcher </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal method used to actually run the dispatcher. </p>
+<p>Called after the command directory has been poluated with any and all data that is needed. This actually executes the dispatcher and returns a command status. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Command status </dd></dl>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aa5ad17452bdad3dde20e32c8306fc0e6"></a><!-- doxytag: member="DispatcherHelper::binPath" ref="aa5ad17452bdad3dde20e32c8306fc0e6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">DispatcherHelper::binPath</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae69e9da4a197e62230520447fef7f580"></a><!-- doxytag: member="DispatcherHelper::comPath" ref="ae69e9da4a197e62230520447fef7f580" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">DispatcherHelper::comPath</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aefb701a82ddb63f3d176b2a8f3fd4fc4"></a><!-- doxytag: member="DispatcherHelper::dispatcherPath" ref="aefb701a82ddb63f3d176b2a8f3fd4fc4" args="[512]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">DispatcherHelper::dispatcherPath</a>[512]<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae956379528cec5d86094780f4f64591b"></a><!-- doxytag: member="DispatcherHelper::logger" ref="ae956379528cec5d86094780f4f64591b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">StewardLogger* <a class="el" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">DispatcherHelper::logger</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="dispatcher__helper_8h_source.html">dispatcher_helper.h</a></li>
 <li><a class="el" href="dispatcher__helper_8cpp.html">dispatcher_helper.cpp</a></li>
@@ -171,7 +257,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -180,7 +266,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 14:33:24 for Abstractinterfacetothedispatchershellscript by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:43:30 for Abstractinterfacetothedispatchershellscript by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

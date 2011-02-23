@@ -64,13 +64,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00028"></a>00028 {
 <a name="l00029"></a>00029     <span class="keyword">private</span>:
 <a name="l00030"></a>00030         <span class="comment">//FILE *filePipe;</span>
-<a name="l00031"></a>00031         <span class="keywordtype">char</span> *binPath;
-<a name="l00032"></a>00032         <span class="keywordtype">char</span> *comPath;
-<a name="l00033"></a>00033         <span class="keywordtype">char</span> dispatcherPath[512];
-<a name="l00034"></a>00034         StewardLogger *logger;
+<a name="l00031"></a><a class="code" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">00031</a>         <span class="keywordtype">char</span> *<a class="code" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">binPath</a>;
+<a name="l00032"></a><a class="code" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">00032</a>         <span class="keywordtype">char</span> *<a class="code" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">comPath</a>;
+<a name="l00033"></a><a class="code" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">00033</a>         <span class="keywordtype">char</span> <a class="code" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">dispatcherPath</a>[512];
+<a name="l00034"></a><a class="code" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">00034</a>         StewardLogger *<a class="code" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">logger</a>;
 <a name="l00035"></a>00035 
 <a name="l00037"></a>00037 
-<a name="l00043"></a>00043         Dispatcher_Command_Status runDispatcher();
+<a name="l00043"></a>00043         Dispatcher_Command_Status <a class="code" href="classDispatcherHelper.html#a0e343e7c27420c48adc7d007c6962e01" title="Internal method used to actually run the dispatcher.">runDispatcher</a>();
 <a name="l00044"></a>00044     <span class="keyword">public</span>:
 <a name="l00046"></a>00046 
 <a name="l00051"></a>00051         <a class="code" href="classDispatcherHelper.html#a85e1b77f6dda7d9ebbc1fff9874cbca1" title="Constructor for the abstract interface to the dispatcher.">DispatcherHelper</a>(
@@ -90,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 14:33:24 for Abstractinterfacetothedispatchershellscript by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:43:30 for Abstractinterfacetothedispatchershellscript by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
