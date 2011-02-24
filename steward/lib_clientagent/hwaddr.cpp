@@ -20,7 +20,7 @@
 //! The maximum length of a HW address
 #define MAX_HWADDR 32
 
-bool getHwAddr(char *hwaddr)
+bool getHwAddr(char **hwaddr)
 {
     /*
      This is probably a bit crazy, I realize, but I'd like to avoid potential
@@ -52,9 +52,9 @@ bool getHwAddr(char *hwaddr)
         strcpy(buffer.ifr_name, potential_nics[i]);
 
         retval = ioctl(s, SIOCGIFHWADDR, &buffer);
-        if (retval > 0) {
-            break;
+        if (retval >= 0) {
             found = true;
+            break;
         }
     }
 
@@ -70,7 +70,7 @@ bool getHwAddr(char *hwaddr)
                 sprintf(&rethwaddr[i+2], ":");
             i += 3;
         }
-        hwaddr = rethwaddr;
+        *hwaddr = rethwaddr;
     }
 
     return found;

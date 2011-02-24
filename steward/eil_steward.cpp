@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 
     hwaddr = NULL;
     // Obtain our hwaddr information now
-    if( !getHwAddr(hwaddr) ) {
+    if( !getHwAddr(&hwaddr) ) {
         hwaddr = NULL;
         logger.QuickLog("Could not obtain hwaddr!");
     }
