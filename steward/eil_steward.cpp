@@ -112,6 +112,7 @@ int main(int argc, char *argv[])
 
     char hostname[HOSTNAME_LEN];
     char *hwaddr;
+    char *hostnameptr;
 
     // The CCMS log related variables
     // We assume an upper limit of 256 characters for full path plus
@@ -234,8 +235,9 @@ int main(int argc, char *argv[])
     if (strncasecmp(hostname, "localhost", 9) == 0) {
         logger.QuickLog("Hostname is set to 'localhost', which is not a unique identifier");
         logger.QuickLog("Falling back on HW address for identifier");
-        char *hostname;
-        hostname = NULL;
+        hostnameptr = NULL;
+    } else {
+        hostnameptr = hostname;
     }
 
     // Main loop
@@ -246,7 +248,7 @@ int main(int argc, char *argv[])
         logger.QuickLog("My HW address is '%s'", hwaddr);
 
         issuedCommand = service.QueryForClientCommands(
-            hostname, hwaddr, "1", HOST);
+            hostnameptr, hwaddr, "1", HOST);
 
         switch (issuedCommand.ReturnState)
         {
