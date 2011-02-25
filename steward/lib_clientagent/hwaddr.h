@@ -26,8 +26,9 @@
  * order interface.
  *
  * \param hwaddr The char pointer for the hardware address string
+ * \param max_len The maximum length of the hardware address string
  * \return A bool determining the success of the operation
  */
-bool getHwAddr(char **hwaddr);
+bool getHwAddr(char *hwaddr, int max_len);
 
 #endif

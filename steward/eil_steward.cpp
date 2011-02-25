@@ -26,6 +26,7 @@
 #include <strings.h>
 
 #define HOSTNAME_LEN 50
+#define HWADDR_LEN 32
 
 // Various helper libraries
 #include "logger.h"
@@ -111,8 +112,9 @@ int main(int argc, char *argv[])
     #endif
 
     char hostname[HOSTNAME_LEN];
-    char *hwaddr;
+    char hwaddr[HWADDR_LEN];
     char *hostnameptr;
+    char *hwaddrptr;
 
     // The CCMS log related variables
     // We assume an upper limit of 256 characters for full path plus
@@ -195,11 +197,13 @@ int main(int argc, char *argv[])
     // Obtain our hostname information for the first time
     gethostname(hostname, HOSTNAME_LEN);
 
-    hwaddr = NULL;
+    hwaddrptr = NULL;
     // Obtain our hwaddr information now
-    if( !getHwAddr(&hwaddr) ) {
-        hwaddr = NULL;
+    if( !getHwAddr(hwaddr, HWADDR_LEN) ) {
+        hwaddrptr = NULL;
         logger.QuickLog("Could not obtain hwaddr!");
+    } else {
+        hwaddrptr = hwaddr;
     }
 
     logger.QuickLog("Hostname and HW address obtained");
@@ -248,7 +252,7 @@ int main(int argc, char *argv[])
         logger.QuickLog("My HW address is '%s'", hwaddr);
 
         issuedCommand = service.QueryForClientCommands(
-            hostnameptr, hwaddr, "1", HOST);
+            hostnameptr, hwaddrptr, "1", HOST);
 
         switch (issuedCommand.ReturnState)
         {

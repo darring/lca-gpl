@@ -68,8 +68,6 @@ CCMS_Command StewardService::QueryForClientCommands(
         header.wsa5__ReplyTo = &replyTo;
         header.wsa5__To = EIL__CLIENTOPSERVICE;
 
-        header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
-
         soap.header = &header;
 
         /*
@@ -153,19 +151,30 @@ CCMS_Command StewardService::QueryForClientCommands(
 
         ctx.mType = &l_mType;
 
-        service.soap_header(
-            header.wsa5__MessageID,
-            header.wsa5__RelatesTo,
-            header.wsa5__From,
-            header.wsa5__ReplyTo,
-            header.wsa5__FaultTo,
-            header.wsa5__To,
-            header.wsa5__Action);
-
         // FIXME call the various private methods to for query commands
         if(hwaddr == NULL) {
+            header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
+            service.soap_header(
+                header.wsa5__MessageID,
+                header.wsa5__RelatesTo,
+                header.wsa5__From,
+                header.wsa5__ReplyTo,
+                header.wsa5__FaultTo,
+                header.wsa5__To,
+                header.wsa5__Action);
+
             queryForClientCommands_byHostname(&ctx, &returnCommand);
         } else {
+            header.wsa5__Action = EIL__GETCOMMANDTOEXECUTEUSINGMACADDRESS;
+            service.soap_header(
+                header.wsa5__MessageID,
+                header.wsa5__RelatesTo,
+                header.wsa5__From,
+                header.wsa5__ReplyTo,
+                header.wsa5__FaultTo,
+                header.wsa5__To,
+                header.wsa5__Action);
+
             queryForClientCommands_byHWAddr(&ctx, &returnCommand);
         }
 
