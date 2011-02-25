@@ -99,6 +99,9 @@ class StewardService
         void parseOpCode(
             CCMS_Command *returnCommand);
 
+        //! Internal method for sync'ing the headers
+        void synHeaders();
+
     public:
         //! Constructor for the Steward service wrapper
         /*!
