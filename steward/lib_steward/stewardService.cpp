@@ -84,15 +84,40 @@ CCMS_Command StewardService::QueryForClientCommands(
         /*
         Bring it up to the next level
         */
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
-        ar[1] = ordernum_kv;
 
+        int numParams = 1;
+        if(hostname != NULL)
+            numParams++;
+        if(hwaddr != NULL)
+            numParams++;
+
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[numParams];
+        ar[0] = ordernum_kv;
+
+        numParams = 1;
+
+        /*
+        If we have a hostanem, use it
+        */
         if(hostname != NULL) {
             // Set up our host name
             _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
             hostname_kv.Key = "HOST_NAME";
             hostname_kv.Value= hostname;
-            ar[0] = hostname_kv;
+            ar[numParams] = hostname_kv;
+            numParams++;
+        }
+
+        /*
+        If we have a hwaddr, use it
+        */
+        if(hwaddr != NULL) {
+            // Set up our hwaddr
+            _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hwaddr_kv;
+            hwaddr_kv.Key = "MAC_ADDR";
+            hwaddr_kv.Value= hwaddr;
+            ar[numParams] = hwaddr_kv;
+            numParams++;
         }
 
         /*
@@ -107,22 +132,6 @@ CCMS_Command StewardService::QueryForClientCommands(
         */
         ns4__MachineContext ctx;
         ctx.mParams = &k1;
-
-        /*
-        If we have a hwaddr, use it
-        */
-        if(hwaddr != NULL) {
-            // Set up our hwaddr
-            _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hwaddr_kv;
-            hwaddr_kv.Key = "MAC_ADDR";
-            hwaddr_kv.Value= hwaddr;
-            _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hw[1];
-            hw[0] = hwaddr_kv;
-            ns5__ArrayOfKeyValueOfstringstring k2;
-            k2.__sizeKeyValueOfstringstring = 1;
-            k2.KeyValueOfstringstring = &hw[0];
-            ctx.mMacs = &k2;
-        }
 
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
