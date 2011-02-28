@@ -41,15 +41,6 @@
 //! The upper character range for the convert method
 #define UPPER_CHAR_RANGE 126
 
-//! The key for the order num placeholder
-#define ORDERNUM_KEY 0
-
-//! The key for the machine ID (mac/host) placeholder
-#define MID_KEY 1
-
-//! The size of the key array for the param list
-#define CTX_PARAM_SIZE 2
-
 class StewardLogger;
 
 class StewardService
@@ -62,13 +53,6 @@ class StewardService
         int op_codes;
         char last_MessageID[MAX_MESSAGEID_LEN];
         ServiceState currentState;
-        //! Determines if the current operation uses the HW address or not
-        /*!
-         * \remarks Note: There is no logic to reset this between calls, so it
-         * is up to the engineer to reset this flag as needed (or check if it
-         * needs to be reset).
-         */
-        bool useHWaddr;
 
         //! Obtain a new message ID
         /*!
