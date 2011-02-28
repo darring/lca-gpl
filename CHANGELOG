@@ -52,3 +52,8 @@
 - Finalize Ångström-distro (XenClient) support for TCP diagnostic scripts
 - Add hosts logic to helper script
 - Bump version to 4.1.1 to sync with Windows client for release
+
+* Mon Feb 28 2011 - Sam Hart <samx.hart@intel.com>
+- Add a redirect for the beta-CCMS server for development purposes.
+- Rebuild soap bindings for beta-CCMS.
+- Add HW Address support to steward.
