@@ -97,7 +97,7 @@ CCMS_Command StewardService::QueryForClientCommands(
         numParams = 1;
 
         /*
-        If we have a hostanem, use it
+        If we have a hostname, use it
         */
         if(hostname != NULL) {
             // Set up our host name
@@ -124,7 +124,7 @@ CCMS_Command StewardService::QueryForClientCommands(
         Take that array, and plug it into the next data type level
         */
         ns5__ArrayOfKeyValueOfstringstring k1;
-        k1.__sizeKeyValueOfstringstring = 2;
+        k1.__sizeKeyValueOfstringstring = numParams;
         k1.KeyValueOfstringstring = &ar[0];
 
         /*
