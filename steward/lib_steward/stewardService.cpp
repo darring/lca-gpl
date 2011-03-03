@@ -14,6 +14,7 @@
 #include "stewardService.h"
 #include "EIL_defines.h"
 #include "uniqueHash.h"
+#include "CCMS_commands.h"
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
@@ -242,7 +243,7 @@ void StewardService::queryForClientCommands_byHostname(
 
             // Parse *what* our command was
             if(strcasecmp(
-                response.GetCommandToExecuteResult->CommandName, "reboot")
+                response.GetCommandToExecuteResult->CommandName, CCMS_REBOOT)
                 == 0)
             {
                 currentState = STATE_ExecutingCommand;
@@ -329,7 +330,7 @@ void StewardService::queryForClientCommands_byHWAddr(
             // Parse *what* our command was
             if(strcasecmp(
                 response.GetCommandToExecuteUsingMacAddressResult->CommandName,
-                "reboot") == 0)
+                CCMS_REBOOT) == 0)
             {
                 currentState = STATE_ExecutingCommand;
                 returnCommand->ReturnState = COMMAND_SUCCESS;

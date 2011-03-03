@@ -13,12 +13,12 @@
 #define CCMS_commands_h
 
 //! The reboot command
-#define REBOOT "reboot"
+#define CCMS_REBOOT "reboot"
 
 //! The auto-update command
-#define UPDATE "update"
+#define CCMS_UPDATE "update"
 
 //! The command to refresh and update the asset information
-#define ASSETREFRESH "asset"
+#define CCMS_ASSETREFRESH "asset"
 
 #endif
