@@ -7,6 +7,8 @@
  * \section intro_sec Introduction
  *
  * This file provides the defines for the upstream CCMS commands.
+ *
+ * CCMS_commands.h
  */
 
 #ifndef CCMS_commands_h
