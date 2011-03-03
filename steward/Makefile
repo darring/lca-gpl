@@ -3,7 +3,8 @@
 include ../Globals.mk
 
 SOURCES=eil_steward.cpp lib_soap/soapC.cpp \
-	logger/logger.cpp lib_steward/stewardService.cpp \
+	logger/logger.cpp lib_steward/stewardService_parseOp.cpp \
+	lib_steward/stewardService.cpp \
 	lib_hash/uniqueHash.cpp lib_clientagent/clientagent_helper.cpp \
 	lib_dispatcher/dispatcher_helper.cpp lib_clientagent/hwaddr.cpp \
 	lib_nmsa/nmsaService.cpp \
@@ -17,6 +18,7 @@ HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
 OBJECTS=logger.o soapC.o uniqueHash.o stewardService.o hwaddr.o \
+	stewardService_parseOp.o \
 	clientagent_helper.o dispatcher_helper.o nmsaService.o \
 	soapWSHttpBinding_USCOREIEILClientOperationsProxy.o \
 	eil_steward.o
@@ -40,6 +42,8 @@ hwaddr.o: eil_steward.o
 logger.o: eil_steward.o
 
 soapC.o: eil_steward.o
+
+stewardService_parseOp.o: eil_steward.o
 
 stewardService.o: eil_steward.o
 
