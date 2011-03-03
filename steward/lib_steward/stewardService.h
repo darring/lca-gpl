@@ -18,6 +18,11 @@
  *  To use the steward service, create an instance of the class StewardServce,
  * and call the StewardService::QueryForClientCommands method every NN seconds
  * (where NN is determined by some external criteria).
+ *
+ * \section subsections Subsections
+ *
+ * \li \subpage ccms_commands "CCMS Command Defines"
+
  */
 
 #ifndef stewardService_H
