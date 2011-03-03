@@ -12,7 +12,7 @@ SOURCES=eil_steward.cpp lib_soap/soapC.cpp \
 HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
 	lib_hash/uniqueHash.h lib_clientagent/clientagent_helper.h \
 	lib_dispatcher/dispatcher_helper.h lib_clientagent/hwaddr.h \
-	lib_nmsa/nmsaService.h \
+	lib_nmsa/nmsaService.h lib_steward/CCMS_commands.h \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
