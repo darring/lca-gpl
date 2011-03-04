@@ -12,6 +12,9 @@
  *
  * \section Usage Usage
  *
+ * This section will describe the usage.
+ *
+ * \li \subpage assetHelper "Asset Helper"
  */
 
 #ifndef nmsaService_H
