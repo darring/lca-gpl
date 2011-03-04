@@ -4,10 +4,37 @@
 
 /*! \page assetHelper Asset Helper
  *
+ * The asset helper consists of the following tools and definitions:
+ * \li assetReady(char *assetInfo)
+ * \li ASSET_TIMEOUT
  */
 
 #ifndef assetHelper_H
 #define assetHelper_H
+
+//! The asset timeout
+/*!
+ * This determines how long we should wait before "giving up" on the asset info
+ * script after boot and just moving on. It should be in seconds.
+ *
+ * The reason we have this timeout is because:
+ *
+ * \li The asset collection script may or may not be present on the system. If
+ * the script is not present on the system, we do not want to keep probing for
+ * the asset info file forever as this is wasteful and a potential security
+ * hole.
+ *
+ * \li There might be a problem with the asset collection script which might
+ * require external user diagnostic. If this is the case, there is nothing the
+ * Linux client agent can do about it, so, again, we do not want to keep probing
+ * for the asset info file.
+ *
+ * \li Due to the fact that the asset collection script runs \b after the
+ * steward starts up, we have to have some delay to give it a chance to
+ * complete. If we simply assumed it was ready, there would exist the potential
+ * for a race condition, which would be bad.
+ */
+#define ASSET_TIMEOUT 8*60
 
 //! Determines if the asset info is fresh, and ready to be uploaded to CCMS
 /*!
