@@ -33,6 +33,7 @@ bool assetReady(char *assetInfo)
                 if(stat(ASSET_INFO_FILE, &buf)) {
                     if(buf.st_size > 0) {
                         assetInfo = (char *)malloc(buf.st_size * sizeof(char));
+                        //
                     } else {
                         // Hmm, well that's odd, asset info is zero size
                         return false;
