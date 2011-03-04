@@ -1,0 +1,3 @@
+/*
+ * assetHelper.h
+ */
