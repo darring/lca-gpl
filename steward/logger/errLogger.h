@@ -19,7 +19,7 @@
 #ifndef errLogger_H
 #define errLogger_H
 
-class StewardLogger logger;
+class StewardLogger;
 
 class ErrLogger
 {
@@ -29,9 +29,9 @@ class ErrLogger
     public:
         //! Constructor
         /*!
-         * \param logger the StewardLogger instance
+         * \param myLogger the StewardLogger instance
          */
-        ErrLogger(StewardLogger *logger);
+        ErrLogger(StewardLogger *myLogger);
 
         //! Destructor
         ~ErrLogger();
