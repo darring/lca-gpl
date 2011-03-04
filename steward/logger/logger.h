@@ -39,6 +39,8 @@
  *
  * To invoke this logger class in this way, you must call
  * StewardLogger::StewardLogger(FILE *altPipe).
+ *
+ * \li \subpage errLogger "Generic Error Logger"
  */
 
 #ifndef logger_H
