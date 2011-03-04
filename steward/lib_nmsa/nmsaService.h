@@ -6,6 +6,10 @@
  *
  * \section Introduction Introduction
  *
+ *  This will be the wrapper for the NMSA service, once we begin to integrate
+ * it with the rest of the Linux client agent. However, for now, it is largely
+ * just a stub.
+ *
  * \section Usage Usage
  *
  */
