@@ -208,3 +208,11 @@ void StewardLogger::QuickLog(char *text, ...)
         EndLogging();
     }
 }
+
+StewardLogger::void ErrLog()
+{
+}
+
+StewardLogger::void ErrLog(char *text, ...)
+{
+}
