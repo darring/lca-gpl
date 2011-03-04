@@ -12,7 +12,7 @@
  *
  * \section usage Usage
  *
- * The Error Logger is created using the ErrLogger(StewardLogger *logger)
+ * The Error Logger is created using the ErrLogger::ErrLogger(StewardLogger *logger)
  * constructor.
  */
 
