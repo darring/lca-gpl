@@ -7,6 +7,7 @@
  * The asset helper consists of the following tools and definitions:
  * \li assetReady(char *assetInfo)
  * \li ASSET_TIMEOUT
+ * \li ASSET_INFO_FILE
  */
 
 #ifndef assetHelper_H
@@ -35,6 +36,9 @@
  * for a race condition, which would be bad.
  */
 #define ASSET_TIMEOUT 8*60
+
+//! The location of the asset info file
+#define ASSET_INFO_FILE "/opt/intel/assetinfo"
 
 //! Determines if the asset info is fresh, and ready to be uploaded to CCMS
 /*!
