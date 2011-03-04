@@ -31,7 +31,12 @@ bool assetReady(char *assetInfo)
                 // Check for the existence of the file
                 struct stat buf;
                 if(stat(ASSET_INFO_FILE, &buf)) {
-                    //
+                    if(buf.st_size > 0) {
+                        assetInfo = (char *)malloc(buf.st_size * sizeof(char));
+                    } else {
+                        // Hmm, well that's odd, asset info is zero size
+                        return false;
+                    }
                 } else {
                     // File isn't there (or can't be read
                     // FIXME probably should check errno(3)
