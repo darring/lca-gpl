@@ -10,6 +10,7 @@
 #include <stdarg.h>
 
 #include "logger.h"
+#include "err_defines.h"
 
 StewardLogger::StewardLogger(char *logFile)
 {
