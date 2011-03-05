@@ -8,6 +8,9 @@
 //! The maximum error names defined in errno(3) which we use
 #define MAX_ERROR_NAMES 132
 
+///! The prefix for a system error
+#define ERROR_PREFIX "System error detected, see errno(3):"
+
 //! The Error names in string form
 static char *errorName[] = {
     "", "EPERM", "ENOENT", "ESRCH", "EINTR", "EIO", "ENXIO", "E2BIG",
