@@ -56,13 +56,14 @@ class StewardLogger;
  * not hurt anything, it simply will be unnecessary).
  *
  * \param assetInfo A character array pointer which will hold the asset info
- * \returns True if asset info is ready. False if it is not.
+ * \returns A positive int indicating the size of assetInfo on success. A
+ * A negative int on failure.
  *
  * \remarks assetInfo should not be initialized, as it will be initalized by
  * the assetReady(char *assetInfo) function. Additionally, once it has been
  * discharged by the steward service wrapper, it should be free'd (see malloc(3)
  * ) or else there will be a memory leak.
  */
-bool assetReady(char *assetInfo, StewardLogger *logger);
+int assetReady(char *assetInfo, StewardLogger *logger);
 
 #endif

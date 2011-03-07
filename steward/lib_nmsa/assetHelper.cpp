@@ -13,7 +13,7 @@
 #include "assetHelper.h"
 #include "logger.h"
 
-bool assetReady(char *assetInfo, StewardLogger *logger)
+int assetReady(char *assetInfo, StewardLogger *logger)
 {
     /*
      * We keep this around as a toggle so we don't waste effort once we've
@@ -36,26 +36,27 @@ bool assetReady(char *assetInfo, StewardLogger *logger)
                     if(buf.st_size > 0) {
                         assetInfo = (char *)malloc(buf.st_size * sizeof(char));
                         //
+                        return buf.st_size;
                     } else {
                         // Hmm, well that's odd, asset info is zero size
-                        return false;
+                        return -1;
                     }
                 } else {
                     // File isn't there (or can't be read
                     logger->ErrLog("Asset file is expected, but isn't there or cannot be read.");
-                    return false;
+                    return -1;
                 }
             } else {
                 alreadyRepliedOrPast = true;
-                return false;
+                return -1;
             }
         } else {
             logger->ErrLog();
-            return false;
+            return -1;
         }
     } else {
-        return false;
+        return -1;
     }
     // We shouldn't ever get here, but this is for completeness
-    return false;
+    return -1;
 }
