@@ -13,6 +13,11 @@ ASSETHELPER_ALL=$(ASSETHELPER_CPP) $(ASSETHELPER_H)
 INCLUDES_LOGGER=-I../logger/
 INCLUDES_ASSETHELPER=-I../lib_nmsa/
 
+all: assetHelper_test
+
+assetHelper_test: logger.o assetHelper.o assetHelper_test.o
+	$(CPP) logger.o assetHelper.o assetHelper_test.o -o assetHelper_test
+
 logger.o: assetHelper_test.o
 
 assetHelper.o: assetHelper_test.o
