@@ -103,9 +103,11 @@ testVerifyErrorOnNoAssetFile()
     fi
     ${TMP_ASSET_TEST_BIN} ${TMP_ASSET_TEST} ${TMP_LOG}
     if [ $? -ne 0 ]; then
+        rm ${TMP_LOG}
         assertTrue ${SHUNIT_TRUE}
     else
-        echo $(cat ${TMP_LOG})
+        cat ${TMP_LOG}
+        rm ${TMP_LOG}
         fail "We expected a failure, but we got success?"
     fi
 }
@@ -115,15 +117,18 @@ testVerifyAssetFileRead()
     cp -f ${TMP_ASSET_SOURCE} ${ASSET_FILE}
     ${TMP_ASSET_TEST_BIN} ${TMP_ASSET_TEST} ${TMP_LOG}
     if [ $? -ne 0 ]; then
-        echo $(cat ${TMP_LOG})
+        cat ${TMP_LOG}
+        rm ${TMP_LOG}
         fail "Failure running asset test"
     else
         # Compare the two
-        echo $(cat ${TMP_LOG})
+        cat ${TMP_LOG}
         diff ${ASSET_FILE} ${TMP_ASSET_TEST}
         if [ $? -ne 0 ]; then
+            rm ${TMP_LOG}
             fail "Failure, the output does not match the input!"
         else
+            rm ${TMP_LOG}
             assertTrue ${SHUNIT_TRUE}
         fi
     fi
