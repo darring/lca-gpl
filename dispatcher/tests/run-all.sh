@@ -10,6 +10,7 @@ helper-verify.sh
 install-verify.sh
 elevate-build-verify.sh
 steward-build-verify.sh
+asset-helper-verify.sh
 EOF
 )
 
