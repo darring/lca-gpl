@@ -73,5 +73,5 @@ clean:
 	@rm -f logger/*~ logger/*.o logger/*.so logger/core logger/core.*
 	@rm -f lib_soap/*~ lib_soap/*.o lib_soap/*.so lib_soap/core lib_soap/core.*
 	@rm -f lib_steward/*~ lib_steward/*.o lib_steward/core lib_steward/core.*
-	@rm -f lib_dispatcher/*~
+	@rm -f lib_dispatcher/*~ lib_nmsa/*~
 	@rm -f eil_steward

@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "logger.h"
 #include "assetHelper.h"
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
     logger.QuickLog("assetHelper_test: Running test");
 
     int result;
-    char *assetInfo;
+    char *assetInfo = NULL;
 
     result = assetReady(assetInfo, &logger);
     if(result > 0) {
@@ -44,14 +45,14 @@ int main(int argc, char *argv[])
 
         size_t size_out = write(fd, assetInfo, result);
         free(assetInfo);
-        if(size_out != result) {
+        if(size_out != (unsigned)result) {
             logger.ErrLog("Size out mismatch");
             close(fd);
             return -1;
         } else {
             logger.QuickLog("File written");
             close(fd);
-            if(close(fs) == -1) {
+            if(close(fd) == -1) {
                 logger.ErrLog("Error closing file '%s'", argv[1]);
                 return -1;
             }
