@@ -85,6 +85,7 @@ EOF
 # Tear down our environment
 oneTimeTearDown()
 {
+    rm -f ${ASSET_FILE}
     if [ -n "$WAS_ORIG_ASSET" ]; then
         cp -f ${TMP_CURRENT_ASSET_STORAGE} ${ASSET_FILE}
     fi
