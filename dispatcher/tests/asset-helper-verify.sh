@@ -70,11 +70,16 @@ EOF
     fi
 
     TMP_ASSET_TEST_BIN="${TMP_BIN}/assetTest"
-    cd ../../steward/tests
+    cd ../../steward/
+    touch VERSION
+    cd tests/
     make assetHelper_test
     cp -f assetHelper_test ${TMP_ASSET_TEST_BIN}
     chmod a+x ${TMP_ASSET_TEST_BIN}
     make clean
+    cd ../
+    rm VERSION
+    cd ../dispatcher/tests
 }
 
 # Tear down our environment
@@ -92,7 +97,7 @@ oneTimeTearDown()
 
 testVerifyErrorOnNoAssetFile()
 {
-    if [ -e "$ASSET_FILE" ];
+    if [ -e "$ASSET_FILE" ]; then
         rm -f ${ASSET_FILE}
     fi
     ${TMP_ASSET_TEST_BIN} ${TMP_ASSET_TEST} ${TMP_LOG}
