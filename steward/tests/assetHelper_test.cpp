@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #include "logger.h"
 #include "assetHelper.h"
@@ -28,16 +29,18 @@ int main(int argc, char *argv[])
 
     logger.QuickLog("assetHelper_test: Running test");
 
-    bool result;
+    int result;
     char *assetInfo;
 
     result = assetReady(assetInfo, &logger);
-    if(result) {
+    if(result > 0) {
         int fd = open(argv[1], O_WRONLY);
         if(fd == -1) {
             logger.ErrLog("Error opening file '%s'", argv[1]);
             return -1;
         }
+
+        
     } else {
         logger.ErrLog("Asset wasn't ready");
         return -1;
