@@ -37,10 +37,24 @@ int main(int argc, char *argv[])
         int fd = open(argv[1], O_WRONLY);
         if(fd == -1) {
             logger.ErrLog("Error opening file '%s'", argv[1]);
+            close(fd);
             return -1;
         }
 
-        
+        size_t size_out = write(fd, assetInfo, result);
+        if(size_out != result) {
+            logger.ErrLog("Size out mismatch");
+            close(fd);
+            return -1;
+        } else {
+            logger.QuickLog("File written");
+            close(fd);
+            if(close(fs) == -1) {
+                logger.ErrLog("Error closing file '%s'", argv[1]);
+                return -1;
+            }
+            return 0;
+        }
     } else {
         logger.ErrLog("Asset wasn't ready");
         return -1;
