@@ -38,10 +38,12 @@ int main(int argc, char *argv[])
         if(fd == -1) {
             logger.ErrLog("Error opening file '%s'", argv[1]);
             close(fd);
+            free(assetInfo);
             return -1;
         }
 
         size_t size_out = write(fd, assetInfo, result);
+        free(assetInfo);
         if(size_out != result) {
             logger.ErrLog("Size out mismatch");
             close(fd);
