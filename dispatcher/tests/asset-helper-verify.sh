@@ -62,10 +62,19 @@ EOF
 
     TMP_CURRENT_ASSET_STORAGE="${TMP_DIR}/asset_store"
     unset WAS_ORIG_ASSET || true
-    if [ -e "${ASSET_FILE}" ]; then
+    if [ -e "$ASSET_FILE" ]; then
         WAS_ORIG_ASSET=yes
         cp -f ${ASSET_FILE} ${TMP_CURRENT_ASSET_STORAGE}
+    else
+        mkdir -p /opt/intel
     fi
+
+    TMP_ASSET_TEST_BIN="${TMP_BIN}/assetTest"
+    cd ../../steward/tests
+    make assetHelper_test
+    cp -f assetHelper_test ${TMP_ASSET_TEST_BIN}
+    chmod a+x ${TMP_ASSET_TEST_BIN}
+    make clean
 }
 
 # Tear down our environment
@@ -83,10 +92,37 @@ oneTimeTearDown()
 
 testVerifyErrorOnNoAssetFile()
 {
+    if [ -e "$ASSET_FILE" ];
+        rm -f ${ASSET_FILE}
+    fi
+    ${TMP_ASSET_TEST_BIN} ${TMP_ASSET_TEST} ${TMP_LOG}
+    if [ $? -ne 0 ]; then
+        assertTrue ${SHUNIT_TRUE}
+    else
+        echo $(cat ${TMP_LOG})
+        fail "We expected a failure, but we got success?"
+    fi
 }
 
+testVerifyAssetFileRead()
+{
+    cp -f ${TMP_ASSET_SOURCE} ${ASSET_FILE}
+    ${TMP_ASSET_TEST_BIN} ${TMP_ASSET_TEST} ${TMP_LOG}
+    if [ $? -ne 0 ]; then
+        echo $(cat ${TMP_LOG})
+        fail "Failure running asset test"
+    else
+        # Compare the two
+        echo $(cat ${TMP_LOG})
+        diff ${ASSET_FILE} ${TMP_ASSET_TEST}
+        if [ $? -ne 0 ]; then
+            fail "Failure, the output does not match the input!"
+        else
+            assertTrue ${SHUNIT_TRUE}
+        fi
+    fi
+}
 
 . /usr/share/shunit2/shunit2
 
 # vim:set ai et sts=4 sw=4 tw=80:
-
