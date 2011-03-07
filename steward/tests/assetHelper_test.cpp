@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
     int result;
     char *assetInfo = NULL;
 
-    result = assetReady(assetInfo, &logger);
+    result = assetReady(&assetInfo, &logger, true);
     if(result > 0) {
-        int fd = open(argv[1], O_WRONLY);
+        int fd = open(argv[1], O_WRONLY | O_CREAT);
         if(fd == -1) {
             logger.ErrLog("Error opening file '%s'", argv[1]);
             close(fd);
@@ -50,10 +50,9 @@ int main(int argc, char *argv[])
             close(fd);
             return -1;
         } else {
-            logger.QuickLog("File written");
-            close(fd);
+            logger.QuickLog("File written FD:'%d'", fd);
             if(close(fd) == -1) {
-                logger.ErrLog("Error closing file '%s'", argv[1]);
+                logger.ErrLog("Error closing file '%s' with FD:'%d'", argv[1], fd);
                 return -1;
             }
             return 0;

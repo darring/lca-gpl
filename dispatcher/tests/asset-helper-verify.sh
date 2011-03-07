@@ -98,6 +98,7 @@ oneTimeTearDown()
 
 testVerifyErrorOnNoAssetFile()
 {
+    rm -f ${TMP_ASSET_TEST}
     if [ -e "$ASSET_FILE" ]; then
         rm -f ${ASSET_FILE}
     fi
@@ -114,6 +115,7 @@ testVerifyErrorOnNoAssetFile()
 
 testVerifyAssetFileRead()
 {
+    rm -f ${TMP_ASSET_TEST}
     cp -f ${TMP_ASSET_SOURCE} ${ASSET_FILE}
     ${TMP_ASSET_TEST_BIN} ${TMP_ASSET_TEST} ${TMP_LOG}
     if [ $? -ne 0 ]; then

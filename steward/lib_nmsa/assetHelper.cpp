@@ -9,11 +9,12 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 #include "assetHelper.h"
 #include "logger.h"
 
-int assetReady(char *assetInfo, StewardLogger *logger)
+int assetReady(char **assetInfo, StewardLogger *logger, bool ignoreTimeout)
 {
     /*
      * We keep this around as a toggle so we don't waste effort once we've
@@ -29,13 +30,32 @@ int assetReady(char *assetInfo, StewardLogger *logger)
              * period after boot. After this period, we figure it's been too
              * long, and the asset info will never show up.
              */
-            if(info.uptime < ASSET_TIMEOUT) {
+            if(info.uptime < ASSET_TIMEOUT || ignoreTimeout) {
                 // Check for the existence of the file
                 struct stat buf;
-                if(stat(ASSET_INFO_FILE, &buf)) {
+                if(stat(ASSET_INFO_FILE, &buf) == 0) {
                     if(buf.st_size > 0) {
-                        assetInfo = (char *)malloc(buf.st_size * sizeof(char));
-                        //
+                        *assetInfo = (char *)malloc(buf.st_size * sizeof(char));
+                        int fd = open(ASSET_INFO_FILE, O_RDONLY);
+                        if(fd == -1) {
+                            logger->ErrLog("Asset file exists, but seems unreadable.");
+                            close(fd);
+                            return -1;
+                        }
+                        ssize_t actual = read(fd, *assetInfo, buf.st_size);
+                        if(actual == -1) {
+                            logger->ErrLog();
+                            close(fd);
+                            return -1;
+                        } else if (actual != buf.st_size) {
+                            logger->QuickLog("Asset size mis-match!");
+                            logger->QuickLog("Expected '%d' but got '%d'!",
+                                            buf.st_size, actual);
+                            logger->ErrLog();
+                            close(fd);
+                            return -1;
+                        }
+                        close(fd);
                         return buf.st_size;
                     } else {
                         // Hmm, well that's odd, asset info is zero size

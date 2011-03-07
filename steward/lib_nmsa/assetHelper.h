@@ -56,6 +56,8 @@ class StewardLogger;
  * not hurt anything, it simply will be unnecessary).
  *
  * \param assetInfo A character array pointer which will hold the asset info
+ * \param logger The logger instance (for logging of errors)
+ * \param ignoreTimeout whether we should ignore system timeout or not
  * \returns A positive int indicating the size of assetInfo on success. A
  * A negative int on failure.
  *
@@ -64,6 +66,6 @@ class StewardLogger;
  * discharged by the steward service wrapper, it should be free'd (see malloc(3)
  * ) or else there will be a memory leak.
  */
-int assetReady(char *assetInfo, StewardLogger *logger);
+int assetReady(char **assetInfo, StewardLogger *logger, bool ignoreTimeout);
 
 #endif
