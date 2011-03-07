@@ -4,7 +4,7 @@ include ../Globals.mk
 
 SOURCES=eil_steward.cpp lib_soap/soapC.cpp \
 	logger/logger.cpp lib_steward/stewardService_parseOp.cpp \
-	lib_steward/stewardService.cpp \
+	lib_steward/stewardService.cpp lib_nmsa/assetHelper.cpp \
 	lib_hash/uniqueHash.cpp lib_clientagent/clientagent_helper.cpp \
 	lib_dispatcher/dispatcher_helper.cpp lib_clientagent/hwaddr.cpp \
 	lib_nmsa/nmsaService.cpp \
@@ -14,6 +14,7 @@ HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
 	lib_hash/uniqueHash.h lib_clientagent/clientagent_helper.h \
 	lib_dispatcher/dispatcher_helper.h lib_clientagent/hwaddr.h \
 	lib_nmsa/nmsaService.h lib_steward/CCMS_commands.h \
+	lib_nmsa/assetHelper.h \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
@@ -36,6 +37,8 @@ static: $(OBJECTS)
 	@echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$(CPP) $(STATIC_BASE) $(STATIC_CC) \
 		$(GSOAP_OBJECTS) $(OBJECTS) $(CP_LDFLAGS) -o eil_steward
+
+assetHelper.o: eil_steward.o
 
 hwaddr.o: eil_steward.o
 

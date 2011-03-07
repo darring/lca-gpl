@@ -8,8 +8,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "assetHelper.h"
+#include "logger.h"
 
 bool assetReady(char *assetInfo, StewardLogger *logger)
 {
@@ -54,4 +56,6 @@ bool assetReady(char *assetInfo, StewardLogger *logger)
     } else {
         return false;
     }
+    // We shouldn't ever get here, but this is for completeness
+    return false;
 }
