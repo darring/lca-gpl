@@ -57,3 +57,9 @@
 - Add a redirect for the beta-CCMS server for development purposes.
 - Rebuild soap bindings for beta-CCMS.
 - Add HW Address support to steward.
+
+* Mon Mar 7 2011 - Sam Hart <samx.hart@intel.com>
+- Massive code refactory to clean-up lib_steward codebase
+- Add asset info file helper function to steward
+- Add associated asset info test harness program and framework
+- Refine the StewardLogger class to handle errno(3) output
