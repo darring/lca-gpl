@@ -13,6 +13,9 @@
 #ifndef assetHelper_H
 #define assetHelper_H
 
+//! Forward declaration
+class StewardLogger;
+
 //! The asset timeout
 /*!
  * This determines how long we should wait before "giving up" on the asset info
@@ -60,6 +63,6 @@
  * discharged by the steward service wrapper, it should be free'd (see malloc(3)
  * ) or else there will be a memory leak.
  */
-bool assetReady(char *assetInfo);
+bool assetReady(char *assetInfo, StewardLogger *logger);
 
 #endif

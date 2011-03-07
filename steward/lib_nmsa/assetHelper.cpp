@@ -11,7 +11,7 @@
 
 #include "assetHelper.h"
 
-bool assetReady(char *assetInfo)
+bool assetReady(char *assetInfo, StewardLogger *logger)
 {
     /*
      * We keep this around as a toggle so we don't waste effort once we've
@@ -40,7 +40,7 @@ bool assetReady(char *assetInfo)
                     }
                 } else {
                     // File isn't there (or can't be read
-                    // FIXME probably should check errno(3)
+                    logger->ErrLog("Asset file is expected, but isn't there or cannot be read.");
                     return false;
                 }
             } else {
@@ -48,7 +48,7 @@ bool assetReady(char *assetInfo)
                 return false;
             }
         } else {
-            // FIXME probably should check errno(3)
+            logger->ErrLog();
             return false;
         }
     } else {
