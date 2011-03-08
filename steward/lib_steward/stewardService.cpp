@@ -431,8 +431,6 @@ void StewardService::genStubHeader()
     */
     soap_default_SOAP_ENV__Header(&soap, &header);
 
-    struct wsa5__EndpointReferenceType replyTo;
-
     soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
     replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
 

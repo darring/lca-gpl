@@ -54,6 +54,7 @@ class StewardService
         WSHttpBinding_USCOREIEILClientOperationsProxy service;
         struct soap soap;
         struct SOAP_ENV__Header header;
+        struct wsa5__EndpointReferenceType replyTo;
         StewardLogger *logger;
         int op_codes;
         char last_MessageID[MAX_MESSAGEID_LEN];

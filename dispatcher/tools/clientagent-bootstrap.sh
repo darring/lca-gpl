@@ -64,6 +64,7 @@ make_hosts_file() {
     echo "### EIL Linux Client Agent Specific Config ###" >> /etc/hosts
     echo "# Changes to this section will be overwritten during client agent upgrades" >> /etc/hosts
     echo "${EIL_AUTO}    eilauto01   eilauto01.eil-infra.com" >> /etc/hosts
+    echo "${EIL_AUTO}   hfseilauto01 hfseilauto01.eil-infra.com" >> /etc/hosts
     echo "${EIL_LATEST} eilstaging  eilstaging.eil-infra.com" >> /etc/hosts
     echo "## EIL_END" >> /etc/hosts
 
