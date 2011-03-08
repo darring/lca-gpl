@@ -36,6 +36,7 @@
 #include "serviceState.h"
 #include "dispatcher_helper.h"
 #include "hwaddr.h"
+#include "assetHelper.h"
 
 //! The current steward system state
 static volatile StewardState S_STATE;
@@ -115,6 +116,11 @@ int main(int argc, char *argv[])
     char hwaddr[HWADDR_LEN];
     char *hostnameptr;
     char *hwaddrptr;
+
+    // Asset related variables
+    int assetResult;
+    char *assetInfo = NULL;
+    bool finishedWithAsset = false;
 
     // The CCMS log related variables
     // We assume an upper limit of 256 characters for full path plus
@@ -250,6 +256,11 @@ int main(int argc, char *argv[])
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog("My hostname is '%s'", hostname);
         logger.QuickLog("My HW address is '%s'", hwaddr);
+
+        if(!finishedWithAsset) {
+            // Check for asset until we either have it, or cannot any more
+            assetResult = assetReady(&assetInfo, &logger, false);
+        }
 
         issuedCommand = service.QueryForClientCommands(
             hostnameptr, hwaddrptr, "1", HOST);

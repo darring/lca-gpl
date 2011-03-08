@@ -19,7 +19,7 @@ HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
 OBJECTS=logger.o soapC.o uniqueHash.o stewardService.o hwaddr.o \
-	stewardService_parseOp.o \
+	stewardService_parseOp.o assetHelper.o \
 	clientagent_helper.o dispatcher_helper.o nmsaService.o \
 	soapWSHttpBinding_USCOREIEILClientOperationsProxy.o \
 	eil_steward.o
