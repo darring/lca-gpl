@@ -14,6 +14,8 @@
  *
  * This section will describe the usage.
  *
+ * \section other Other subsections
+ *
  * \li \subpage assetHelper "Asset Helper"
  */
 

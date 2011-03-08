@@ -5,9 +5,9 @@
 /*! \page assetHelper Asset Helper
  *
  * The asset helper consists of the following tools and definitions:
- * \li assetReady(char *assetInfo)
- * \li ASSET_TIMEOUT
- * \li ASSET_INFO_FILE
+ * \li assetReady(char **assetInfo, StewardLogger *logger, bool ignoreTimeout)
+ * \li #ASSET_TIMEOUT
+ * \li #ASSET_INFO_FILE
  */
 
 #ifndef assetHelper_H
