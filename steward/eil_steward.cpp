@@ -260,6 +260,13 @@ int main(int argc, char *argv[])
         if(!finishedWithAsset) {
             // Check for asset until we either have it, or cannot any more
             assetResult = assetReady(&assetInfo, &logger, false);
+            if(assetResult > 0) {
+                // We have a result!
+            } else if assetResult == 0) {
+                // Timeout has passed
+            } else {
+                // Asset is not ready, we should keep trying
+            }
         }
 
         issuedCommand = service.QueryForClientCommands(
