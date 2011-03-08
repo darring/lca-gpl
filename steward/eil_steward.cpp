@@ -262,10 +262,11 @@ int main(int argc, char *argv[])
             assetResult = assetReady(&assetInfo, &logger, false);
             if(assetResult > 0) {
                 // We have a result!
+                finishedWithAsset = true;
             } else if assetResult == 0) {
-                // Timeout has passed
-            } else {
-                // Asset is not ready, we should keep trying
+                // Timeout has passed, give up
+                finishedWithAsset = true;
+                free(assetInfo); // might be a no-op if assetInfo was NULL
             }
         }
 
