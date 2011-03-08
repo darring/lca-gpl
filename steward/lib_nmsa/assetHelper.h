@@ -59,7 +59,7 @@ class StewardLogger;
  * \param logger The logger instance (for logging of errors)
  * \param ignoreTimeout whether we should ignore system timeout or not
  * \returns A positive int indicating the size of assetInfo on success.
- * A negative int on failure.
+ * A negative int on failure. Returns 0 if the timeout period has past.
  *
  * \remarks assetInfo should not be initialized, as it will be initalized by
  * the assetReady(char *assetInfo) function. Additionally, once it has been

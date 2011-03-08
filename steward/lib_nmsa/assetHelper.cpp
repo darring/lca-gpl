@@ -68,7 +68,7 @@ int assetReady(char **assetInfo, StewardLogger *logger, bool ignoreTimeout)
                 }
             } else {
                 alreadyRepliedOrPast = true;
-                return -1;
+                return 0;
             }
         } else {
             logger->ErrLog();
