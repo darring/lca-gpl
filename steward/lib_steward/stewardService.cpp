@@ -177,6 +177,53 @@ bool StewardService::UpdateAssetInformation(
     {
         logger->QuickLog("StewardService> Update asset information with CCMS");
         genStubHeader();
+        header.wsa5__Action = EIL__UPDATEASSETINFO;
+        synHeaders();
+
+        /*
+         * Set up our update class
+         */
+        _ns1__UpdateAssetInformation update;
+        update.hostName = hostname;
+        update.macAddr = hwaddr;
+        update.xmlAssetInfo = assetInfo;
+
+        /*
+         * Set up our response class
+         */
+        _ns1__UpdateAssetInformationResponse response;
+
+        /*
+         * The actual soap call
+         */
+        op_codes = service.UpdateAssetInformation(
+            &update, &response);
+
+        /*
+         * Process the response
+         */
+        if(op_codes == SOAP_OK) {
+            // Soap call was a success, check the response
+            if(response.UpdateAssetInformationResult) {
+                // Total success, rockin!
+                logger->QuickLog("StewardService> Asset information successfully updated to CCMS");
+                return true;
+            }
+            // Hmm, something happened
+            logger->QuickLog("StewardService> An error occured with CCMS when trying to update asset information!");
+            logger->QuickLog("StewardService> Asset information will not be resubmitted unless a request is made!");
+            return false;
+        } else {
+            /*
+             * We have a SOAP error, unfortunately, we can do little with it
+             * here because we aren't in a proper command state, so, we log it
+             * and return false.
+             */
+            CCMS_Command returnCommand;
+            logger->QuickLog("StewardService> SOAP error while in asset update logic! Recovery not possible!");
+            parseOpCode(&returnCommand);
+            return false;
+        }
     } else {
         // We're in the wrong state for this
         logger->QuickLog("StewardService> Attempt to update asset information while in wrong service state!");

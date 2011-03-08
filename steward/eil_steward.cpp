@@ -263,7 +263,15 @@ int main(int argc, char *argv[])
             if(assetResult > 0) {
                 // We have a result!
                 finishedWithAsset = true;
-            } else if assetResult == 0) {
+                if(service.UpdateAssetInformation(
+                    hostnameptr, hwaddrptr, assetInfo))
+                {
+                    logger.QuickLog("Asset information updated successfully");
+                } else {
+                    logger.QuickLog("Problem updating asset information, moving on...");
+                }
+                free(assetInfo); // Always free this, even if no-op
+            } else if (assetResult == 0) {
                 // Timeout has passed, give up
                 finishedWithAsset = true;
                 free(assetInfo); // might be a no-op if assetInfo was NULL
