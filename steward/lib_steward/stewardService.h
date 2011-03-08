@@ -104,6 +104,9 @@ class StewardService
         void parseOpCode(
             CCMS_Command *returnCommand);
 
+        //! Internal method for generating default header stub
+        void genStubHeader();
+
         //! Internal method for sync'ing the headers
         void synHeaders();
 
@@ -129,13 +132,27 @@ class StewardService
          *
          * \remarks One of hostname of hwaddr is required. The other may be
          * NULL, and will not be used.
-         *
          */
         CCMS_Command QueryForClientCommands(
             char *hostname,
             char *hwaddr,
             char *order_num,
             MachineType mType);
+
+        //! Update CCMS with the asset information for the local machine
+        /*!
+         * Call this once you have updated asset information and CCMS will be
+         * updated with this asset information.
+         * \param hostname is the hostname of this particular machine
+         * \param hwaddr is the hardware address of this particular machine
+         * \param assetInfo is the XML asset info
+         *
+         * \returns True on success. False on failure.
+         */
+        bool UpdateAssetInformation(
+            char *hostname,
+            char *hwaddr,
+            char *assetInfo);
 };
 
 #endif

@@ -27,4 +27,8 @@
 #define EIL__UPDATECOMMANDSTATUS "http://tempuri.org/IEILClientOperations/UpdateCommandStatus"
 #endif
 
+#ifndef EIL__UPDATEASSETINFO
+#define EIL__UPDATEASSETINFO "http://tempuri.org/IEILClientOperations/UpdateAssetInformation"
+#endif
+
 #endif

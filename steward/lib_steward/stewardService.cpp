@@ -51,25 +51,8 @@ CCMS_Command StewardService::QueryForClientCommands(
     if (currentState == STATE_None)
     {
         logger->QuickLog("StewardService> Checking for command from CCMS");
-        /*
-        First, we need to build up our header, which includes the various
-        WS-Addressing bits that are needed by CCMS for routing of commands
-        */
-        soap_default_SOAP_ENV__Header(&soap, &header);
 
-        struct wsa5__EndpointReferenceType replyTo;
-
-        soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
-        replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
-
-        getNewMessageID();
-
-        header.wsa5__MessageID = last_MessageID;
-
-        header.wsa5__ReplyTo = &replyTo;
-        header.wsa5__To = EIL__CLIENTOPSERVICE;
-
-        soap.header = &header;
+        genStubHeader();
 
         /*
         Okay, unfortunately, gSOAP turns the data-types inside out. So this can
@@ -183,6 +166,22 @@ CCMS_Command StewardService::QueryForClientCommands(
         returnCommand.Command = NO_COMMAND;
     }
     return returnCommand;
+}
+
+bool StewardService::UpdateAssetInformation(
+            char *hostname,
+            char *hwaddr,
+            char *assetInfo)
+{
+    if (currentState == STATE_None)
+    {
+        logger->QuickLog("StewardService> Update asset information with CCMS");
+        genStubHeader();
+    } else {
+        // We're in the wrong state for this
+        logger->QuickLog("StewardService> Attempt to update asset information while in wrong service state!");
+        return false;
+    }
 }
 
     /**** Private Methods ****/
@@ -375,4 +374,27 @@ void StewardService::synHeaders()
         header.wsa5__FaultTo,
         header.wsa5__To,
         header.wsa5__Action);
+}
+
+void StewardService::genStubHeader()
+{
+    /*
+    First, we need to build up our header, which includes the various
+    WS-Addressing bits that are needed by CCMS for routing of commands
+    */
+    soap_default_SOAP_ENV__Header(&soap, &header);
+
+    struct wsa5__EndpointReferenceType replyTo;
+
+    soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
+    replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
+
+    getNewMessageID();
+
+    header.wsa5__MessageID = last_MessageID;
+
+    header.wsa5__ReplyTo = &replyTo;
+    header.wsa5__To = EIL__CLIENTOPSERVICE;
+
+    soap.header = &header;
 }
