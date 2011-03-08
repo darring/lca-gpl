@@ -144,17 +144,17 @@ CCMS_Command StewardService::QueryForClientCommands(
 
         ctx.mType = &l_mType;
 
-        // FIXME call the various private methods to for query commands
-        if(hwaddr == NULL) {
-            header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
-            synHeaders();
-
-            queryForClientCommands_byHostname(&ctx, &returnCommand);
-        } else {
+        // Call the various private methods to for query commands
+        if(hostname == NULL) {
             header.wsa5__Action = EIL__GETCOMMANDTOEXECUTEUSINGMACADDRESS;
             synHeaders();
 
             queryForClientCommands_byHWAddr(&ctx, &returnCommand);
+        } else {
+            header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
+            synHeaders();
+
+            queryForClientCommands_byHostname(&ctx, &returnCommand);
         }
 
         // FIXME Memory clean-up
