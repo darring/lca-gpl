@@ -16,7 +16,7 @@ DEBUG1=-g
 DEBUG2=$(DEBUG1) -D EIL_DEBUG
 
 # Set the DEBUG variable to the level which we want
-DEBUG=$(DEBUG2)
+DEBUG=$(DEBUG1)
 
 EIL_VERSION=$(shell cat ../VERSION)
 EIL_VERSION_TEXT=Version $(EIL_VERSION)
@@ -30,7 +30,7 @@ CCMS_DEV_SERVER=172.16.3.12
 CCMS_PRO_SERVER=172.16.3.10
 
 # Set the CCMS_SERVER variable to either development or production
-CCMS_SERVER=$(CCMS_LOCAL_SERVER)
+CCMS_SERVER=$(CCMS_DEV_SERVER)
 CCMS_SERVER_DEF=-D 'CCMS_SERVER="$(CCMS_SERVER)"'
 
 # gSOAP includes
