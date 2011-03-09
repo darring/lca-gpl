@@ -87,7 +87,7 @@ Linux client agent source repository.
 
    EIL Linux Client Agent is extremely well documented. Take a look in the
    source repository and you will see a number of documents you should probably
-   review: README, INSTALL, BUILD_ENV
+   review: README, INSTALL, BUILD_ENV, etc.
 
    The client agent consists of two components- the dispatcher and the steward.
 
