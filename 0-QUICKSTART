@@ -35,7 +35,7 @@ Linux client agent source repository.
     Take some time to familiarize yourself with the Mercurial DVCS by reading
     through some of the documentation at http://mercurial.selenic.com/
 
-2) Make your development user on UbuntuDev VM.
+2) Make a development user on UbuntuDev VM.
 
     TODO
 
@@ -66,7 +66,7 @@ Linux client agent source repository.
    However, if you are using a Debian/Ubuntu-based distribution, then you can
    set up a proper build environment by simply executing the script
    "setup_env.sh" that can be found inside build_env/ as root. This script will
-   use the Debian/Ubuntu tools to fetch and install all the proper prerequisite
+   use the Debian/Ubuntu tools to fetch and install all the proper requisite
    dependencies necessary for development and building.
 
 5) Set up a build-isolation chroot.
