@@ -4,4 +4,69 @@ EIL Linux Client Agent Dev/Build Quickstart
 The intent of this guide is to get a developer up and running quickly with a
 proper build and development environment for the EIL Linux Client Agent. It is
 not intended to be a guide for developing the agent itself, nor is it intended
-to be any sort of in depth documentation for the project. 
+to be any sort of in depth documentation for the project.
+
+For in-depth documentation, see the various documentation included inside the
+Linux client agent source repository.
+
+* It is STRONGLY recommended that the development environment be Debian/Ubuntu-
+  based, as you will find build and development dependencies more easily
+  resolvable under Debian/Ubuntu than elsewhere. That's not to say it's
+  impossible to build under other Linuxes, it is just outside the scope of this
+  document and is left up to the reader to set up another Linux environment on
+  their own.
+
+* The development/build Linux environment will have to be within the same
+  network as the UbuntuDev VM where the Linux client agent source repository
+  currently lives. It is possible to link an Intel-laptop (VPN, or on the Intel
+  network) with the UbuntuDev VM via secure SSH tunnels to accomplish easier
+  remote development, but this is an advanced topic and left up to the reader
+  to deduce on their own.
+
+1) Install the DVCS, Mercurial.
+
+   The Linux client agent's source code is stored in a Mercurial repository
+   on the UbuntuDev VM. You will need Mercurial installed on your development/
+   build system. If you are running Ubuntu, this can be accomplished by running
+
+        $ sudo aptitude update
+        $ sudo aptitude install mercurial
+
+    Take some time to familiarize yourself with the Mercurial DVCS by reading
+    through some of the documentation at http://mercurial.selenic.com/
+
+2) Make your development user on UbuntuDev VM.
+
+    TODO
+
+3) Clone the Linux client agent repository.
+
+   From within the same network as the UbuntuDev VM, set up a workspace on your
+   development/build system, and then clone the Linux client agent repository
+   from UbuntuDev VM with the following commands:
+
+        $ mkdir work/
+        $ cd work/
+        $ hg clone ssh://user@10.4.0.26/path/linux-clientagent/
+
+    Note that "work/" is the workspace directory where your work will reside,
+    it can be whatever you desire.
+
+    After the clone is complete, a subdirectory called "linux-clientagent" will
+    exist which will contain the latest version of the Linux Client Agent
+    codebase.
+
+4) Set up the build environment.
+
+   Inside the root of the repository is a text file called "BUILD_ENV" which
+   details the build requirements of the EIL Linux Client Agent. If you are not
+   using a Debian/Ubuntu-based distribution for your development/build system,
+   then you will want to read that file and follow its instructions.
+
+   However, if you are using a Debian/Ubuntu-based distribution, then you can
+   set up a proper build environment by simply executing the script
+   "setup_env.sh" that can be found inside build_env/ as root. This script will
+   use the Debian/Ubuntu tools to fetch and install all the proper prerequisite
+   dependencies necessary for development and building.
+
+5) 
