@@ -69,4 +69,18 @@ Linux client agent source repository.
    use the Debian/Ubuntu tools to fetch and install all the proper prerequisite
    dependencies necessary for development and building.
 
-5) 
+5) Set up a build-isolation chroot.
+
+   Many professional Linux developers choose to isolate their development
+   environment from their build environment. This can help reduce environmental
+   bugs, provide a useful build sandbox, and streamline the development/release
+   process.
+
+   If you are developing under a Debian/Ubuntu-based distribution, then you can
+   use the "build_chroot.sh" script found inside the build_env/ directory to
+   set up a build-isolation chroot for the EIL Linux client agent.
+
+   If you are not using a Debian/Ubuntu-based distribution, then it is left up
+   to the developer to deduce how to handle setting up a build chroot.
+
+6) Familiarize
