@@ -12,7 +12,15 @@
 #endif
 
 #ifndef EIL__CLIENTOPSERVICE
-#define EIL__CLIENTOPSERVICE "http://CCMS_SERVER/CCMS/EILClientOperationsService.svc"
+
+    #ifdef CCMS_LOCAL_SERVER
+    #define EIL__CLIENTOPSERVICE "http://127.0.0.1/CCMS/EILClientOperationsService.svc"
+    #elif defined(CCMS_DEV_SERVER)
+    #define EIL__CLIENTOPSERVICE "http://172.16.3.12/CCMS/EILClientOperationsService.svc"
+    #else // Default is CCMS_PRO_SERVER (production)
+    #define EIL__CLIENTOPSERVICE "http://172.16.3.10/CCMS/EILClientOperationsService.svc"
+    #endif
+
 #endif
 
 #ifndef EIL__GETCOMMANDTOEXECUTE

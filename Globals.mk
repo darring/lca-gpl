@@ -23,15 +23,16 @@ EIL_VERSION_TEXT=Version $(EIL_VERSION)
 EIL_VERSION_DEF=-D 'EIL_VERSION_TEXT="$(EIL_VERSION_TEXT)"'
 
 # CCMS IP Address defines
+# The possible options are:
+#   - CCMS_LOCAL_SERVER
+#   - CCMS_DEV_SERVER
+#   - CCMS_PRO_SERVER
+#
 # CCMS_LOCAL_SERVER is for purely experimental dev work where you want it to
 # send all requests to an echo server on localhost
-CCMS_LOCAL_SERVER=127.0.0.1
-CCMS_DEV_SERVER=172.16.3.12
-CCMS_PRO_SERVER=172.16.3.10
-
-# Set the CCMS_SERVER variable to either development or production
-CCMS_SERVER=$(CCMS_DEV_SERVER)
-CCMS_SERVER_DEF=-D 'CCMS_SERVER="$(CCMS_SERVER)"'
+#
+# See steward/lib_steward/EIL_defines.h for more information
+CCMS_SERVER_DEF=-D 'CCMS_DEV_SERVER'
 
 # gSOAP includes
 GSOAP_INCLUDES=-I/usr/local/share/gsoap/plugin/
