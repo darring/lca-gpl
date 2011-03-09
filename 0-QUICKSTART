@@ -1,0 +1,7 @@
+EIL Linux Client Agent Dev/Build Quickstart
+-------------------------------------------
+
+The intent of this guide is to get a developer up and running quickly with a
+proper build and development environment for the EIL Linux Client Agent. It is
+not intended to be a guide for developing the agent itself, nor is it intended
+to be any sort of in depth documentation for the project. 
