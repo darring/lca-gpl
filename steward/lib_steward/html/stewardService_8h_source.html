@@ -78,53 +78,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00054"></a><a class="code" href="classStewardService.html#a6034c2c85012ec9c75a85a79ada61b92">00054</a>         WSHttpBinding_USCOREIEILClientOperationsProxy <a class="code" href="classStewardService.html#a6034c2c85012ec9c75a85a79ada61b92">service</a>;
 <a name="l00055"></a><a class="code" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">00055</a>         <span class="keyword">struct </span><a class="code" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">soap</a> <a class="code" href="classStewardService.html#ae266a26494828dfbe564890bc5b3720d">soap</a>;
 <a name="l00056"></a><a class="code" href="classStewardService.html#ab20ea4a0a064122ddef2a84a7f738787">00056</a>         <span class="keyword">struct </span>SOAP_ENV__Header <a class="code" href="classStewardService.html#ab20ea4a0a064122ddef2a84a7f738787">header</a>;
-<a name="l00057"></a><a class="code" href="classStewardService.html#a17677f61d1ca99b501090c31dc172207">00057</a>         StewardLogger *<a class="code" href="classStewardService.html#a17677f61d1ca99b501090c31dc172207">logger</a>;
-<a name="l00058"></a><a class="code" href="classStewardService.html#afee6376f84a2e1ad7cd99546a6709dd8">00058</a>         <span class="keywordtype">int</span> <a class="code" href="classStewardService.html#afee6376f84a2e1ad7cd99546a6709dd8">op_codes</a>;
-<a name="l00059"></a><a class="code" href="classStewardService.html#afd0717523d7091de68cc94e36c1bf338">00059</a>         <span class="keywordtype">char</span> <a class="code" href="classStewardService.html#afd0717523d7091de68cc94e36c1bf338">last_MessageID</a>[MAX_MESSAGEID_LEN];
-<a name="l00060"></a><a class="code" href="classStewardService.html#a87a6778dd4ccb089ffb092bef7be99f7">00060</a>         <a class="code" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46" title="The state of the steward service wrapper.">ServiceState</a> <a class="code" href="classStewardService.html#a87a6778dd4ccb089ffb092bef7be99f7">currentState</a>;
-<a name="l00061"></a>00061 
-<a name="l00063"></a>00063 
-<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a962cc3a61e18438430aa5a178dfd3a11" title="Obtain a new message ID.">getNewMessageID</a>();
-<a name="l00068"></a>00068 
-<a name="l00070"></a>00070 
-<a name="l00077"></a>00077         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#ac668d71fa4cd88d9dcf921f4e3f7e676" title="Internal method for querying client commands by hostname.">queryForClientCommands_byHostname</a>(
-<a name="l00078"></a>00078             ns4__MachineContext *ctx,
-<a name="l00079"></a>00079             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
-<a name="l00080"></a>00080 
-<a name="l00082"></a>00082 
-<a name="l00089"></a>00089         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a4cd627ba1173627f0cbf5e57d1337ebf" title="Internal method for querying client commands by HW address.">queryForClientCommands_byHWAddr</a>(
-<a name="l00090"></a>00090             ns4__MachineContext *ctx,
-<a name="l00091"></a>00091             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
-<a name="l00092"></a>00092 
-<a name="l00094"></a>00094 
-<a name="l00104"></a>00104         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a8a5d124f4b509a224f5a1e54ff276cee" title="Internal method for parsing the opcode from various calls.">parseOpCode</a>(
-<a name="l00105"></a>00105             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
-<a name="l00106"></a>00106 
-<a name="l00108"></a>00108         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a30c16b3aecb5ec649d28ce14317ca18b" title="Internal method for generating default header stub.">genStubHeader</a>();
-<a name="l00109"></a>00109 
-<a name="l00111"></a>00111         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a633a61a7417b20e27513e1d980f7bcd4" title="Internal method for sync&amp;#39;ing the headers.">synHeaders</a>();
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113     <span class="keyword">public</span>:
-<a name="l00115"></a>00115 
-<a name="l00118"></a>00118         <a class="code" href="classStewardService.html#a4c191fafdc30f058ca0efa2af547e876" title="Constructor for the Steward service wrapper.">StewardService</a>(StewardLogger *myLogger);
-<a name="l00119"></a>00119 
-<a name="l00121"></a>00121         <a class="code" href="classStewardService.html#a5ca717d9c973e36d63b852ec6b4e3372" title="Destructor for the Steward service wrapper.">~StewardService</a>();
-<a name="l00122"></a>00122 
-<a name="l00124"></a>00124 
-<a name="l00136"></a>00136         <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> <a class="code" href="classStewardService.html#ad7458cbec72ae30065e57aeb9341b399" title="Query for client commands from the web service.">QueryForClientCommands</a>(
-<a name="l00137"></a>00137             <span class="keywordtype">char</span> *hostname,
-<a name="l00138"></a>00138             <span class="keywordtype">char</span> *hwaddr,
-<a name="l00139"></a>00139             <span class="keywordtype">char</span> *order_num,
-<a name="l00140"></a>00140             <a class="code" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d" title="Machine Type enumeration.">MachineType</a> mType);
-<a name="l00141"></a>00141 
-<a name="l00143"></a>00143 
-<a name="l00152"></a>00152         <span class="keywordtype">bool</span> <a class="code" href="classStewardService.html#a4d98742c266b8da8ec7ee69359691151" title="Update CCMS with the asset information for the local machine.">UpdateAssetInformation</a>(
-<a name="l00153"></a>00153             <span class="keywordtype">char</span> *hostname,
-<a name="l00154"></a>00154             <span class="keywordtype">char</span> *hwaddr,
-<a name="l00155"></a>00155             <span class="keywordtype">char</span> *assetInfo);
-<a name="l00156"></a>00156 };
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158 <span class="preprocessor">#endif</span>
+<a name="l00057"></a><a class="code" href="classStewardService.html#a5d03220e2b9cd0747f035f9c2b43cef4">00057</a>         <span class="keyword">struct </span>wsa5__EndpointReferenceType <a class="code" href="classStewardService.html#a5d03220e2b9cd0747f035f9c2b43cef4">replyTo</a>;
+<a name="l00058"></a><a class="code" href="classStewardService.html#a17677f61d1ca99b501090c31dc172207">00058</a>         StewardLogger *<a class="code" href="classStewardService.html#a17677f61d1ca99b501090c31dc172207">logger</a>;
+<a name="l00059"></a><a class="code" href="classStewardService.html#afee6376f84a2e1ad7cd99546a6709dd8">00059</a>         <span class="keywordtype">int</span> <a class="code" href="classStewardService.html#afee6376f84a2e1ad7cd99546a6709dd8">op_codes</a>;
+<a name="l00060"></a><a class="code" href="classStewardService.html#afd0717523d7091de68cc94e36c1bf338">00060</a>         <span class="keywordtype">char</span> <a class="code" href="classStewardService.html#afd0717523d7091de68cc94e36c1bf338">last_MessageID</a>[MAX_MESSAGEID_LEN];
+<a name="l00061"></a><a class="code" href="classStewardService.html#a87a6778dd4ccb089ffb092bef7be99f7">00061</a>         <a class="code" href="serviceState_8h.html#af709fedda5c43309eac7faf560909e46" title="The state of the steward service wrapper.">ServiceState</a> <a class="code" href="classStewardService.html#a87a6778dd4ccb089ffb092bef7be99f7">currentState</a>;
+<a name="l00062"></a>00062 
+<a name="l00064"></a>00064 
+<a name="l00068"></a>00068         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a962cc3a61e18438430aa5a178dfd3a11" title="Obtain a new message ID.">getNewMessageID</a>();
+<a name="l00069"></a>00069 
+<a name="l00071"></a>00071 
+<a name="l00078"></a>00078         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#ac668d71fa4cd88d9dcf921f4e3f7e676" title="Internal method for querying client commands by hostname.">queryForClientCommands_byHostname</a>(
+<a name="l00079"></a>00079             ns4__MachineContext *ctx,
+<a name="l00080"></a>00080             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
+<a name="l00081"></a>00081 
+<a name="l00083"></a>00083 
+<a name="l00090"></a>00090         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a4cd627ba1173627f0cbf5e57d1337ebf" title="Internal method for querying client commands by HW address.">queryForClientCommands_byHWAddr</a>(
+<a name="l00091"></a>00091             ns4__MachineContext *ctx,
+<a name="l00092"></a>00092             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
+<a name="l00093"></a>00093 
+<a name="l00095"></a>00095 
+<a name="l00105"></a>00105         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a8a5d124f4b509a224f5a1e54ff276cee" title="Internal method for parsing the opcode from various calls.">parseOpCode</a>(
+<a name="l00106"></a>00106             <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> *returnCommand);
+<a name="l00107"></a>00107 
+<a name="l00109"></a>00109         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a30c16b3aecb5ec649d28ce14317ca18b" title="Internal method for generating default header stub.">genStubHeader</a>();
+<a name="l00110"></a>00110 
+<a name="l00112"></a>00112         <span class="keywordtype">void</span> <a class="code" href="classStewardService.html#a633a61a7417b20e27513e1d980f7bcd4" title="Internal method for sync&amp;#39;ing the headers.">synHeaders</a>();
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114     <span class="keyword">public</span>:
+<a name="l00116"></a>00116 
+<a name="l00119"></a>00119         <a class="code" href="classStewardService.html#a4c191fafdc30f058ca0efa2af547e876" title="Constructor for the Steward service wrapper.">StewardService</a>(StewardLogger *myLogger);
+<a name="l00120"></a>00120 
+<a name="l00122"></a>00122         <a class="code" href="classStewardService.html#a5ca717d9c973e36d63b852ec6b4e3372" title="Destructor for the Steward service wrapper.">~StewardService</a>();
+<a name="l00123"></a>00123 
+<a name="l00125"></a>00125 
+<a name="l00137"></a>00137         <a class="code" href="structCCMS__Command.html" title="The command structure issued from CCMS.">CCMS_Command</a> <a class="code" href="classStewardService.html#ad7458cbec72ae30065e57aeb9341b399" title="Query for client commands from the web service.">QueryForClientCommands</a>(
+<a name="l00138"></a>00138             <span class="keywordtype">char</span> *hostname,
+<a name="l00139"></a>00139             <span class="keywordtype">char</span> *hwaddr,
+<a name="l00140"></a>00140             <span class="keywordtype">char</span> *order_num,
+<a name="l00141"></a>00141             <a class="code" href="machineType_8h.html#af8dc54986ed82db2fcb7fce3ff2fdc6d" title="Machine Type enumeration.">MachineType</a> mType);
+<a name="l00142"></a>00142 
+<a name="l00144"></a>00144 
+<a name="l00153"></a>00153         <span class="keywordtype">bool</span> <a class="code" href="classStewardService.html#a4d98742c266b8da8ec7ee69359691151" title="Update CCMS with the asset information for the local machine.">UpdateAssetInformation</a>(
+<a name="l00154"></a>00154             <span class="keywordtype">char</span> *hostname,
+<a name="l00155"></a>00155             <span class="keywordtype">char</span> *hwaddr,
+<a name="l00156"></a>00156             <span class="keywordtype">char</span> *assetInfo);
+<a name="l00157"></a>00157 };
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -141,7 +142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 8 2011 10:45:46 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 9 2011 13:15:54 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
