@@ -21,3 +21,18 @@ NMSA_Service::~NMSA_Service()
 {
     // TODO
 }
+
+void NMSA_Service::Poll(char *hwAddr, char *hostname)
+{
+    // TODO
+}
+
+void NMSA_Service::Push(char *hwAddr, char *SID, char *comp, char **logOutput)
+{
+    // TODO
+}
+
+void NMSA_Service::Register()
+{
+    // TODO
+}

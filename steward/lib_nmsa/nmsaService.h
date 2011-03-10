@@ -38,6 +38,40 @@ class NMSA_Service
 
         //! Destructor for the NMSA service wrapper
         ~NMSA_Service();
+
+        //! Poll the NMSA
+        /*!
+         * TODO - Currently stubbed. However, the stub definition is taken from
+         * the document "NMSA - Client Interaction Documentation.doc" dated
+         * Jan 25th 2011, which defines the interface as:
+         * \li client_poll.php?mac=x&hostname=y
+         *
+         * \param hwAddr The hardware address
+         * \param hostname The hostname
+         */
+        void Poll(char *hwAddr, char *hostname);
+
+        //! Push the log to the NMSA
+        /*!
+         * TODO - Currently stubbed. However, the stub definition is taken from
+         * the document "NMSA - Client Interaction Documentation.doc" dated
+         * Jan 25th 2011, which defines the interface as:
+         * \li client_push.php ?mac=a&sid=b&comp=c&log=d
+         *
+         * \param hwAddr The hardware address
+         * \param SID The Session ID
+         * \param comp TODO
+         * \param logOutput Pointer reference to the log output
+         *
+         * \remarks logOutput will have to be freed somewhere! TODO
+         */
+        void Push(char *hwAddr, char *SID, char *comp, char **logOutput);
+
+        //! Register with the NMSA
+        /*!
+         * TODO - Currently stubbed. Interface is not yet defined.
+         */
+        void Register();
 };
 
 #endif
