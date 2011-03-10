@@ -37,7 +37,12 @@ Linux client agent source repository.
 
 2) Make a development user on UbuntuDev VM.
 
-    TODO
+    Currently the development user must be part of the group 'www-data' due to
+    hgweb and Redmine requirements. If these requirements are changed down the
+    road, then this document should be updated.
+
+    Provided that the user is part of the appropriate group, then that user
+    will have commit permission in the repository.
 
 3) Clone the Linux client agent repository.
 
@@ -47,7 +52,7 @@ Linux client agent source repository.
 
         $ mkdir work/
         $ cd work/
-        $ hg clone ssh://user@10.4.0.26/path/linux-clientagent/
+        $ hg clone ssh://user@10.4.0.26/home/pub/linux-clientagent
 
     Note that "work/" is the workspace directory where your work will reside,
     it can be whatever you desire.
