@@ -355,14 +355,7 @@ void StewardService::queryForClientCommands_byHWAddr(
             action! (or else we will get an "ActionMismatch" error)
             */
             header.wsa5__Action = EIL__UPDATECOMMANDSTATUS;
-            service.soap_header(
-                header.wsa5__MessageID,
-                header.wsa5__RelatesTo,
-                header.wsa5__From,
-                header.wsa5__ReplyTo,
-                header.wsa5__FaultTo,
-                header.wsa5__To,
-                header.wsa5__Action);
+            synHeaders();
 
             /*
             First we need to get our responses ready
