@@ -62,7 +62,7 @@ int assetReady(char **assetInfo, StewardLogger *logger, bool ignoreTimeout)
                         return -1;
                     }
                 } else {
-                    // File isn't there (or can't be read
+                    // File isn't there (or can't be read)
                     logger->ErrLog("Asset file is expected, but isn't there or cannot be read.");
                     return -1;
                 }
