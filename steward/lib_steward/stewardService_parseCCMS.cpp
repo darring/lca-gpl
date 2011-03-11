@@ -53,7 +53,7 @@ int StewardService::parseCommandFromCCMS(
         return service.UpdateCommandStatus(
             &updateCmdStat, &updateCmdStatResp);
     } else if(strcasecmp(
-        EILCommand->CommandName, CCMS_ASSETREFRESH
+        EILCommand->CommandName, CCMS_ASSETREFRESH)
         == 0)
     {
         currentState = STATE_ExecutingCommand;
