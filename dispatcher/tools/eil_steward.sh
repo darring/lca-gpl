@@ -119,9 +119,25 @@ status)
 
     exit $_STATUS
     ;;
+asset)
+    # Issue SIGUSR1 to refresh asset information
+    check_steward_running
+    _STATUS=$?
+    if [ "${_STATUS}" -eq "0" ]; then
+        # Send it SIGUSR1
+        PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
+        kill -10 ${PID1}
+        echo "eil_steward has been sent SIGUSR1 to refresh asset info"
+    else
+        # it's not running
+        echo "eil_steward not running"
+    fi
+
+    exit 0
+    ;;
 *)
     # Display usage options
-    echo "Usage: /etc/init.d/eil_steward.sh {start|stop|status|restart}"
+    echo "Usage: /etc/init.d/eil_steward.sh {start|stop|status|restart|asset}"
 
     exit 0
     ;;
