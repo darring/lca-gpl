@@ -51,41 +51,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00002"></a>00002 <span class="comment"> * DispatcherHelper header</span>
 <a name="l00003"></a>00003 <span class="comment"> */</span>
 <a name="l00004"></a>00004 
-<a name="l00017"></a>00017 <span class="preprocessor">#ifndef dispatcher_helper_H</span>
-<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#define dispatcher_helper_H</span>
-<a name="l00019"></a>00019 <span class="preprocessor"></span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;commands.h&quot;</span>
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="keyword">class </span>StewardLogger;
-<a name="l00025"></a>00025 
-<a name="l00027"></a><a class="code" href="classDispatcherHelper.html">00027</a> <span class="keyword">class </span><a class="code" href="classDispatcherHelper.html" title="Abstract interface to the dispatcher shell script.">DispatcherHelper</a>
-<a name="l00028"></a>00028 {
-<a name="l00029"></a>00029     <span class="keyword">private</span>:
-<a name="l00030"></a>00030         <span class="comment">//FILE *filePipe;</span>
-<a name="l00031"></a><a class="code" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">00031</a>         <span class="keywordtype">char</span> *<a class="code" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">binPath</a>;
-<a name="l00032"></a><a class="code" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">00032</a>         <span class="keywordtype">char</span> *<a class="code" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">comPath</a>;
-<a name="l00033"></a><a class="code" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">00033</a>         <span class="keywordtype">char</span> <a class="code" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">dispatcherPath</a>[512];
-<a name="l00034"></a><a class="code" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">00034</a>         StewardLogger *<a class="code" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">logger</a>;
-<a name="l00035"></a>00035 
-<a name="l00037"></a>00037 
-<a name="l00043"></a>00043         Dispatcher_Command_Status <a class="code" href="classDispatcherHelper.html#a0e343e7c27420c48adc7d007c6962e01" title="Internal method used to actually run the dispatcher.">runDispatcher</a>();
-<a name="l00044"></a>00044 
-<a name="l00046"></a>00046 
-<a name="l00050"></a>00050         <span class="keywordtype">void</span> <a class="code" href="classDispatcherHelper.html#a221a928c00a4cca4db111a84d0566a7b" title="Internal method for writing to the command directory.">writeCommandDirectory</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *command);
-<a name="l00051"></a>00051     <span class="keyword">public</span>:
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058         <a class="code" href="classDispatcherHelper.html#a85e1b77f6dda7d9ebbc1fff9874cbca1" title="Constructor for the abstract interface to the dispatcher.">DispatcherHelper</a>(
-<a name="l00059"></a>00059             <span class="keywordtype">char</span> *binaryPath, <span class="keywordtype">char</span> *commandPath, StewardLogger *myLogger);
-<a name="l00060"></a>00060 
-<a name="l00062"></a>00062         <a class="code" href="classDispatcherHelper.html#acae281f0aa16f6bb4b1e54de3158cbbe" title="Destructor for the abstract interface to the dispatcher.">~DispatcherHelper</a>();
+<a name="l00020"></a>00020 <span class="preprocessor">#ifndef dispatcher_helper_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#define dispatcher_helper_H</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;commands.h&quot;</span>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="keyword">class </span>StewardLogger;
+<a name="l00028"></a>00028 
+<a name="l00030"></a><a class="code" href="classDispatcherHelper.html">00030</a> <span class="keyword">class </span><a class="code" href="classDispatcherHelper.html" title="Abstract interface to the dispatcher shell script.">DispatcherHelper</a>
+<a name="l00031"></a>00031 {
+<a name="l00032"></a>00032     <span class="keyword">private</span>:
+<a name="l00033"></a>00033         <span class="comment">//FILE *filePipe;</span>
+<a name="l00034"></a><a class="code" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">00034</a>         <span class="keywordtype">char</span> *<a class="code" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">binPath</a>;
+<a name="l00035"></a><a class="code" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">00035</a>         <span class="keywordtype">char</span> *<a class="code" href="classDispatcherHelper.html#ae69e9da4a197e62230520447fef7f580">comPath</a>;
+<a name="l00036"></a><a class="code" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">00036</a>         <span class="keywordtype">char</span> <a class="code" href="classDispatcherHelper.html#aefb701a82ddb63f3d176b2a8f3fd4fc4">dispatcherPath</a>[512];
+<a name="l00037"></a><a class="code" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">00037</a>         StewardLogger *<a class="code" href="classDispatcherHelper.html#ae956379528cec5d86094780f4f64591b">logger</a>;
+<a name="l00038"></a>00038 
+<a name="l00040"></a>00040 
+<a name="l00046"></a>00046         Dispatcher_Command_Status <a class="code" href="classDispatcherHelper.html#a0e343e7c27420c48adc7d007c6962e01" title="Internal method used to actually run the dispatcher.">runDispatcher</a>();
+<a name="l00047"></a>00047 
+<a name="l00049"></a>00049 
+<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="classDispatcherHelper.html#a221a928c00a4cca4db111a84d0566a7b" title="Internal method for writing to the command directory.">writeCommandDirectory</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *command);
+<a name="l00054"></a>00054     <span class="keyword">public</span>:
+<a name="l00056"></a>00056 
+<a name="l00061"></a>00061         <a class="code" href="classDispatcherHelper.html#a85e1b77f6dda7d9ebbc1fff9874cbca1" title="Constructor for the abstract interface to the dispatcher.">DispatcherHelper</a>(
+<a name="l00062"></a>00062             <span class="keywordtype">char</span> *binaryPath, <span class="keywordtype">char</span> *commandPath, StewardLogger *myLogger);
 <a name="l00063"></a>00063 
-<a name="l00065"></a>00065 
-<a name="l00068"></a>00068         <span class="keywordtype">void</span> <a class="code" href="classDispatcherHelper.html#ace6bf51dea1174c90993e84cbf397c69" title="Actually execute the command.">ExecuteCommand</a>(CCMS_Command *commandIssued);
-<a name="l00069"></a>00069 };
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="preprocessor">#endif</span>
+<a name="l00065"></a>00065         <a class="code" href="classDispatcherHelper.html#acae281f0aa16f6bb4b1e54de3158cbbe" title="Destructor for the abstract interface to the dispatcher.">~DispatcherHelper</a>();
+<a name="l00066"></a>00066 
+<a name="l00068"></a>00068 
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="classDispatcherHelper.html#ace6bf51dea1174c90993e84cbf397c69" title="Actually execute the command.">ExecuteCommand</a>(CCMS_Command *commandIssued);
+<a name="l00072"></a>00072 };
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -102,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Mar 11 2011 11:10:59 for Abstractinterfacetothedispatchershellscript by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Mar 11 2011 11:13:08 for Abstractinterfacetothedispatchershellscript by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
