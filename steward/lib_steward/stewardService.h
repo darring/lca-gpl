@@ -105,6 +105,20 @@ class StewardService
         void parseOpCode(
             CCMS_Command *returnCommand);
 
+        //! Internal method for parsing the actual commands from CCMS
+        /*!
+         * This method wraps the actual parsing of the CCMS commands.
+         *
+         * \param EILCommand The command class as it was granted directly from
+         * CCMS.
+         * \param returnCommand The CCMS return command struct.
+         *
+         * \return The gSOAP opCode
+         */
+        int parseCommandFromCCMS(
+            ns4__EILCommand *EILCommand,
+            CCMS_Command *returnCommand);
+
         //! Internal method for generating default header stub
         void genStubHeader();
 
