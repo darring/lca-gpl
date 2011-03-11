@@ -50,7 +50,6 @@ int StewardService::parseCommandFromCCMS(
         updateCmdStat.cmd->OperationID =
             EILCommand->OperationID;
 
-        // FIXME - Do we want to deal with op_codes here as well?
         return service.UpdateCommandStatus(
             &updateCmdStat, &updateCmdStatResp);
     } // Other commands go here
