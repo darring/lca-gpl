@@ -79,6 +79,8 @@ Private Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for querying client commands by HW address.  <a href="#a4cd627ba1173627f0cbf5e57d1337ebf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a8a5d124f4b509a224f5a1e54ff276cee">parseOpCode</a> (<a class="el" href="structCCMS__Command.html">CCMS_Command</a> *returnCommand)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for parsing the opcode from various calls.  <a href="#a8a5d124f4b509a224f5a1e54ff276cee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#ab21712ebf7786a2e209cb47c5fa82694">parseCommandFromCCMS</a> (ns4__MachineContext *ctx, ns4__EILCommand *EILCommand, <a class="el" href="structCCMS__Command.html">CCMS_Command</a> *returnCommand)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for parsing the actual commands from CCMS.  <a href="#ab21712ebf7786a2e209cb47c5fa82694"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a30c16b3aecb5ec649d28ce14317ca18b">genStubHeader</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for generating default header stub.  <a href="#a30c16b3aecb5ec649d28ce14317ca18b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardService.html#a633a61a7417b20e27513e1d980f7bcd4">synHeaders</a> ()</td></tr>
@@ -178,6 +180,51 @@ Private Attributes</h2></td></tr>
 <p>Obtain a new message ID. </p>
 <p>Internal method used to obtain a valid message ID used in WS-A </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Null byte terminated message ID </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab21712ebf7786a2e209cb47c5fa82694"></a><!-- doxytag: member="StewardService::parseCommandFromCCMS" ref="ab21712ebf7786a2e209cb47c5fa82694" args="(ns4__MachineContext *ctx, ns4__EILCommand *EILCommand, CCMS_Command *returnCommand)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StewardService::parseCommandFromCCMS </td>
+          <td>(</td>
+          <td class="paramtype">ns4__MachineContext *&nbsp;</td>
+          <td class="paramname"> <em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ns4__EILCommand *&nbsp;</td>
+          <td class="paramname"> <em>EILCommand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCCMS__Command.html">CCMS_Command</a> *&nbsp;</td>
+          <td class="paramname"> <em>returnCommand</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal method for parsing the actual commands from CCMS. </p>
+<p>This method wraps the actual parsing of the CCMS commands. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ctx</em>&nbsp;</td><td>the machine context used for the call </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>EILCommand</em>&nbsp;</td><td>The command class as it was granted directly from CCMS. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>returnCommand</em>&nbsp;</td><td>The CCMS return command struct.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The gSOAP opCode </dd></dl>
 
 </div>
 </div>
@@ -508,6 +555,7 @@ Private Attributes</h2></td></tr>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="stewardService_8h_source.html">stewardService.h</a></li>
 <li><a class="el" href="stewardService_8cpp.html">stewardService.cpp</a></li>
+<li><a class="el" href="stewardService__parseCCMS_8cpp.html">stewardService_parseCCMS.cpp</a></li>
 <li><a class="el" href="stewardService__parseOp_8cpp.html">stewardService_parseOp.cpp</a></li>
 </ul>
 </div>
@@ -525,7 +573,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 9 2011 13:15:54 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Mar 11 2011 11:13:41 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
