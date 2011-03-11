@@ -14,10 +14,6 @@
 #ifndef CCMS_commands_h
 #define CCMS_commands_h
 
-/*!
- * The following defines are for the CCMS incoming commands
- */
-
 //! The reboot command
 #define CCMS_REBOOT "reboot"
 
@@ -26,10 +22,6 @@
 
 //! The command to refresh and update the asset information
 #define CCMS_ASSETREFRESH "get asset info"
-
-/*!
- * The following defines are for the CCMS responses
- */
 
 //! The reboot response to CCMS
 #define RESPONSE_REBOOT "Reboot Successful"
