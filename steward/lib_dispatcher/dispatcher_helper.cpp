@@ -50,9 +50,10 @@ Dispatcher_Command_Status DispatcherHelper::runDispatcher()
     return commandStatus;
 }
 
-void writeCommandDirectory(const char *command)
+void DispatcherHelper::writeCommandDirectory(const char *command)
 {
     char rebootCmd[512];
+    FILE *filePipe;
     snprintf(rebootCmd, 512, "%s/%s", comPath, command);
     if ( !(filePipe = (FILE*)fopen(rebootCmd, "w")) )
     {
@@ -70,7 +71,6 @@ void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
     if(commandIssued->ReturnState == COMMAND_SUCCESS ||
        commandIssued->ReturnState == COMMAND_TCP_ERROR)
     {
-        FILE *filePipe;
         switch (commandIssued->Command)
         {
             case REBOOT:
