@@ -74,6 +74,8 @@ Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Dispatcher_Command_Status&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#a0e343e7c27420c48adc7d007c6962e01">runDispatcher</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method used to actually run the dispatcher.  <a href="#a0e343e7c27420c48adc7d007c6962e01"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#a221a928c00a4cca4db111a84d0566a7b">writeCommandDirectory</a> (const char *command)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal method for writing to the command directory.  <a href="#a221a928c00a4cca4db111a84d0566a7b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcherHelper.html#aa5ad17452bdad3dde20e32c8306fc0e6">binPath</a></td></tr>
@@ -194,6 +196,33 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a221a928c00a4cca4db111a84d0566a7b"></a><!-- doxytag: member="DispatcherHelper::writeCommandDirectory" ref="a221a928c00a4cca4db111a84d0566a7b" args="(const char *command)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DispatcherHelper::writeCommandDirectory </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>command</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal method for writing to the command directory. </p>
+<p>Called to set up the command for the dispatcher </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>command</em>&nbsp;</td><td>the string for the command </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="aa5ad17452bdad3dde20e32c8306fc0e6"></a><!-- doxytag: member="DispatcherHelper::binPath" ref="aa5ad17452bdad3dde20e32c8306fc0e6" args="" -->
 <div class="memitem">
@@ -266,7 +295,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 23 2011 11:43:30 for Abstractinterfacetothedispatchershellscript by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Mar 11 2011 11:10:59 for Abstractinterfacetothedispatchershellscript by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
