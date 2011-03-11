@@ -108,7 +108,7 @@ class StewardService
         //! Internal method for parsing the actual commands from CCMS
         /*!
          * This method wraps the actual parsing of the CCMS commands.
-         *
+         * \param ctx the machine context used for the call
          * \param EILCommand The command class as it was granted directly from
          * CCMS.
          * \param returnCommand The CCMS return command struct.
@@ -116,6 +116,7 @@ class StewardService
          * \return The gSOAP opCode
          */
         int parseCommandFromCCMS(
+            ns4__MachineContext *ctx,
             ns4__EILCommand *EILCommand,
             CCMS_Command *returnCommand);
 

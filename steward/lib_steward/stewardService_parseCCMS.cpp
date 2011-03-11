@@ -5,8 +5,10 @@
 #include "logger.h"
 #include "stewardService.h"
 #include "EIL_defines.h"
+#include "CCMS_commands.h"
 
 int StewardService::parseCommandFromCCMS(
+            ns4__MachineContext *ctx,
             ns4__EILCommand *EILCommand,
             CCMS_Command *returnCommand)
 {
