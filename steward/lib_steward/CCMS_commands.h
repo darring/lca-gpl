@@ -17,8 +17,8 @@
 //! The reboot command
 #define CCMS_REBOOT "reboot"
 
-//! The auto-update command - FIXME - Need this command from Madhu- Sam
-#define CCMS_UPDATE "update"
+//! The auto-update command
+#define CCMS_UPDATE "update eil auto tools"
 
 //! The command to refresh and update the asset information
 #define CCMS_ASSETREFRESH "get asset info"
