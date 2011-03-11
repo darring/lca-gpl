@@ -40,7 +40,30 @@ int StewardService::parseCommandFromCCMS(
         ns4__EILCommandStatus complete =
             ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
         int errorcode = 0;
-        cmd.CommandResult = "Reboot Successful";
+        cmd.CommandResult = RESPONSE_REBOOT;
+        cmd.CommandStatus = &complete;
+        cmd.ErrorCode = &errorcode;
+        cmd.CommandName =
+            EILCommand->CommandName;
+
+        updateCmdStat.cmd = &cmd;
+        updateCmdStat.cmd->OperationID =
+            EILCommand->OperationID;
+
+        return service.UpdateCommandStatus(
+            &updateCmdStat, &updateCmdStatResp);
+    } else if(strcasecmp(
+        EILCommand->CommandName, CCMS_ASSETREFRESH
+        == 0)
+    {
+        currentState = STATE_ExecutingCommand;
+        returnCommand->ReturnState = COMMAND_SUCCESS;
+        returnCommand->Command = ASSET_REFRESH;
+
+        ns4__EILCommandStatus complete =
+            ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
+        int errorcode = 0;
+        cmd.CommandResult = RESPONSE_ASSETREFRESH;
         cmd.CommandStatus = &complete;
         cmd.ErrorCode = &errorcode;
         cmd.CommandName =
