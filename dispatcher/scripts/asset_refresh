@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# Asset refresh script
+# --------------------
+# In many ways, this has to be a fire-and-forget operation. We cannot
+# communicate failures back to the steward since the asset info script handled
+# as an init (which is by design, and this is desired).
+#
+# However, this is not a problem. We have designed for possible failures in the
+# assetHelper library utilized by the steward itself (see
+# lib_nmsa/assetHelper.h and the associated documentation in html/ for more
+# information).
+
+# vim:set ai et sts=4 sw=4 tw=80:

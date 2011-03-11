@@ -14,7 +14,6 @@
  *
  * The dispatcher helper is utilized by creating an instance of
  * DispatcherHelper.
- *
  */
 
 #ifndef dispatcher_helper_H
