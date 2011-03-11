@@ -11,4 +11,22 @@
 # lib_nmsa/assetHelper.h and the associated documentation in html/ for more
 # information).
 
+# The asset info script
+ASSETINFO_SCRIPT="/etc/init.d/assetinfo"
+
+# Command to refresh it
+ASSETINFO_REFRESH="${ASSETINFO_SCRIPT} start"
+
+# The asset info XML file itself
+ASSETINFO_XML="/opt/intel/assetinfo"
+
+# First verify that the file exists
+if [ -f "${ASSETINFO_SCRIPT}" ]; then
+    # Alright, refresh it
+    ${ASSETINFO_REFRESH}
+    # Next, check to see if we have an assetinfo file after that operation
+    if [ -f "${ASSETINFO_XML}" ]; then
+    fi
+fi
+
 # vim:set ai et sts=4 sw=4 tw=80:
