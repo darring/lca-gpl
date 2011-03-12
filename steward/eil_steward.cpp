@@ -56,12 +56,21 @@ void handle_SIGTERM(int sig)
     S_STATE = S_STATE_Terminate;
 }
 
+void handle_SIGUSR1(int sig)
+{
+    S_STATE = S_STATE_RefreshAsset;
+}
+
 void setupSignalHandlers()
 {
     static bool hasSetup = false;
     if(!hasSetup)
     {
-        struct sigaction act_SIGHUP, act_SIGINT, act_SIGTERM, act_OLD;
+        struct sigaction act_SIGHUP,
+                         act_SIGINT,
+                         act_SIGTERM,
+                         act_SIGUSR1,
+                         act_OLD;
 
         // Set up SIGHUP
         act_SIGHUP.sa_handler = handle_SIGHUP;
@@ -100,6 +109,19 @@ void setupSignalHandlers()
         else
         {
             sigaction (SIGTERM, &act_SIGTERM, &act_OLD);
+        }
+
+        // Set up SIGUSR1
+        act_SIGUSR1.sa_handler = handle_SIGUSR1;
+        sigemptyset (&act_SIGUSR1.sa_mask);
+        act_SIGUSR1.sa_flags = 0;
+
+        sigaction (SIGUSR1, NULL, &act_OLD);
+        if (act_OLD.sa_handler != SIG_IGN)
+            sigaction (SIGUSR1, &act_SIGUSR1, NULL);
+        else
+        {
+            sigaction (SIGUSR1, &act_SIGUSR1, &act_OLD);
         }
     }
 }
