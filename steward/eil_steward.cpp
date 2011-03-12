@@ -143,6 +143,7 @@ int main(int argc, char *argv[])
     int assetResult;
     char *assetInfo = NULL;
     bool finishedWithAsset = false;
+    bool ignoreTimeout = false;
 
     // The CCMS log related variables
     // We assume an upper limit of 256 characters for full path plus
@@ -273,15 +274,21 @@ int main(int argc, char *argv[])
     }
 
     // Main loop
-    while (S_STATE == S_STATE_Running) {
+    while (S_STATE == S_STATE_Running ||
+           S_STATE == S_STATE_RefreshAsset) {
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog("My hostname is '%s'", hostname);
         logger.QuickLog("My HW address is '%s'", hwaddr);
 
-        if(!finishedWithAsset) {
+        if(!finishedWithAsset || S_STATE == S_STATE_RefreshAsset) {
+            ignoreTimeout = false;
+            if(S_STATE == S_STATE_RefreshAsset) {
+                ignoreTimeout = true;
+                S_STATE = S_STATE_Running;
+            }
             // Check for asset until we either have it, or cannot any more
-            assetResult = assetReady(&assetInfo, &logger, false);
+            assetResult = assetReady(&assetInfo, &logger, ignoreTimeout);
             if(assetResult > 0) {
                 // We have a result!
                 finishedWithAsset = true;
