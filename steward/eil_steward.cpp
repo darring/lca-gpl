@@ -294,7 +294,7 @@ int main(int argc, char *argv[])
                 // We have a result!
                 finishedWithAsset = true;
                 updateAssetResult = service.UpdateAssetInformation(
-                    hostnameptr, hwaddrptr, assetInfo)
+                    hostnameptr, hwaddrptr, assetInfo);
                 if(updateAssetResult == 0)
                 {
                     logger.QuickLog("Asset information updated successfully");
