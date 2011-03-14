@@ -319,9 +319,9 @@ int main(int argc, char *argv[])
         {
             case COMMAND_ERROR:
                 logger.QuickLog("There was a command error!");
-                // TODO - Deal with error logic
                 break;
             case COMMAND_ERROR_STATE:
+                logger.QuickLog("COMMAND_ERROR_STATE - Unrecoverable error!");
                 // TODO - This shouldn't happen, need to figure out what to do
                 break;
             default:
