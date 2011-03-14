@@ -213,6 +213,15 @@ bool StewardService::UpdateAssetInformation(
             logger->QuickLog("StewardService> An error occured with CCMS when trying to update asset information!");
             logger->QuickLog("StewardService> Asset information will not be resubmitted unless a request is made!");
             return false;
+        } else if(op_codes == SOAP_TCP_ERROR) {
+            /*
+             * In the event we get a SOAP_TCP_ERROR during asset updating it
+             * means we're on a system which boots too quickly for the stupid-
+             * slow Windows DHCP servers they are using here to manage the DHCP
+             * request, and that we need to keep trying until it's a success.
+             */
+            logger->QuickLog("StewardService> Network doesn't appear to be ready on asset information update...");
+            return false;
         } else {
             /*
              * We have a SOAP error, unfortunately, we can do little with it
