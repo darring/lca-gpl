@@ -168,7 +168,7 @@ CCMS_Command StewardService::QueryForClientCommands(
     return returnCommand;
 }
 
-bool StewardService::UpdateAssetInformation(
+int StewardService::UpdateAssetInformation(
             char *hostname,
             char *hwaddr,
             char *assetInfo)

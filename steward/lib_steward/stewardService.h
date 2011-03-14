@@ -163,9 +163,10 @@ class StewardService
          * \param hwaddr is the hardware address of this particular machine
          * \param assetInfo is the XML asset info
          *
-         * \returns True on success. False on failure.
+         * \returns Zero on success. Negative on unrecoverable failure.
+         * Positive on a recoverable failure.
          */
-        bool UpdateAssetInformation(
+        int UpdateAssetInformation(
             char *hostname,
             char *hwaddr,
             char *assetInfo);

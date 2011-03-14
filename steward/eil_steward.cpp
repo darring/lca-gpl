@@ -141,6 +141,7 @@ int main(int argc, char *argv[])
 
     // Asset related variables
     int assetResult;
+    int updateAssetResult;
     char *assetInfo = NULL;
     bool finishedWithAsset = false;
     bool ignoreTimeout = false;
@@ -292,13 +293,16 @@ int main(int argc, char *argv[])
             if(assetResult > 0) {
                 // We have a result!
                 finishedWithAsset = true;
-                if(service.UpdateAssetInformation(
-                    hostnameptr, hwaddrptr, assetInfo))
+                updateAssetResult = service.UpdateAssetInformation(
+                    hostnameptr, hwaddrptr, assetInfo)
+                if(updateAssetResult == 0)
                 {
                     logger.QuickLog("Asset information updated successfully");
-                } else {
+                } else if(updateAssetResult > 0) {
                     logger.QuickLog("Problem updating asset information, switching to refesh asset state");
                     S_STATE = S_STATE_RefreshAsset;
+                } else {
+                    logger.QuickLog("Problem updating asset information, moving on...");
                 }
                 free(assetInfo); // Always free this, even if no-op
             } else if (assetResult == 0) {
