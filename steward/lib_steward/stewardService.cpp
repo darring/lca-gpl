@@ -207,12 +207,12 @@ int StewardService::UpdateAssetInformation(
             if(response.UpdateAssetInformationResult) {
                 // Total success, rockin!
                 logger->QuickLog("StewardService> Asset information successfully updated to CCMS");
-                return true;
+                return 0;
             }
             // Hmm, something happened
             logger->QuickLog("StewardService> An error occured with CCMS when trying to update asset information!");
             logger->QuickLog("StewardService> Asset information will not be resubmitted unless a request is made!");
-            return false;
+            return -1;
         } else if(op_codes == SOAP_TCP_ERROR) {
             /*
              * In the event we get a SOAP_TCP_ERROR during asset updating it
@@ -221,7 +221,7 @@ int StewardService::UpdateAssetInformation(
              * request, and that we need to keep trying until it's a success.
              */
             logger->QuickLog("StewardService> Network doesn't appear to be ready on asset information update...");
-            return false;
+            return 1;
         } else {
             /*
              * We have a SOAP error, unfortunately, we can do little with it
@@ -231,12 +231,12 @@ int StewardService::UpdateAssetInformation(
             CCMS_Command returnCommand;
             logger->QuickLog("StewardService> SOAP error while in asset update logic! Recovery not possible!");
             parseOpCode(&returnCommand);
-            return false;
+            return -1;
         }
     } else {
         // We're in the wrong state for this
         logger->QuickLog("StewardService> Attempt to update asset information while in wrong service state!");
-        return false;
+        return -1;
     }
 }
 
