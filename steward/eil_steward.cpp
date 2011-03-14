@@ -297,7 +297,8 @@ int main(int argc, char *argv[])
                 {
                     logger.QuickLog("Asset information updated successfully");
                 } else {
-                    logger.QuickLog("Problem updating asset information, moving on...");
+                    logger.QuickLog("Problem updating asset information, switching to refesh asset state");
+                    S_STATE = S_STATE_RefreshAsset;
                 }
                 free(assetInfo); // Always free this, even if no-op
             } else if (assetResult == 0) {
