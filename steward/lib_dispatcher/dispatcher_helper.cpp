@@ -44,7 +44,6 @@ Dispatcher_Command_Status DispatcherHelper::runDispatcher()
     }
     pclose(filePipe);
 
-    // TODO interpret a command status for other commands
     commandStatus.Success = true;
 
     return commandStatus;
