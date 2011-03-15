@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# Client update wrapper script
+# ----------------------------
+# Wraps the functionality found in the update pumper elsewhere
+
+# vim:set ai et sts=4 sw=4 tw=80:
