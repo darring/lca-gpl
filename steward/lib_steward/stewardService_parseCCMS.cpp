@@ -56,7 +56,7 @@ int StewardService::parseCommandFromCCMS(
         EILCommand->CommandName, CCMS_ASSETREFRESH)
         == 0)
     {
-        currentState = STATE_None;
+        currentState = STATE_None; // We can't be stuck in exec state here
         returnCommand->ReturnState = COMMAND_SUCCESS;
         returnCommand->Command = ASSET_REFRESH;
 
@@ -79,7 +79,7 @@ int StewardService::parseCommandFromCCMS(
         EILCommand->CommandName, CCMS_UPDATE)
         == 0)
     {
-        currentState = STATE_None;
+        currentState = STATE_ExecutingCommand;
         returnCommand->ReturnState = COMMAND_SUCCESS;
         returnCommand->Command = AGENT_UPDATE;
 

@@ -93,6 +93,13 @@ void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
 
                 runDispatcher();
                 break;
+            case AGENT_UPDATE:
+                logger->QuickLog("DispatcherHelper> Agent update command requested");
+
+                writeCommandDirectory("client_update");
+
+                runDispatcher();
+                break;
             default:
                 // NO_COMMAND
                 /*
