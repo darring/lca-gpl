@@ -56,7 +56,7 @@ int StewardService::parseCommandFromCCMS(
         EILCommand->CommandName, CCMS_ASSETREFRESH)
         == 0)
     {
-        currentState = STATE_ExecutingCommand;
+        currentState = STATE_None;
         returnCommand->ReturnState = COMMAND_SUCCESS;
         returnCommand->Command = ASSET_REFRESH;
 
