@@ -1,11 +1,5 @@
-* Add MAC address alternative support to hostname
-
 * Verify that we are locking and one-and-only-one instance of eil_steward can
   run at once.
-
-* Further re-test items now that we have done massive re-working of installer
-  items to make ESXi happy (especially on systems where BASH/ash/dash will be
-  an issue).
 
 * Find out why steward is crashing on ESXi after we attempt to call CCMS
   (debugging is going to be hard there...)
