@@ -104,7 +104,7 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::GetCommandToExecute(_ns1__Get
 	struct __ns1__GetCommandToExecute soap_tmp___ns1__GetCommandToExecute;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/GetCommandToExecute";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__GetCommandToExecute.ns1__GetCommandToExecute = ns1__GetCommandToExecute;
@@ -151,12 +151,64 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::GetCommandToExecute(_ns1__Get
 	return soap_closesock(soap);
 }
 
+int WSHttpBinding_USCOREIEILClientOperationsProxy::GetCommandToExecuteUsingMacAddress(_ns1__GetCommandToExecuteUsingMacAddress *ns1__GetCommandToExecuteUsingMacAddress, _ns1__GetCommandToExecuteUsingMacAddressResponse *ns1__GetCommandToExecuteUsingMacAddressResponse)
+{	struct soap *soap = this;
+	struct __ns1__GetCommandToExecuteUsingMacAddress soap_tmp___ns1__GetCommandToExecuteUsingMacAddress;
+	const char *soap_action = NULL;
+	if (!soap_endpoint)
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+	soap_action = "http://tempuri.org/IEILClientOperations/GetCommandToExecuteUsingMacAddress";
+	soap->encodingStyle = NULL;
+	soap_tmp___ns1__GetCommandToExecuteUsingMacAddress.ns1__GetCommandToExecuteUsingMacAddress = ns1__GetCommandToExecuteUsingMacAddress;
+	soap_begin(soap);
+	soap_serializeheader(soap);
+	soap_serialize___ns1__GetCommandToExecuteUsingMacAddress(soap, &soap_tmp___ns1__GetCommandToExecuteUsingMacAddress);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___ns1__GetCommandToExecuteUsingMacAddress(soap, &soap_tmp___ns1__GetCommandToExecuteUsingMacAddress, "-ns1:GetCommandToExecuteUsingMacAddress", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___ns1__GetCommandToExecuteUsingMacAddress(soap, &soap_tmp___ns1__GetCommandToExecuteUsingMacAddress, "-ns1:GetCommandToExecuteUsingMacAddress", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!ns1__GetCommandToExecuteUsingMacAddressResponse)
+		return soap_closesock(soap);
+	ns1__GetCommandToExecuteUsingMacAddressResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	ns1__GetCommandToExecuteUsingMacAddressResponse->soap_get(soap, "ns1:GetCommandToExecuteUsingMacAddressResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
 int WSHttpBinding_USCOREIEILClientOperationsProxy::UpdateCommandStatus(_ns1__UpdateCommandStatus *ns1__UpdateCommandStatus, _ns1__UpdateCommandStatusResponse *ns1__UpdateCommandStatusResponse)
 {	struct soap *soap = this;
 	struct __ns1__UpdateCommandStatus soap_tmp___ns1__UpdateCommandStatus;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/UpdateCommandStatus";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__UpdateCommandStatus.ns1__UpdateCommandStatus = ns1__UpdateCommandStatus;
@@ -203,64 +255,12 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::UpdateCommandStatus(_ns1__Upd
 	return soap_closesock(soap);
 }
 
-int WSHttpBinding_USCOREIEILClientOperationsProxy::GetCommandStatus(_ns1__GetCommandStatus *ns1__GetCommandStatus, _ns1__GetCommandStatusResponse *ns1__GetCommandStatusResponse)
-{	struct soap *soap = this;
-	struct __ns1__GetCommandStatus soap_tmp___ns1__GetCommandStatus;
-	const char *soap_action = NULL;
-	if (!soap_endpoint)
-		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
-	soap_action = "http://tempuri.org/IEILClientOperations/GetCommandStatus";
-	soap->encodingStyle = NULL;
-	soap_tmp___ns1__GetCommandStatus.ns1__GetCommandStatus = ns1__GetCommandStatus;
-	soap_begin(soap);
-	soap_serializeheader(soap);
-	soap_serialize___ns1__GetCommandStatus(soap, &soap_tmp___ns1__GetCommandStatus);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put___ns1__GetCommandStatus(soap, &soap_tmp___ns1__GetCommandStatus, "-ns1:GetCommandStatus", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	}
-	if (soap_end_count(soap))
-		return soap->error;
-	if (soap_connect(soap, soap_endpoint, soap_action)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put___ns1__GetCommandStatus(soap, &soap_tmp___ns1__GetCommandStatus, "-ns1:GetCommandStatus", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap_closesock(soap);
-	if (!ns1__GetCommandStatusResponse)
-		return soap_closesock(soap);
-	ns1__GetCommandStatusResponse->soap_default(soap);
-	if (soap_begin_recv(soap)
-	 || soap_envelope_begin_in(soap)
-	 || soap_recv_header(soap)
-	 || soap_body_begin_in(soap))
-		return soap_closesock(soap);
-	ns1__GetCommandStatusResponse->soap_get(soap, "ns1:GetCommandStatusResponse", "");
-	if (soap->error)
-		return soap_recv_fault(soap, 0);
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap_closesock(soap);
-	return soap_closesock(soap);
-}
-
 int WSHttpBinding_USCOREIEILClientOperationsProxy::InitiateClientCommands(_ns1__InitiateClientCommands *ns1__InitiateClientCommands, _ns1__InitiateClientCommandsResponse *ns1__InitiateClientCommandsResponse)
 {	struct soap *soap = this;
 	struct __ns1__InitiateClientCommands soap_tmp___ns1__InitiateClientCommands;
 	const char *soap_action = NULL;
 	if (!soap_endpoint)
-		soap_endpoint = "http://eilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
 	soap_action = "http://tempuri.org/IEILClientOperations/InitiateClientCommands";
 	soap->encodingStyle = NULL;
 	soap_tmp___ns1__InitiateClientCommands.ns1__InitiateClientCommands = ns1__InitiateClientCommands;
@@ -298,6 +298,214 @@ int WSHttpBinding_USCOREIEILClientOperationsProxy::InitiateClientCommands(_ns1__
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
 	ns1__InitiateClientCommandsResponse->soap_get(soap, "ns1:InitiateClientCommandsResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int WSHttpBinding_USCOREIEILClientOperationsProxy::InitiateClientCommandsUsingMac(_ns1__InitiateClientCommandsUsingMac *ns1__InitiateClientCommandsUsingMac, _ns1__InitiateClientCommandsUsingMacResponse *ns1__InitiateClientCommandsUsingMacResponse)
+{	struct soap *soap = this;
+	struct __ns1__InitiateClientCommandsUsingMac soap_tmp___ns1__InitiateClientCommandsUsingMac;
+	const char *soap_action = NULL;
+	if (!soap_endpoint)
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+	soap_action = "http://tempuri.org/IEILClientOperations/InitiateClientCommandsUsingMac";
+	soap->encodingStyle = NULL;
+	soap_tmp___ns1__InitiateClientCommandsUsingMac.ns1__InitiateClientCommandsUsingMac = ns1__InitiateClientCommandsUsingMac;
+	soap_begin(soap);
+	soap_serializeheader(soap);
+	soap_serialize___ns1__InitiateClientCommandsUsingMac(soap, &soap_tmp___ns1__InitiateClientCommandsUsingMac);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___ns1__InitiateClientCommandsUsingMac(soap, &soap_tmp___ns1__InitiateClientCommandsUsingMac, "-ns1:InitiateClientCommandsUsingMac", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___ns1__InitiateClientCommandsUsingMac(soap, &soap_tmp___ns1__InitiateClientCommandsUsingMac, "-ns1:InitiateClientCommandsUsingMac", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!ns1__InitiateClientCommandsUsingMacResponse)
+		return soap_closesock(soap);
+	ns1__InitiateClientCommandsUsingMacResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	ns1__InitiateClientCommandsUsingMacResponse->soap_get(soap, "ns1:InitiateClientCommandsUsingMacResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int WSHttpBinding_USCOREIEILClientOperationsProxy::GetRDPConnectionString(_ns1__GetRDPConnectionString *ns1__GetRDPConnectionString, _ns1__GetRDPConnectionStringResponse *ns1__GetRDPConnectionStringResponse)
+{	struct soap *soap = this;
+	struct __ns1__GetRDPConnectionString soap_tmp___ns1__GetRDPConnectionString;
+	const char *soap_action = NULL;
+	if (!soap_endpoint)
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+	soap_action = "http://tempuri.org/IEILClientOperations/GetRDPConnectionString";
+	soap->encodingStyle = NULL;
+	soap_tmp___ns1__GetRDPConnectionString.ns1__GetRDPConnectionString = ns1__GetRDPConnectionString;
+	soap_begin(soap);
+	soap_serializeheader(soap);
+	soap_serialize___ns1__GetRDPConnectionString(soap, &soap_tmp___ns1__GetRDPConnectionString);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___ns1__GetRDPConnectionString(soap, &soap_tmp___ns1__GetRDPConnectionString, "-ns1:GetRDPConnectionString", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___ns1__GetRDPConnectionString(soap, &soap_tmp___ns1__GetRDPConnectionString, "-ns1:GetRDPConnectionString", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!ns1__GetRDPConnectionStringResponse)
+		return soap_closesock(soap);
+	ns1__GetRDPConnectionStringResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	ns1__GetRDPConnectionStringResponse->soap_get(soap, "ns1:GetRDPConnectionStringResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int WSHttpBinding_USCOREIEILClientOperationsProxy::InitiateRDPRequest(_ns1__InitiateRDPRequest *ns1__InitiateRDPRequest, _ns1__InitiateRDPRequestResponse *ns1__InitiateRDPRequestResponse)
+{	struct soap *soap = this;
+	struct __ns1__InitiateRDPRequest soap_tmp___ns1__InitiateRDPRequest;
+	const char *soap_action = NULL;
+	if (!soap_endpoint)
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+	soap_action = "http://tempuri.org/IEILClientOperations/InitiateRDPRequest";
+	soap->encodingStyle = NULL;
+	soap_tmp___ns1__InitiateRDPRequest.ns1__InitiateRDPRequest = ns1__InitiateRDPRequest;
+	soap_begin(soap);
+	soap_serializeheader(soap);
+	soap_serialize___ns1__InitiateRDPRequest(soap, &soap_tmp___ns1__InitiateRDPRequest);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___ns1__InitiateRDPRequest(soap, &soap_tmp___ns1__InitiateRDPRequest, "-ns1:InitiateRDPRequest", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___ns1__InitiateRDPRequest(soap, &soap_tmp___ns1__InitiateRDPRequest, "-ns1:InitiateRDPRequest", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!ns1__InitiateRDPRequestResponse)
+		return soap_closesock(soap);
+	ns1__InitiateRDPRequestResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	ns1__InitiateRDPRequestResponse->soap_get(soap, "ns1:InitiateRDPRequestResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+int WSHttpBinding_USCOREIEILClientOperationsProxy::UpdateAssetInformation(_ns1__UpdateAssetInformation *ns1__UpdateAssetInformation, _ns1__UpdateAssetInformationResponse *ns1__UpdateAssetInformationResponse)
+{	struct soap *soap = this;
+	struct __ns1__UpdateAssetInformation soap_tmp___ns1__UpdateAssetInformation;
+	const char *soap_action = NULL;
+	if (!soap_endpoint)
+		soap_endpoint = "http://hfseilauto01.eil-infra.com/CCMS/EILClientOperationsService.svc";
+	soap_action = "http://tempuri.org/IEILClientOperations/UpdateAssetInformation";
+	soap->encodingStyle = NULL;
+	soap_tmp___ns1__UpdateAssetInformation.ns1__UpdateAssetInformation = ns1__UpdateAssetInformation;
+	soap_begin(soap);
+	soap_serializeheader(soap);
+	soap_serialize___ns1__UpdateAssetInformation(soap, &soap_tmp___ns1__UpdateAssetInformation);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___ns1__UpdateAssetInformation(soap, &soap_tmp___ns1__UpdateAssetInformation, "-ns1:UpdateAssetInformation", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___ns1__UpdateAssetInformation(soap, &soap_tmp___ns1__UpdateAssetInformation, "-ns1:UpdateAssetInformation", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!ns1__UpdateAssetInformationResponse)
+		return soap_closesock(soap);
+	ns1__UpdateAssetInformationResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	ns1__UpdateAssetInformationResponse->soap_get(soap, "ns1:UpdateAssetInformationResponse", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)

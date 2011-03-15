@@ -46,7 +46,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>StewardLogger Class Reference</h1>  </div>
 </div>
@@ -79,6 +81,23 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Log an entry.  <a href="#adcfb587a8df82dfa6a359ac486597828"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a42447a35033fdf155eb89ff216d98c6a">QuickLog</a> (char *text,...)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quickly log an entry.  <a href="#a42447a35033fdf155eb89ff216d98c6a"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a0f32edd1128d7f7af9afb34d1ccbb613">innerLogEntry</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">private method for actually writing the log entry to the log file  <a href="#a0f32edd1128d7f7af9afb34d1ccbb613"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a5ea44d76035ed98be7a132c6e06a2629">logFilename</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a174e39d5d659b97dc58db35c6b12766f">isLogging</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#ad7da289b66a8dd4c26a43dc65a653ee2">useAltPipe</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#ae31f833d9213802815cd0dd464ace317">useSyslog</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a5ea8e2cd1f14a8b3b89c18cf55e21e8e">syslogPriority</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">FILE *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a65305110d3b4984a4d217fd90f1e2304">logPipe</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#ad331e7faaa9af7d1193bbb5273fa1ca6">logLine</a> [LOG_LINE_LENGTH]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#aa1463b1df97199a009e3b43c4d81cfac">tempLine</a> [TEMP_LINE_LENGTH]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">time_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a6668d4f6901707529dad64d07c28af2b">timer</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct tm *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#a5dd9195375107109b6cf3ce3969bb89e">ts</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStewardLogger.html#aa71822e2786269b092bd66fc527d827b">timeStamp</a> [80]</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Logger for the EIL Client Agent Steward. </p>
@@ -218,6 +237,25 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0f32edd1128d7f7af9afb34d1ccbb613"></a><!-- doxytag: member="StewardLogger::innerLogEntry" ref="a0f32edd1128d7f7af9afb34d1ccbb613" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StewardLogger::innerLogEntry </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>private method for actually writing the log entry to the log file </p>
+
+</div>
+</div>
 <a class="anchor" id="adcfb587a8df82dfa6a359ac486597828"></a><!-- doxytag: member="StewardLogger::LogEntry" ref="adcfb587a8df82dfa6a359ac486597828" args="(char *text,...)" -->
 <div class="memitem">
 <div class="memproto">
@@ -307,6 +345,150 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a174e39d5d659b97dc58db35c6b12766f"></a><!-- doxytag: member="StewardLogger::isLogging" ref="a174e39d5d659b97dc58db35c6b12766f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classStewardLogger.html#a174e39d5d659b97dc58db35c6b12766f">StewardLogger::isLogging</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ea44d76035ed98be7a132c6e06a2629"></a><!-- doxytag: member="StewardLogger::logFilename" ref="a5ea44d76035ed98be7a132c6e06a2629" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="classStewardLogger.html#a5ea44d76035ed98be7a132c6e06a2629">StewardLogger::logFilename</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad331e7faaa9af7d1193bbb5273fa1ca6"></a><!-- doxytag: member="StewardLogger::logLine" ref="ad331e7faaa9af7d1193bbb5273fa1ca6" args="[LOG_LINE_LENGTH]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="classStewardLogger.html#ad331e7faaa9af7d1193bbb5273fa1ca6">StewardLogger::logLine</a>[LOG_LINE_LENGTH]<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a65305110d3b4984a4d217fd90f1e2304"></a><!-- doxytag: member="StewardLogger::logPipe" ref="a65305110d3b4984a4d217fd90f1e2304" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE* <a class="el" href="classStewardLogger.html#a65305110d3b4984a4d217fd90f1e2304">StewardLogger::logPipe</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ea8e2cd1f14a8b3b89c18cf55e21e8e"></a><!-- doxytag: member="StewardLogger::syslogPriority" ref="a5ea8e2cd1f14a8b3b89c18cf55e21e8e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classStewardLogger.html#a5ea8e2cd1f14a8b3b89c18cf55e21e8e">StewardLogger::syslogPriority</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa1463b1df97199a009e3b43c4d81cfac"></a><!-- doxytag: member="StewardLogger::tempLine" ref="aa1463b1df97199a009e3b43c4d81cfac" args="[TEMP_LINE_LENGTH]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="classStewardLogger.html#aa1463b1df97199a009e3b43c4d81cfac">StewardLogger::tempLine</a>[TEMP_LINE_LENGTH]<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6668d4f6901707529dad64d07c28af2b"></a><!-- doxytag: member="StewardLogger::timer" ref="a6668d4f6901707529dad64d07c28af2b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">time_t <a class="el" href="classStewardLogger.html#a6668d4f6901707529dad64d07c28af2b">StewardLogger::timer</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa71822e2786269b092bd66fc527d827b"></a><!-- doxytag: member="StewardLogger::timeStamp" ref="aa71822e2786269b092bd66fc527d827b" args="[80]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="classStewardLogger.html#aa71822e2786269b092bd66fc527d827b">StewardLogger::timeStamp</a>[80]<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5dd9195375107109b6cf3ce3969bb89e"></a><!-- doxytag: member="StewardLogger::ts" ref="a5dd9195375107109b6cf3ce3969bb89e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct tm* <a class="el" href="classStewardLogger.html#a5dd9195375107109b6cf3ce3969bb89e">StewardLogger::ts</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad7da289b66a8dd4c26a43dc65a653ee2"></a><!-- doxytag: member="StewardLogger::useAltPipe" ref="ad7da289b66a8dd4c26a43dc65a653ee2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classStewardLogger.html#ad7da289b66a8dd4c26a43dc65a653ee2">StewardLogger::useAltPipe</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae31f833d9213802815cd0dd464ace317"></a><!-- doxytag: member="StewardLogger::useSyslog" ref="ae31f833d9213802815cd0dd464ace317" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classStewardLogger.html#ae31f833d9213802815cd0dd464ace317">StewardLogger::useSyslog</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="logger_8h_source.html">logger.h</a></li>
 <li><a class="el" href="logger_8cpp.html">logger.cpp</a></li>
@@ -317,7 +499,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -326,7 +508,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:09:29 for EILClientAgentLoggerClass by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Mar 4 2011 15:25:12 for EILClientAgentLoggerClass by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

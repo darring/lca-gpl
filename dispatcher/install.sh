@@ -153,6 +153,9 @@ uninstall_everything() {
 
     # uninstall the bin
     rm -f $BIN_DIR/*
+
+    # uninstall the postinst
+    rm -f $POSTINST_DIR/*
 }
 
 # We use /opt for our installation location to adhere to LSB Linux
@@ -215,6 +218,9 @@ if [ $# != 0 ] ; then
 
                 # purge the bin
                 rmdir $BIN_DIR
+
+                # purge the postinst
+                rmdir $POSTINST_DIR
 
                 # purge the main directory
                 # FIXME this actually purges the logs!

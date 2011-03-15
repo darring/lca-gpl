@@ -22,6 +22,18 @@ EIL_VERSION=$(shell cat ../VERSION)
 EIL_VERSION_TEXT=Version $(EIL_VERSION)
 EIL_VERSION_DEF=-D 'EIL_VERSION_TEXT="$(EIL_VERSION_TEXT)"'
 
+# CCMS IP Address defines
+# The possible options are:
+#   - CCMS_LOCAL_SERVER
+#   - CCMS_DEV_SERVER
+#   - CCMS_PRO_SERVER
+#
+# CCMS_LOCAL_SERVER is for purely experimental dev work where you want it to
+# send all requests to an echo server on localhost
+#
+# See steward/lib_steward/EIL_defines.h for more information
+CCMS_SERVER_DEF=-D 'CCMS_DEV_SERVER'
+
 # gSOAP includes
 GSOAP_INCLUDES=-I/usr/local/share/gsoap/plugin/
 GSOAP_SOURCES=/usr/local/share/gsoap/plugin/wsaapi.c
@@ -38,8 +50,8 @@ INSTALL=install
 INSTALL_GID=eil
 INSTALL_UID=eil
 
-CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF)
-CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF)
+CFLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF) $(CCMS_SERVER_DEF)
+CP_FLAGS=-c $(DEBUG) -Wall -Wno-write-strings -Wno-parentheses $(EIL_VERSION_DEF) $(CCMS_SERVER_DEF)
 
 LDFLAGS=
 CP_LDFLAGS=-lgsoap++

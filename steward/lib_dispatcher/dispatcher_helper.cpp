@@ -50,42 +50,47 @@ Dispatcher_Command_Status DispatcherHelper::runDispatcher()
     return commandStatus;
 }
 
+void DispatcherHelper::writeCommandDirectory(const char *command)
+{
+    char rebootCmd[512];
+    FILE *filePipe;
+    snprintf(rebootCmd, 512, "%s/%s", comPath, command);
+    if ( !(filePipe = (FILE*)fopen(rebootCmd, "w")) )
+    {
+        logger->QuickLog("DispatcherHelper> Could not open command directory for writing!");
+        exit(1);
+    }
+    // For this could be anything
+    fputc(102, filePipe);
+    fclose(filePipe);
+}
+
 void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
 {
     // It never hurts to have redundancy
     if(commandIssued->ReturnState == COMMAND_SUCCESS ||
        commandIssued->ReturnState == COMMAND_TCP_ERROR)
     {
-        FILE *filePipe;
         switch (commandIssued->Command)
         {
             case REBOOT:
                 logger->QuickLog("DispatcherHelper> Reboot command requested");
-                char rebootCmd[512];
-                snprintf(rebootCmd, 512, "%s/reboot", comPath);
-                if ( !(filePipe = (FILE*)fopen(rebootCmd, "w")) )
-                {
-                    logger->QuickLog("DispatcherHelper> Could not open reboot command directory for writing!");
-                    exit(1);
-                }
-                // For reboot, this could be anything
-                fputc(102, filePipe);
-                fclose(filePipe);
+
+                writeCommandDirectory("reboot");
 
                 runDispatcher();
                 break;
             case TCP_DIAGNOSE:
                 logger->QuickLog("DispatcherHelper> TCP diagnose command requested");
-                char diagCmd[512];
-                snprintf(diagCmd, 512, "%s/tcp_diag", comPath);
-                if ( !(filePipe = (FILE*)fopen(diagCmd, "w")) )
-                {
-                    logger->QuickLog("DispatcherHelper> Could not open diagnose command directory for writing!");
-                    exit(1);
-                }
-                // For reboot, this could be anything
-                fputc(102, filePipe);
-                fclose(filePipe);
+
+                writeCommandDirectory("tcp_diag");
+
+                runDispatcher();
+                break;
+            case ASSET_REFRESH:
+                logger->QuickLog("DispatcherHelper> Asset refresh command requested");
+
+                writeCommandDirectory("asset_refresh");
 
                 runDispatcher();
                 break;

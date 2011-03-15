@@ -14,6 +14,7 @@
 #include "stewardService.h"
 #include "EIL_defines.h"
 #include "uniqueHash.h"
+#include "CCMS_commands.h"
 
 StewardService::StewardService(StewardLogger *myLogger)
 {
@@ -37,6 +38,7 @@ StewardService::~StewardService()
 
 CCMS_Command StewardService::QueryForClientCommands(
             char *hostname,
+            char *hwaddr,
             char *order_num,
             MachineType mType)
 {
@@ -49,38 +51,14 @@ CCMS_Command StewardService::QueryForClientCommands(
     if (currentState == STATE_None)
     {
         logger->QuickLog("StewardService> Checking for command from CCMS");
-        /*
-        First, we need to build up our header, which includes the various
-        WS-Addressing bits that are needed by CCMS for routing of commands
-        */
-        soap_default_SOAP_ENV__Header(&soap, &header);
 
-        struct wsa5__EndpointReferenceType replyTo;
-
-        soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
-        replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
-
-        getNewMessageID();
-
-        header.wsa5__MessageID = last_MessageID;
-
-        header.wsa5__ReplyTo = &replyTo;
-        header.wsa5__To = EIL__CLIENTOPSERVICE;
-
-        header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
-
-        soap.header = &header;
+        genStubHeader();
 
         /*
         Okay, unfortunately, gSOAP turns the data-types inside out. So this can
         get a bit hairy. We must re-construct these somewhat backwards.
         Start out at the lowest possible data type
         */
-
-        // Set up our host name
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
-        hostname_kv.Key = "HOST_NAME";
-        hostname_kv.Value= hostname;
 
         // Set up our order num
         _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ordernum_kv;
@@ -90,15 +68,47 @@ CCMS_Command StewardService::QueryForClientCommands(
         /*
         Bring it up to the next level
         */
-        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[2];
-        ar[0] = hostname_kv;
-        ar[1] = ordernum_kv;
+
+        int numParams = 1;
+        if(hostname != NULL)
+            numParams++;
+        if(hwaddr != NULL)
+            numParams++;
+
+        _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring ar[numParams];
+        ar[0] = ordernum_kv;
+
+        numParams = 1;
+
+        /*
+        If we have a hostname, use it
+        */
+        if(hostname != NULL) {
+            // Set up our host name
+            _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hostname_kv;
+            hostname_kv.Key = "HOST_NAME";
+            hostname_kv.Value= hostname;
+            ar[numParams] = hostname_kv;
+            numParams++;
+        }
+
+        /*
+        If we have a hwaddr, use it
+        */
+        if(hwaddr != NULL) {
+            // Set up our hwaddr
+            _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring hwaddr_kv;
+            hwaddr_kv.Key = "MAC_ADDR";
+            hwaddr_kv.Value= hwaddr;
+            ar[numParams] = hwaddr_kv;
+            numParams++;
+        }
 
         /*
         Take that array, and plug it into the next data type level
         */
         ns5__ArrayOfKeyValueOfstringstring k1;
-        k1.__sizeKeyValueOfstringstring = 2;
+        k1.__sizeKeyValueOfstringstring = numParams;
         k1.KeyValueOfstringstring = &ar[0];
 
         /*
@@ -106,6 +116,7 @@ CCMS_Command StewardService::QueryForClientCommands(
         */
         ns4__MachineContext ctx;
         ctx.mParams = &k1;
+
         ns4__MachineType l_mType = ns4__MachineType__HOST;
 
         switch (mType)
@@ -133,246 +144,19 @@ CCMS_Command StewardService::QueryForClientCommands(
 
         ctx.mType = &l_mType;
 
-        /*
-        Finally, we're ready for the GetCommandToExecute class
-        */
-        _ns1__GetCommandToExecute getCommand;
-        getCommand.ctx = &ctx;
+        // Call the various private methods to for query commands
+        if(hostname == NULL) {
+            header.wsa5__Action = EIL__GETCOMMANDTOEXECUTEUSINGMACADDRESS;
+            synHeaders();
 
-        service.soap_header(
-            header.wsa5__MessageID,
-            header.wsa5__RelatesTo,
-            header.wsa5__From,
-            header.wsa5__ReplyTo,
-            header.wsa5__FaultTo,
-            header.wsa5__To,
-            header.wsa5__Action);
-
-        _ns1__GetCommandToExecuteResponse response;
-
-        /*
-        Execute the getCommand request
-        */
-        op_codes = service.GetCommandToExecute(
-            &getCommand, &response);
-
-        /*
-        Process the response
-        */
-        if(op_codes == SOAP_OK) {
-            if (response.GetCommandToExecuteResult == NULL) {
-                currentState = STATE_None;
-                returnCommand.ReturnState = COMMAND_SUCCESS;
-                returnCommand.Command = NO_COMMAND;
-                logger->QuickLog("StewardService> No command");
-            } else {
-                /*
-                 Be sure to update the header with the proper HTTP SOAP
-                 action! (or else we will get an "ActionMismatch" error
-                 */
-                header.wsa5__Action = EIL__UPDATECOMMANDSTATUS;
-                service.soap_header(
-                    header.wsa5__MessageID,
-                    header.wsa5__RelatesTo,
-                    header.wsa5__From,
-                    header.wsa5__ReplyTo,
-                    header.wsa5__FaultTo,
-                    header.wsa5__To,
-                    header.wsa5__Action);
-
-                /*
-                 First we need to get our responses ready
-                 */
-                _ns1__UpdateCommandStatus updateCmdStat;
-                ns4__EILCommand cmd;
-                _ns1__UpdateCommandStatusResponse updateCmdStatResp;
-
-                updateCmdStat.ctx = &ctx;
-
-                // Parse *what* our command was
-                if(strcasecmp(
-                    response.GetCommandToExecuteResult->CommandName, "reboot")
-                    == 0)
-                {
-                    currentState = STATE_ExecutingCommand;
-                    returnCommand.ReturnState = COMMAND_SUCCESS;
-                    returnCommand.Command = REBOOT;
-
-                    //updateCmdStat.cmd->CommandResult = cResult;
-                    ns4__EILCommandStatus complete =
-                        ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
-                    int errorcode = 0;
-                    cmd.CommandResult = "Reboot Successful";
-                    cmd.CommandStatus = &complete;
-                    cmd.ErrorCode = &errorcode;
-                    cmd.CommandName =
-                        response.GetCommandToExecuteResult->CommandName;
-
-                    updateCmdStat.cmd = &cmd;
-                    updateCmdStat.cmd->OperationID =
-                        response.GetCommandToExecuteResult->OperationID;
-
-                    // FIXME - Do we want to deal with op_codes here as well?
-                    service.UpdateCommandStatus(
-                        &updateCmdStat, &updateCmdStatResp);
-                } // Other commands go here
-                else
-                {
-                    currentState = STATE_None;
-                    returnCommand.ReturnState = COMMAND_ERROR;
-                    returnCommand.Command = NO_COMMAND;
-                }
-            }
+            queryForClientCommands_byHWAddr(&ctx, &returnCommand);
         } else {
-            // These codes are defined here:
-            // http://www.cs.fsu.edu/~engelen/soapdoc2.html#tth_sEc10.2
+            header.wsa5__Action = EIL__GETCOMMANDTOEXECUTE;
+            synHeaders();
 
-            // Our default error state, should we not find anything else
-            currentState = STATE_None;
-            returnCommand.ReturnState = COMMAND_ERROR;
-            returnCommand.Command = NO_COMMAND;
-            switch (op_codes)
-            {
-                case SOAP_CLI_FAULT:
-                    logger->QuickLog("StewardService> ERROR! SOAP_CLI_FAULT 'The service returned a client fault (SOAP 1.2 Sender fault)'");
-                    break;
-                case SOAP_SVR_FAULT:
-                    logger->QuickLog("StewardService> ERROR! SOAP_SVR_FAULT 'The service returned a server fault (SOAP 1.2 Receiver fault)'");
-                    break;
-                case SOAP_TAG_MISMATCH:
-                    logger->QuickLog("StewardService> ERROR! SOAP_TAG_MISMATCH 'An XML element didn't correspond to anything expected'");
-                    break;
-                case SOAP_TYPE:
-                    logger->QuickLog("StewardService> ERROR! SOAP_TYPE 'XML Schema type mismatch'");
-                    break;
-                case SOAP_SYNTAX_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_SYNTAX_ERROR 'An XML syntax error occurred on the input'");
-                    break;
-                case SOAP_NO_TAG:
-                    logger->QuickLog("StewardService> ERROR! SOAP_NO_TAG 'Begin of an element expected, but not found'");
-                    break;
-                case SOAP_IOB:
-                    logger->QuickLog("StewardService> ERROR! SOAP_IOB 'Array index out of bounds'");
-                    break;
-                case SOAP_MUSTUNDERSTAND:
-                    logger->QuickLog("StewardService> ERROR! SOAP_MUSTUNDERSTAND 'An element needs to be ignored that need to be understood'");
-                    break;
-                case SOAP_NAMESPACE:
-                    logger->QuickLog("StewardService> ERROR! SOAP_NAMESPACE 'Namespace name mismatch (validation error)'");
-                    break;
-                case SOAP_FATAL_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_FATAL_ERROR 'Internal error'");
-                    break;
-                case SOAP_USER_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_USER_ERROR 'User error'");
-                    break;
-                case SOAP_FAULT:
-                    logger->QuickLog("StewardService> ERROR! SOAP_FAULT 'An exception raised by the service'");
-                    break;
-                case SOAP_NO_METHOD:
-                    logger->QuickLog("StewardService> ERROR! SOAP_NO_METHOD '[gSOAP] did not find a matching operation for the request'");
-                    break;
-                case SOAP_NO_DATA:
-                    logger->QuickLog("StewardService> ERROR! SOAP_NO_DATA 'No data in HTTP message'");
-                    break;
-                case SOAP_GET_METHOD:
-                    logger->QuickLog("StewardService> ERROR! SOAP_GET_METHOD 'HTTP GET operation not handled'");
-                    break;
-                case SOAP_EOM:
-                    logger->QuickLog("StewardService> ERROR! SOAP_EOM 'Out of memory'");
-                    break;
-                case SOAP_MOE:
-                    logger->QuickLog("StewardService> ERROR! SOAP_MOE 'Memory overflow/corruption error (DEBUG mode)'");
-                    break;
-                case SOAP_NULL:
-                    logger->QuickLog("StewardService> ERROR! SOAP_NULL 'An element was null, while it is not supposed to be null'");
-                    break;
-                case SOAP_DUPLICATE_ID:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DUPLICATE_ID 'Element's ID duplicated (SOAP encoding)'");
-                    break;
-                case SOAP_MISSING_ID:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DUPLICATE_ID 'Element ID missing for an href/ref (SOAP encoding)'");
-                    break;
-                case SOAP_HREF:
-                    logger->QuickLog("StewardService> ERROR! SOAP_HREF 'Reference to object is incompatible with the object refered to'");
-                    break;
-                case SOAP_UDP_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_UDP_ERROR 'Message too large to store in UDP packet'");
-                    break;
-                case SOAP_TCP_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_TCP_ERROR 'A connection error occured'");
-                    /*
-                      This actually could mean a variety of things, however, one
-                      of the more serious causes is that we have just switched
-                      VLANs and need to re-up our network interfaces. This is
-                      beyond the mental faculties of the steward, so we offload
-                      the workload to an external script to diagnose the problem
-                     */
-                    returnCommand.ReturnState = COMMAND_TCP_ERROR;
-                    returnCommand.Command = TCP_DIAGNOSE;
-                    break;
-                case SOAP_HTTP_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_HTTP_ERROR 'An HTTP error occured'");
-                    break;
-                case SOAP_SSL_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_SSL_ERROR 'An SSL error occured'");
-                    break;
-                case SOAP_ZLIB_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_ZLIB_ERROR 'A Zlib error occured'");
-                    break;
-                case SOAP_PLUGIN_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_PLUGIN_ERROR 'Failed to register plugin'");
-                    break;
-                case SOAP_MIME_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_MIME_ERROR 'MIME parsing error'");
-                    break;
-                case SOAP_MIME_HREF:
-                    logger->QuickLog("StewardService> ERROR! SOAP_MIME_HREF 'MIME attachment has no href from SOAP body error'");
-                    break;
-                case SOAP_MIME_END:
-                    logger->QuickLog("StewardService> ERROR! SOAP_MIME_END 'End of MIME attachments protocol error'");
-                    break;
-                case SOAP_DIME_ERROR:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_ERROR 'DIME parsing error'");
-                    break;
-                case SOAP_DIME_END:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_END 'End of DIME attachments protocol error'");
-                    break;
-                case SOAP_DIME_HREF:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_HREF 'DIME attachment has no href from SOAP body'");
-                    break;
-                case SOAP_DIME_MISMATCH:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DIME_MISMATCH 'DIME version/transmission error'");
-                    break;
-                case SOAP_VERSIONMISMATCH:
-                    logger->QuickLog("StewardService> ERROR! SOAP_VERSIONMISMATCH 'SOAP version mismatch or no SOAP message'");
-                    break;
-                case SOAP_DATAENCODINGUNKNOWN:
-                    logger->QuickLog("StewardService> ERROR! SOAP_DATAENCODINGUNKNOWN 'SOAP 1.2 DataEncodingUnknown fault'");
-                    break;
-                case SOAP_REQUIRED:
-                    logger->QuickLog("StewardService> ERROR! SOAP_REQUIRED 'Attributed required validation error'");
-                    break;
-                case SOAP_PROHIBITED:
-                    logger->QuickLog("StewardService> ERROR! SOAP_PROHIBITED 'Attributed prohibited validation error'");
-                    break;
-                case SOAP_OCCURS:
-                    logger->QuickLog("StewardService> ERROR! SOAP_OCCURS 'Element minOccurs/maxOccurs validation error'");
-                    break;
-                case SOAP_LENGTH:
-                    logger->QuickLog("StewardService> ERROR! SOAP_LENGTH 'Element length validation error'");
-                    break;
-                case SOAP_FD_EXCEEDED:
-                    logger->QuickLog("StewardService> ERROR! SOAP_FD_EXCEEDED 'Too many open sockets'");
-                    break;
-                case SOAP_EOF:
-                    logger->QuickLog("StewardService> ERROR! SOAP_EOF 'Unexpected end of file, no input, or timeout while receiving data'");
-                    break;
-                default:
-                    logger->QuickLog("StewardService> ERROR! Undefined gSOAP error!");
-                    break;
-            }
+            queryForClientCommands_byHostname(&ctx, &returnCommand);
         }
+
         // FIXME Memory clean-up
     }
     else
@@ -382,6 +166,78 @@ CCMS_Command StewardService::QueryForClientCommands(
         returnCommand.Command = NO_COMMAND;
     }
     return returnCommand;
+}
+
+int StewardService::UpdateAssetInformation(
+            char *hostname,
+            char *hwaddr,
+            char *assetInfo)
+{
+    if (currentState == STATE_None)
+    {
+        logger->QuickLog("StewardService> Update asset information with CCMS");
+        genStubHeader();
+        header.wsa5__Action = EIL__UPDATEASSETINFO;
+        synHeaders();
+
+        /*
+         * Set up our update class
+         */
+        _ns1__UpdateAssetInformation update;
+        update.hostName = hostname;
+        update.macAddr = hwaddr;
+        update.xmlAssetInfo = assetInfo;
+
+        /*
+         * Set up our response class
+         */
+        _ns1__UpdateAssetInformationResponse response;
+
+        /*
+         * The actual soap call
+         */
+        op_codes = service.UpdateAssetInformation(
+            &update, &response);
+
+        /*
+         * Process the response
+         */
+        if(op_codes == SOAP_OK) {
+            // Soap call was a success, check the response
+            if(response.UpdateAssetInformationResult) {
+                // Total success, rockin!
+                logger->QuickLog("StewardService> Asset information successfully updated to CCMS");
+                return 0;
+            }
+            // Hmm, something happened
+            logger->QuickLog("StewardService> An error occured with CCMS when trying to update asset information!");
+            logger->QuickLog("StewardService> Asset information will not be resubmitted unless a request is made!");
+            return -1;
+        } else if(op_codes == SOAP_TCP_ERROR) {
+            /*
+             * In the event we get a SOAP_TCP_ERROR during asset updating it
+             * means we're on a system which boots too quickly for the stupid-
+             * slow Windows DHCP servers they are using here to manage the DHCP
+             * request, and that we need to keep trying until it's a success.
+             */
+            logger->QuickLog("StewardService> Network doesn't appear to be ready on asset information update...");
+            return 1;
+        } else {
+            /*
+             * We have a SOAP error, unfortunately, we can do little with it
+             * here because we aren't in a proper command state, so, we log it
+             * and return false.
+             */
+            CCMS_Command returnCommand;
+            logger->QuickLog("StewardService> SOAP error while in asset update logic! Recovery not possible!");
+            parseOpCode(&returnCommand);
+            return -1;
+        }
+    } else {
+        // We're in the wrong state for this
+        logger->QuickLog("StewardService> Attempt to update asset information while in wrong service state!");
+        return -1;
+    }
 }
 
     /**** Private Methods ****/
@@ -399,3 +255,105 @@ void StewardService::getNewMessageID()
             "urn:uuid:%s", messageID);
 }
 
+void StewardService::queryForClientCommands_byHostname(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand)
+{
+    _ns1__GetCommandToExecute getCommand;
+    getCommand.ctx = ctx;
+
+    _ns1__GetCommandToExecuteResponse response;
+
+    /*
+    Execute the getCommand request
+    */
+    op_codes = service.GetCommandToExecute(
+        &getCommand, &response);
+
+    /*
+    Process the response
+    */
+    if(op_codes == SOAP_OK) {
+        if (response.GetCommandToExecuteResult == NULL) {
+            currentState = STATE_None;
+            returnCommand->ReturnState = COMMAND_SUCCESS;
+            returnCommand->Command = NO_COMMAND;
+            logger->QuickLog("StewardService> No command");
+        } else {
+            // FIXME - Do we want to deal with op_codes here as well?
+            parseCommandFromCCMS(ctx,
+                response.GetCommandToExecuteResult,
+                returnCommand);
+        }
+    } else {
+        parseOpCode(returnCommand);
+    }
+}
+
+void StewardService::queryForClientCommands_byHWAddr(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand)
+{
+    _ns1__GetCommandToExecuteUsingMacAddress getCommand;
+    getCommand.ctx = ctx;
+
+    _ns1__GetCommandToExecuteUsingMacAddressResponse response;
+
+    /*
+    Execute the getCommand request
+    */
+    op_codes = service.GetCommandToExecuteUsingMacAddress(
+        &getCommand, &response);
+
+    /*
+    Process the response
+    */
+    if(op_codes == SOAP_OK) {
+        if (response.GetCommandToExecuteUsingMacAddressResult == NULL) {
+            currentState = STATE_None;
+            returnCommand->ReturnState = COMMAND_SUCCESS;
+            returnCommand->Command = NO_COMMAND;
+            logger->QuickLog("StewardService> No command");
+        } else {
+            // FIXME - Do we want to deal with op_codes here as well?
+            parseCommandFromCCMS(ctx,
+                response.GetCommandToExecuteUsingMacAddressResult,
+                returnCommand);
+        }
+    } else {
+        parseOpCode(returnCommand);
+    }
+}
+
+void StewardService::synHeaders()
+{
+    service.soap_header(
+        header.wsa5__MessageID,
+        header.wsa5__RelatesTo,
+        header.wsa5__From,
+        header.wsa5__ReplyTo,
+        header.wsa5__FaultTo,
+        header.wsa5__To,
+        header.wsa5__Action);
+}
+
+void StewardService::genStubHeader()
+{
+    /*
+    First, we need to build up our header, which includes the various
+    WS-Addressing bits that are needed by CCMS for routing of commands
+    */
+    soap_default_SOAP_ENV__Header(&soap, &header);
+
+    soap_default_wsa5__EndpointReferenceType(&soap, &replyTo);
+    replyTo.Address = WSA5__ADDRESS_ANONYMOUS;
+
+    getNewMessageID();
+
+    header.wsa5__MessageID = last_MessageID;
+
+    header.wsa5__ReplyTo = &replyTo;
+    header.wsa5__To = EIL__CLIENTOPSERVICE;
+
+    soap.header = &header;
+}

@@ -150,6 +150,16 @@ class StewardLogger
          * logged, not when there are extended log entries to be written.
          */
         void QuickLog(char *text, ...);
+
+        //! Generic method for logging an error message from errno(3)
+        void ErrLog();
+
+        //! Method for logging an error message from errno(3) with text
+        /*!
+         * Call with text to log an error message from errno(3) with additional
+         * text to be added after the errno(3) message has been logged.
+         */
+        void ErrLog(char *text, ...);
 };
 
 #endif

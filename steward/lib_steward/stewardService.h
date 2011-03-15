@@ -16,8 +16,13 @@
  *
  * \section Usage Usage
  *  To use the steward service, create an instance of the class StewardServce,
- * and call the QueryForClientCommands(..) method every NN seconds (where NN is
- * determined by some external criteria).
+ * and call the StewardService::QueryForClientCommands method every NN seconds
+ * (where NN is determined by some external criteria).
+ *
+ * \section subsections Subsections
+ *
+ * \li \subpage ccms_commands "CCMS Command Defines"
+
  */
 
 #ifndef stewardService_H
@@ -49,6 +54,7 @@ class StewardService
         WSHttpBinding_USCOREIEILClientOperationsProxy service;
         struct soap soap;
         struct SOAP_ENV__Header header;
+        struct wsa5__EndpointReferenceType replyTo;
         StewardLogger *logger;
         int op_codes;
         char last_MessageID[MAX_MESSAGEID_LEN];
@@ -60,6 +66,65 @@ class StewardService
          * \return Null byte terminated message ID
          */
         void getNewMessageID();
+
+        //! Internal method for querying client commands by hostname
+        /*!
+         * \param ctx the machine context used for the call
+         * \param returnCommand the CCMS return command struct
+         * 
+         * \remarks It is assumed that header information has already been set
+         * up and all other state data for service has been preset.
+         */
+        void queryForClientCommands_byHostname(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand);
+
+        //! Internal method for querying client commands by HW address
+        /*!
+         * \param ctx the machine context used for the call
+         * \param returnCommand the CCMS return command struct
+         *
+         * \remarks It is assumed that header information has already been set
+         * up and all other state data for service has been preset.
+         */
+        void queryForClientCommands_byHWAddr(
+            ns4__MachineContext *ctx,
+            CCMS_Command *returnCommand);
+
+        //! Internal method for parsing the opcode from various calls
+        /*!
+         * This method is intended to be highly generic, and should only be
+         * used when your local method has exhausted all custom opcode
+         * interpretations it has. Once called, it will parse the opcode,
+         * set the returnCommand and log as appropriate.
+         * \param returnCommand the CCMS return command struct
+         *
+         * \remarks It is assumed that op_codes has been set previously by one
+         * of the various calls to the service.
+         */
+        void parseOpCode(
+            CCMS_Command *returnCommand);
+
+        //! Internal method for parsing the actual commands from CCMS
+        /*!
+         * This method wraps the actual parsing of the CCMS commands.
+         * \param ctx the machine context used for the call
+         * \param EILCommand The command class as it was granted directly from
+         * CCMS.
+         * \param returnCommand The CCMS return command struct.
+         *
+         * \return The gSOAP opCode
+         */
+        int parseCommandFromCCMS(
+            ns4__MachineContext *ctx,
+            ns4__EILCommand *EILCommand,
+            CCMS_Command *returnCommand);
+
+        //! Internal method for generating default header stub
+        void genStubHeader();
+
+        //! Internal method for sync'ing the headers
+        void synHeaders();
 
     public:
         //! Constructor for the Steward service wrapper
@@ -76,15 +141,35 @@ class StewardService
          * Call this every NN seconds to query the web service for available
          * commands.
          * \param hostname is the hostname of this particular machine
+         * \param hwaddr is the hardware address of this particular machine
          * \param order_num is the value of the ORDER_NUM field
          * \param mType is the Machine Type
          * \return Command type (or error if an error occured)
          *
+         * \remarks One of hostname of hwaddr is required. The other may be
+         * NULL, and will not be used.
          */
         CCMS_Command QueryForClientCommands(
             char *hostname,
+            char *hwaddr,
             char *order_num,
             MachineType mType);
+
+        //! Update CCMS with the asset information for the local machine
+        /*!
+         * Call this once you have updated asset information and CCMS will be
+         * updated with this asset information.
+         * \param hostname is the hostname of this particular machine
+         * \param hwaddr is the hardware address of this particular machine
+         * \param assetInfo is the XML asset info
+         *
+         * \returns Zero on success. Negative on unrecoverable failure.
+         * Positive on a recoverable failure.
+         */
+        int UpdateAssetInformation(
+            char *hostname,
+            char *hwaddr,
+            char *assetInfo);
 };
 
 #endif

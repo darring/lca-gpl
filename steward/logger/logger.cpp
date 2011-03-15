@@ -8,8 +8,11 @@
 #include <time.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <errno.h>
+#include <string.h>
 
 #include "logger.h"
+#include "err_defines.h"
 
 StewardLogger::StewardLogger(char *logFile)
 {
@@ -207,4 +210,34 @@ void StewardLogger::QuickLog(char *text, ...)
         innerLogEntry();
         EndLogging();
     }
+}
+
+void StewardLogger::ErrLog()
+{
+    int err = errno;
+    QuickLog("%s '%s' %s", ERROR_PREFIX,
+        (err > 0 && err <= MAX_ERROR_NAMES) ? errorName[err] : "UNKNOWN",
+        strerror(err));
+    errno = err;
+}
+
+void StewardLogger::ErrLog(char *text, ...)
+{
+    int err = errno;
+    char a[TEMP_LINE_LENGTH];
+
+    va_list argp;
+    va_start(argp, text);
+    if( ! (vsnprintf(a, TEMP_LINE_LENGTH, text, argp)) )
+    {
+        perror("Log entry too long!");
+        perror(text);
+    }
+    va_end(argp);
+
+    QuickLog("%s '%s' %s - %s", a,
+        (err > 0 && err <= MAX_ERROR_NAMES) ? errorName[err] : "UNKNOWN",
+        strerror(err));
+
+    errno = err;
 }

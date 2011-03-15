@@ -10,8 +10,10 @@
  * intended to centralize all dispatcher-related calls and interfacing into a
  * single location such that any changes only affect one location.
  *
- * \section TODO_sec TODO
+ * \section usage_sec Usage
  *
+ * The dispatcher helper is utilized by creating an instance of
+ * DispatcherHelper.
  */
 
 #ifndef dispatcher_helper_H
@@ -41,6 +43,13 @@ class DispatcherHelper
          * \returns Command status
          */
         Dispatcher_Command_Status runDispatcher();
+
+        //! Internal method for writing to the command directory
+        /*!
+         * Called to set up the command for the dispatcher
+         * \param command the string for the command
+         */
+        void writeCommandDirectory(const char *command);
     public:
         //! Constructor for the abstract interface to the dispatcher
         /*!

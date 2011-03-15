@@ -23,33 +23,33 @@
 
 
 #ifndef SOAP_TYPE_ns4__MachineType
-#define SOAP_TYPE_ns4__MachineType (66)
+#define SOAP_TYPE_ns4__MachineType (74)
 /* ns4:MachineType */
 enum ns4__MachineType {ns4__MachineType__ANY = 0, ns4__MachineType__HOST_USCOREWILDCARD = 1, ns4__MachineType__HOST = 2, ns4__MachineType__FQDN = 3, ns4__MachineType__UUID = 4, ns4__MachineType__COLLECTION = 5};
 #endif
 
 #ifndef SOAP_TYPE_ns4__EILCommandStatus
-#define SOAP_TYPE_ns4__EILCommandStatus (68)
+#define SOAP_TYPE_ns4__EILCommandStatus (76)
 /* ns4:EILCommandStatus */
 enum ns4__EILCommandStatus {ns4__EILCommandStatus__COMMAND_USCOREISSUED = 0, ns4__EILCommandStatus__COMMAND_USCORERECEIVED = 1, ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORESTARTED = 2, ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE = 3, ns4__EILCommandStatus__COMMAND_USCOREFAILED = 4, ns4__EILCommandStatus__WAIT_USCOREFOR_USCOREMANUAL_USCORESTEP = 5, ns4__EILCommandStatus__COMMAND_USCORETIMED_USCOREOUT = 6, ns4__EILCommandStatus__COMMAND_USCOREDELAYED_USCORERESPONSE = 7, ns4__EILCommandStatus__COMMAND_USCORERETRY = 8};
 #endif
 
 #ifndef SOAP_TYPE_wsa5__RelationshipType
-#define SOAP_TYPE_wsa5__RelationshipType (134)
+#define SOAP_TYPE_wsa5__RelationshipType (158)
 /* wsa5:RelationshipType */
 enum wsa5__RelationshipType {http_x003a_x002f_x002fwww_x002ew3_x002eorg_x002f2005_x002f08_x002faddressing_x002freply = 0};
 typedef enum wsa5__RelationshipType wsa5__RelationshipType;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__FaultCodesType
-#define SOAP_TYPE_wsa5__FaultCodesType (135)
+#define SOAP_TYPE_wsa5__FaultCodesType (159)
 /* wsa5:FaultCodesType */
 enum wsa5__FaultCodesType {wsa5__InvalidAddressingHeader = 0, wsa5__InvalidAddress = 1, wsa5__InvalidEPR = 2, wsa5__InvalidCardinality = 3, wsa5__MissingAddressInEPR = 4, wsa5__DuplicateMessageID = 5, wsa5__ActionMismatch = 6, wsa5__MessageAddressingHeaderRequired = 7, wsa5__DestinationUnreachable = 8, wsa5__ActionNotSupported = 9, wsa5__EndpointUnavailable = 10};
 typedef enum wsa5__FaultCodesType wsa5__FaultCodesType;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__IsReferenceParameter
-#define SOAP_TYPE__wsa5__IsReferenceParameter (153)
+#define SOAP_TYPE__wsa5__IsReferenceParameter (177)
 /* wsa5:IsReferenceParameter */
 enum _wsa5__IsReferenceParameter {wsa5__false = 0, wsa5__true = 1};
 typedef enum _wsa5__IsReferenceParameter _wsa5__IsReferenceParameter;
@@ -520,14 +520,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns3__char__
-#define SOAP_TYPE_ns3__char__ (61)
+#define SOAP_TYPE_ns3__char__ (69)
 /* Primitive ns3:char schema type: */
 class SOAP_CMAC ns3__char__ : public xsd__anyType
 {
 public:
 	int __item;
 public:
-	virtual int soap_type() const { return 61; } /* = unique id SOAP_TYPE_ns3__char__ */
+	virtual int soap_type() const { return 69; } /* = unique id SOAP_TYPE_ns3__char__ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -540,14 +540,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns3__duration__
-#define SOAP_TYPE_ns3__duration__ (63)
+#define SOAP_TYPE_ns3__duration__ (71)
 /* Primitive ns3:duration schema type: */
 class SOAP_CMAC ns3__duration__ : public xsd__anyType
 {
 public:
 	char *__item;
 public:
-	virtual int soap_type() const { return 63; } /* = unique id SOAP_TYPE_ns3__duration__ */
+	virtual int soap_type() const { return 71; } /* = unique id SOAP_TYPE_ns3__duration__ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -560,14 +560,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns3__guid__
-#define SOAP_TYPE_ns3__guid__ (65)
+#define SOAP_TYPE_ns3__guid__ (73)
 /* Primitive ns3:guid schema type: */
 class SOAP_CMAC ns3__guid__ : public xsd__anyType
 {
 public:
 	char *__item;
 public:
-	virtual int soap_type() const { return 65; } /* = unique id SOAP_TYPE_ns3__guid__ */
+	virtual int soap_type() const { return 73; } /* = unique id SOAP_TYPE_ns3__guid__ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -580,14 +580,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns4__MachineType_
-#define SOAP_TYPE_ns4__MachineType_ (67)
+#define SOAP_TYPE_ns4__MachineType_ (75)
 /* Primitive ns4:MachineType schema type: */
 class SOAP_CMAC ns4__MachineType_ : public xsd__anyType
 {
 public:
 	enum ns4__MachineType __item;
 public:
-	virtual int soap_type() const { return 67; } /* = unique id SOAP_TYPE_ns4__MachineType_ */
+	virtual int soap_type() const { return 75; } /* = unique id SOAP_TYPE_ns4__MachineType_ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -600,14 +600,14 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns4__EILCommandStatus_
-#define SOAP_TYPE_ns4__EILCommandStatus_ (69)
+#define SOAP_TYPE_ns4__EILCommandStatus_ (77)
 /* Primitive ns4:EILCommandStatus schema type: */
 class SOAP_CMAC ns4__EILCommandStatus_ : public xsd__anyType
 {
 public:
 	enum ns4__EILCommandStatus __item;
 public:
-	virtual int soap_type() const { return 69; } /* = unique id SOAP_TYPE_ns4__EILCommandStatus_ */
+	virtual int soap_type() const { return 77; } /* = unique id SOAP_TYPE_ns4__EILCommandStatus_ */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -661,8 +661,50 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress
+#define SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress (50)
+/* ns1:GetCommandToExecuteUsingMacAddress */
+class SOAP_CMAC _ns1__GetCommandToExecuteUsingMacAddress
+{
+public:
+	ns4__MachineContext *ctx;	/* optional element of type ns4:MachineContext */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 50; } /* = unique id SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddress */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__GetCommandToExecuteUsingMacAddress(): ctx(NULL), soap(NULL) { _ns1__GetCommandToExecuteUsingMacAddress::soap_default(NULL); }
+	virtual ~_ns1__GetCommandToExecuteUsingMacAddress() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse
+#define SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse (51)
+/* ns1:GetCommandToExecuteUsingMacAddressResponse */
+class SOAP_CMAC _ns1__GetCommandToExecuteUsingMacAddressResponse
+{
+public:
+	ns4__EILCommand *GetCommandToExecuteUsingMacAddressResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type ns4:EILCommand */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 51; } /* = unique id SOAP_TYPE__ns1__GetCommandToExecuteUsingMacAddressResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__GetCommandToExecuteUsingMacAddressResponse(): GetCommandToExecuteUsingMacAddressResult(NULL), soap(NULL) { _ns1__GetCommandToExecuteUsingMacAddressResponse::soap_default(NULL); }
+	virtual ~_ns1__GetCommandToExecuteUsingMacAddressResponse() { }
+};
+#endif
+
 #ifndef SOAP_TYPE__ns1__UpdateCommandStatus
-#define SOAP_TYPE__ns1__UpdateCommandStatus (50)
+#define SOAP_TYPE__ns1__UpdateCommandStatus (52)
 /* ns1:UpdateCommandStatus */
 class SOAP_CMAC _ns1__UpdateCommandStatus
 {
@@ -671,7 +713,7 @@ public:
 	ns4__EILCommand *cmd;	/* optional element of type ns4:EILCommand */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 50; } /* = unique id SOAP_TYPE__ns1__UpdateCommandStatus */
+	virtual int soap_type() const { return 52; } /* = unique id SOAP_TYPE__ns1__UpdateCommandStatus */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -684,7 +726,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__ns1__UpdateCommandStatusResponse
-#define SOAP_TYPE__ns1__UpdateCommandStatusResponse (51)
+#define SOAP_TYPE__ns1__UpdateCommandStatusResponse (53)
 /* ns1:UpdateCommandStatusResponse */
 class SOAP_CMAC _ns1__UpdateCommandStatusResponse
 {
@@ -692,7 +734,7 @@ public:
 	bool *UpdateCommandStatusResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type xsd:boolean */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 51; } /* = unique id SOAP_TYPE__ns1__UpdateCommandStatusResponse */
+	virtual int soap_type() const { return 53; } /* = unique id SOAP_TYPE__ns1__UpdateCommandStatusResponse */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -701,48 +743,6 @@ public:
 	virtual void *soap_in(struct soap*, const char*, const char*);
 	         _ns1__UpdateCommandStatusResponse(): UpdateCommandStatusResult(NULL), soap(NULL) { _ns1__UpdateCommandStatusResponse::soap_default(NULL); }
 	virtual ~_ns1__UpdateCommandStatusResponse() { }
-};
-#endif
-
-#ifndef SOAP_TYPE__ns1__GetCommandStatus
-#define SOAP_TYPE__ns1__GetCommandStatus (52)
-/* ns1:GetCommandStatus */
-class SOAP_CMAC _ns1__GetCommandStatus
-{
-public:
-	ns4__MachineContext *ctx;	/* optional element of type ns4:MachineContext */
-	struct soap *soap;	/* transient */
-public:
-	virtual int soap_type() const { return 52; } /* = unique id SOAP_TYPE__ns1__GetCommandStatus */
-	virtual void soap_default(struct soap*);
-	virtual void soap_serialize(struct soap*) const;
-	virtual int soap_put(struct soap*, const char*, const char*) const;
-	virtual int soap_out(struct soap*, const char*, int, const char*) const;
-	virtual void *soap_get(struct soap*, const char*, const char*);
-	virtual void *soap_in(struct soap*, const char*, const char*);
-	         _ns1__GetCommandStatus(): ctx(NULL), soap(NULL) { _ns1__GetCommandStatus::soap_default(NULL); }
-	virtual ~_ns1__GetCommandStatus() { }
-};
-#endif
-
-#ifndef SOAP_TYPE__ns1__GetCommandStatusResponse
-#define SOAP_TYPE__ns1__GetCommandStatusResponse (53)
-/* ns1:GetCommandStatusResponse */
-class SOAP_CMAC _ns1__GetCommandStatusResponse
-{
-public:
-	ns4__MachineContext *GetCommandStatusResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type ns4:MachineContext */
-	struct soap *soap;	/* transient */
-public:
-	virtual int soap_type() const { return 53; } /* = unique id SOAP_TYPE__ns1__GetCommandStatusResponse */
-	virtual void soap_default(struct soap*);
-	virtual void soap_serialize(struct soap*) const;
-	virtual int soap_put(struct soap*, const char*, const char*) const;
-	virtual int soap_out(struct soap*, const char*, int, const char*) const;
-	virtual void *soap_get(struct soap*, const char*, const char*);
-	virtual void *soap_in(struct soap*, const char*, const char*);
-	         _ns1__GetCommandStatusResponse(): GetCommandStatusResult(NULL), soap(NULL) { _ns1__GetCommandStatusResponse::soap_default(NULL); }
-	virtual ~_ns1__GetCommandStatusResponse() { }
 };
 #endif
 
@@ -790,31 +790,204 @@ public:
 };
 #endif
 
-#ifndef SOAP_TYPE_ns4__MachineContext
-#define SOAP_TYPE_ns4__MachineContext (56)
-/* ns4:MachineContext */
-class SOAP_CMAC ns4__MachineContext : public xsd__anyType
+#ifndef SOAP_TYPE__ns1__InitiateClientCommandsUsingMac
+#define SOAP_TYPE__ns1__InitiateClientCommandsUsingMac (56)
+/* ns1:InitiateClientCommandsUsingMac */
+class SOAP_CMAC _ns1__InitiateClientCommandsUsingMac
 {
 public:
-	class ns5__ArrayOfstring *mContext;	/* optional element of type ns5:ArrayOfstring */
-	ns5__ArrayOfstring *mList;	/* optional element of type ns5:ArrayOfstring */
-	class ns5__ArrayOfKeyValueOfstringstring *mParams;	/* optional element of type ns5:ArrayOfKeyValueOfstringstring */
-	enum ns4__MachineType *mType;	/* optional element of type ns4:MachineType */
+	ns4__MachineContext *ctx;	/* optional element of type ns4:MachineContext */
+	ns4__EILCommand *cmd;	/* optional element of type ns4:EILCommand */
+	char *ownrID;	/* optional element of type xsd:string */
+	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 56; } /* = unique id SOAP_TYPE_ns4__MachineContext */
+	virtual int soap_type() const { return 56; } /* = unique id SOAP_TYPE__ns1__InitiateClientCommandsUsingMac */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         ns4__MachineContext(): mContext(NULL), mList(NULL), mParams(NULL), mType(NULL) { ns4__MachineContext::soap_default(NULL); }
+	         _ns1__InitiateClientCommandsUsingMac(): ctx(NULL), cmd(NULL), ownrID(NULL), soap(NULL) { _ns1__InitiateClientCommandsUsingMac::soap_default(NULL); }
+	virtual ~_ns1__InitiateClientCommandsUsingMac() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse
+#define SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse (57)
+/* ns1:InitiateClientCommandsUsingMacResponse */
+class SOAP_CMAC _ns1__InitiateClientCommandsUsingMacResponse
+{
+public:
+	char *InitiateClientCommandsUsingMacResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type xsd:string */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 57; } /* = unique id SOAP_TYPE__ns1__InitiateClientCommandsUsingMacResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__InitiateClientCommandsUsingMacResponse(): InitiateClientCommandsUsingMacResult(NULL), soap(NULL) { _ns1__InitiateClientCommandsUsingMacResponse::soap_default(NULL); }
+	virtual ~_ns1__InitiateClientCommandsUsingMacResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__GetRDPConnectionString
+#define SOAP_TYPE__ns1__GetRDPConnectionString (58)
+/* ns1:GetRDPConnectionString */
+class SOAP_CMAC _ns1__GetRDPConnectionString
+{
+public:
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 58; } /* = unique id SOAP_TYPE__ns1__GetRDPConnectionString */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__GetRDPConnectionString(): soap(NULL) { _ns1__GetRDPConnectionString::soap_default(NULL); }
+	virtual ~_ns1__GetRDPConnectionString() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__GetRDPConnectionStringResponse
+#define SOAP_TYPE__ns1__GetRDPConnectionStringResponse (59)
+/* ns1:GetRDPConnectionStringResponse */
+class SOAP_CMAC _ns1__GetRDPConnectionStringResponse
+{
+public:
+	char *GetRDPConnectionStringResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type xsd:string */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 59; } /* = unique id SOAP_TYPE__ns1__GetRDPConnectionStringResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__GetRDPConnectionStringResponse(): GetRDPConnectionStringResult(NULL), soap(NULL) { _ns1__GetRDPConnectionStringResponse::soap_default(NULL); }
+	virtual ~_ns1__GetRDPConnectionStringResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__InitiateRDPRequest
+#define SOAP_TYPE__ns1__InitiateRDPRequest (60)
+/* ns1:InitiateRDPRequest */
+class SOAP_CMAC _ns1__InitiateRDPRequest
+{
+public:
+	char *envNum;	/* optional element of type xsd:string */
+	char *mcName;	/* optional element of type xsd:string */
+	char *macAddress;	/* optional element of type xsd:string */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 60; } /* = unique id SOAP_TYPE__ns1__InitiateRDPRequest */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__InitiateRDPRequest(): envNum(NULL), mcName(NULL), macAddress(NULL), soap(NULL) { _ns1__InitiateRDPRequest::soap_default(NULL); }
+	virtual ~_ns1__InitiateRDPRequest() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__InitiateRDPRequestResponse
+#define SOAP_TYPE__ns1__InitiateRDPRequestResponse (61)
+/* ns1:InitiateRDPRequestResponse */
+class SOAP_CMAC _ns1__InitiateRDPRequestResponse
+{
+public:
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 61; } /* = unique id SOAP_TYPE__ns1__InitiateRDPRequestResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__InitiateRDPRequestResponse(): soap(NULL) { _ns1__InitiateRDPRequestResponse::soap_default(NULL); }
+	virtual ~_ns1__InitiateRDPRequestResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__UpdateAssetInformation
+#define SOAP_TYPE__ns1__UpdateAssetInformation (62)
+/* ns1:UpdateAssetInformation */
+class SOAP_CMAC _ns1__UpdateAssetInformation
+{
+public:
+	char *hostName;	/* optional element of type xsd:string */
+	char *macAddr;	/* optional element of type xsd:string */
+	char *xmlAssetInfo;	/* optional element of type xsd:string */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 62; } /* = unique id SOAP_TYPE__ns1__UpdateAssetInformation */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__UpdateAssetInformation(): hostName(NULL), macAddr(NULL), xmlAssetInfo(NULL), soap(NULL) { _ns1__UpdateAssetInformation::soap_default(NULL); }
+	virtual ~_ns1__UpdateAssetInformation() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__ns1__UpdateAssetInformationResponse
+#define SOAP_TYPE__ns1__UpdateAssetInformationResponse (63)
+/* ns1:UpdateAssetInformationResponse */
+class SOAP_CMAC _ns1__UpdateAssetInformationResponse
+{
+public:
+	bool *UpdateAssetInformationResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type xsd:boolean */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 63; } /* = unique id SOAP_TYPE__ns1__UpdateAssetInformationResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _ns1__UpdateAssetInformationResponse(): UpdateAssetInformationResult(NULL), soap(NULL) { _ns1__UpdateAssetInformationResponse::soap_default(NULL); }
+	virtual ~_ns1__UpdateAssetInformationResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_ns4__MachineContext
+#define SOAP_TYPE_ns4__MachineContext (64)
+/* ns4:MachineContext */
+class SOAP_CMAC ns4__MachineContext : public xsd__anyType
+{
+public:
+	class ns5__ArrayOfstring *mContext;	/* optional element of type ns5:ArrayOfstring */
+	ns5__ArrayOfstring *mList;	/* optional element of type ns5:ArrayOfstring */
+	class ns5__ArrayOfKeyValueOfstringstring *mMacs;	/* optional element of type ns5:ArrayOfKeyValueOfstringstring */
+	ns5__ArrayOfKeyValueOfstringstring *mParams;	/* optional element of type ns5:ArrayOfKeyValueOfstringstring */
+	enum ns4__MachineType *mType;	/* optional element of type ns4:MachineType */
+public:
+	virtual int soap_type() const { return 64; } /* = unique id SOAP_TYPE_ns4__MachineContext */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         ns4__MachineContext(): mContext(NULL), mList(NULL), mMacs(NULL), mParams(NULL), mType(NULL) { ns4__MachineContext::soap_default(NULL); }
 	virtual ~ns4__MachineContext() { }
 };
 #endif
 
 #ifndef SOAP_TYPE_ns4__EILCommand
-#define SOAP_TYPE_ns4__EILCommand (57)
+#define SOAP_TYPE_ns4__EILCommand (65)
 /* ns4:EILCommand */
 class SOAP_CMAC ns4__EILCommand : public xsd__anyType
 {
@@ -831,7 +1004,7 @@ public:
 	char *OperationID;	/* optional element of type xsd:string */
 	char *SetMachineType;	/* optional element of type xsd:string */
 public:
-	virtual int soap_type() const { return 57; } /* = unique id SOAP_TYPE_ns4__EILCommand */
+	virtual int soap_type() const { return 65; } /* = unique id SOAP_TYPE_ns4__EILCommand */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -844,7 +1017,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns5__ArrayOfstring
-#define SOAP_TYPE_ns5__ArrayOfstring (58)
+#define SOAP_TYPE_ns5__ArrayOfstring (66)
 /* ns5:ArrayOfstring */
 class SOAP_CMAC ns5__ArrayOfstring : public xsd__anyType
 {
@@ -852,7 +1025,7 @@ public:
 	int __sizestring;	/* sequence of elements <string> */
 	char **string;	/* optional element of type xsd:string */
 public:
-	virtual int soap_type() const { return 58; } /* = unique id SOAP_TYPE_ns5__ArrayOfstring */
+	virtual int soap_type() const { return 66; } /* = unique id SOAP_TYPE_ns5__ArrayOfstring */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -865,7 +1038,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring
-#define SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring (79)
+#define SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring (87)
 /* ns5:ArrayOfKeyValueOfstringstring-KeyValueOfstringstring */
 class SOAP_CMAC _ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring
 {
@@ -873,7 +1046,7 @@ public:
 	char *Key;	/* optional element of type xsd:string */
 	char *Value;	/* optional element of type xsd:string */
 public:
-	virtual int soap_type() const { return 79; } /* = unique id SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring */
+	virtual int soap_type() const { return 87; } /* = unique id SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -886,7 +1059,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_ns5__ArrayOfKeyValueOfstringstring
-#define SOAP_TYPE_ns5__ArrayOfKeyValueOfstringstring (59)
+#define SOAP_TYPE_ns5__ArrayOfKeyValueOfstringstring (67)
 /* ns5:ArrayOfKeyValueOfstringstring */
 class SOAP_CMAC ns5__ArrayOfKeyValueOfstringstring : public xsd__anyType
 {
@@ -894,7 +1067,7 @@ public:
 	int __sizeKeyValueOfstringstring;	/* sequence of elements <KeyValueOfstringstring> */
 	_ns5__ArrayOfKeyValueOfstringstring_KeyValueOfstringstring *KeyValueOfstringstring;	/* optional element of type ns5:ArrayOfKeyValueOfstringstring-KeyValueOfstringstring */
 public:
-	virtual int soap_type() const { return 59; } /* = unique id SOAP_TYPE_ns5__ArrayOfKeyValueOfstringstring */
+	virtual int soap_type() const { return 67; } /* = unique id SOAP_TYPE_ns5__ArrayOfKeyValueOfstringstring */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -907,7 +1080,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE___ns1__GetCommandToExecute
-#define SOAP_TYPE___ns1__GetCommandToExecute (114)
+#define SOAP_TYPE___ns1__GetCommandToExecute (122)
 /* Operation wrapper: */
 struct __ns1__GetCommandToExecute
 {
@@ -916,8 +1089,18 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress
+#define SOAP_TYPE___ns1__GetCommandToExecuteUsingMacAddress (126)
+/* Operation wrapper: */
+struct __ns1__GetCommandToExecuteUsingMacAddress
+{
+public:
+	_ns1__GetCommandToExecuteUsingMacAddress *ns1__GetCommandToExecuteUsingMacAddress;	/* optional element of type ns1:GetCommandToExecuteUsingMacAddress */
+};
+#endif
+
 #ifndef SOAP_TYPE___ns1__UpdateCommandStatus
-#define SOAP_TYPE___ns1__UpdateCommandStatus (118)
+#define SOAP_TYPE___ns1__UpdateCommandStatus (130)
 /* Operation wrapper: */
 struct __ns1__UpdateCommandStatus
 {
@@ -926,18 +1109,8 @@ public:
 };
 #endif
 
-#ifndef SOAP_TYPE___ns1__GetCommandStatus
-#define SOAP_TYPE___ns1__GetCommandStatus (122)
-/* Operation wrapper: */
-struct __ns1__GetCommandStatus
-{
-public:
-	_ns1__GetCommandStatus *ns1__GetCommandStatus;	/* optional element of type ns1:GetCommandStatus */
-};
-#endif
-
 #ifndef SOAP_TYPE___ns1__InitiateClientCommands
-#define SOAP_TYPE___ns1__InitiateClientCommands (126)
+#define SOAP_TYPE___ns1__InitiateClientCommands (134)
 /* Operation wrapper: */
 struct __ns1__InitiateClientCommands
 {
@@ -946,8 +1119,48 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE___ns1__InitiateClientCommandsUsingMac
+#define SOAP_TYPE___ns1__InitiateClientCommandsUsingMac (138)
+/* Operation wrapper: */
+struct __ns1__InitiateClientCommandsUsingMac
+{
+public:
+	_ns1__InitiateClientCommandsUsingMac *ns1__InitiateClientCommandsUsingMac;	/* optional element of type ns1:InitiateClientCommandsUsingMac */
+};
+#endif
+
+#ifndef SOAP_TYPE___ns1__GetRDPConnectionString
+#define SOAP_TYPE___ns1__GetRDPConnectionString (142)
+/* Operation wrapper: */
+struct __ns1__GetRDPConnectionString
+{
+public:
+	_ns1__GetRDPConnectionString *ns1__GetRDPConnectionString;	/* optional element of type ns1:GetRDPConnectionString */
+};
+#endif
+
+#ifndef SOAP_TYPE___ns1__InitiateRDPRequest
+#define SOAP_TYPE___ns1__InitiateRDPRequest (146)
+/* Operation wrapper: */
+struct __ns1__InitiateRDPRequest
+{
+public:
+	_ns1__InitiateRDPRequest *ns1__InitiateRDPRequest;	/* optional element of type ns1:InitiateRDPRequest */
+};
+#endif
+
+#ifndef SOAP_TYPE___ns1__UpdateAssetInformation
+#define SOAP_TYPE___ns1__UpdateAssetInformation (150)
+/* Operation wrapper: */
+struct __ns1__UpdateAssetInformation
+{
+public:
+	_ns1__UpdateAssetInformation *ns1__UpdateAssetInformation;	/* optional element of type ns1:UpdateAssetInformation */
+};
+#endif
+
 #ifndef SOAP_TYPE_wsa5__EndpointReferenceType
-#define SOAP_TYPE_wsa5__EndpointReferenceType (127)
+#define SOAP_TYPE_wsa5__EndpointReferenceType (151)
 /* wsa5:EndpointReferenceType */
 struct wsa5__EndpointReferenceType
 {
@@ -963,7 +1176,7 @@ typedef struct wsa5__EndpointReferenceType wsa5__EndpointReferenceType;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__ReferenceParametersType
-#define SOAP_TYPE_wsa5__ReferenceParametersType (128)
+#define SOAP_TYPE_wsa5__ReferenceParametersType (152)
 /* wsa5:ReferenceParametersType */
 struct wsa5__ReferenceParametersType
 {
@@ -976,7 +1189,7 @@ typedef struct wsa5__ReferenceParametersType wsa5__ReferenceParametersType;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__MetadataType
-#define SOAP_TYPE_wsa5__MetadataType (129)
+#define SOAP_TYPE_wsa5__MetadataType (153)
 /* wsa5:MetadataType */
 struct wsa5__MetadataType
 {
@@ -989,7 +1202,7 @@ typedef struct wsa5__MetadataType wsa5__MetadataType;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__ProblemActionType
-#define SOAP_TYPE_wsa5__ProblemActionType (131)
+#define SOAP_TYPE_wsa5__ProblemActionType (155)
 /* wsa5:ProblemActionType */
 struct wsa5__ProblemActionType
 {
@@ -1002,7 +1215,7 @@ typedef struct wsa5__ProblemActionType wsa5__ProblemActionType;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__RelatesToType
-#define SOAP_TYPE_wsa5__RelatesToType (130)
+#define SOAP_TYPE_wsa5__RelatesToType (154)
 /* Primitive wsa5:RelatesToType schema type: */
 struct wsa5__RelatesToType
 {
@@ -1015,7 +1228,7 @@ typedef struct wsa5__RelatesToType wsa5__RelatesToType;
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (154)
+#define SOAP_TYPE_SOAP_ENV__Header (178)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
@@ -1031,7 +1244,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (159)
+#define SOAP_TYPE_SOAP_ENV__Code (183)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -1042,7 +1255,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (161)
+#define SOAP_TYPE_SOAP_ENV__Detail (185)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -1054,7 +1267,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (164)
+#define SOAP_TYPE_SOAP_ENV__Reason (188)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -1064,7 +1277,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (165)
+#define SOAP_TYPE_SOAP_ENV__Fault (189)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -1133,247 +1346,247 @@ typedef unsigned char xsd__unsignedByte;
 #endif
 
 #ifndef SOAP_TYPE_ns3__char
-#define SOAP_TYPE_ns3__char (60)
+#define SOAP_TYPE_ns3__char (68)
 typedef int ns3__char;
 #endif
 
 #ifndef SOAP_TYPE_ns3__duration
-#define SOAP_TYPE_ns3__duration (62)
+#define SOAP_TYPE_ns3__duration (70)
 typedef char *ns3__duration;
 #endif
 
 #ifndef SOAP_TYPE_ns3__guid
-#define SOAP_TYPE_ns3__guid (64)
+#define SOAP_TYPE_ns3__guid (72)
 typedef char *ns3__guid;
 #endif
 
 #ifndef SOAP_TYPE__ns3__anyType
-#define SOAP_TYPE__ns3__anyType (81)
+#define SOAP_TYPE__ns3__anyType (89)
 typedef xsd__anyType _ns3__anyType;
 #endif
 
 #ifndef SOAP_TYPE__ns3__anyURI
-#define SOAP_TYPE__ns3__anyURI (82)
+#define SOAP_TYPE__ns3__anyURI (90)
 typedef char *_ns3__anyURI;
 #endif
 
 #ifndef SOAP_TYPE__ns3__base64Binary
-#define SOAP_TYPE__ns3__base64Binary (83)
+#define SOAP_TYPE__ns3__base64Binary (91)
 typedef xsd__base64Binary _ns3__base64Binary;
 #endif
 
 #ifndef SOAP_TYPE__ns3__boolean
-#define SOAP_TYPE__ns3__boolean (84)
+#define SOAP_TYPE__ns3__boolean (92)
 typedef bool _ns3__boolean;
 #endif
 
 #ifndef SOAP_TYPE__ns3__byte
-#define SOAP_TYPE__ns3__byte (85)
+#define SOAP_TYPE__ns3__byte (93)
 typedef char _ns3__byte;
 #endif
 
 #ifndef SOAP_TYPE__ns3__dateTime
-#define SOAP_TYPE__ns3__dateTime (86)
+#define SOAP_TYPE__ns3__dateTime (94)
 typedef time_t _ns3__dateTime;
 #endif
 
 #ifndef SOAP_TYPE__ns3__decimal
-#define SOAP_TYPE__ns3__decimal (87)
+#define SOAP_TYPE__ns3__decimal (95)
 typedef char *_ns3__decimal;
 #endif
 
 #ifndef SOAP_TYPE__ns3__double
-#define SOAP_TYPE__ns3__double (88)
+#define SOAP_TYPE__ns3__double (96)
 typedef double _ns3__double;
 #endif
 
 #ifndef SOAP_TYPE__ns3__float
-#define SOAP_TYPE__ns3__float (89)
+#define SOAP_TYPE__ns3__float (97)
 typedef float _ns3__float;
 #endif
 
 #ifndef SOAP_TYPE__ns3__int
-#define SOAP_TYPE__ns3__int (90)
+#define SOAP_TYPE__ns3__int (98)
 typedef int _ns3__int;
 #endif
 
 #ifndef SOAP_TYPE__ns3__long
-#define SOAP_TYPE__ns3__long (91)
+#define SOAP_TYPE__ns3__long (99)
 typedef LONG64 _ns3__long;
 #endif
 
 #ifndef SOAP_TYPE__ns3__QName
-#define SOAP_TYPE__ns3__QName (92)
+#define SOAP_TYPE__ns3__QName (100)
 typedef char *_ns3__QName;
 #endif
 
 #ifndef SOAP_TYPE__ns3__short
-#define SOAP_TYPE__ns3__short (93)
+#define SOAP_TYPE__ns3__short (101)
 typedef short _ns3__short;
 #endif
 
 #ifndef SOAP_TYPE__ns3__string
-#define SOAP_TYPE__ns3__string (94)
+#define SOAP_TYPE__ns3__string (102)
 typedef char *_ns3__string;
 #endif
 
 #ifndef SOAP_TYPE__ns3__unsignedByte
-#define SOAP_TYPE__ns3__unsignedByte (95)
+#define SOAP_TYPE__ns3__unsignedByte (103)
 typedef unsigned char _ns3__unsignedByte;
 #endif
 
 #ifndef SOAP_TYPE__ns3__unsignedInt
-#define SOAP_TYPE__ns3__unsignedInt (96)
+#define SOAP_TYPE__ns3__unsignedInt (104)
 typedef unsigned int _ns3__unsignedInt;
 #endif
 
 #ifndef SOAP_TYPE__ns3__unsignedLong
-#define SOAP_TYPE__ns3__unsignedLong (97)
+#define SOAP_TYPE__ns3__unsignedLong (105)
 typedef ULONG64 _ns3__unsignedLong;
 #endif
 
 #ifndef SOAP_TYPE__ns3__unsignedShort
-#define SOAP_TYPE__ns3__unsignedShort (98)
+#define SOAP_TYPE__ns3__unsignedShort (106)
 typedef unsigned short _ns3__unsignedShort;
 #endif
 
 #ifndef SOAP_TYPE__ns3__char
-#define SOAP_TYPE__ns3__char (99)
+#define SOAP_TYPE__ns3__char (107)
 typedef int _ns3__char;
 #endif
 
 #ifndef SOAP_TYPE__ns3__duration
-#define SOAP_TYPE__ns3__duration (100)
+#define SOAP_TYPE__ns3__duration (108)
 typedef char *_ns3__duration;
 #endif
 
 #ifndef SOAP_TYPE__ns3__guid
-#define SOAP_TYPE__ns3__guid (101)
+#define SOAP_TYPE__ns3__guid (109)
 typedef char *_ns3__guid;
 #endif
 
 #ifndef SOAP_TYPE__ns3__FactoryType
-#define SOAP_TYPE__ns3__FactoryType (102)
+#define SOAP_TYPE__ns3__FactoryType (110)
 typedef char *_ns3__FactoryType;
 #endif
 
 #ifndef SOAP_TYPE__ns3__Id
-#define SOAP_TYPE__ns3__Id (103)
+#define SOAP_TYPE__ns3__Id (111)
 typedef char *_ns3__Id;
 #endif
 
 #ifndef SOAP_TYPE__ns3__Ref
-#define SOAP_TYPE__ns3__Ref (104)
+#define SOAP_TYPE__ns3__Ref (112)
 typedef char *_ns3__Ref;
 #endif
 
 #ifndef SOAP_TYPE__ns4__MachineContext
-#define SOAP_TYPE__ns4__MachineContext (105)
+#define SOAP_TYPE__ns4__MachineContext (113)
 typedef ns4__MachineContext _ns4__MachineContext;
 #endif
 
 #ifndef SOAP_TYPE__ns4__MachineType
-#define SOAP_TYPE__ns4__MachineType (106)
+#define SOAP_TYPE__ns4__MachineType (114)
 typedef enum ns4__MachineType _ns4__MachineType;
 #endif
 
 #ifndef SOAP_TYPE__ns4__EILCommand
-#define SOAP_TYPE__ns4__EILCommand (107)
+#define SOAP_TYPE__ns4__EILCommand (115)
 typedef ns4__EILCommand _ns4__EILCommand;
 #endif
 
 #ifndef SOAP_TYPE__ns4__EILCommandStatus
-#define SOAP_TYPE__ns4__EILCommandStatus (108)
+#define SOAP_TYPE__ns4__EILCommandStatus (116)
 typedef enum ns4__EILCommandStatus _ns4__EILCommandStatus;
 #endif
 
 #ifndef SOAP_TYPE__ns5__ArrayOfstring
-#define SOAP_TYPE__ns5__ArrayOfstring (109)
+#define SOAP_TYPE__ns5__ArrayOfstring (117)
 typedef ns5__ArrayOfstring _ns5__ArrayOfstring;
 #endif
 
 #ifndef SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring
-#define SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring (110)
+#define SOAP_TYPE__ns5__ArrayOfKeyValueOfstringstring (118)
 typedef ns5__ArrayOfKeyValueOfstringstring _ns5__ArrayOfKeyValueOfstringstring;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__RelationshipTypeOpenEnum
-#define SOAP_TYPE_wsa5__RelationshipTypeOpenEnum (132)
+#define SOAP_TYPE_wsa5__RelationshipTypeOpenEnum (156)
 typedef char *wsa5__RelationshipTypeOpenEnum;
 #endif
 
 #ifndef SOAP_TYPE_wsa5__FaultCodesOpenEnumType
-#define SOAP_TYPE_wsa5__FaultCodesOpenEnumType (133)
+#define SOAP_TYPE_wsa5__FaultCodesOpenEnumType (157)
 typedef char *wsa5__FaultCodesOpenEnumType;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__EndpointReference
-#define SOAP_TYPE__wsa5__EndpointReference (139)
+#define SOAP_TYPE__wsa5__EndpointReference (163)
 typedef struct wsa5__EndpointReferenceType _wsa5__EndpointReference;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__ReferenceParameters
-#define SOAP_TYPE__wsa5__ReferenceParameters (140)
+#define SOAP_TYPE__wsa5__ReferenceParameters (164)
 typedef struct wsa5__ReferenceParametersType _wsa5__ReferenceParameters;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__Metadata
-#define SOAP_TYPE__wsa5__Metadata (141)
+#define SOAP_TYPE__wsa5__Metadata (165)
 typedef struct wsa5__MetadataType _wsa5__Metadata;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__MessageID
-#define SOAP_TYPE__wsa5__MessageID (142)
+#define SOAP_TYPE__wsa5__MessageID (166)
 typedef char *_wsa5__MessageID;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__RelatesTo
-#define SOAP_TYPE__wsa5__RelatesTo (143)
+#define SOAP_TYPE__wsa5__RelatesTo (167)
 typedef struct wsa5__RelatesToType _wsa5__RelatesTo;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__ReplyTo
-#define SOAP_TYPE__wsa5__ReplyTo (144)
+#define SOAP_TYPE__wsa5__ReplyTo (168)
 typedef struct wsa5__EndpointReferenceType _wsa5__ReplyTo;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__From
-#define SOAP_TYPE__wsa5__From (145)
+#define SOAP_TYPE__wsa5__From (169)
 typedef struct wsa5__EndpointReferenceType _wsa5__From;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__FaultTo
-#define SOAP_TYPE__wsa5__FaultTo (146)
+#define SOAP_TYPE__wsa5__FaultTo (170)
 typedef struct wsa5__EndpointReferenceType _wsa5__FaultTo;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__To
-#define SOAP_TYPE__wsa5__To (147)
+#define SOAP_TYPE__wsa5__To (171)
 typedef char *_wsa5__To;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__Action
-#define SOAP_TYPE__wsa5__Action (148)
+#define SOAP_TYPE__wsa5__Action (172)
 typedef char *_wsa5__Action;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__RetryAfter
-#define SOAP_TYPE__wsa5__RetryAfter (149)
+#define SOAP_TYPE__wsa5__RetryAfter (173)
 typedef ULONG64 _wsa5__RetryAfter;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__ProblemHeaderQName
-#define SOAP_TYPE__wsa5__ProblemHeaderQName (150)
+#define SOAP_TYPE__wsa5__ProblemHeaderQName (174)
 typedef char *_wsa5__ProblemHeaderQName;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__ProblemIRI
-#define SOAP_TYPE__wsa5__ProblemIRI (151)
+#define SOAP_TYPE__wsa5__ProblemIRI (175)
 typedef char *_wsa5__ProblemIRI;
 #endif
 
 #ifndef SOAP_TYPE__wsa5__ProblemAction
-#define SOAP_TYPE__wsa5__ProblemAction (152)
+#define SOAP_TYPE__wsa5__ProblemAction (176)
 typedef struct wsa5__ProblemActionType _wsa5__ProblemAction;
 #endif
 

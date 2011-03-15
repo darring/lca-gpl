@@ -84,6 +84,7 @@ root.eil:reboot-noloop
 root.eil:tcp_diag-full
 root.eil:tcp_diag-light
 root.eil:tcp_diag-xen
+root.eil:asset_refresh
 EOF
 )
 
@@ -120,6 +121,14 @@ xen_tcp_diag:tcp_diag-xen
 esx_tcp_diag:tcp_diag-light
 esxi_tcp_diag:tcp_diag-light
 xenclient_tcp_diag:tcp_diag-light
+ubuntu_asset_refresh:asset_refresh
+rhel_asset_refresh:asset_refresh
+suse_asset_refresh:asset_refresh
+centos_asset_refresh:asset_refresh
+xen_asset_refresh:asset_refresh
+esx_asset_refresh:asset_refresh
+esxi_asset_refresh:asset_refresh
+xenclient_asset_refresh:asset_refresh
 EOF
 )
 

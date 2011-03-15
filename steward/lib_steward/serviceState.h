@@ -25,16 +25,19 @@ enum ServiceState
  * \li \c S_STATE_Shutdown This is the state the daemon switches to when it has
  * received a SIGHUP or SIGINT. In this state it closes "nicely", meaning it
  * attempts to shut everything down properly and exit cleanly.
- * \li \c S_STATE_Terminate This the state the daemon switches to when it has
+ * \li \c S_STATE_Terminate This is the state the daemon switches to when it has
  * received a SIGTERM. This state tells the daemon to terminate execution as
  * soon as possible, and not worry about closing things down cleanly.
+ * \li \c S_STATE_RefreshAsset In this state, the daemon will attempt to
+ * refresh the asset information. This is not a guaranteed success.
  */
 enum StewardState
 {
     S_STATE_Null,
     S_STATE_Running,
     S_STATE_Shutdown,
-    S_STATE_Terminate
+    S_STATE_Terminate,
+    S_STATE_RefreshAsset,
 };
 
 #endif

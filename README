@@ -200,7 +200,7 @@ interacts with CCMS. It runs as a daemon.
 queued commands. If a command exists, it will hand that command over to the
 dispatcher.
 
-    The Steward intercepts the following standard Linux signals:
+    The steward intercepts the following standard Linux signals:
 
         * SIGHUP - Changes the state of the steward to 'shutdown'. In this
            state, the steward will attempt to shut itself down cleanly and
@@ -215,6 +215,15 @@ dispatcher.
            in extreme circumstances as it may leave elements of the steward in
            an undefined state (for example, the log might not be flushed, any
            soap interactions may not be properly closed, etc.)
+
+    In addition to the standard Linux signals, the steward interprets certain
+non-POSIX defined signals as follows:
+
+        * SIGUSR - Causes the steward to re-check for an updated asset info
+           file. This does not guarantee that the asset information will be
+           updated with CCMS, as the file still must pass the various checks
+           found in lib_nmsa/assetHelper, but it re-triggers the logic to
+           check for updated asset info.
 
     The steward can log in one of two places. It has a flexible logging class
 which automatically wraps logging in a client agent specific location (which

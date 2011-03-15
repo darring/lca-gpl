@@ -26,6 +26,7 @@
 #include <strings.h>
 
 #define HOSTNAME_LEN 50
+#define HWADDR_LEN 32
 
 // Various helper libraries
 #include "logger.h"
@@ -34,6 +35,8 @@
 #include "clientagent_helper.h"
 #include "serviceState.h"
 #include "dispatcher_helper.h"
+#include "hwaddr.h"
+#include "assetHelper.h"
 
 //! The current steward system state
 static volatile StewardState S_STATE;
@@ -53,12 +56,21 @@ void handle_SIGTERM(int sig)
     S_STATE = S_STATE_Terminate;
 }
 
+void handle_SIGUSR1(int sig)
+{
+    S_STATE = S_STATE_RefreshAsset;
+}
+
 void setupSignalHandlers()
 {
     static bool hasSetup = false;
     if(!hasSetup)
     {
-        struct sigaction act_SIGHUP, act_SIGINT, act_SIGTERM, act_OLD;
+        struct sigaction act_SIGHUP,
+                         act_SIGINT,
+                         act_SIGTERM,
+                         act_SIGUSR1,
+                         act_OLD;
 
         // Set up SIGHUP
         act_SIGHUP.sa_handler = handle_SIGHUP;
@@ -98,6 +110,19 @@ void setupSignalHandlers()
         {
             sigaction (SIGTERM, &act_SIGTERM, &act_OLD);
         }
+
+        // Set up SIGUSR1
+        act_SIGUSR1.sa_handler = handle_SIGUSR1;
+        sigemptyset (&act_SIGUSR1.sa_mask);
+        act_SIGUSR1.sa_flags = 0;
+
+        sigaction (SIGUSR1, NULL, &act_OLD);
+        if (act_OLD.sa_handler != SIG_IGN)
+            sigaction (SIGUSR1, &act_SIGUSR1, NULL);
+        else
+        {
+            sigaction (SIGUSR1, &act_SIGUSR1, &act_OLD);
+        }
     }
 }
 
@@ -110,6 +135,16 @@ int main(int argc, char *argv[])
     #endif
 
     char hostname[HOSTNAME_LEN];
+    char hwaddr[HWADDR_LEN];
+    char *hostnameptr;
+    char *hwaddrptr;
+
+    // Asset related variables
+    int assetResult;
+    int updateAssetResult;
+    char *assetInfo = NULL;
+    bool finishedWithAsset = false;
+    bool ignoreTimeout = false;
 
     // The CCMS log related variables
     // We assume an upper limit of 256 characters for full path plus
@@ -192,7 +227,16 @@ int main(int argc, char *argv[])
     // Obtain our hostname information for the first time
     gethostname(hostname, HOSTNAME_LEN);
 
-    logger.QuickLog("Hostname obtained");
+    hwaddrptr = NULL;
+    // Obtain our hwaddr information now
+    if( !getHwAddr(hwaddr, HWADDR_LEN) ) {
+        hwaddrptr = NULL;
+        logger.QuickLog("Could not obtain hwaddr!");
+    } else {
+        hwaddrptr = hwaddr;
+    }
+
+    logger.QuickLog("Hostname and HW address obtained");
 
     // Change to working directory to prevent locking
     chdir("/");
@@ -224,25 +268,61 @@ int main(int argc, char *argv[])
     // Check that hostname isn't localhost
     if (strncasecmp(hostname, "localhost", 9) == 0) {
         logger.QuickLog("Hostname is set to 'localhost', which is not a unique identifier");
-        logger.QuickLog("Please set hostname properly and restart the steward");
-        S_STATE = S_STATE_Shutdown;
+        logger.QuickLog("Falling back on HW address for identifier");
+        hostnameptr = NULL;
+    } else {
+        hostnameptr = hostname;
     }
 
     // Main loop
-    while (S_STATE == S_STATE_Running) {
+    while (S_STATE == S_STATE_Running ||
+           S_STATE == S_STATE_RefreshAsset) {
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog("My hostname is '%s'", hostname);
+        logger.QuickLog("My HW address is '%s'", hwaddr);
 
-        issuedCommand = service.QueryForClientCommands(hostname, "1", HOST);
+        if(!finishedWithAsset || S_STATE == S_STATE_RefreshAsset) {
+            logger.QuickLog("Checking for asset information...");
+            ignoreTimeout = false;
+            if(S_STATE == S_STATE_RefreshAsset) {
+                ignoreTimeout = true;
+                S_STATE = S_STATE_Running;
+            }
+            // Check for asset until we either have it, or cannot any more
+            assetResult = assetReady(&assetInfo, &logger, ignoreTimeout);
+            if(assetResult > 0) {
+                // We have a result!
+                finishedWithAsset = true;
+                updateAssetResult = service.UpdateAssetInformation(
+                    hostnameptr, hwaddrptr, assetInfo);
+                if(updateAssetResult == 0)
+                {
+                    logger.QuickLog("Asset information updated successfully");
+                } else if(updateAssetResult > 0) {
+                    logger.QuickLog("Problem updating asset information, switching to refesh asset state");
+                    S_STATE = S_STATE_RefreshAsset;
+                } else {
+                    logger.QuickLog("Problem updating asset information, moving on...");
+                }
+                free(assetInfo); // Always free this, even if no-op
+            } else if (assetResult == 0) {
+                // Timeout has passed, give up
+                finishedWithAsset = true;
+                free(assetInfo); // might be a no-op if assetInfo was NULL
+            }
+        }
+
+        issuedCommand = service.QueryForClientCommands(
+            hostnameptr, hwaddrptr, "1", HOST);
 
         switch (issuedCommand.ReturnState)
         {
             case COMMAND_ERROR:
                 logger.QuickLog("There was a command error!");
-                // TODO - Deal with error logic
                 break;
             case COMMAND_ERROR_STATE:
+                logger.QuickLog("COMMAND_ERROR_STATE - Unrecoverable error!");
                 // TODO - This shouldn't happen, need to figure out what to do
                 break;
             default:

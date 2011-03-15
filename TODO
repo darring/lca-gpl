@@ -29,3 +29,6 @@
   file, future forks can check to see if *they* are that PID and the choose
   whether to even run the CCMS logic based upon whether or not they are the
   original, source CCMS command steward.
+
+* Verify that StewardService::parseOpCode(..) is still working without
+  need for a pointer reference.

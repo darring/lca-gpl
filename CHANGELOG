@@ -52,3 +52,21 @@
 - Finalize Ångström-distro (XenClient) support for TCP diagnostic scripts
 - Add hosts logic to helper script
 - Bump version to 4.1.1 to sync with Windows client for release
+
+* Mon Feb 28 2011 - Sam Hart <samx.hart@intel.com>
+- Add a redirect for the beta-CCMS server for development purposes.
+- Rebuild soap bindings for beta-CCMS.
+- Add HW Address support to steward.
+
+* Mon Mar 7 2011 - Sam Hart <samx.hart@intel.com>
+- Massive code refactory to clean-up lib_steward codebase
+- Add asset info file helper function to steward
+- Add associated asset info test harness program and framework
+- Refine the StewardLogger class to handle errno(3) output
+
+* Tue Mar 15 2011 - Sam Hart <samx.hart@intel.com>
+- Integrate the asset gathering feature into the daemon proper
+- Add support for asset refresh (via SIGUSR1) as well as boot checking
+- Refactor lib_steward codebase to make more modular
+- Add missing CCMS commands to define list
+- Merge bigdev branch back with main for release
