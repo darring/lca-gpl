@@ -63,3 +63,10 @@
 - Add asset info file helper function to steward
 - Add associated asset info test harness program and framework
 - Refine the StewardLogger class to handle errno(3) output
+
+* Tue Mar 15 2011 - Sam Hart <samx.hart@intel.com>
+- Integrate the asset gathering feature into the daemon proper
+- Add support for asset refresh (via SIGUSR1) as well as boot checking
+- Refactor lib_steward codebase to make more modular
+- Add missing CCMS commands to define list
+- Merge bigdev branch back with main for release
