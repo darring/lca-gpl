@@ -283,6 +283,7 @@ int main(int argc, char *argv[])
         logger.QuickLog("My HW address is '%s'", hwaddr);
 
         if(!finishedWithAsset || S_STATE == S_STATE_RefreshAsset) {
+            logger.QuickLog("Checking for asset information...");
             ignoreTimeout = false;
             if(S_STATE == S_STATE_RefreshAsset) {
                 ignoreTimeout = true;

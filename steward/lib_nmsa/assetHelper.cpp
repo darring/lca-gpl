@@ -22,7 +22,7 @@ int assetReady(char **assetInfo, StewardLogger *logger, bool ignoreTimeout)
      */
     static bool alreadyRepliedOrPast = false;
 
-    if(!alreadyRepliedOrPast) {
+    if(!alreadyRepliedOrPast || ignoreTimeout) {
         struct sysinfo info;
         if (sysinfo(&info) == 0) {
             /*
