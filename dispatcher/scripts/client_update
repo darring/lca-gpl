@@ -4,4 +4,18 @@
 # ----------------------------
 # Wraps the functionality found in the update pumper elsewhere
 
+EIL_VERSION=$(cat ${LIB_DIR}/VERSION)
+
+# Load our libraries
+. /opt/intel/eil/clientagent/lib/helper.sh
+. /opt/intel/eil/clientagent/lib/globals.sh
+
+# The client agent bootstrapper
+BOOTSTRAP_COMMAND="/opt/intel/eil/clientagent/tools/clientagent-bootstrap.sh"
+
+#
+
+trace "Update requested!"
+trace "Current version is '${EIL_VERSION}'"
+
 # vim:set ai et sts=4 sw=4 tw=80:
