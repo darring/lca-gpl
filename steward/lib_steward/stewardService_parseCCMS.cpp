@@ -75,6 +75,29 @@ int StewardService::parseCommandFromCCMS(
 
         return service.UpdateCommandStatus(
             &updateCmdStat, &updateCmdStatResp);
+    } else if(strcasecmp(
+        EILCommand->CommandName, CCMS_UPDATE)
+        == 0)
+    {
+        currentState = STATE_None;
+        returnCommand->ReturnState = COMMAND_SUCCESS;
+        returnCommand->Command = AGENT_UPDATE;
+
+        ns4__EILCommandStatus complete =
+            ns4__EILCommandStatus__COMMAND_USCOREEXECUTION_USCORECOMPLETE;
+        int errorcode = 0;
+        cmd.CommandResult = RESPONSE_UPDATE;
+        cmd.CommandStatus = &complete;
+        cmd.ErrorCode = &errorcode;
+        cmd.CommandName =
+            EILCommand->CommandName;
+
+        updateCmdStat.cmd = &cmd;
+        updateCmdStat.cmd->OperationID =
+            EILCommand->OperationID;
+
+        return service.UpdateCommandStatus(
+            &updateCmdStat, &updateCmdStatResp);
     } // Other commands go here
     else
     {
