@@ -13,6 +13,7 @@ Table of Contents
         2.c.2) Logging functions
         2.c.3) Date functions
         2.c.4) Network functions
+    2.d) logger.sh
 ------------------------------------------------------------------------------
 1) Overview
 
@@ -134,3 +135,33 @@ network items.
               hosts file was being destroyed at odd times after boot causing
               TCP diagnostic script runs which resulted in Linux client agent
               hangs.
+
+2.d) logger.sh
+
+    Access to the Linux client agent's logging facilities by external
+applications can be found through the logger.sh script. This script is located
+in the tools/ directory under the install directory (typically
+/opt/intel/eil/clientagent/tools). The usage for this script is as follows:
+
+  Usage: logger.sh [OPTION] <log message>
+  Where:
+    <log message>   - is your log message
+    [OPTION]        - is one of the following
+
+    --std           Log the message to the standard client agent dispatcher log
+                    (default when called with no options).
+
+    --err           Log the message to the client agent dispatcher error log.
+
+    --echo          Echo the message back to STDOUT in addition to whatever
+                    else it may be doing.
+
+    --nostd         Disable standard client agent dispatcher logging (use in
+                    combination with '--echo' if you wish you only log to
+                    STDOUT)
+
+    So, if you wanted to log the message "Error during operation FOO" to the
+client agent's error logs from an external application, you would call the
+logger.sh script with the following parameters:
+
+    logger.sh --err Error during operation FOO
