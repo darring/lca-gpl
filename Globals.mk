@@ -11,7 +11,7 @@ DEBUG0=
 #          enable here is gdb runtime options
 DEBUG1=-g
 
-# DEBUG2 - This is switches the daemon to a pure-command-line runnable program.
+# DEBUG2 - This switches the daemon to a pure-command-line runnable program.
 #          All logging will go to STDOUT, and the process will not fork.
 DEBUG2=$(DEBUG1) -D EIL_DEBUG
 
