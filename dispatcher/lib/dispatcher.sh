@@ -21,5 +21,9 @@ process_command() {
         _run_command "reboot"
     elif [ "$*" = "tcp_diag" ]; then
         _run_command "tcp_diag"
+    elif [ "$*" = "asset_refresh" ]; then
+        _run_command "asset_refresh"
+    elif [ "$*" = "client_update" ]; then
+        _run_command "client_update"
     fi
 }
