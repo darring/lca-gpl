@@ -22,6 +22,7 @@ eil_steward.sh
 clientagent-bootstrap.sh
 update-checker.sh
 xen_host_replace.sh
+logger.sh
 EOF
 )
 
