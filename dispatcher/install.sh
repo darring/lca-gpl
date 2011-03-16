@@ -222,11 +222,6 @@ if [ $# != 0 ] ; then
                 # purge the postinst
                 rmdir $POSTINST_DIR
 
-                # purge the main directory
-                # FIXME this actually purges the logs!
-                #rm -fr $INSTALL_DIR/*
-                #rmdir $INSTALL_DIR
-
                 # purge the users
                 del_user_if_exist
 
