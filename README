@@ -292,6 +292,11 @@ following:
               job periodically to check for updates the client agent. See
               section (6.a) of the INSTALL file for more information.
 
+        * logger.sh
+            - This shell script exposes client agent logging functionality to
+              external applications. See dispatcher/docs/API_Notes.txt for
+              more information.
+
 3) Documentation
 
     The EIL Linux Client Agent contains a number of documents to help in
