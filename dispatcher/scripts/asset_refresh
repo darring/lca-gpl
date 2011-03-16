@@ -30,13 +30,18 @@ STEWARD_REFRESH="${STEWARD_INIT} asset"
 . /opt/intel/eil/clientagent/lib/helper.sh
 . /opt/intel/eil/clientagent/lib/globals.sh
 
+trace "Attempting to update asset info (if it exists)"
+
 # First verify that the file exists
 if [ -f "${ASSETINFO_SCRIPT}" ]; then
+    trace "The asset info script exists, refreshing it"
     # Alright, refresh it
     $ASSETINFO_REFRESH > /dev/null 2>&1
     # Next, check to see if we have an assetinfo file after that operation
     if [ -f "${ASSETINFO_XML}" ]; then
+        trace "Updated XML.."
         if [ -f "${STEWARD_INIT}" ]; then
+            trace "Sending SIGUSR1 to steward"
             $STEWARD_REFRESH > /dev/null 2>&1
         else
             trace_error "--------------"
