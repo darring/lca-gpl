@@ -15,7 +15,7 @@ _run_command() {
 # Its job is to take the incoming commands from the client agent
 # directory, interpret what they mean, and then dispatch them to the
 # various bit players around the Linux box which ultimately perform
-# those actions we need done (rebooting, domain join/unjoining, etc.)
+# those actions we need done (rebooting, diagnosing network errors, etc.)
 process_command() {
     if [ "$*" = "reboot" ]; then
         _run_command "reboot"
