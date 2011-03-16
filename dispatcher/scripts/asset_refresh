@@ -33,11 +33,11 @@ STEWARD_REFRESH="${STEWARD_INIT} asset"
 # First verify that the file exists
 if [ -f "${ASSETINFO_SCRIPT}" ]; then
     # Alright, refresh it
-    $ASSETINFO_REFRESH
+    $ASSETINFO_REFRESH > /dev/null 2>&1
     # Next, check to see if we have an assetinfo file after that operation
     if [ -f "${ASSETINFO_XML}" ]; then
         if [ -f "${STEWARD_INIT}" ]; then
-            $STEWARD_REFRESH
+            $STEWARD_REFRESH > /dev/null 2>&1
         else
             trace_error "--------------"
             trace_error "The Linux client agent does not appear to be installed properly!"
