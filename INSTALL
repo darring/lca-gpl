@@ -106,7 +106,7 @@ displayed:
 
     If ran without any options, this usage text will be displayed.
 
-Practically all build/install features and options can be access through this
+Practically all build/install features and options can be accessed through this
 install tool.
 
 3) Package Installation
