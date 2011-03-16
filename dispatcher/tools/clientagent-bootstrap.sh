@@ -104,6 +104,10 @@ cd eil_clientagent-release/
 # Begin the package install
 ./${INSTALL_TOOL} -r --pkginstall
 
+# Finally, log the update
+UPD_VERSION=$(cat /opt/intel/eil/clientagent/lib/VERSION)
+/opt/intel/eil/clientagent/tools/logger.sh --std New client agent installed ${UPD_VERSION}
+
 # Clean-up after ourselves
 rm -fr $WORKSPACE
 rm -f $THIS_SCRIPT
