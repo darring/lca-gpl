@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # logger,sh
 # ---------
@@ -57,7 +57,6 @@ while [ $1 != -- ]; do
             shift
             ;;
         --err)
-            unset OPT_STD || true
             OPT_ERR=yes
             shift
             ;;
@@ -79,5 +78,19 @@ while [ $1 != -- ]; do
     esac
 done
 shift
+
+MESSAGE="$*"
+
+if [ -n "$OPT_STD" ]; then
+    trace "${MESSAGE}"
+fi
+
+if [ -n "$OPT_ERR" ]; then
+    trace_error "${MESSAGE}"
+fi
+
+if [ -n "$OPT_ECHO" ]; then
+    echo -E "${MESSAGE}"
+fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
