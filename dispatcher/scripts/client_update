@@ -4,7 +4,7 @@
 # ----------------------------
 # Wraps the functionality found in the update pumper elsewhere
 
-EIL_VERSION=$(cat ${LIB_DIR}/VERSION)
+EIL_VERSION=$(cat /opt/intel/eil/clientagent/lib/VERSION)
 
 # Load our libraries
 . /opt/intel/eil/clientagent/lib/helper.sh
