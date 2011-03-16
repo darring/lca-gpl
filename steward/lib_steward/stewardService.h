@@ -22,7 +22,6 @@
  * \section subsections Subsections
  *
  * \li \subpage ccms_commands "CCMS Command Defines"
-
  */
 
 #ifndef stewardService_H
