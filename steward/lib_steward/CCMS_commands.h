@@ -26,10 +26,10 @@
 //! The reboot response to CCMS
 #define RESPONSE_REBOOT "Reboot Successful"
 
-//! The asset refresh response to CCMS - FIXME - Need this from Madhu- Sam
+//! The asset refresh response to CCMS
 #define RESPONSE_ASSETREFRESH "Asset refresh successful"
 
-//! The update response to CCMS - FIXME - Need this from Madhu- Sam
+//! The update response to CCMS
 #define RESPONSE_UPDATE "Update successful"
 
 #endif
