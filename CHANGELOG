@@ -70,3 +70,11 @@
 - Refactor lib_steward codebase to make more modular
 - Add missing CCMS commands to define list
 - Merge bigdev branch back with main for release
+
+* Fri Mar 18 2011 - Sam Hart <samx.hart@intel.com>
+- Add remote upgrade command capabilities.
+- Finalize the asset handler functionality, wrap all possible errors.
+- Add remote asset refresh command capabilities.
+- Add dispatcher coupled, command-line interface to agent logging functions.
+- Steward handles SIGUSR1 as an asset refresh request.
+
