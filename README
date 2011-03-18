@@ -177,8 +177,6 @@ more native Linux way. The final design requirements were as follows:
         * The client agent should conform to LFHS, LSB and LANANA conventions
           whenever possible (and whenever it doesn't conflict with previously
           stated goals).
-            - This was not deemed as high a priority as previously stated
-              goals. (Otherwise, obviously, we would be making RPMs.)
 
 2) Linux Client Agent
 
