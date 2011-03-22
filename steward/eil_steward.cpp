@@ -61,6 +61,11 @@ void handle_SIGUSR1(int sig)
     S_STATE = S_STATE_RefreshAsset;
 }
 
+void handle_SIGUSR2(int sig)
+{
+    S_STATE = S_STATE_Upgrade;
+}
+
 void setupSignalHandlers()
 {
     static bool hasSetup = false;
@@ -122,6 +127,19 @@ void setupSignalHandlers()
         else
         {
             sigaction (SIGUSR1, &act_SIGUSR1, &act_OLD);
+        }
+
+        // Set up SIGUSR2
+        act_SIGUSR2.sa_handler = handle_SIGUSR2;
+        sigemptyset (&act_SIGUSR2.sa_mask);
+        act_SIGUSR2.sa_flags = 0;
+
+        sigaction (SIGUSR2, NULL, &act_OLD);
+        if (act_OLD.sa_handler != SIG_IGN)
+            sigaction (SIGUSR2, &act_SIGUSR2, NULL);
+        else
+        {
+            sigaction (SIGUSR2, &act_SIGUSR2, &act_OLD);
         }
     }
 }
@@ -276,7 +294,8 @@ int main(int argc, char *argv[])
 
     // Main loop
     while (S_STATE == S_STATE_Running ||
-           S_STATE == S_STATE_RefreshAsset) {
+           S_STATE == S_STATE_RefreshAsset ||
+           S_STATE == S_STATE_Upgrade) {
         logger.BeginLogging();
         logger.LogEntry("Starting Linux Client Agent activity");
         logger.QuickLog("My hostname is '%s'", hostname);
@@ -313,8 +332,15 @@ int main(int argc, char *argv[])
             }
         }
 
-        issuedCommand = service.QueryForClientCommands(
-            hostnameptr, hwaddrptr, "1", HOST);
+        if(S_STATE == S_STATE_Upgrade) {
+            issuedCommand.ReturnState = COMMAND_SUCCESS;
+            issuedCommand.Command = AGENT_UPDATE;
+            S_STATE = S_STATE_Running;
+            logger.QuickLog("Caught SIGUSR2, running an upgrade request...");
+        } else {
+            issuedCommand = service.QueryForClientCommands(
+                hostnameptr, hwaddrptr, "1", HOST);
+        }
 
         switch (issuedCommand.ReturnState)
         {
