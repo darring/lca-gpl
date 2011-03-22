@@ -67,7 +67,8 @@ Enumerations</h2></td></tr>
 <a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73a08ccf67b34fbfdcf2d91b8a875bfb113">S_STATE_Shutdown</a>, 
 <a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73aee885aaac574466e3a299efb32e77cf1">S_STATE_Terminate</a>, 
 <br/>
-&nbsp;&nbsp;<a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73ae3b5f076df356ee1978202f6e43db3a0">S_STATE_RefreshAsset</a>
+&nbsp;&nbsp;<a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73ae3b5f076df356ee1978202f6e43db3a0">S_STATE_RefreshAsset</a>, 
+<a class="el" href="serviceState_8h.html#ab41c39af56d7080f8baeaee74b33fc73af703a13803f8197e730484f4872d2f16">S_STATE_Upgrade</a>
 <br/>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The state of the steward daemon itself. </p>
@@ -120,6 +121,7 @@ Enumerations</h2></td></tr>
 <li><code>S_STATE_Shutdown</code> This is the state the daemon switches to when it has received a SIGHUP or SIGINT. In this state it closes "nicely", meaning it attempts to shut everything down properly and exit cleanly. </li>
 <li><code>S_STATE_Terminate</code> This is the state the daemon switches to when it has received a SIGTERM. This state tells the daemon to terminate execution as soon as possible, and not worry about closing things down cleanly. </li>
 <li><code>S_STATE_RefreshAsset</code> In this state, the daemon will attempt to refresh the asset information. This is not a guaranteed success. </li>
+<li><code>S_STATE_Upgrade</code> This state triggers an upgrade attempt (as if CCMS issued an upgrade command). </li>
 </ul>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="ab41c39af56d7080f8baeaee74b33fc73a5fe392230b06d4ed2e563a8367f368e9"></a><!-- doxytag: member="S_STATE_Null" ref="ab41c39af56d7080f8baeaee74b33fc73a5fe392230b06d4ed2e563a8367f368e9" args="" -->S_STATE_Null</em>&nbsp;</td><td>
@@ -131,6 +133,8 @@ Enumerations</h2></td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ab41c39af56d7080f8baeaee74b33fc73aee885aaac574466e3a299efb32e77cf1"></a><!-- doxytag: member="S_STATE_Terminate" ref="ab41c39af56d7080f8baeaee74b33fc73aee885aaac574466e3a299efb32e77cf1" args="" -->S_STATE_Terminate</em>&nbsp;</td><td>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ab41c39af56d7080f8baeaee74b33fc73ae3b5f076df356ee1978202f6e43db3a0"></a><!-- doxytag: member="S_STATE_RefreshAsset" ref="ab41c39af56d7080f8baeaee74b33fc73ae3b5f076df356ee1978202f6e43db3a0" args="" -->S_STATE_RefreshAsset</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ab41c39af56d7080f8baeaee74b33fc73af703a13803f8197e730484f4872d2f16"></a><!-- doxytag: member="S_STATE_Upgrade" ref="ab41c39af56d7080f8baeaee74b33fc73af703a13803f8197e730484f4872d2f16" args="" -->S_STATE_Upgrade</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -153,7 +157,7 @@ Enumerations</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 14:32:00 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 22 2011 10:46:17 for StewardservicewrapperfortheEILLinuxClientAgent by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
