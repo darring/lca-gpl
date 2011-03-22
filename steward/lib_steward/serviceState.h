@@ -30,6 +30,8 @@ enum ServiceState
  * soon as possible, and not worry about closing things down cleanly.
  * \li \c S_STATE_RefreshAsset In this state, the daemon will attempt to
  * refresh the asset information. This is not a guaranteed success.
+ * \li \c S_STATE_Upgrade This state triggers an upgrade attempt (as if CCMS
+ * issued an upgrade command).
  */
 enum StewardState
 {
@@ -38,6 +40,7 @@ enum StewardState
     S_STATE_Shutdown,
     S_STATE_Terminate,
     S_STATE_RefreshAsset,
+    S_STATE_Upgrade,
 };
 
 #endif

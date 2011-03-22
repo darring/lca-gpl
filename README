@@ -217,11 +217,14 @@ dispatcher.
     In addition to the standard Linux signals, the steward interprets certain
 non-POSIX defined signals as follows:
 
-        * SIGUSR - Causes the steward to re-check for an updated asset info
+        * SIGUSR1 - Causes the steward to re-check for an updated asset info
            file. This does not guarantee that the asset information will be
            updated with CCMS, as the file still must pass the various checks
            found in lib_nmsa/assetHelper, but it re-triggers the logic to
            check for updated asset info.
+
+        * SIGUSR2 - Causes the steward to initialize an upgrade as if a similar
+           request had been issued from CCMS.
 
     The steward can log in one of two places. It has a flexible logging class
 which automatically wraps logging in a client agent specific location (which

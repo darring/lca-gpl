@@ -17,7 +17,8 @@ trace "Update requested!"
 trace "Current version is '${EIL_VERSION}'"
 
 upgrade_agent() {
-    ${*} > /dev/null 2>&1
+    killall -9 eil_steward
+    /tmp/clientagent-bootstrap.sh > /dev/null 2>&1
     # We do this simply because there is a slight possibility that the steward
     # might not come back up on some systems after the above. This has to do
     # with the fact that we don't have a pure fork under bash... oh well.
@@ -26,7 +27,10 @@ upgrade_agent() {
 
 if [ -f "${BOOTSTRAP_COMMAND}" ]; then
     trace "Updating... say goodbye to this process..."
-    upgrade_agent $BOOTSTRAP_COMMAND &
+    rm -f /tmp/clientagent-bootstrap.sh
+    cp -f $BOOTSTRAP_COMMAND /tmp/clientagent-bootstrap.sh
+    chmod a+x /tmp/clientagent-bootstrap.sh
+    upgrade_agent &
 else
     trace_error "-----"
     trace_error "Client agent bootstrap command not found! Unrecoverable error during update request!"
