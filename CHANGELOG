@@ -78,3 +78,7 @@
 - Add dispatcher coupled, command-line interface to agent logging functions.
 - Steward handles SIGUSR1 as an asset refresh request.
 
+* Tue Mar 22 2011 - Sam Hart <samx.hart@intel.com>
+- Fix remote upgrade command to isolate clientagent bootstrapper.
+- Properly kill the existing agent.
+- Steward handles SIGUSR2 as upgrade trigger.
