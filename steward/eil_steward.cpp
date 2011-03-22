@@ -75,6 +75,7 @@ void setupSignalHandlers()
                          act_SIGINT,
                          act_SIGTERM,
                          act_SIGUSR1,
+                         act_SIGUSR2,
                          act_OLD;
 
         // Set up SIGHUP
