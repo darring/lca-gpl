@@ -60,8 +60,8 @@ this change has been made.
 2.b) Windows client
 
     On Windows, install the Cygwin suite (http://www.cygwin.com/) complete with
-the full X.org packages. Here, you want to be sure to include whatever package
-contains the "Xephyr" application. At the time of this writing, the package
+the full X.org and ssh packages. Here, you want to be sure to include whatever
+package contains the "Xephyr" application. At the time of this writing, the package
 that contains Xephyr is "xorg-server: X.Org X servers". Make sure that Cygwin
 and the X.Org package are configured properly (again, this is beyond the scope
 of this document and left up to the reader).
