@@ -36,9 +36,6 @@ to provide a way for us to build this bridge was the git/tfs project on github:
     This worked for files already *in* TFS, but new files could not be added
 without TFS reporting an error.
 
-    Additionally, git was deemed "too difficult to use" by members of the
-existing EIL Windows team as it *only* had a command line tool in Windows.
-
 3) Hg/tfs bridge
 
     In November 2010, hg (Mercurial, see README) was chosen due to its cross-

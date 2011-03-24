@@ -259,16 +259,16 @@ sufficient for our needs.
 
     The dispatcher is the BASH component of the agent which handles the
 distribution-dependent functionality of the client agent. It is a wrapper
-around a suite of scripts which execute various commands for the Steward.
+around a suite of scripts which execute various commands for the steward.
 
 2.b.1) Client helper tools
 
-    In addition to command handling, the Dispatcher also provides helper tools
+    In addition to command handling, the dispatcher also provides helper tools
 and scripts for the rest of the client agent suite. This includes the
 following:
         * clientagent-helper.sh
-            - Helper script which provides glue between Steward and
-              Dispatcher.
+            - Helper script which provides glue between steward and
+              dispatcher.
 
         * install_tool.sh
             - Helper install script (satisfies the "distribution-agnostic"
@@ -314,7 +314,7 @@ briefly cover some of the highlights.
               keeping with other native Linux/Unix projects.
 
         * HTML Library Documentation
-            - Each C/C++ library included in the Steward source tree has full
+            - Each C/C++ library included in the steward source tree has full
               API documentation generated from comments in the source code.
               This is done using the Doxygen tool (http://www.doxygen.org/).
 
