@@ -60,7 +60,7 @@ class NMSA_Service
          *
          * \param hwAddr The hardware address
          * \param SID The Session ID
-         * \param comp TODO
+         * \param comp exit status of the script
          * \param logOutput Pointer reference to the log output
          *
          * \remarks logOutput will have to be freed somewhere! TODO
