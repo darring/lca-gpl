@@ -45,7 +45,7 @@ class StewardLogger;
 
 //! Determines if the asset info is fresh, and ready to be uploaded to CCMS
 /*!
- * Quite simply, when you call this helper if checks to see if the system has
+ * Quite simply, when you call this helper it checks to see if the system has
  * recently booted and if there is a fresh asset info file available for
  * submittal to CCMS. If it is, it returns a true and sets the char assetInfo
  * to the contents of the asset info file.

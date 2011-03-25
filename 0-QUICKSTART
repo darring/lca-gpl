@@ -52,7 +52,7 @@ Linux client agent source repository.
 
         $ mkdir work/
         $ cd work/
-        $ hg clone ssh://user@10.4.0.26/home/pub/linux-clientagent
+        $ hg clone ssh://user@10.4.0.26//home/pub/linux-clientagent
 
     Note that "work/" is the workspace directory where your work will reside,
     it can be whatever you desire.
