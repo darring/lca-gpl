@@ -56,7 +56,7 @@ class NMSA_Service
          * TODO - Currently stubbed. However, the stub definition is taken from
          * the document "NMSA - Client Interaction Documentation.doc" dated
          * Jan 25th 2011, which defines the interface as:
-         * \li client_push.php ?mac=a&sid=b&comp=c&log=d
+         * \li client_push.php?mac=a&sid=b&comp=c&log=d
          *
          * \param hwAddr The hardware address
          * \param SID The Session ID
@@ -69,9 +69,20 @@ class NMSA_Service
 
         //! Register with the NMSA
         /*!
-         * TODO - Currently stubbed. Interface is not yet defined.
-         */
-        void Register();
+         * TODO - Currently stubbed. However, the stub definition is taken from
+         * the document "NMSA - Client Interaction Documentation.doc" dated
+         * March 28th 2011, which defines the interface as:
+         * \li client_register.php?mac=a&hostname=b&bmc=c&bridge=d&trans=e
+         *
+         * \param hwAddr The hardware address
+         * \param hostname The hostname
+         * \param bmc IP Address of the BMC
+         * \param bridge IP Address of the BMC bridge address
+         * \param trans IP Address of the BMC transport address
+         *
+         * \remarks logOutput will have to be freed somewhere! TODO
+          */
+        void Register(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans);
 };
 
 #endif

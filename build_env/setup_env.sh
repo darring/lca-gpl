@@ -17,6 +17,7 @@ autoconf
 autotools-dev
 byacc
 bison
+libcurl4-openssl-dev
 libssl-dev
 shunit2
 mercurial
