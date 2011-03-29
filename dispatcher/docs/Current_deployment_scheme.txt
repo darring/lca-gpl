@@ -145,7 +145,7 @@ where:
         PASS is the password associated with the username
         /mnt/eil is the local mount point
 
-6) BUILD/DEPLOY TO UBUNTUDEV
+6) BUILD/DEPLOY TO IIS
 
     You can build and deploy the package for the client agent in one step (see
 INSTALL for more information on this process).
