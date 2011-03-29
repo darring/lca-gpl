@@ -97,6 +97,17 @@ the following servers:
 
 1) SET THE VERSION
 
+    In the top-level directory, you will set the VERSION file equal to
+whatever current version is. This file MUST contain exactly one line, and that
+line will be the version. (The reason for this is because it will be included
+in the code as a #define, so care must be given not to include additional
+carriage return characters.)
+
+    Additionally, you will want to tag the version in Mercurial with the same
+version. For example:
+
+        # hg tag 4.1.1.d20110215
+        # hg commit -m "tag 4.1.1.d20110215"
 
 2) CONFIGURE THE BUILD SYSTEM
 
