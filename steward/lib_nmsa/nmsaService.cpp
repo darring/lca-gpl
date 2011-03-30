@@ -32,7 +32,7 @@ void NMSA_Service::Push(char *hwAddr, char *SID, char *comp, char **logOutput)
     // TODO
 }
 
-void NMSA_Service::Register()
+void NMSA_Service::Register(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)
 {
     // TODO
 }

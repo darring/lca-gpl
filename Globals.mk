@@ -41,7 +41,7 @@ GSOAP_WSAAPI_O=wsaapi.o
 GSOAP_OBJECTS=$(GSOAP_WSAAPI_O)
 
 # FIXME - Add defines for reducing gSOAP build size by removing the server
-# code as it wont be needed
+# code as it wont be needed (examine GSOAP documentation to find compile time flags)
 
 CC=gcc
 CPP=g++
