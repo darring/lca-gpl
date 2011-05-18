@@ -8,6 +8,7 @@ Table of Contents
     2.a) Building in a chroot
         2.a.1) Using the chroot script
     2.b) Using the setup_env.sh script
+    2.c) Using the chroot_wrap.sh script
 ------------------------------------------------------------------------------
 
 1) Overview of build requirements
@@ -112,3 +113,18 @@ undefined results.
     The script is not entirely automated, and will require some user intervention
 during key moments. It is recommended that you read the instructions carefully.
 
+2.c) Using the chroot_wrap.sh script
+
+    Maintaining and changing into your chroot build environment can be tedious,
+especially if you are working from a laptop or an otherwise isolated development
+environment. Thus, the 'chroot_wrap.sh' script was created to automate some of
+the tasks which can be tricky to remember when working with chroots.
+
+    This script must be run as root and takes a single argument- the path to a
+previously set up chroot build environment (see section "2.a" above). Once
+completed, you will be left inside the chroot environment ready to work.
+
+        host-env ~/work/path/# ./chroot_wrap.sh /home/sam/work/intel/chroots/testing
+        ... (script runs)
+        chroot-env /# _
+        ... (everything is now in the chroot)
