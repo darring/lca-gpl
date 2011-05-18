@@ -26,7 +26,7 @@ if [ -n "$1" ]; then
     else
         echo "The chroot path '${CHROOT_PATH}' does not exist or is not a directory!"
         exit 1
-    if
+    fi
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
