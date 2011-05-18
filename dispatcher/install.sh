@@ -370,7 +370,7 @@ fi
 
 # Last, but not least, we run any POSTINST scripts
 if [ -n "$PLATFORM_NAME" ]; then
-    echo "!!!!!!! MY PLATFORM NAME ${PLATFORM_NAME}"
+    echo "@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!! MY PLATFORM NAME ${PLATFORM_NAME}"
     if [ -e "${POSTINST_DIR}/${POSTINST}" ]; then
         echo "!!!! RUNNING ${POSTINST_DIR}/${POSTINST}"
         ${POSTINST_DIR}/${POSTINST}
