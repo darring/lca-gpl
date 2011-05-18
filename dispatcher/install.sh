@@ -339,14 +339,18 @@ do
 done
 
 # - Next do the post install scripts
-# FIXME - Rewrite
-#for POSTINST in $POSTINST_SCRIPTS
-#do
-#    cp -fr postinst/${POSTINST} ${POSTINST_DIR}/${POSTINST}
-#    # For these, only root can do anything with them
-#    chown root.root ${POSTINST_DIR}/${POSTINST}
-#    chmod 700 ${POSTINST_DIR}/${POSTINST}
-#done
+_setup_postinst_script() {
+    cp -fr postinst/${1} ${POSTINST_DIR}/${1}
+    # For these, only root can do anything with them
+    chown root.root ${POSTINST_DIR}/${1}
+    chmod 700 ${POSTINST_DIR}/${1}
+}
+for POSTINST_LINE in $POSTINST_SCRIPTS
+do
+    LARR=`echo "$POSTINST_LINE" | sed -f dep-cleaner.sed`
+
+    _setup_postinst_script ${LARR}
+done
 
 # Set up the rc files
 if [ -n "$IS_RHEL" ]; then
