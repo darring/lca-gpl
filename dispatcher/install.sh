@@ -339,13 +339,14 @@ do
 done
 
 # - Next do the post install scripts
-for POSTINST in $POSTINST_SCRIPTS
-do
-    cp -fr postinst/${POSTINST} ${POSTINST_DIR}/${POSTINST}
-    # For these, only root can do anything with them
-    chown root.root ${POSTINST_DIR}/${POSTINST}
-    chmod 700 ${POSTINST_DIR}/${POSTINST}
-done
+# FIXME - Rewrite
+#for POSTINST in $POSTINST_SCRIPTS
+#do
+#    cp -fr postinst/${POSTINST} ${POSTINST_DIR}/${POSTINST}
+#    # For these, only root can do anything with them
+#    chown root.root ${POSTINST_DIR}/${POSTINST}
+#    chmod 700 ${POSTINST_DIR}/${POSTINST}
+#done
 
 # Set up the rc files
 if [ -n "$IS_RHEL" ]; then
@@ -369,13 +370,14 @@ fi
 # FIXME TODO
 
 # Last, but not least, we run any POSTINST scripts
-if [ -n "$PLATFORM_NAME" ]; then
-    echo "@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!! MY PLATFORM NAME ${PLATFORM_NAME}"
-    if [ -e "${POSTINST_DIR}/${POSTINST}" ]; then
-        echo "!!!! RUNNING ${POSTINST_DIR}/${POSTINST}"
-        ${POSTINST_DIR}/${POSTINST}
-    fi
-fi
+# FIXME - Rewrite
+#if [ -n "$PLATFORM_NAME" ]; then
+#    echo "@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!! MY PLATFORM NAME ${PLATFORM_NAME}"
+#    if [ -e "${POSTINST_DIR}/${POSTINST}" ]; then
+#        echo "!!!! RUNNING ${POSTINST_DIR}/${POSTINST}"
+#        ${POSTINST_DIR}/${POSTINST}
+#    fi
+#fi
 
 echo "clientagent dispatcher installed successfully"
 
