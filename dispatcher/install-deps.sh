@@ -145,7 +145,7 @@ EOF
 # The POSTINST_SCRIPTS contains a list of the scripts to be installed for
 # post-install requirements
 POSTINST_SCRIPTS=$(cat <<EOF
-xenclient.sh
+xenclient.sh:xen_test.sh
 EOF
 )
 
