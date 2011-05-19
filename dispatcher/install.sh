@@ -389,9 +389,7 @@ _run_postinst_script() {
     # We assume an exit status of "0" means it's okay to run the script
     ${POSTINST_DIR}/${TEST_SCRIPT}
 
-    RETVAL=$?
-
-    if [ "$REVAL" -eq "0" ]; then
+    if [ $? -eq 0 ]; then
         echo "~~> Running post-install script: ${POSTINST_SCRIPT}"
         ${POSTINST_DIR}/${POSTINST_SCRIPT}
     fi
