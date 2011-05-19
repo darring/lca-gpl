@@ -374,14 +374,15 @@ fi
 # FIXME TODO
 
 # Last, but not least, we run any POSTINST scripts
-# FIXME - Rewrite
-#if [ -n "$PLATFORM_NAME" ]; then
-#    echo "@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!! MY PLATFORM NAME ${PLATFORM_NAME}"
-#    if [ -e "${POSTINST_DIR}/${POSTINST}" ]; then
-#        echo "!!!! RUNNING ${POSTINST_DIR}/${POSTINST}"
-#        ${POSTINST_DIR}/${POSTINST}
-#    fi
-#fi
+_run_postinst_script() {
+    
+}
+for POSTINST_LINE in $POSTINST_SCRIPTS
+do
+    LARR=`echo "$POSTINST_LINE" | sed -f dep-cleaner.sed`
+
+    _run_postinst_script ${LARR}
+done
 
 echo "clientagent dispatcher installed successfully"
 
