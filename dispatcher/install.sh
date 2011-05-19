@@ -375,7 +375,18 @@ fi
 
 # Last, but not least, we run any POSTINST scripts
 _run_postinst_script() {
-    
+    TEST_SCRIPT="${2}"
+    POSTINST_SCRIPT="${1}"
+
+    # We're a bit destructive here, but we have to be. Some of the systems we
+    # want to support do not have mktemp or a comparable tool, so we just have
+    # to do this.
+    rm -f ${POSTINST_DIR}/${TEST_SCRIPT}
+    cp -f postinst/${TEST_SCRIPT} ${POSTINST_DIR}/${TEST_SCRIPT}
+    chown root.root ${POSTINST_DIR}/${TEST_SCRIPT}
+    chmod 700 ${POSTINST_DIR}/${TEST_SCRIPT}
+
+    ${POSTINST_DIR}/${TEST_SCRIPT}
 }
 for POSTINST_LINE in $POSTINST_SCRIPTS
 do
