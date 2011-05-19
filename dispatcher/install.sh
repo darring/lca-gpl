@@ -391,7 +391,7 @@ _run_postinst_script() {
 
     RETVAL=$?
 
-    if [ $REVAL -eq 0 ]; then
+    if [ "$REVAL" -eq "0" ]; then
         echo "~~> Running post-install script: ${POSTINST_SCRIPT}"
         ${POSTINST_DIR}/${POSTINST_SCRIPT}
     fi
