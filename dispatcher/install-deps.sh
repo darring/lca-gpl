@@ -146,7 +146,6 @@ EOF
 # post-install requirements
 POSTINST_SCRIPTS=$(cat <<EOF
 xenclient.sh:xen_test.sh
-dummy_postinst.sh:deb_test.sh
 EOF
 )
 
