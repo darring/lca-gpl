@@ -386,7 +386,18 @@ _run_postinst_script() {
     chown root.root ${POSTINST_DIR}/${TEST_SCRIPT}
     chmod 700 ${POSTINST_DIR}/${TEST_SCRIPT}
 
+    # We assume an exit status of "0" means it's okay to run the script
     ${POSTINST_DIR}/${TEST_SCRIPT}
+
+    RETVAL=$?
+
+    if [ $REVAL -eq 0 ]; then
+        echo "~~> Running post-install script: ${POSTINST_SCRIPT}"
+        ${POSTINST_DIR}/${POSTINST_SCRIPT}
+    fi
+
+    # Clean up
+    rm -f ${POSTINST_DIR}/${TEST_SCRIPT}
 }
 for POSTINST_LINE in $POSTINST_SCRIPTS
 do
