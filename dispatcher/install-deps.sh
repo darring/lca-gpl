@@ -146,6 +146,7 @@ EOF
 # post-install requirements
 POSTINST_SCRIPTS=$(cat <<EOF
 xenclient.sh:xen_test.sh
+install_laf.sh:laf_test.sh
 EOF
 )
 
