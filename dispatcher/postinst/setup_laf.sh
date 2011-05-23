@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LAST_IP_OCT=49
+LAST_IP_OCT=6
 ERR_STR="error fetching interface information: Device not found"
 ETH_N=""
 LAF_FILE="src/laf-lib.sh"
