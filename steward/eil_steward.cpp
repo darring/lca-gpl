@@ -37,6 +37,7 @@
 #include "dispatcher_helper.h"
 #include "hwaddr.h"
 #include "assetHelper.h"
+#include "nmsaService.h"
 
 //! The current steward system state
 static volatile StewardState S_STATE;
@@ -282,6 +283,9 @@ int main(int argc, char *argv[])
     setupSignalHandlers();
 
     S_STATE = S_STATE_Running;
+
+    // Set up our NMSA service
+    NMSA_Service nmsaService(&logger);
 
     /* Sanity checks */
     // Check that hostname isn't localhost
