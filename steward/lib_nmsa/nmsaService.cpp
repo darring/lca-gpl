@@ -22,7 +22,7 @@ NMSA_Service::~NMSA_Service()
     // TODO
 }
 
-void NMSA_Service::register(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)
+void NMSA_Service::nmsa_register(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)
 {
     // TODO
 }

@@ -44,7 +44,7 @@ class NMSA_Service
          *
          * \remarks logOutput will have to be freed somewhere! TODO
           */
-        void register(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans);
+        void nmsa_register(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans);
 
     public:
         //! Constructor for the NMSA service wrapper
