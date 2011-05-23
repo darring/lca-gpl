@@ -14,6 +14,14 @@ sids
 EOF
 )
 
+INSTALL_FILES=$(cat <<EOF
+laf.sh
+laf-lib.sh
+EOF
+)
+
+INSTALL_CWD=$1
+
 # TODO - Move these into the laf_test script
 #REQ_PROGS=("wget")
 
@@ -51,10 +59,16 @@ EOF
 #}
 
 clean_up() {
-    rm -fr $INSTALL_DIR/*
+    for DIR in $CREATE_DIR
+    do
+        rm -f $INSTALL_DIR/$DIR
+        rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
+    done
+
+    rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
 }
 
-create_dir() { 
+create_dir() {
     if [ ! -d $INSTALL_DIR ]; then
 # We can safely assume these will be setup by the Linux client agent.
 # TODO - Remove once we're certain we can
@@ -73,19 +87,35 @@ create_dir() {
     done
 }
 
-LUID=$(id -u)
-if [[ $LUID -ne 0 ]]; then
- echo "Please run install script as root"
- exit 1
-fi
+install_files() {
+    for FILE_TO_INSTALL in $INSTALL_FILES
+    do
+        cp -f ${INSTALL_CWD}/${FILE_TO_INSTALL} \
+                ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
 
+        # TODO - Any permisions or ownership necessary here?
+    done
+}
+
+# TODO - Remove the following, safe to assume it will be run as root by
+# instaler
+#LUID=$(id -u)
+#if [[ $LUID -ne 0 ]]; then
+# echo "Please run install script as root"
+# exit 1
+#fi
 
 #check_req_progs
 #if [ ! $? -eq 0 ]; then
 # echo "Please install missing programs and then run installer again"
 # exit 1
 #fi
+
+# Clean up any previous installation then setup for new installation
+clean_up
 create_dir
-cp src/*.sh $INSTALL_DIR/bin
+
+install_files
+#cp src/*.sh $INSTALL_DIR/bin
 
 # vim:set ai et sts=4 sw=4 tw=80:
