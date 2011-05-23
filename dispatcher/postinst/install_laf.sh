@@ -31,7 +31,7 @@ clean_up() {
         rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
     done
 
-    rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
+    rmdir --ignore-fail-on-non-empty $INSTALL_DIR
 }
 
 create_dir() {
