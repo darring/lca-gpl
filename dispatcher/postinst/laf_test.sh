@@ -14,7 +14,7 @@
 # FIXME - For now, we just return true
 
 # TODO - The REQ_PROGS section of install_laf.sh needs to be folded into this
-#   test script.
+#   test script. (See dispatcher/docs/NMSA)
 
 # TODO - This test script should output a filesystem toggle that indicates to
 #   the steward whether to run the NMSA process
