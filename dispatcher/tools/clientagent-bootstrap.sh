@@ -11,8 +11,11 @@ EIL_AUTO_PRO="172.16.3.10"
 EIL_AUTO_DEV="172.16.3.12"
 EIL_RELEASE="172.16.3.10"
 EIL_STAGING="10.4.0.26"
+NMSA_DEV="10.4.0.29"
+NMSA_PRO="10.4.0.29"
 
 unset IS_STAGING IS_RELEASE EIL_LATEST EIL_AUTO INSTALL_TOOL IS_DEV IS_PRO || true
+unset NMSA_IP || true
 
 # Uncomment whichever of the following is correct for this install
 IS_STAGING=yes
@@ -31,8 +34,10 @@ fi
 
 if [ -n "$IS_DEV" ]; then
     EIL_AUTO=$EIL_AUTO_DEV
+    NMSA_IP=$NMSA_DEV
 else
     EIL_AUTO=$EIL_AUTO_PRO
+    NMSA_IP=$NMSA_PRO
 fi
 
 PROGNAME=${0##*/}
@@ -66,6 +71,7 @@ make_hosts_file() {
     echo "${EIL_AUTO}    eilauto01   eilauto01.eil-infra.com" >> /etc/hosts
     echo "${EIL_AUTO}   hfseilauto01 hfseilauto01.eil-infra.com" >> /etc/hosts
     echo "${EIL_LATEST} eilstaging  eilstaging.eil-infra.com" >> /etc/hosts
+    echo "${NMSA_IP}  nmsa01  nmsa01.eil-infra.com" >> /etc/hosts
     echo "## EIL_END" >> /etc/hosts
 
     md5sum /etc/hosts > /etc/hosts.md5
