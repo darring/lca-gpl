@@ -14,6 +14,7 @@ sids
 EOF
 )
 
+# TODO - Move these into the laf_test script
 #REQ_PROGS=("wget")
 
 #has_cmd() {
