@@ -11,6 +11,7 @@
 . /opt/intel/eil/clientagent/lib/helper.sh
 . /opt/intel/eil/clientagent/lib/globals.sh
 
-# TODO
+# FIXME - For now, we just return true
+exit 0
 
 # vim:set ai et sts=4 sw=4 tw=80:
