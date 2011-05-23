@@ -5,7 +5,15 @@
 # Install and set up the LAF scripts as a postinst process
 
 INSTALL_DIR=/opt/intel/eil/laf
-CREATE_DIR=("bin" "log" "output" "sids")
+
+CREATE_DIR=$(cat <<EOF
+bin
+log
+output
+sids
+EOF
+)
+
 #REQ_PROGS=("wget")
 
 #has_cmd() {
@@ -55,12 +63,13 @@ create_dir() {
 #            fi
 #            mkdir /opt/intel/eil
 #        fi
-        mkdir $INSTALL_DIR
+        mkdir -p $INSTALL_DIR
     fi
 
-    for dir in "${CREATE_DIR[@]}"; do
-        if [ ! -d $INSTALL_DIR/$dir ]; then
-            mkdir $INSTALL_DIR/$dir
+    for DIR in $CREATE_DIR
+    do
+        if [ ! -d $INSTALL_DIR/$DIR ]; then
+            mkdir -p $INSTALL_DIR/$DIR
         fi
     done
 }
