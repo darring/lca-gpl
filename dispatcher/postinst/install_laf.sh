@@ -92,7 +92,7 @@ create_dir() {
 install_files() {
     for FILE_TO_INSTALL in $INSTALL_FILES
     do
-        cp -f ${INSTALL_CWD}/${FILE_TO_INSTALL} \
+        cp -f ${INSTALL_CWD}/tools/${FILE_TO_INSTALL} \
                 ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
 
         # TODO - Any permisions or ownership necessary here?
