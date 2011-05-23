@@ -80,8 +80,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Poll the NMSA.  <a href="#a8f31e2069b328f3d90acc020604d7056"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNMSA__Service.html#af45b420613b7a6c970f8a943eae2547a">register</a> (char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Register with the NMSA.  <a href="#af45b420613b7a6c970f8a943eae2547a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNMSA__Service.html#a2276478de10ea460b559b4c6cfab3ccb">nmsa_register</a> (char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Register with the NMSA.  <a href="#a2276478de10ea460b559b4c6cfab3ccb"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">StewardLogger *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNMSA__Service.html#ac6fda0df5a6b82561e1ec39a95c251b1">logger</a></td></tr>
@@ -131,52 +131,12 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a8f31e2069b328f3d90acc020604d7056"></a><!-- doxytag: member="NMSA_Service::Poll" ref="a8f31e2069b328f3d90acc020604d7056" args="(char *hwAddr, char *hostname)" -->
+<a class="anchor" id="a2276478de10ea460b559b4c6cfab3ccb"></a><!-- doxytag: member="NMSA_Service::nmsa_register" ref="a2276478de10ea460b559b4c6cfab3ccb" args="(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void NMSA_Service::Poll </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>hwAddr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>hostname</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Poll the NMSA. </p>
-<p>TODO - Currently stubbed. However, the stub definition is taken from the document "NMSA - Client Interaction Documentation.doc" dated Jan 25th 2011, which defines the interface as: </p>
-<ul>
-<li>client_poll.php?mac=x&amp;hostname=y</li>
-</ul>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hwAddr</td><td>The hardware address </td></tr>
-    <tr><td class="paramname">hostname</td><td>The hostname </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="af45b420613b7a6c970f8a943eae2547a"></a><!-- doxytag: member="NMSA_Service::register" ref="af45b420613b7a6c970f8a943eae2547a" args="(char *hwAddr, char *hostname, char *bmc, char *bridge, char *trans)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NMSA_Service::register </td>
+          <td class="memname">void NMSA_Service::nmsa_register </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>hwAddr</em>, </td>
@@ -233,6 +193,46 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8f31e2069b328f3d90acc020604d7056"></a><!-- doxytag: member="NMSA_Service::Poll" ref="a8f31e2069b328f3d90acc020604d7056" args="(char *hwAddr, char *hostname)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NMSA_Service::Poll </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>hwAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>hostname</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Poll the NMSA. </p>
+<p>TODO - Currently stubbed. However, the stub definition is taken from the document "NMSA - Client Interaction Documentation.doc" dated Jan 25th 2011, which defines the interface as: </p>
+<ul>
+<li>client_poll.php?mac=x&amp;hostname=y</li>
+</ul>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hwAddr</td><td>The hardware address </td></tr>
+    <tr><td class="paramname">hostname</td><td>The hostname </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="ac6fda0df5a6b82561e1ec39a95c251b1"></a><!-- doxytag: member="NMSA_Service::logger" ref="ac6fda0df5a6b82561e1ec39a95c251b1" args="" -->
 <div class="memitem">
@@ -266,7 +266,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 23 2011 12:11:29 for NMSAservicewrapperfortheEILLinuxClientAgent by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Mon May 23 2011 12:15:00 for NMSAservicewrapperfortheEILLinuxClientAgent by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
