@@ -1,28 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env sh
+
+# install_laf.sh
+# --------------
+# Install and set up the LAF scripts as a postinst process
 
 INSTALL_DIR=/opt/intel/eil/laf
 CREATE_DIR=("bin" "log" "output" "sids")
 #REQ_PROGS=("wget")
 
-has_cmd() {
- ret=0;
- cmd=$1
- shift
- tmp_f=/tmp/`date +%m%d%y-%M%S`
- whereis $cmd > $tmp_f
- if [ ! $? -eq 0 ]
- then
-  logerr $client 6 "+1"
-  return 1
- fi
- str=`cat $tmp_f | awk '{print $2}'`
- if [ ! -n "$str" ]
- then
-  ret=1
- fi
- rm $tmp_f
- return $ret
-}
+#has_cmd() {
+# ret=0;
+# cmd=$1
+# shift
+# tmp_f=/tmp/`date +%m%d%y-%M%S`
+# whereis $cmd > $tmp_f
+# if [ ! $? -eq 0 ]
+# then
+#  logerr $client 6 "+1"
+#  return 1
+# fi
+# str=`cat $tmp_f | awk '{print $2}'`
+# if [ ! -n "$str" ]
+# then
+#  ret=1
+# fi
+# rm $tmp_f
+# return $ret
+#}
 
 #check_req_progs() {
 # ret=0
@@ -35,24 +39,30 @@ has_cmd() {
 #  fi
 # done
 # return $ret
-#} 
+#}
+
+clean_up() {
+    rm -fr $INSTALL_DIR/*
+}
 
 create_dir() { 
- if [ ! -d $INSTALL_DIR ]; then
-  if [ ! -d /opt/intel/eil ]; then
-   if [ ! -d /opt/intel ]; then
-    mkdir /opt/intel
-   fi
-   mkdir /opt/intel/eil
-  fi
-  mkdir $INSTALL_DIR
- fi
- 
- for dir in "${CREATE_DIR[@]}"; do
-  if [ ! -d $INSTALL_DIR/$dir ]; then
-   mkdir $INSTALL_DIR/$dir
-  fi
- done
+    if [ ! -d $INSTALL_DIR ]; then
+# We can safely assume these will be setup by the Linux client agent.
+# TODO - Remove once we're certain we can
+#        if [ ! -d /opt/intel/eil ]; then
+#            if [ ! -d /opt/intel ]; then
+#                mkdir /opt/intel
+#            fi
+#            mkdir /opt/intel/eil
+#        fi
+        mkdir $INSTALL_DIR
+    fi
+
+    for dir in "${CREATE_DIR[@]}"; do
+        if [ ! -d $INSTALL_DIR/$dir ]; then
+            mkdir $INSTALL_DIR/$dir
+        fi
+    done
 }
 
 LUID=$(id -u)
@@ -69,3 +79,5 @@ fi
 #fi
 create_dir
 cp src/*.sh $INSTALL_DIR/bin
+
+# vim:set ai et sts=4 sw=4 tw=80:
