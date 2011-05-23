@@ -68,9 +68,7 @@ create_dir() {
 
     for DIR in $CREATE_DIR
     do
-        if [ ! -d $INSTALL_DIR/$DIR ]; then
-            mkdir -p $INSTALL_DIR/$DIR
-        fi
+        mkdir -p $INSTALL_DIR/$DIR
     done
 }
 
