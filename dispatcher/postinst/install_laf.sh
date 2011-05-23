@@ -4,6 +4,10 @@
 # --------------
 # Install and set up the LAF scripts as a postinst process
 
+# THIS MUST ONLY BE RUN BY THE DISPATCHER INSTALL SCRIPT
+
+INSTALL_CWD=$1
+
 INSTALL_DIR=/opt/intel/eil/laf
 
 CREATE_DIR=$(cat <<EOF
@@ -19,8 +23,6 @@ laf.sh
 laf-lib.sh
 EOF
 )
-
-INSTALL_CWD=$1
 
 # TODO - Move these into the laf_test script
 #REQ_PROGS=("wget")
