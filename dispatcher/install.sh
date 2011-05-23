@@ -2,6 +2,8 @@
 
 # Install script for clientagent-base.sh suite
 
+MY_CWD=`pwd`
+
 if [ "$(id -u)" != "0" ]; then
     echo "This install script must be run as root!"
     exit 1
@@ -391,7 +393,7 @@ _run_postinst_script() {
 
     if [ $? -eq 0 ]; then
         echo "~~> Running post-install script: ${POSTINST_SCRIPT}"
-        ${POSTINST_DIR}/${POSTINST_SCRIPT}
+        ${POSTINST_DIR}/${POSTINST_SCRIPT} ${MY_CWD}
     fi
 
     # Clean up

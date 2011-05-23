@@ -2,7 +2,7 @@
 
 INSTALL_DIR=/opt/intel/eil/laf
 CREATE_DIR=("bin" "log" "output" "sids")
-REQ_PROGS=("wget")
+#REQ_PROGS=("wget")
 
 has_cmd() {
  ret=0;
@@ -24,18 +24,18 @@ has_cmd() {
  return $ret
 }
 
-check_req_progs() {
- ret=0
- for prog in "${REQ_PROGS[@]}"; do
-  has_cmd $prog
-  if [ $? -eq 1 ]; then
-   echo "Missing required program $prog.  Please install and then try again"
-   ret=1
-   break
-  fi
- done
- return $ret
-} 
+#check_req_progs() {
+# ret=0
+# for prog in "${REQ_PROGS[@]}"; do
+#  has_cmd $prog
+#  if [ $? -eq 1 ]; then
+#   echo "Missing required program $prog.  Please install and then try again"
+#   ret=1
+#   break
+#  fi
+# done
+# return $ret
+#} 
 
 create_dir() { 
  if [ ! -d $INSTALL_DIR ]; then
@@ -62,10 +62,10 @@ if [[ $LUID -ne 0 ]]; then
 fi
 
 
-check_req_progs
-if [ ! $? -eq 0 ]; then
- echo "Please install missing programs and then run installer again"
- exit 1
-fi
+#check_req_progs
+#if [ ! $? -eq 0 ]; then
+# echo "Please install missing programs and then run installer again"
+# exit 1
+#fi
 create_dir
 cp src/*.sh $INSTALL_DIR/bin
