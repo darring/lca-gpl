@@ -27,7 +27,7 @@ EOF
 clean_up() {
     for DIR in $CREATE_DIR
     do
-        rm -f $INSTALL_DIR/$DIR
+        rm -f $INSTALL_DIR/$DIR/*
         rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
     done
 
