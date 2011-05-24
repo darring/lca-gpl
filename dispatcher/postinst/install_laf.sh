@@ -53,6 +53,7 @@ install_files() {
                 ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
 
         # TODO - Any permisions or ownership necessary here?
+        chown root.root ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
     done
 }
 
