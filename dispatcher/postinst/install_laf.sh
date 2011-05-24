@@ -21,6 +21,7 @@ EOF
 INSTALL_FILES=$(cat <<EOF
 laf.sh
 laf-lib.sh
+relay.sh
 EOF
 )
 
