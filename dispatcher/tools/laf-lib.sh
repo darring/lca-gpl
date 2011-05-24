@@ -15,7 +15,7 @@ logerr() {
 
 #best way to call this is to do something like
 # dbecho "some string"
-# there is no need to call this function with the name of the 
+# there is no need to call this function with the name of the
 # calling funciton or the line number because this is done for
 # us by using the caller function
 dbecho () {
@@ -35,7 +35,7 @@ dbecho () {
 # this is the function to start up everything
 # this includes starting the log file and calling
 # get_args (which calls get_clients and get_cmds)
-# if you need to do any initilization places calls 
+# if you need to do any initilization places calls
 # to your function in this script
 _init () {
  if [ -e $LOCKFILE ]; then
@@ -154,13 +154,13 @@ _run_cmd() {
  #echo "running $command"
  tmp_proxy=$http_proxy  # we do this so any local proxy settings don't
  http_proxy=""          # screw up the wget
- wget -O /tmp/laf-testing2 "10.4.1.6/laf_update.php?sid=$SID&type=1&data=`echo $full_cmd |sed -e 's/ /+/g'`" &> /tmp/laf-testing
+ wget -O /tmp/laf-testing2 "http://nmsa01/laf_update.php?sid=$SID&type=1&data=`echo $full_cmd |sed -e 's/ /+/g'`" &> /tmp/laf-testing
  http_proxy=$tmp_proxy
  $command > $cmd_output_f
  if [ $report_bck -eq 1 ]; then
   tmp_proxy=$http_proxy
   http_proxy=""
-  wget -O /tmp/laf-testing3 "10.4.1.6/laf_update.php?sid=$SID&type=2&data=`cat $cmd_output_f|sed -e 's/ /+/g'`" &> /tmp/laf-testing4
+  wget -O /tmp/laf-testing3 "http://nmsa01/laf_update.php?sid=$SID&type=2&data=`cat $cmd_output_f|sed -e 's/ /+/g'`" &> /tmp/laf-testing4
   http_proxy=$tmp_proxy
  fi 
  check_err $cmd_output_f
