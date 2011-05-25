@@ -35,7 +35,6 @@ class NMSA_Service
         StewardLogger *logger;
         bool enabled;
         bool registered;
-        bool firstRun;
 
         //! Register with the NMSA
         /*!
