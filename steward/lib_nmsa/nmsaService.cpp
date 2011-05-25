@@ -12,7 +12,9 @@ NMSA_Service::NMSA_Service(StewardLogger *myLogger)
     logger = myLogger;
     logger->QuickLog("NMSA_Service> Initializing the NMSA service");
 
-    // TODO Initialization here
+    enabled = false;
+    registered = false;
+    firstRun = false;
 
     logger->QuickLog("NMSA_Service> Service initialized...");
 }

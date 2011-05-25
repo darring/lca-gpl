@@ -33,6 +33,9 @@ class NMSA_Service
 {
     private:
         StewardLogger *logger;
+        bool enabled;
+        bool registered;
+        bool firstRun;
 
         //! Register with the NMSA
         /*!
