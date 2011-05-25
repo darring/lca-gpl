@@ -22,6 +22,11 @@
 #ifndef nmsaService_H
 #define nmsaService_H
 
+/*! If this file is present on the file system (and stat'able by the steward)
+ * then it means that the NMSA service can run on this system.
+ */
+#define NMSA_TOGGLE "/opt/intel/eil/clientagent/home/.nmsa_enable"
+
 class StewardLogger;
 
 class NMSA_Service
