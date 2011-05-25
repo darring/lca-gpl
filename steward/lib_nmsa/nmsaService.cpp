@@ -20,7 +20,7 @@ NMSA_Service::NMSA_Service(StewardLogger *myLogger)
     registered = false;
 
     struct stat buf;
-    if(stat(NMSA_TOGGLA, &buf) == 0) {
+    if(stat(NMSA_TOGGLE, &buf) == 0) {
         enabled = true;
     }
 
