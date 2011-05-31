@@ -1,7 +1,7 @@
 import os
 import ConfigParser as configparser
 
-def setup_conf(self, conf_file):
+def setup_conf(conf_file):
     config = configparser.RawConfigParser()
     if os.path.isfile(conf_file):
         config.read(conf_file)
@@ -14,6 +14,7 @@ def setup_conf(self, conf_file):
         # Writing our configuration file to 'example.cfg'
         with open(conf_file, 'wb') as configfile:
             config.write(configfile)
+            configfile.close()
 
     return config
 
