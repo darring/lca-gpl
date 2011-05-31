@@ -43,8 +43,16 @@ class HandlerDaemon(Daemon):
             else:
                 __debug_level = logging.DEBUG
 
+        logging.basicConfig(
+            filename=self.__log_file,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            level=self.__debug_level)
+
+        logging.info('Handler start up...')
+
     def run(self):
         while True:
+            logging.debug('Starting NMSA handler activity...')
             time.sleep(self.__sleep_timer)
 
 def usage():
