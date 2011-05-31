@@ -26,7 +26,8 @@ class HandlerDaemon(Daemon):
     __debug_level = logging.WARNING
 
     def local_init(self):
-        self.config = SetupConf.setup_conf(self.__conf_file)
+        setupconf = SetupConf()
+        self.config = setupconf.setup_conf(self.__conf_file)
         if self.config.has_option('main', 'sleep_timer'):
             self.__sleep_timer = self.config.getint('main', 'sleep_timer')
 
