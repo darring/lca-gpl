@@ -4,16 +4,31 @@
 nmsa_handler.py
 ---------------
 The main handler daemon for the various NMSA features and functionality
+
+- Note: While the dispatcher/steward combo proper was designed with Python as
+"off the table", for the NMSA handler, we can use it because it automatically
+requires platforms with a full Python stack.
 '''
 
 import sys, time
+import logging
+import ConfigParser as configparser
+
+# NMSA specific modules
 sys.path.append('/opt/intel/eil/clientagent/lib')
 from nmsa_daemon import Daemon
 
 class HandlerDaemon(Daemon):
+    __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
+    __conf_file = '/opt/intel/eil/clientagent/home/nmsa_handler.cfg'
+    __sleep_timer = 30
+
+    def local_init(self):
+        self.conf = 
+
     def run(self):
         while True:
-            time.sleep(1)
+            time.sleep(self.__sleep_timer)
 
 def usage():
     print "Usage:\n"

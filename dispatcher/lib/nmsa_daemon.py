@@ -81,6 +81,7 @@ class Daemon:
 
         # Start the daemon
         self.daemonize()
+        self.local_init()
         self.run()
 
     def stop(self):
@@ -126,6 +127,12 @@ class Daemon:
         You should override this method when you subclass Daemon.
         It will be called after the process has been daemonized by start() or
         restart().
+        """
+
+    def local_init(self):
+        """
+        Override this method for additional items to be initialized during
+        daemonization, after the fork but before the main .run(..) call.
         """
 
 # vim:set ai et sts=4 sw=4 tw=80:
