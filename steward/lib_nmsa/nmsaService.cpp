@@ -52,7 +52,6 @@ void NMSA_Service::Poll(char *hwAddr, char *hostname)
 
                 curl_easy_cleanup(curl);
             }
-            return 0;
         } else {
         }
     }
