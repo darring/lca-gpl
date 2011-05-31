@@ -45,13 +45,13 @@ void NMSA_Service::Poll(char *hwAddr, char *hostname)
             CURL *curl;
             CURLcode res;
 
-            curl = curl_easy_init();
+            /*curl = curl_easy_init();
             if(curl) {
                 curl_easy_setopt(curl, CURLOPT_URL, "reg_url");
                 res = curl_easy_perform(curl);
 
                 curl_easy_cleanup(curl);
-            }
+            }*/
         } else {
         }
     }
