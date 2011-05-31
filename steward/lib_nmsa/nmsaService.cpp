@@ -42,7 +42,7 @@ void NMSA_Service::Poll(char *hwAddr, char *hostname)
 {
     if(enabled) {
         if(!registered) {
-            CURL *curl;
+            /*CURL *curl;
             CURLcode res;
 
             /*curl = curl_easy_init();
