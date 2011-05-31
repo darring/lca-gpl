@@ -25,6 +25,7 @@ xen_host_replace.sh
 logger.sh
 laf.sh
 laf-lib.sh
+nmsa_reg.sh
 EOF
 )
 
