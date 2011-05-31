@@ -17,7 +17,7 @@ import ConfigParser as configparser
 # NMSA specific modules
 sys.path.append('/opt/intel/eil/clientagent/lib')
 from nmsa_daemon import Daemon
-from nmsa_conf import setup_conf
+import nmsa_conf #import setup_conf
 
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
