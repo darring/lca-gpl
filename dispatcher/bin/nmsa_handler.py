@@ -17,7 +17,7 @@ import ConfigParser as configparser
 # NMSA specific modules
 sys.path.append('/opt/intel/eil/clientagent/lib')
 from nmsa_daemon import Daemon
-from nmsa_conf import SetupConf
+from nmsa_conf import setup_conf
 
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
@@ -27,7 +27,7 @@ class HandlerDaemon(Daemon):
 
     def local_init(self):
         setupconf = SetupConf()
-        self.config = setupconf.setup_conf(self.__conf_file)
+        self.config = setup_conf(self.__conf_file)
         if self.config.has_option('main', 'sleep_timer'):
             self.__sleep_timer = self.config.getint('main', 'sleep_timer')
 
