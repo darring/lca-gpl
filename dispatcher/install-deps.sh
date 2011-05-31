@@ -23,6 +23,8 @@ clientagent-bootstrap.sh
 update-checker.sh
 xen_host_replace.sh
 logger.sh
+laf.sh
+laf-lib.sh
 EOF
 )
 
