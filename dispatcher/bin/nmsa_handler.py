@@ -10,21 +10,38 @@ The main handler daemon for the various NMSA features and functionality
 requires platforms with a full Python stack.
 '''
 
-import sys, time
+import sys, time, os
 import logging
 import ConfigParser as configparser
 
 # NMSA specific modules
 sys.path.append('/opt/intel/eil/clientagent/lib')
 from nmsa_daemon import Daemon
+from nmsa_conf import setup_conf
 
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
     __conf_file = '/opt/intel/eil/clientagent/home/nmsa_handler.cfg'
     __sleep_timer = 30
+    __debug_level = logging.WARNING
 
     def local_init(self):
-        self.conf = 
+        self.config = setup_conf(self.__conf_file)
+        if self.config.has_option('main', 'sleep_timer'):
+            self.__sleep_timer = self.config.getint('main', 'sleep_timer')
+
+        if self.config.has_option('main', 'log_level'):
+            log_level = self.config.getint('main', 'log_level')
+            if log_level = 0:
+                __debug_level = logging.CRITICAL
+            elif log_level = 1:
+                __debug_level = logging.ERROR
+            elif log_level = 3:
+                __debug_level = logging.WARNING
+            elif log_level = 4:
+                __debug_level = logging.INFO
+            else:
+                __debug_level = logging.DEBUG
 
     def run(self):
         while True:

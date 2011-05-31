@@ -14,6 +14,7 @@ globals.sh
 helper.sh
 comma_split.sed
 nmsa_daemon.py
+nmsa_conf.py
 EOF
 )
 
