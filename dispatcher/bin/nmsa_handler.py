@@ -8,7 +8,7 @@ The main handler daemon for the various NMSA features and functionality
 
 import sys, time
 sys.path.append('/opt/intel/eil/clientagent/lib')
-from daemon import Daemon
+from nmsa_daemon import Daemon
 
 class HandlerDaemon(Daemon):
     def run(self):
