@@ -3,6 +3,7 @@
 # The executable files to install
 ALL_EXECS=$(cat <<EOF
 clientagent-dispatcher.sh
+nmsa_handler.py
 EOF
 )
 
@@ -12,6 +13,7 @@ dispatcher.sh
 globals.sh
 helper.sh
 comma_split.sed
+nmsa_daemon.py
 EOF
 )
 
