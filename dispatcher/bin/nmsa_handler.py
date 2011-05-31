@@ -32,13 +32,13 @@ class HandlerDaemon(Daemon):
 
         if self.config.has_option('main', 'log_level'):
             log_level = self.config.getint('main', 'log_level')
-            if log_level = 0:
+            if log_level == 0:
                 __debug_level = logging.CRITICAL
-            elif log_level = 1:
+            elif log_level == 1:
                 __debug_level = logging.ERROR
-            elif log_level = 3:
+            elif log_level == 3:
                 __debug_level = logging.WARNING
-            elif log_level = 4:
+            elif log_level == 4:
                 __debug_level = logging.INFO
             else:
                 __debug_level = logging.DEBUG
