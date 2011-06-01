@@ -15,6 +15,7 @@ helper.sh
 comma_split.sed
 nmsa_daemon.py
 nmsa_conf.py
+nmsa_main.py
 EOF
 )
 

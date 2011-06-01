@@ -78,7 +78,11 @@ class HandlerDaemon(Daemon):
         while True:
             self.logger.debug('Starting NMSA handler activity...')
             self.masterControl.run()
-            time.sleep(self.__sleep_timer)
+            if self.masterControl.failure:
+                self.logger.critical('Failure in MasterControl! Stopping daemon!')
+                self.stop()
+            else:
+                time.sleep(self.__sleep_timer)
 
 def usage():
     print "Usage:\n"
