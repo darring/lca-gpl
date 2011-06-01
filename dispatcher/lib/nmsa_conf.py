@@ -10,6 +10,7 @@ def setup_conf(conf_file):
         config.add_section('main')
         config.set('main', 'log_level', '4')
         config.set('main', 'sleep_timer', '30')
+        config.set('main', 'registration_attempts', '10')
 
         # Writing our configuration file to 'example.cfg'
         with open(conf_file, 'wb') as configfile:

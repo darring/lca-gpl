@@ -11,8 +11,11 @@ import urllib2
 
 class NMSA_Master:
 
-    def __init__(self):
+    def __init__(self, max_reg_attempts=10):
+        self.__max_registration_attempts = max_reg_attempts
+
         self.is_registered = false
+        self.registration_attempts = 0
         self.logger = logging.getLogger('MasterControl')
         self.logger.debug('Class initialized')
 
@@ -29,10 +32,18 @@ class NMSA_Master:
 
         uri = 'http://nmsa01%s' % uri
 
+        self.logger.debug("The register URI is '%s'" % uri)
+
         # FIXME - error handling
         stream = urllib2.urlopen(uri)
-        result = stream.read().strip()
+        result = stream.read().strip().lower()
         stream.close()
+
+        self.logger.debug("The register request result was '%s'" % result)
+
+        if result == 'registered':
+            self.is_registered = true
+        else:
 
     def run(self):
         if self.is_registered:

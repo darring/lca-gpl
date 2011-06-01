@@ -28,6 +28,9 @@ MIN_TIMER_RES = 10
 '''The file toggle that determines if we should run or not'''
 NMSA_TOGGLE = '/opt/intel/eil/clientagent/home/.nmsa_enable'
 
+'''The maximum number of times we attempt to register before giving up on failures'''
+MAX_REG_ATTEMPTS = 10
+
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
     __conf_file = '/opt/intel/eil/clientagent/home/nmsa_handler.cfg'
@@ -61,9 +64,13 @@ class HandlerDaemon(Daemon):
             else:
                 self.__debug_level = logging.DEBUG
 
+        max_reg = MAX_REG_ATTEMPTS
+        if self.config.has_option('main', 'registration_attempts'):
+            max_reg = self.config.getint('main', 'registration_attempts')
+
         self.logger.setLevel(self.__debug_level)
 
-        self.masterControl = NMSA_Master()
+        self.masterControl = NMSA_Master(max_reg_attempts=max_reg)
 
         self.logger.info('Handler start up...')
 
