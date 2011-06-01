@@ -18,6 +18,7 @@ import ConfigParser as configparser
 sys.path.append('/opt/intel/eil/clientagent/lib')
 from nmsa_daemon import Daemon
 from nmsa_conf import setup_conf
+from nmsa_main import NMSA_Master
 
 # Global settings and overrides
 
@@ -62,11 +63,14 @@ class HandlerDaemon(Daemon):
 
         self.logger.setLevel(self.__debug_level)
 
+        self.masterControl = NMSA_Master()
+
         self.logger.info('Handler start up...')
 
     def run(self):
         while True:
             self.logger.debug('Starting NMSA handler activity...')
+            self.masterControl.run()
             time.sleep(self.__sleep_timer)
 
 def usage():
