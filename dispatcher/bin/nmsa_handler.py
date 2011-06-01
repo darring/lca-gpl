@@ -22,10 +22,10 @@ from nmsa_conf import setup_conf
 # Global settings and overrides
 
 '''The minimum timer resolution for main run loop'''
-__min_timer_res = 10
+MIN_TIMER_RES = 10
 
 '''The file toggle that determines if we should run or not'''
-__nmsa_toggle = '/opt/intel/eil/clientagent/home/.nmsa_enable'
+NMSA_TOGGLE = '/opt/intel/eil/clientagent/home/.nmsa_enable'
 
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
@@ -44,8 +44,8 @@ class HandlerDaemon(Daemon):
         if self.config.has_option('main', 'sleep_timer'):
             self.__sleep_timer = self.config.getint('main', 'sleep_timer')
 
-        if self.__sleep_timer < __min_timer_res:
-            self.__sleep_timer = __min_timer_res
+        if self.__sleep_timer < MIN_TIMER_RES:
+            self.__sleep_timer = MIN_TIMER_RES
 
         if self.config.has_option('main', 'log_level'):
             log_level = self.config.getint('main', 'log_level')
@@ -79,7 +79,7 @@ def usage():
 
 if __name__ == "__main__":
     daemon = HandlerDaemon('/opt/intel/eil/clientagent/home/nmsa_handler.pid')
-    if os.path.isfile(__nmsa_toggle):
+    if os.path.isfile(NMSA_TOGGLE):
         if len(sys.argv) == 2:
             if 'start' == sys.argv[1]:
                 daemon.start()
@@ -96,7 +96,7 @@ if __name__ == "__main__":
             sys.exit(2)
     else:
         usage()
-        print "\nThe file:\n\n\t'%s'\n\nmust exist before running this daemon" % __nmsa_toggle
+        print "\nThe file:\n\n\t'%s'\n\nmust exist before running this daemon" % NMSA_TOGGLE
         sys.exit(2)
 
 # vim:set ai et sts=4 sw=4 tw=80:
