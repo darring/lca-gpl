@@ -26,6 +26,10 @@ class HandlerDaemon(Daemon):
     __debug_level = logging.WARNING
 
     def local_init(self):
+        logging.basicConfig(
+            filename=self.__log_file,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
         self.config = setup_conf(self.__conf_file)
         if self.config.has_option('main', 'sleep_timer'):
             self.__sleep_timer = self.config.getint('main', 'sleep_timer')
@@ -33,20 +37,17 @@ class HandlerDaemon(Daemon):
         if self.config.has_option('main', 'log_level'):
             log_level = self.config.getint('main', 'log_level')
             if log_level == 0:
-                __debug_level = logging.CRITICAL
+                self.__debug_level = logging.CRITICAL
             elif log_level == 1:
-                __debug_level = logging.ERROR
+                self.__debug_level = logging.ERROR
             elif log_level == 3:
-                __debug_level = logging.WARNING
+                self.__debug_level = logging.WARNING
             elif log_level == 4:
-                __debug_level = logging.INFO
+                self.__debug_level = logging.INFO
             else:
-                __debug_level = logging.DEBUG
+                self.__debug_level = logging.DEBUG
 
-        logging.basicConfig(
-            filename=self.__log_file,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            level=self.__debug_level)
+        logging.setLevel(self.__debug_level)
 
         logging.info('Handler start up...')
 
