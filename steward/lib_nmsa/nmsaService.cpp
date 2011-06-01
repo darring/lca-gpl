@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <curl/curl.h>
+//#include <curl/curl.h>
 
 #include "logger.h"
 #include "nmsaService.h"
@@ -40,19 +40,5 @@ void NMSA_Service::nmsa_register(char *hwAddr, char *hostname, char *bmc, char *
 
 void NMSA_Service::Poll(char *hwAddr, char *hostname)
 {
-    if(enabled) {
-        if(!registered) {
-            /*CURL *curl;
-            CURLcode res;
-
-            /*curl = curl_easy_init();
-            if(curl) {
-                curl_easy_setopt(curl, CURLOPT_URL, "reg_url");
-                res = curl_easy_perform(curl);
-
-                curl_easy_cleanup(curl);
-            }*/
-        } else {
-        }
-    }
+    // TODO
 }
