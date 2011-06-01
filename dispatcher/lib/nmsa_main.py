@@ -44,6 +44,7 @@ class NMSA_Master:
 
         if result == 'registered':
             self.is_registered = true
+            self.logger.info('System registration success')
         else:
             self.registration_attempts = self.registration_attempts + 1
             if self.registration_attempts > self.__max_registration_attempts:
@@ -51,9 +52,13 @@ class NMSA_Master:
                 self.logger.critical('Exceeded the maximum number of registration attempts!')
                 self.logger.critical('Bailing on operations!')
 
+    def __relay(self):
+        # FIXME - Right now this is terribly hackish
+        self.logger.debug('Relay loop begin...')
+
     def run(self):
         if self.is_registered:
-            #
+            self.__relay()
         else:
             self.__register()
 
