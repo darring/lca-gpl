@@ -54,7 +54,18 @@ class NMSA_Master:
 
     def __relay(self):
         # FIXME - Right now this is terribly hackish
-        self.logger.debug('Relay loop begin...')
+        self.logger.info('Relay loop begin...')
+
+        nmsa_relay_script = '/opt/intel/eil/laf/bin/relay.sh'
+
+        stream = os.popen(nmsa_relay_script)
+        output = stream.readlines()
+        stream.close()
+
+        for o in output:
+            self.logger.info(o.strip())
+
+        self.logger.info('Relay end...')
 
     def run(self):
         if self.is_registered:
