@@ -30,6 +30,8 @@ class HandlerDaemon(Daemon):
             filename=self.__log_file,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
+        self.logger = logging.getLogger()
+
         self.config = setup_conf(self.__conf_file)
         if self.config.has_option('main', 'sleep_timer'):
             self.__sleep_timer = self.config.getint('main', 'sleep_timer')
@@ -47,13 +49,13 @@ class HandlerDaemon(Daemon):
             else:
                 self.__debug_level = logging.DEBUG
 
-        logging.setLevel(self.__debug_level)
+        logger.setLevel(self.__debug_level)
 
-        logging.info('Handler start up...')
+        logger.info('Handler start up...')
 
     def run(self):
         while True:
-            logging.debug('Starting NMSA handler activity...')
+            logger.debug('Starting NMSA handler activity...')
             time.sleep(self.__sleep_timer)
 
 def usage():
