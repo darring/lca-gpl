@@ -8,7 +8,7 @@ def setup_conf(conf_file):
     else:
         # No file exists, make a sensible default
         config.add_section('main')
-        config.set('main', 'log_level', '3')
+        config.set('main', 'log_level', '4')
         config.set('main', 'sleep_timer', '30')
 
         # Writing our configuration file to 'example.cfg'
