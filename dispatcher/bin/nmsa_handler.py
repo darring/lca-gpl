@@ -19,6 +19,11 @@ sys.path.append('/opt/intel/eil/clientagent/lib')
 from nmsa_daemon import Daemon
 from nmsa_conf import setup_conf
 
+# Global settings and overrides
+
+'''The minimum timer resolution for main run loop'''
+__min_timer_res = 10
+
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
     __conf_file = '/opt/intel/eil/clientagent/home/nmsa_handler.cfg'
@@ -35,6 +40,9 @@ class HandlerDaemon(Daemon):
         self.config = setup_conf(self.__conf_file)
         if self.config.has_option('main', 'sleep_timer'):
             self.__sleep_timer = self.config.getint('main', 'sleep_timer')
+
+        if self.__sleep_timer < __min_timer_res:
+            self.__sleep_timer = __min_timer_res
 
         if self.config.has_option('main', 'log_level'):
             log_level = self.config.getint('main', 'log_level')
