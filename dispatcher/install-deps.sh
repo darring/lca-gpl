@@ -30,6 +30,7 @@ logger.sh
 laf.sh
 laf-lib.sh
 nmsa_reg.sh
+nmsa_handler.sh
 EOF
 )
 
@@ -50,6 +51,7 @@ LINKED_TOOLS=$(cat <<EOF
 clientagent-helper.sh:/usr/bin:-lf
 eil_steward.sh:/etc/init.d:-f
 update-checker.sh:/etc/cron.hourly:-f
+nmsa_handler.sh:/etc/init.d:-f
 EOF
 )
 
