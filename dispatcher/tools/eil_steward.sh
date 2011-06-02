@@ -33,6 +33,18 @@ check_nmsa_capable() {
 
 check_nmsa_handler_running() {
     if [ -e "/opt/intel/eil/clientagent/home/nmsa_handler.pid" ]; then
+        # Verify that it's already running
+        local PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
+        if [ -d "/proc/${PID1}" ]; then
+            # It's running
+            return 0
+        else
+            # It's not running, we have a dangling PID file
+            return 1
+        fi
+    else
+        # It's not running
+        return 3
     fi
 }
 
