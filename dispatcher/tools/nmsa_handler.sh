@@ -27,7 +27,7 @@ NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
 NMSA_HANDLER="/opt/intel/eil/clientagent/bin/nmsa_handler.py"
 
 check_nmsa_capable() {
-    if [ -e "${NMSA_TOGGLE}" ]; then
+    if [ -e "${NMSA_TOGGLE}" ] && [ -e "${NMSA_HANDLER}" ]; then
         # The system is capable
         return 0
     else
