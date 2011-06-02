@@ -71,10 +71,10 @@ if [ "${_STATUS}" -eq "0" ]; then
             # Daemon is not running, but pid file exists, let's kill old file
             # and restart
             rm -f /opt/intel/eil/clientagent/home/nmsa_handler.pid
-            $BIN_STEWARD
+            $NMSA_HANDLER start
         else
             # Okay to start
-            $BIN_STEWARD
+            $NMSA_HANDLER start
         fi
 
         exit 0
@@ -107,14 +107,14 @@ if [ "${_STATUS}" -eq "0" ]; then
 
             # Give it a bit to stop what it was doing
             sleep 5
-            $BIN_STEWARD
+            $NMSA_HANDLER
         elif [ "${_STATUS}" -eq "1" ]; then
             # Service is not running, but pid file exists
             rm -f /opt/intel/eil/clientagent/home/nmsa_handler.pid
-            $BIN_STEWARD
+            $NMSA_HANDLER
         else
             # Wasn't running, just restart
-            $BIN_STEWARD
+            $NMSA_HANDLER
         fi
 
         exit 0
