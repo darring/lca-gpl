@@ -1,28 +1,26 @@
 #!/bin/sh
 
-# The eil_steward init script
-# ---------------------------
+# The nmsa_handler init script
+# ----------------------------
 # The aim of this script is to be as platform agnostic as possible
 
 # LSB install information
 ### BEGIN INIT INFO
-# Provides:             eil_steward
+# Provides:             nmsa_handler
 # Required-Start:       $remote_fs $syslog $network $time
 # Required-Stop:        $remote_fs $syslog $network $time
 # Default-Start:        2 3 4 5
 # Default-Stop:
-# Short-Description:    The EIL Linux Client Agent steward
+# Short-Description:    The NMSA Handler daemon
 ### END INIT INFO
 
 # RHEL information
 # chkconfig: 2345 80 20
-# description: The EIL Linux Client Agent steward
+# description: The NMSA Handler daemon
 
 # Make sure we have an appropriate path (this shouldn't be necessary, but
 # just to be safe on all platforms)
 PATH="${PATH}:/usr/bin"
-
-BIN_STEWARD="/opt/intel/eil/clientagent/bin/eil_steward"
 
 NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
 
@@ -42,23 +40,6 @@ check_nmsa_handler_running() {
     if [ -e "/opt/intel/eil/clientagent/home/nmsa_handler.pid" ]; then
         # Verify that it's already running
         local PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
-        if [ -d "/proc/${PID1}" ]; then
-            # It's running
-            return 0
-        else
-            # It's not running, we have a dangling PID file
-            return 1
-        fi
-    else
-        # It's not running
-        return 3
-    fi
-}
-
-check_steward_running() {
-    if [ -e "/opt/intel/eil/clientagent/home/client-agent.pid" ]; then
-        # Verify that it's already running
-        local PID1=$(cat /opt/intel/eil/clientagent/home/client-agent.pid)
         if [ -d "/proc/${PID1}" ]; then
             # It's running
             return 0
