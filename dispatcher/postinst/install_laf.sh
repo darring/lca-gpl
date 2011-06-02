@@ -40,20 +40,22 @@ clean_up() {
 }
 
 clean_init() {
-    if [ -n "$IS_RHEL" ]; then
-        /etc/init.d/nmsa_handler.sh stop
-        chkconfig --del nmsa_handler.sh
-    elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
-        /etc/init.d/nmsa_handler.sh stop
-        update-rc.d -f nmsa_handler.sh remove
-    elif [ -n "$IS_SLES" ]; then
-        /etc/init.d/nmsa_handler.sh stop
-        /usr/lib/lsb/remove_initd /etc/init.d/nmsa_handler.sh
-    elif [ -n "$IS_ESX" ]; then
-        # This is silly, just reboot the system :-P
-        /etc/init.d/nmsa_handler.sh stop
-        rm -f /etc/init.d/nmsa_handler.sh
-        rm -f /etc/rc.local.d/nmsa_handler.sh
+    if [ -e "/etc/init.d/nmsa_handler.sh" ]; then
+        if [ -n "$IS_RHEL" ]; then
+            /etc/init.d/nmsa_handler.sh stop
+            chkconfig --del nmsa_handler.sh
+        elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+            /etc/init.d/nmsa_handler.sh stop
+            update-rc.d -f nmsa_handler.sh remove
+        elif [ -n "$IS_SLES" ]; then
+            /etc/init.d/nmsa_handler.sh stop
+            /usr/lib/lsb/remove_initd /etc/init.d/nmsa_handler.sh
+        elif [ -n "$IS_ESX" ]; then
+            # This is silly, just reboot the system :-P
+            /etc/init.d/nmsa_handler.sh stop
+            rm -f /etc/init.d/nmsa_handler.sh
+            rm -f /etc/rc.local.d/nmsa_handler.sh
+        fi
     fi
 }
 
