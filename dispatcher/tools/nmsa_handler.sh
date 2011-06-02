@@ -24,6 +24,37 @@ PATH="${PATH}:/usr/bin"
 
 BIN_STEWARD="/opt/intel/eil/clientagent/bin/eil_steward"
 
+NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
+
+NMSA_HANDLER="/opt/intel/eil/clientagent/bin/nmsa_handler.py"
+
+check_nmsa_capable() {
+    if [ -e "${NMSA_TOGGLE}" ]; then
+        # The system is capable
+        return 0
+    else
+        # The system is not capable
+        return 3
+    fi
+}
+
+check_nmsa_handler_running() {
+    if [ -e "/opt/intel/eil/clientagent/home/nmsa_handler.pid" ]; then
+        # Verify that it's already running
+        local PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
+        if [ -d "/proc/${PID1}" ]; then
+            # It's running
+            return 0
+        else
+            # It's not running, we have a dangling PID file
+            return 1
+        fi
+    else
+        # It's not running
+        return 3
+    fi
+}
+
 check_steward_running() {
     if [ -e "/opt/intel/eil/clientagent/home/client-agent.pid" ]; then
         # Verify that it's already running
