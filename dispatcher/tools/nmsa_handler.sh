@@ -84,14 +84,12 @@ if [ "${_STATUS}" -eq "0" ]; then
         check_nmsa_handler_running
         _STATUS=$?
         if [ "${_STATUS}" -eq "0" ]; then
-            # Send it SIGHUP
-            PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
-            kill -1 ${PID1}
+            $NMSA_HANDLER stop
         elif [ "${_STATUS}" -eq "1" ]; then
-            # Service is not running, but pid file exists
+            # Daemon is not running, but pid file exists
             rm -f /opt/intel/eil/clientagent/home/nmsa_handler.pid
         else
-            echo "eil_steward is not running."
+            echo "nmsa_handler is not running."
         fi
 
         exit 0
@@ -101,20 +99,14 @@ if [ "${_STATUS}" -eq "0" ]; then
         check_nmsa_handler_running
         _STATUS=$?
         if [ "${_STATUS}" -eq "0" ]; then
-            # Send it SIGHUP
-            PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
-            kill -1 ${PID1}
-
-            # Give it a bit to stop what it was doing
-            sleep 5
-            $NMSA_HANDLER
+            $NMSA_HANDLER restart
         elif [ "${_STATUS}" -eq "1" ]; then
-            # Service is not running, but pid file exists
+            # Daemon is not running, but pid file exists
             rm -f /opt/intel/eil/clientagent/home/nmsa_handler.pid
-            $NMSA_HANDLER
+            $NMSA_HANDLER start
         else
             # Wasn't running, just restart
-            $NMSA_HANDLER
+            $NMSA_HANDLER start
         fi
 
         exit 0
@@ -126,11 +118,11 @@ if [ "${_STATUS}" -eq "0" ]; then
         if [ "${_STATUS}" -eq "0" ]; then
             # It's running
             PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
-            echo "eil_steward start/running, process ${PID1}"
+            echo "nmsa_handler start/running, process ${PID1}"
         elif [ "${_STATUS}" -eq "1" ]; then
-            echo "eil_steward not running, pid file exists"
+            echo "nmsa_handler not running, pid file exists"
         else
-            echo "eil_steward not running"
+            echo "nmsa_handler not running"
         fi
 
         exit $_STATUS
@@ -143,17 +135,17 @@ if [ "${_STATUS}" -eq "0" ]; then
             # Send it SIGUSR1
             PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
             kill -10 ${PID1}
-            echo "eil_steward has been sent SIGUSR1 to refresh asset info"
+            echo "nmsa_handler has been sent SIGUSR1 to refresh asset info"
         else
             # it's not running
-            echo "eil_steward not running"
+            echo "nmsa_handler not running"
         fi
 
         exit 0
         ;;
     *)
         # Display usage options
-        echo "Usage: /etc/init.d/eil_steward.sh {start|stop|status|restart|asset}"
+        echo "Usage: /etc/init.d/nmsa_handler.sh {start|stop|status|restart|asset}"
 
         exit 0
         ;;
