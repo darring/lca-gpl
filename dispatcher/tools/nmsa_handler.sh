@@ -136,6 +136,8 @@ if [ "${_STATUS}" -eq "0" ]; then
     esac
 fi
 
+# If not capable, we just silently pass
+
 exit 0
 
 # vim:set ai et sts=4 sw=4 tw=80:
