@@ -127,25 +127,9 @@ if [ "${_STATUS}" -eq "0" ]; then
 
         exit $_STATUS
         ;;
-    asset)
-        # Issue SIGUSR1 to refresh asset information
-        check_nmsa_handler_running
-        _STATUS=$?
-        if [ "${_STATUS}" -eq "0" ]; then
-            # Send it SIGUSR1
-            PID1=$(cat /opt/intel/eil/clientagent/home/nmsa_handler.pid)
-            kill -10 ${PID1}
-            echo "nmsa_handler has been sent SIGUSR1 to refresh asset info"
-        else
-            # it's not running
-            echo "nmsa_handler not running"
-        fi
-
-        exit 0
-        ;;
     *)
         # Display usage options
-        echo "Usage: /etc/init.d/nmsa_handler.sh {start|stop|status|restart|asset}"
+        echo "Usage: /etc/init.d/nmsa_handler.sh {start|stop|status|restart}"
 
         exit 0
         ;;
