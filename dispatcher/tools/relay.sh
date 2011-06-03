@@ -4,7 +4,7 @@
 # relay.sh           #
 ######################
 
-LOCK_FILE=/opt/intel/eil/relay/relay.lock
+LOCK_FILE=/opt/intel/eil/clientagent/home/relay.lock
 SID_DIR=/opt/intel/eil/laf/sids/
 OUTPUT_DIR=/opt/intel/eil/laf/output
 TMP_PROXY=$http_proxy
