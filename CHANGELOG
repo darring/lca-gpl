@@ -82,3 +82,8 @@
 - Fix remote upgrade command to isolate clientagent bootstrapper.
 - Properly kill the existing agent.
 - Steward handles SIGUSR2 as upgrade trigger.
+
+* Fri Jun 3 2011 - Sam Hart <hartsn@gmail.com>
+- Add NMSA Handler wrapper daemon
+- NMSA handler init scripts
+- Add laf scripts
