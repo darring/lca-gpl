@@ -14,8 +14,8 @@ class NMSA_Master:
     def __init__(self, max_reg_attempts=10):
         self.__max_registration_attempts = max_reg_attempts
 
-        self.is_registered = false
-        self.failure = false
+        self.is_registered = False
+        self.failure = False
         self.registration_attempts = 0
         self.logger = logging.getLogger('MasterControl')
         self.logger.debug('Class initialized')
@@ -43,12 +43,12 @@ class NMSA_Master:
         self.logger.debug("The register request result was '%s'" % result)
 
         if result == 'registered':
-            self.is_registered = true
+            self.is_registered = True
             self.logger.info('System registration success')
         else:
             self.registration_attempts = self.registration_attempts + 1
             if self.registration_attempts > self.__max_registration_attempts:
-                self.failure = true
+                self.failure = True
                 self.logger.critical('Exceeded the maximum number of registration attempts!')
                 self.logger.critical('Bailing on operations!')
 

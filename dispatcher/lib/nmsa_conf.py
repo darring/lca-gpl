@@ -12,10 +12,16 @@ def setup_conf(conf_file):
         config.set('main', 'sleep_timer', '30')
         config.set('main', 'registration_attempts', '10')
 
+        # FIXME - Stupid RHEL, its ancient python is preventing us from using
+        # 'with', so we need to wrap this in an old-school try-finally, but I
+        # forget the exceptions that open can toss at the moment, so I'm
+        # putting in this FIXME
+
         # Writing our configuration file to 'example.cfg'
-        with open(conf_file, 'wb') as configfile:
-            config.write(configfile)
-            configfile.close()
+        configfile = open(conf_file, 'wb')
+        #with open(conf_file, 'wb') as configfile:
+        config.write(configfile)
+        configfile.close()
 
     return config
 
