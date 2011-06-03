@@ -147,8 +147,8 @@ _run_cmd() {
   full_cmd=$tmp_cmd; 
  fi
 
- command="${full_cmd/_*/}"
- comment="${full_cmd/*_/}"
+ command="${full_cmd/%#*/}"
+ comment="${full_cmd/#*/}"
  cmd_output_f=/tmp/cmd_output_f
  dbecho "client[$client] command[$command] tmp_f[$tmp_f]"
  #echo "running $command"
