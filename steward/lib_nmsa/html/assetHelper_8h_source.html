@@ -28,7 +28,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -63,20 +62,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00002"></a>00002 <span class="comment"> * assetHelper.h</span>
 <a name="l00003"></a>00003 <span class="comment"> */</span>
 <a name="l00004"></a>00004 
-<a name="l00013"></a>00013 <span class="preprocessor">#ifndef assetHelper_H</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define assetHelper_H</span>
-<a name="l00015"></a>00015 <span class="preprocessor"></span>
-<a name="l00017"></a>00017 <span class="keyword">class </span>StewardLogger;
-<a name="l00018"></a>00018 
-<a name="l00020"></a>00020 
-<a name="l00041"></a><a class="code" href="assetHelper_8h.html#a2f478e47bdb3c0393a2d88cecb90b704">00041</a> <span class="preprocessor">#define ASSET_TIMEOUT 8*60</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00044"></a><a class="code" href="assetHelper_8h.html#aaf377ff96c6dd58b6d506be475068380">00044</a> <span class="preprocessor">#define ASSET_INFO_FILE &quot;/opt/intel/assetinfo&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor"></span>
-<a name="l00047"></a>00047 
-<a name="l00069"></a>00069 <span class="keywordtype">int</span> <a class="code" href="assetHelper_8cpp.html#aa47ccde2857031971f74b3d69e15b0da" title="Determines if the asset info is fresh, and ready to be uploaded to CCMS.">assetReady</a>(<span class="keywordtype">char</span> **assetInfo, StewardLogger *logger, <span class="keywordtype">bool</span> ignoreTimeout);
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="preprocessor">#endif</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#ifndef assetHelper_H</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span><span class="preprocessor">#define assetHelper_H</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span>
+<a name="l00029"></a>00029 <span class="keyword">class </span>StewardLogger;
+<a name="l00030"></a>00030 
+<a name="l00032"></a>00032 
+<a name="l00053"></a><a class="code" href="assetHelper_8h.html#a2f478e47bdb3c0393a2d88cecb90b704">00053</a> <span class="preprocessor">#define ASSET_TIMEOUT 8*60</span>
+<a name="l00054"></a>00054 <span class="preprocessor"></span>
+<a name="l00056"></a><a class="code" href="assetHelper_8h.html#aaf377ff96c6dd58b6d506be475068380">00056</a> <span class="preprocessor">#define ASSET_INFO_FILE &quot;/opt/intel/assetinfo&quot;</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>
+<a name="l00059"></a>00059 
+<a name="l00081"></a>00081 <span class="keywordtype">int</span> <a class="code" href="assetHelper_8cpp.html#aa47ccde2857031971f74b3d69e15b0da" title="Determines if the asset info is fresh, and ready to be uploaded to CCMS.">assetReady</a>(<span class="keywordtype">char</span> **assetInfo, StewardLogger *logger, <span class="keywordtype">bool</span> ignoreTimeout);
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -84,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed May 25 2011 13:58:13 for NMSAservicewrapperfortheEILLinuxClientAgent by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jun 6 2011 15:46:57 for NMSAservicewrapperfortheEILLinuxClientAgent by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
