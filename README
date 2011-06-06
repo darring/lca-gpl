@@ -106,7 +106,8 @@ maintainability concerns due to there being no permanent staff member with
 Python experience.
 
     * An exception was made with the NMSA handler daemon, which is in Python.
-    The team wanted the handler integrated as soon as possible
+    The team wanted the handler integrated as soon as possible, and a thin
+    Python layer was determined the best path.
 
 1.b) Linux Client Agent Re-Write Requirements
 
