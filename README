@@ -105,6 +105,9 @@ target platforms), however Python was ultimately rejected because of
 maintainability concerns due to there being no permanent staff member with
 Python experience.
 
+    * An exception was made with the NMSA handler daemon, which is in Python.
+    The team wanted the handler integrated as soon as possible
+
 1.b) Linux Client Agent Re-Write Requirements
 
     It was determined that the Linux Client Agent needed to be re-written in a
