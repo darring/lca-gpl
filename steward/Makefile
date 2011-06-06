@@ -8,21 +8,19 @@ SOURCES=eil_steward.cpp lib_soap/soapC.cpp \
 	lib_steward/stewardService.cpp lib_nmsa/assetHelper.cpp \
 	lib_hash/uniqueHash.cpp lib_clientagent/clientagent_helper.cpp \
 	lib_dispatcher/dispatcher_helper.cpp lib_clientagent/hwaddr.cpp \
-	lib_nmsa/nmsaService.cpp \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.cpp \
 
 HEADERS=logger/logger.h lib_soap/soapH.h lib_steward/stewardService.h \
 	lib_hash/uniqueHash.h lib_clientagent/clientagent_helper.h \
 	lib_dispatcher/dispatcher_helper.h lib_clientagent/hwaddr.h \
-	lib_nmsa/nmsaService.h lib_steward/CCMS_commands.h \
-	lib_nmsa/assetHelper.h \
+	lib_steward/CCMS_commands.h lib_nmsa/assetHelper.h \
 	lib_soap/soapWSHttpBinding_USCOREIEILClientOperationsProxy.h \
 	lib_soap/WSHttpBinding_USCOREIEILClientOperations.nsmap
 
 OBJECTS=logger.o soapC.o uniqueHash.o stewardService.o hwaddr.o \
 	stewardService_parseOp.o assetHelper.o \
 	stewardService_parseCCMS.o \
-	clientagent_helper.o dispatcher_helper.o nmsaService.o \
+	clientagent_helper.o dispatcher_helper.o \
 	soapWSHttpBinding_USCOREIEILClientOperationsProxy.o \
 	eil_steward.o
 
@@ -59,8 +57,6 @@ uniqueHash.o: eil_steward.o
 clientagent_helper.o: eil_steward.o
 
 dispatcher_helper.o: eil_steward.o
-
-nmsaService.o: eil_steward.o
 
 GSOAP_WSAAPI_O: eil_steward.o
 
