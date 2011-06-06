@@ -2,6 +2,18 @@
  * assetHelper.h
  */
 
+/*! \mainpage NMSA related items for the EIL Linux Client Agent
+ *
+ * \section Introduction Introduction
+ *
+ * This is where the NMSA integration support for the Linux client agent can
+ * be found.
+ *
+ * \section other Other subsections
+ *
+ * \li \subpage assetHelper "Asset Helper"
+ */
+
 /*! \page assetHelper Asset Helper
  *
  * The asset helper consists of the following tools and definitions:
