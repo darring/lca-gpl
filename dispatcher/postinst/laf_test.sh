@@ -34,9 +34,10 @@ EOF
 #   test script. (See dispatcher/docs/NMSA)
 check_req_progs() {
     RET_VAL=0
+    # TODO Check for whereis, and use the proper location
     for APP_TO_CHECK in $INSTALL_DEPS
     do
-        
+        # TODO run through apps, setting retval as needed
     done
 }
 
