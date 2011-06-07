@@ -1,4 +1,6 @@
-#!/bin/bash -x
+# laf-lib.sh
+# --------------
+# LAF library functions
 
 # the main logging function, used to output errors to the logfile
 # should not be used for debugging, use dbecho instead

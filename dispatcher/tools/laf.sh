@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LOG_FILE=/opt/intel/eil/laf/log/laf-`date +%m_%d_%y-%M_%S`.log                # HARDCODED VALUE
 
