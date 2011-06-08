@@ -70,6 +70,9 @@ if [ "${_STATUS}" -eq "0" ]; then
     done
 
     if [ "${FOUND}" -eq "0" ]; then
+        trace "laf_test: System capable of LAF/NMSA, setting up..."
+        touch $NMSA_TOGGLE
+        exit 0
     else
         trace "laf_test: Missing IPMI device, LAF/NMSA not set up..."
         exit 1
