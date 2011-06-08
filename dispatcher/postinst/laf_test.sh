@@ -58,11 +58,22 @@ trace "laf_test: Checking program requirements..."
 check_req_progs
 _STATUS=$?
 if [ "${_STATUS}" -eq "0" ]; then
+    trace "laf_test: Checking for device requirements..."
     # Check for proper devices
-    for I in $(seq 1 10)
+    FOUND=1
+    for I in $(seq 0 10)
     do
-        
+        if [ -c "/dev/ipmi${I}" ]; then
+            FOUND=0
+            trace "laf_test: Found device '/dev/ipmi${I}'..."
+        fi
     done
+
+    if [ "${FOUND}" -eq "0" ]; then
+    else
+        trace "laf_test: Missing IPMI device, LAF/NMSA not set up..."
+        exit 1
+    fi
 else
     trace "laf_test: Missing one or more require programs, LAF/NMSA not set up..."
     exit 1
