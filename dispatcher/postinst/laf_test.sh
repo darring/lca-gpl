@@ -11,9 +11,12 @@
 . /opt/intel/eil/clientagent/lib/helper.sh
 . /opt/intel/eil/clientagent/lib/globals.sh
 
+NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
+
 INSTALL_DEPS=$(cat <<EOF
 wget
 bash
+python
 EOF
 )
 
@@ -27,16 +30,13 @@ _check_file_in_path() {
     do
         if [ -e "${P}/${1}" ]; then
             RET_VAL=0
+            trace "laf_test: Found '${P}/${1}'...."
             break
         fi
     done
     return $RET_VAL
 }
 
-# FIXME - For now, we just return true
-
-# TODO - The REQ_PROGS section of install_laf.sh needs to be folded into this
-#   test script. (See dispatcher/docs/NMSA)
 check_req_progs() {
     RET_VAL=1
     for APP_TO_CHECK in $INSTALL_DEPS
@@ -53,7 +53,12 @@ check_req_progs() {
 
 # TODO - This test script should output a filesystem toggle that indicates to
 #   the steward whether to run the NMSA process
-
-exit 0
+check_req_progs
+_STATUS=$?
+if [ "${_STATUS}" -eq "0" ]; then
+else
+    trace "laf_test: Missing one or more require programs, LAF/NMSA not set up..."
+    exit 1
+fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
