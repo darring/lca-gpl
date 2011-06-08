@@ -17,6 +17,7 @@ INSTALL_DEPS=$(cat <<EOF
 wget
 bash
 python
+seq
 EOF
 )
 
@@ -53,9 +54,15 @@ check_req_progs() {
 
 # TODO - This test script should output a filesystem toggle that indicates to
 #   the steward whether to run the NMSA process
+trace "laf_test: Checking program requirements..."
 check_req_progs
 _STATUS=$?
 if [ "${_STATUS}" -eq "0" ]; then
+    # Check for proper devices
+    for I in $(seq 1 10)
+    do
+        
+    done
 else
     trace "laf_test: Missing one or more require programs, LAF/NMSA not set up..."
     exit 1
