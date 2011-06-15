@@ -71,7 +71,7 @@ check_init() {
         fi
     else
         # Undefined thing! This is very very bad!
-        trace "laf_test: Undefined distro... failing..."
+        trace "laf_test: Undefined or unsupported distro... failing..."
     fi
     return $RET_VAL
 }
