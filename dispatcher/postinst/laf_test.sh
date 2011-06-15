@@ -53,6 +53,17 @@ check_req_progs() {
 }
 
 check_init() {
+    if [ -n "$IS_RHEL" ]; then
+        #
+    elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+        #
+    elif [ -n "$IS_SLES" ]; then
+        #
+    elif [ -n "$IS_ESX" ]; then
+        #
+    else
+        # Undefined thing! This is very very bad!
+    fi
 }
 
 # TODO - This test script should output a filesystem toggle that indicates to
