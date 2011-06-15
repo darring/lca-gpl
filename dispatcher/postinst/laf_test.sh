@@ -52,12 +52,18 @@ check_req_progs() {
     return $RET_VAL
 }
 
+check_init() {
+}
+
 # TODO - This test script should output a filesystem toggle that indicates to
 #   the steward whether to run the NMSA process
 trace "laf_test: Checking program requirements..."
 check_req_progs
 _STATUS=$?
 if [ "${_STATUS}" -eq "0" ]; then
+    trace "laf_test: Checking for proper init scripts..."
+    check_init
+
     trace "laf_test: Checking for device requirements..."
     # Check for proper devices
     FOUND=1
