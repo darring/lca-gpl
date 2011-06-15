@@ -55,16 +55,24 @@ check_req_progs() {
 check_init() {
     RET_VAL=1
     if [ -n "$IS_RHEL" ]; then
+        trace "laf_test: detected an RHEL derived distro..."
         if [ -e "/etc/init.d/ipmi" ]; then
+            trace "laf_test: ipmi init found, starting"
+            /etc/init.d/ipmi start
+            RET_VAL=0
         fi
     elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+        trace "laf_test: detected a DEB or ANGSTROM derived distro..."
         #
     elif [ -n "$IS_SLES" ]; then
+        trace "laf_test: detected a SLES derived distro..."
         #
     elif [ -n "$IS_ESX" ]; then
+        trace "laf_test: detected an ESX derived distro..."
         #
     else
         # Undefined thing! This is very very bad!
+        trace "laf_test: Undefined distro... failing..."
     fi
     return $RET_VAL
 }
