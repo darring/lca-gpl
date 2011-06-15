@@ -66,6 +66,11 @@ check_init() {
         #
     elif [ -n "$IS_SLES" ]; then
         trace "laf_test: detected a SLES derived distro..."
+        if [ -e "/etc/init.d/ipmi" ]; then
+            trace "laf_test: ipmi init found, starting"
+            /etc/init.d/ipmi start
+            RET_VAL=0
+        fi
         #
     elif [ -n "$IS_ESX" ]; then
         trace "laf_test: detected an ESX derived distro..."
