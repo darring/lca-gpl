@@ -63,10 +63,12 @@ check_init() {
         fi
     elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         trace "laf_test: detected a DEB or ANGSTROM derived distro..."
-        #
-    elif [ -n "$IS_ESX" ]; then
-        trace "laf_test: detected an ESX derived distro..."
-        #
+        # /etc/init.d/ipmievd
+        if [ -e "/etc/init.d/ipmievd" ]; then
+            trace "laf_test: ipmi init found, starting"
+            /etc/init.d/ipmievd start
+            RET_VAL=0
+        fi
     else
         # Undefined thing! This is very very bad!
         trace "laf_test: Undefined distro... failing..."
