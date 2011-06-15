@@ -53,8 +53,10 @@ check_req_progs() {
 }
 
 check_init() {
+    RET_VAL=1
     if [ -n "$IS_RHEL" ]; then
-        #
+        if [ -e "/etc/init.d/ipmi" ]; then
+        fi
     elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         #
     elif [ -n "$IS_SLES" ]; then
@@ -64,6 +66,7 @@ check_init() {
     else
         # Undefined thing! This is very very bad!
     fi
+    return $RET_VAL
 }
 
 # TODO - This test script should output a filesystem toggle that indicates to
@@ -74,25 +77,27 @@ _STATUS=$?
 if [ "${_STATUS}" -eq "0" ]; then
     trace "laf_test: Checking for proper init scripts..."
     check_init
+    _STATUS=$?
+    if [ "${_STATUS}" -eq "0" ]; then
+        trace "laf_test: Checking for device requirements..."
+        # Check for proper devices
+        FOUND=1
+        for I in $(seq 0 10)
+        do
+            if [ -c "/dev/ipmi${I}" ]; then
+                FOUND=0
+                trace "laf_test: Found device '/dev/ipmi${I}'..."
+            fi
+        done
 
-    trace "laf_test: Checking for device requirements..."
-    # Check for proper devices
-    FOUND=1
-    for I in $(seq 0 10)
-    do
-        if [ -c "/dev/ipmi${I}" ]; then
-            FOUND=0
-            trace "laf_test: Found device '/dev/ipmi${I}'..."
+        if [ "${FOUND}" -eq "0" ]; then
+            trace "laf_test: System capable of LAF/NMSA, setting up..."
+            touch $NMSA_TOGGLE
+            exit 0
+        else
+            trace "laf_test: Missing IPMI device, LAF/NMSA not set up..."
+            exit 1
         fi
-    done
-
-    if [ "${FOUND}" -eq "0" ]; then
-        trace "laf_test: System capable of LAF/NMSA, setting up..."
-        touch $NMSA_TOGGLE
-        exit 0
-    else
-        trace "laf_test: Missing IPMI device, LAF/NMSA not set up..."
-        exit 1
     fi
 else
     trace "laf_test: Missing one or more require programs, LAF/NMSA not set up..."
