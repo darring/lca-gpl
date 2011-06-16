@@ -26,6 +26,9 @@ NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
 
 NMSA_HANDLER="/opt/intel/eil/clientagent/bin/nmsa_handler.py"
 
+. /opt/intel/eil/clientagent/lib/helper.sh
+. /opt/intel/eil/clientagent/lib/globals.sh
+
 check_nmsa_capable() {
     if [ -e "${NMSA_TOGGLE}" ] && [ -e "${NMSA_HANDLER}" ]; then
         # The system is capable
@@ -33,6 +36,31 @@ check_nmsa_capable() {
     else
         # The system is not capable
         return 3
+    fi
+}
+
+check_ipmi_running() {
+    _FOUND=1
+    for I in $(seq 0 10)
+    do
+        if [ -c "/dev/ipmi${I}" ]; then
+            _FOUND=0
+        fi
+    done
+
+    if [ "$_FOUND" -eq "1" ]; then
+        if [ -n "$IS_RHEL" ] || [ -n "$IS_SLES" ]; then
+            if [ -e "/etc/init.d/ipmi" ]; then
+                /etc/init.d/ipmi start
+            fi
+        elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+            if [ -e "/etc/init.d/ipmievd" ]; then
+                /etc/init.d/ipmievd start
+            fi
+        else
+            # Undefined thing! This is very very bad!
+            trace "nmsa_handler.sh (init): Undefined or unsupported distro... failing..."
+        fi
     fi
 }
 

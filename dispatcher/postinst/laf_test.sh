@@ -63,7 +63,6 @@ check_init() {
         fi
     elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         trace "laf_test: detected a DEB or ANGSTROM derived distro..."
-        # /etc/init.d/ipmievd
         if [ -e "/etc/init.d/ipmievd" ]; then
             trace "laf_test: ipmi init found, starting"
             /etc/init.d/ipmievd start
