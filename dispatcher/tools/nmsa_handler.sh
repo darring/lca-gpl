@@ -87,6 +87,7 @@ _STATUS=$?
 if [ "${_STATUS}" -eq "0" ]; then
     case "$1" in
     start)
+        check_ipmi_running
         # Start the handler daemon
         check_nmsa_handler_running
         _STATUS=$?
@@ -123,6 +124,7 @@ if [ "${_STATUS}" -eq "0" ]; then
         exit 0
         ;;
     restart|try-restart|reload|force-reload)
+        check_ipmi_running
         # Restart the handler daemon
         check_nmsa_handler_running
         _STATUS=$?
