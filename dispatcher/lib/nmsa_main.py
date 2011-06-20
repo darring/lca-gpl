@@ -77,14 +77,17 @@ class NMSA_Master:
         # FIXME - Right now this is terribly hackish
         self.logger.info('Relay loop begin...')
 
-        nmsa_relay_script = '/opt/intel/eil/laf/bin/relay.sh'
+        #nmsa_relay_script = '/opt/intel/eil/laf/bin/relay.sh'
 
-        stream = os.popen(nmsa_relay_script)
-        output = stream.readlines()
-        stream.close()
+        #stream = os.popen(nmsa_relay_script)
+        #output = stream.readlines()
+        #stream.close()
 
-        for o in output:
-            self.logger.info(o.strip())
+        #for o in output:
+        #    self.logger.info(o.strip())
+
+        uri = "http://nmsa01/nmsa/client_poll.php?mac=%s&hostname=%s" % self.__getIfInfo()
+        self.logger.debug("The client poll URI is: '%s'" % uri)
 
         self.logger.info('Relay end...')
 
