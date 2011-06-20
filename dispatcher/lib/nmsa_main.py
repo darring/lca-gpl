@@ -109,6 +109,13 @@ class NMSA_Master:
 
         if result.lower() == 'register':
             self.is_registered = False
+        elif result.lower() == 'nothing':
+            pass
+        elif result.lower() == 'error':
+            self.logger.info('NMSA reported error, sleeping to try again...')
+        else:
+            # We have a workload
+            
 
         self.logger.info('Relay end...')
 
