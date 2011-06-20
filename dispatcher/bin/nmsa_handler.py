@@ -31,6 +31,9 @@ NMSA_TOGGLE = '/opt/intel/eil/clientagent/home/.nmsa_enable'
 '''The maximum number of times we attempt to register before giving up on failures'''
 MAX_REG_ATTEMPTS = 10
 
+'''The maximum number of times we attempt to poll NMSA before giving up on failures'''
+MAX_POLL_ATTEMPTS = 20
+
 class HandlerDaemon(Daemon):
     __log_file = '/opt/intel/eil/clientagent/home/nmsa_handler.log'
     __conf_file = '/opt/intel/eil/clientagent/home/nmsa_handler.cfg'
@@ -68,9 +71,13 @@ class HandlerDaemon(Daemon):
         if self.config.has_option('main', 'registration_attempts'):
             max_reg = self.config.getint('main', 'registration_attempts')
 
+        max_poll = MAX_POLL_ATTEMPTS
+        if self.config.has_option('main', 'poll_retry_attempts'):
+            max_poll = self.config.getint('main', 'poll_retry_attempts')
+
         self.logger.setLevel(self.__debug_level)
 
-        self.masterControl = NMSA_Master(max_reg_attempts=max_reg)
+        self.masterControl = NMSA_Master(max_reg_attempts=max_reg, max_poll_attempts=max_poll)
 
         self.logger.info('Handler start up...')
 

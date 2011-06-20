@@ -12,8 +12,9 @@ import fcntl, socket, struct
 
 class NMSA_Master:
 
-    def __init__(self, max_reg_attempts=10):
+    def __init__(self, max_reg_attempts=10, max_poll_attempts=20):
         self.__max_registration_attempts = max_reg_attempts
+        self.__max_poll_attempts = max_poll_attempts
 
         self.is_registered = False
         self.failure = False
@@ -88,6 +89,14 @@ class NMSA_Master:
 
         uri = "http://nmsa01/nmsa/client_poll.php?mac=%s&hostname=%s" % self.__getIfInfo()
         self.logger.debug("The client poll URI is: '%s'" % uri)
+
+        result = None
+        try:
+            stream = urllib2.urlopen(uri)
+            result = stream.read().strip()
+            stream.close()
+        except:
+            self.logger.info('Problem making connection with NMSA')
 
         self.logger.info('Relay end...')
 
