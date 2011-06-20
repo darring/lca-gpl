@@ -70,7 +70,7 @@ class NMSA_Master:
                 result = stream.read().strip().lower()
                 stream.close()
             except:
-                self.logger.info('Problem making connection with NMSA')
+                self.logger.error('Problem making connection with NMSA')
                 self.__inc_register()
 
             if result:
@@ -112,10 +112,23 @@ class NMSA_Master:
         elif result.lower() == 'nothing':
             pass
         elif result.lower() == 'error':
-            self.logger.info('NMSA reported error, sleeping to try again...')
+            self.logger.error('NMSA reported error, sleeping to try again...')
         else:
             # We have a workload
-            
+            try:
+                (sid, workload) = result.split()
+                self.logger.info("Running workload '%s' '%s'" % (sid, workload)
+                laf_script = '/opt/intel/eil/laf/bin/laf.sh %s %s' % (sid, workload)
+                try:
+                    stream = os.popen(laf_script)
+                    output = stream.readlines()
+                    stream.close()
+                except:
+                    self.logger.error("Problem running workload!")
+                    self.__inc_poll()
+            except:
+                self.logger.error("Malformed workload line from NMSA: '%s'" % result)
+                self.__inc_poll()
 
         self.logger.info('Relay end...')
 
