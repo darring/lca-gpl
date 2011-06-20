@@ -25,32 +25,36 @@ class NMSA_Master:
         # FIXME - Roll this into current script for efficiency?
         nmsa_reg_script = '/opt/intel/eil/clientagent/tools/nmsa_reg.sh'
 
-        # FIXME - error handling
+        uri = None
         # Really ugly that we're limitted by the ancient python in RHEL
-        stream = os.popen(nmsa_reg_script)
-        uri = stream.read().strip()
-        stream.close()
+        try:
+            stream = os.popen(nmsa_reg_script)
+            uri = stream.read().strip()
+            stream.close()
+        except:
+            self.logger.info('Problem opening nmsa_reg.sh script')
 
-        uri = 'http://nmsa01%s' % uri
+        if uri:
+            uri = 'http://nmsa01%s' % uri
 
-        self.logger.debug("The register URI is '%s'" % uri)
+            self.logger.debug("The register URI is '%s'" % uri)
 
-        # FIXME - error handling
-        stream = urllib2.urlopen(uri)
-        result = stream.read().strip().lower()
-        stream.close()
+            # FIXME - error handling
+            stream = urllib2.urlopen(uri)
+            result = stream.read().strip().lower()
+            stream.close()
 
-        self.logger.debug("The register request result was '%s'" % result)
+            self.logger.debug("The register request result was '%s'" % result)
 
-        if result == 'registered':
-            self.is_registered = True
-            self.logger.info('System registration success')
-        else:
-            self.registration_attempts = self.registration_attempts + 1
-            if self.registration_attempts > self.__max_registration_attempts:
-                self.failure = True
-                self.logger.critical('Exceeded the maximum number of registration attempts!')
-                self.logger.critical('Bailing on operations!')
+            if result == 'registered':
+                self.is_registered = True
+                self.logger.info('System registration success')
+            else:
+                self.registration_attempts = self.registration_attempts + 1
+                if self.registration_attempts > self.__max_registration_attempts:
+                    self.failure = True
+                    self.logger.critical('Exceeded the maximum number of registration attempts!')
+                    self.logger.critical('Bailing on operations!')
 
     def __relay(self):
         # FIXME - Right now this is terribly hackish
