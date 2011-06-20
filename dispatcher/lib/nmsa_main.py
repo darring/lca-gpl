@@ -105,6 +105,10 @@ class NMSA_Master:
             stream.close()
         except:
             self.logger.info('Problem making connection with NMSA')
+            self.__inc_poll()
+
+        if result.lower() == 'register':
+            self.is_registered = False
 
         self.logger.info('Relay end...')
 
