@@ -8,6 +8,7 @@ import logging
 import os
 # FIXME - Not 3.0 ready
 import urllib2
+import fcntl, socket, struct
 
 class NMSA_Master:
 
@@ -19,6 +20,11 @@ class NMSA_Master:
         self.registration_attempts = 0
         self.logger = logging.getLogger('MasterControl')
         self.logger.debug('Class initialized')
+
+    def __getHwAddr(ifname):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', ifname[:15]))
+        return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1]
 
     def __inc_register(self):
         self.registration_attempts = self.registration_attempts + 1
