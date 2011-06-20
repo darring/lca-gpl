@@ -39,22 +39,26 @@ class NMSA_Master:
 
             self.logger.debug("The register URI is '%s'" % uri)
 
-            # FIXME - error handling
-            stream = urllib2.urlopen(uri)
-            result = stream.read().strip().lower()
-            stream.close()
+            result = None
+            try:
+                stream = urllib2.urlopen(uri)
+                result = stream.read().strip().lower()
+                stream.close()
+            except:
+                self.logger.info('Problem making connection with NMSA')
 
-            self.logger.debug("The register request result was '%s'" % result)
+            if result:
+                self.logger.debug("The register request result was '%s'" % result)
 
-            if result == 'registered':
-                self.is_registered = True
-                self.logger.info('System registration success')
-            else:
-                self.registration_attempts = self.registration_attempts + 1
-                if self.registration_attempts > self.__max_registration_attempts:
-                    self.failure = True
-                    self.logger.critical('Exceeded the maximum number of registration attempts!')
-                    self.logger.critical('Bailing on operations!')
+                if result == 'registered':
+                    self.is_registered = True
+                    self.logger.info('System registration success')
+                else:
+                    self.registration_attempts = self.registration_attempts + 1
+                    if self.registration_attempts > self.__max_registration_attempts:
+                        self.failure = True
+                        self.logger.critical('Exceeded the maximum number of registration attempts!')
+                        self.logger.critical('Bailing on operations!')
 
     def __relay(self):
         # FIXME - Right now this is terribly hackish
