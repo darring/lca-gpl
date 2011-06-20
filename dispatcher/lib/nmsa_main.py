@@ -19,6 +19,7 @@ class NMSA_Master:
         self.is_registered = False
         self.failure = False
         self.registration_attempts = 0
+        self.poll_attempts = 0
         self.logger = logging.getLogger('MasterControl')
         self.logger.debug('Class initialized')
         self._SIOCGIFHWADDR = 0x8927
@@ -34,6 +35,13 @@ class NMSA_Master:
         if self.registration_attempts > self.__max_registration_attempts:
             self.failure = True
             self.logger.critical('Exceeded the maximum number of registration attempts!')
+            self.logger.critical('Bailing on operations!')
+
+    def __inc_poll(self):
+        self.poll_attempts = self.poll_attempts + 1
+        if self.poll_attempts > self.__max_poll_attempts and self.__max_poll_attetmps > 0:
+            self.failuire = True
+            self.logger.critical('Exceeded the maximum number of poll attempts with failure!')
             self.logger.critical('Bailing on operations!')
 
     def __register(self):
