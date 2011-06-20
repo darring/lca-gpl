@@ -20,6 +20,13 @@ class NMSA_Master:
         self.logger = logging.getLogger('MasterControl')
         self.logger.debug('Class initialized')
 
+    def __inc_register(self):
+        self.registration_attempts = self.registration_attempts + 1
+        if self.registration_attempts > self.__max_registration_attempts:
+            self.failure = True
+            self.logger.critical('Exceeded the maximum number of registration attempts!')
+            self.logger.critical('Bailing on operations!')
+
     def __register(self):
         self.logger.info('Registering system...')
         # FIXME - Roll this into current script for efficiency?
@@ -33,6 +40,7 @@ class NMSA_Master:
             stream.close()
         except:
             self.logger.info('Problem opening nmsa_reg.sh script')
+            self.__inc_register()
 
         if uri:
             uri = 'http://nmsa01%s' % uri
@@ -46,6 +54,7 @@ class NMSA_Master:
                 stream.close()
             except:
                 self.logger.info('Problem making connection with NMSA')
+                self.__inc_register()
 
             if result:
                 self.logger.debug("The register request result was '%s'" % result)
@@ -54,11 +63,7 @@ class NMSA_Master:
                     self.is_registered = True
                     self.logger.info('System registration success')
                 else:
-                    self.registration_attempts = self.registration_attempts + 1
-                    if self.registration_attempts > self.__max_registration_attempts:
-                        self.failure = True
-                        self.logger.critical('Exceeded the maximum number of registration attempts!')
-                        self.logger.critical('Bailing on operations!')
+                    self.__inc_register()
 
     def __relay(self):
         # FIXME - Right now this is terribly hackish
