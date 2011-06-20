@@ -123,6 +123,7 @@ class NMSA_Master:
                     stream = os.popen(laf_script)
                     output = stream.readlines()
                     stream.close()
+                    # ERE I AM JH
                 except:
                     self.logger.error("Problem running workload!")
                     self.__inc_poll()
