@@ -11,7 +11,7 @@ def setup_conf(conf_file):
         config.set('main', 'log_level', '4')
         config.set('main', 'sleep_timer', '30')
         config.set('main', 'registration_attempts', '10')
-        config.set('main', 'poll_retry_apptempts', '20')
+        config.set('main', 'poll_retry_attempts', '20')
 
         # FIXME - Stupid RHEL, its ancient python is preventing us from using
         # 'with', so we need to wrap this in an old-school try-finally, but I
