@@ -123,7 +123,7 @@ class NMSA_Master:
                     stream = os.popen(laf_script)
                     output = stream.readlines()
                     stream.close()
-                    # ERE I AM JH
+                    uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&log=nmsa_handler-%s-%S"
                 except:
                     self.logger.error("Problem running workload!")
                     self.__inc_poll()
