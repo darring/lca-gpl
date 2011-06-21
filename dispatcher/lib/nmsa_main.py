@@ -28,7 +28,7 @@ class NMSA_Master:
     def __getIfInfo(ifname):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         hwinfo = fcntl.ioctl(s.fileno(), self._SIOCGIFHWADDR,  struct.pack('256s', ifname[:15]))
-        return (''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1], os.uname()[1])
+        return (''.join(['%02x:' % ord(char) for char in hwinfo[18:24]])[:-1], os.uname()[1])
 
     def __inc_register(self):
         self.registration_attempts = self.registration_attempts + 1
