@@ -123,7 +123,16 @@ class NMSA_Master:
                     stream = os.popen(laf_script)
                     output = stream.readlines()
                     stream.close()
-                    uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&log=nmsa_handler-%s-%S"
+                    workload_out = None
+                    try:
+                        stream = open("/opt/intel/eil/laf/output/%s" % sid)
+                        workload_out = stream.readline().rstrip()
+                        stream.close()
+                    except:
+                        self.logger.error("Error opening output for sid '%s'..." % sid)
+                        self.__inc_poll()
+                    if workload_out:
+                        uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&log=nmsa_handler-%s-%s" % (self.__getIfInfo()[0], sid, output[0], 
                 except:
                     self.logger.error("Problem running workload!")
                     self.__inc_poll()
