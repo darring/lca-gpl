@@ -105,7 +105,7 @@ class NMSA_Master:
             result = stream.read().strip()
             stream.close()
         except:
-            self.logger.info('Problem making connection with NMSA')
+            self.logger.error('Problem making connection with NMSA')
             self.__inc_poll()
 
         if result.lower() == 'register':
@@ -138,7 +138,15 @@ class NMSA_Master:
                         for line in workload_out:
                             log = log + line
                         encoded_log = urllib.urlencode([('log', "nmsa_handler-%s-%s" % (datestamp, log))])
-                        uri_base = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&%s" % (self.__getIfInfo()[0], sid, output[0], encoded_log)
+                        uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&%s" % (self.__getIfInfo()[0], sid, output[0], encoded_log)
+
+                        try:
+                            stream = urllib2.urlopen(uri)
+                            result = stream.read().strip()
+                            stream.close()
+                        except:
+                            self.logger.error('Problem relaying result back to NMSA...')
+                            self.__inc_poll()
                 except:
                     self.logger.error("Problem running workload!")
                     self.__inc_poll()
