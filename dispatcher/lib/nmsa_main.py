@@ -109,7 +109,7 @@ class NMSA_Master:
             # We have a workload
             try:
                 (sid, workload) = result.split()
-                self.logger.info("Running workload '%s' '%s'" % (sid, workload)
+                self.logger.info("Running workload '%s' '%s'" % (sid, workload))
                 laf_script = '/opt/intel/eil/laf/bin/laf.sh %s %s' % (sid, workload)
                 try:
                     stream = os.popen(laf_script)
