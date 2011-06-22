@@ -28,6 +28,9 @@ get_mac() {
         /sbin/ifconfig eth$i > tmp.f
         if ! grep "Device not found" tmp.f; then
             MAC=`ifconfig eth$i | grep HWaddr | awk '{print $5}'`
+            touch ${NMSA_ETH_CONF}
+            echo $i > ${NMSA_ETH_CONF}
+            chmod 644 ${NMSA_ETH_CONF}
             MAC_WORKED=1
             break
         fi
