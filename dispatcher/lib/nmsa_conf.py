@@ -20,7 +20,6 @@ def setup_conf(conf_file):
 
         # Writing our configuration file to 'example.cfg'
         configfile = open(conf_file, 'wb')
-        #with open(conf_file, 'wb') as configfile:
         config.write(configfile)
         configfile.close()
 
