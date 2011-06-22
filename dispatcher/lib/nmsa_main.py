@@ -25,8 +25,17 @@ class NMSA_Master:
         self.logger.debug('Class initialized')
         self._SIOCGIFHWADDR = 0x8927
         self._SIOCGIFADDR = 0x8915
+        self._NMSA_ETH_CONF = "/opt/intel/eil/clientagent/home/.nmsa_eth"
 
-    def __getIfInfo(self, ifname):
+    def __getIfInfo(self):
+        # FIXME - Is it really good to default to this?
+        ifname = 0
+        try:
+            stream = open(self._NMSA_ETH_CONF)
+            lines = stream.readlines()
+            stream.close()
+        except:
+            self.logger.critical('There was a problem reading the NMSA Ethernet config file, "%s", the client agent was not installed properly or has been tampered with! Defaulting to ETH0. Errors may result.' % self._NMSA_ETH_CONF)
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         hwinfo = fcntl.ioctl(s.fileno(), self._SIOCGIFHWADDR,  struct.pack('256s', ifname[:15]))
         return (''.join(['%02x:' % ord(char) for char in hwinfo[18:24]])[:-1], os.uname()[1])
