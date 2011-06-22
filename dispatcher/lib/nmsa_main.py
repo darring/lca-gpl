@@ -34,6 +34,10 @@ class NMSA_Master:
             stream = open(self._NMSA_ETH_CONF)
             lines = stream.readlines()
             stream.close()
+            for i in lines:
+                if i.strip().isdigit():
+                    ifname = int(i.strip())
+                    break
         except:
             self.logger.critical('There was a problem reading the NMSA Ethernet config file, "%s", the client agent was not installed properly or has been tampered with! Defaulting to ETH0. Errors may result.' % self._NMSA_ETH_CONF)
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
