@@ -15,6 +15,14 @@ BMC_IP=""
 BRUTE_WORKED=0
 MAC_WORKED=0
 
+NMSA_ETH_CONF="/opt/intel/eil/clientagent/home/.nmsa_eth"
+
+pre_clean_up() {
+    if [ -e "${NMSA_ETH_CONF}" ]; then
+        rm -f ${NMSA_ETH_CONF}
+    fi
+}
+
 get_mac() {
     for i in {0..25} ; do
         /sbin/ifconfig eth$i > tmp.f
@@ -57,6 +65,7 @@ get_chan_tran() {
     done
 }
 
+pre_clean_up
 get_mac
 get_hostname
 get_bmc_ip
