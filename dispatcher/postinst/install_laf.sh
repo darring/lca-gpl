@@ -12,7 +12,7 @@
 
 INSTALL_CWD=$1
 
-INSTALL_DIR=/opt/intel/eil/laf
+LAF_INSTALL_DIR=/opt/intel/eil/laf
 
 CREATE_DIR=$(cat <<EOF
 bin
@@ -32,11 +32,11 @@ EOF
 clean_up() {
     for DIR in $CREATE_DIR
     do
-        rm -f $INSTALL_DIR/$DIR/*
-        rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
+        rm -f $LAF_INSTALL_DIR/$DIR/*
+        rmdir --ignore-fail-on-non-empty $LAF_INSTALL_DIR/$DIR
     done
 
-    rmdir --ignore-fail-on-non-empty $INSTALL_DIR
+    rmdir --ignore-fail-on-non-empty $LAF_INSTALL_DIR
 }
 
 clean_init() {
@@ -60,13 +60,13 @@ clean_init() {
 }
 
 create_dir() {
-    if [ ! -d $INSTALL_DIR ]; then
-        mkdir -p $INSTALL_DIR
+    if [ ! -d $LAF_INSTALL_DIR ]; then
+        mkdir -p $LAF_INSTALL_DIR
     fi
 
     for DIR in $CREATE_DIR
     do
-        mkdir -p $INSTALL_DIR/$DIR
+        mkdir -p $LAF_INSTALL_DIR/$DIR
     done
 }
 
@@ -74,10 +74,10 @@ install_files() {
     for FILE_TO_INSTALL in $INSTALL_FILES
     do
         cp -f ${INSTALL_CWD}/tools/${FILE_TO_INSTALL} \
-                ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
+                ${LAF_INSTALL_DIR}/bin/${FILE_TO_INSTALL}
 
         # TODO - Any permisions or ownership necessary here?
-        chown root.root ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
+        chown root.root ${LAF_INSTALL_DIR}/bin/${FILE_TO_INSTALL}
     done
 }
 
