@@ -26,20 +26,24 @@ class NMSA_Master:
         self._SIOCGIFHWADDR = 0x8927
         self._SIOCGIFADDR = 0x8915
         self._NMSA_ETH_CONF = "/opt/intel/eil/clientagent/home/.nmsa_eth"
+        self._hwaddr = None
+        self._hostname = None
 
     def __getIfInfo(self):
         # FIXME - Is it really good to default to this?
-        ifname = 0
+        ifnum = 0
         try:
             stream = open(self._NMSA_ETH_CONF)
             lines = stream.readlines()
             stream.close()
             for i in lines:
                 if i.strip().isdigit():
-                    ifname = int(i.strip())
+                    ifnum = int(i.strip())
                     break
         except:
             self.logger.critical('There was a problem reading the NMSA Ethernet config file, "%s", the client agent was not installed properly or has been tampered with! Defaulting to ETH0. Errors may result.' % self._NMSA_ETH_CONF)
+
+        ifname = "eth%s" % ifnum
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         hwinfo = fcntl.ioctl(s.fileno(), self._SIOCGIFHWADDR,  struct.pack('256s', ifname[:15]))
         return (''.join(['%02x:' % ord(char) for char in hwinfo[18:24]])[:-1], os.uname()[1])
@@ -100,7 +104,10 @@ class NMSA_Master:
         # FIXME - Right now this is terribly hackish
         self.logger.info('Relay loop begin...')
 
-        uri = "http://nmsa01/nmsa/client_poll.php?mac=%s&hostname=%s" % self.__getIfInfo()
+        if self._hwaddr == None:
+            (self._hwaddr, self._hostname) = self.__getIfInfo()
+
+        uri = "http://nmsa01/nmsa/client_poll.php?mac=%s&hostname=%s" % (self._hwaddr, self._hostname)
         self.logger.debug("The client poll URI is: '%s'" % uri)
 
         result = None
