@@ -26,7 +26,7 @@ class NMSA_Master:
         self._SIOCGIFHWADDR = 0x8927
         self._SIOCGIFADDR = 0x8915
 
-    def __getIfInfo(ifname):
+    def __getIfInfo(self, ifname):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         hwinfo = fcntl.ioctl(s.fileno(), self._SIOCGIFHWADDR,  struct.pack('256s', ifname[:15]))
         return (''.join(['%02x:' % ord(char) for char in hwinfo[18:24]])[:-1], os.uname()[1])
