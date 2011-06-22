@@ -64,8 +64,14 @@ check_init() {
     elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         trace "laf_test: detected a DEB or ANGSTROM derived distro..."
         if [ -e "/etc/init.d/ipmievd" ]; then
-            trace "laf_test: ipmi init found, starting"
+            trace "laf_test: ipmievd init found, starting"
             /etc/init.d/ipmievd start
+            RET_VAL=0
+        fi
+        # Since we may have both, this isn't either/or
+        if [ -e "/etc/init.d/openipmi" ]; then
+            trace "laf_test: openipmi init found, starting"
+            /etc/init.d/openipmi start
             RET_VAL=0
         fi
     else
