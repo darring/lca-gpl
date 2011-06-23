@@ -14,6 +14,8 @@ INSTALL_CWD=$1
 
 LAF_INSTALL_DIR=/opt/intel/eil/laf
 
+NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
+
 CREATE_DIR=$(cat <<EOF
 bin
 log
@@ -94,6 +96,18 @@ setup_init() {
         echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
         echo "Check your installation logs and your distribution and try again!" 2>&1 | tee $ERROR_LOG_FILE
         echo "NMSA Handler is NOT functioning properly!" 2>&1 | tee $ERROR_LOG_FILE
+    fi
+
+    # Apparently, we need to make sure ipmi is added as well
+    if [ -e "$NMSA_TOGGLE" ]; then
+        if [ -n "$IS_RHEL" ]; then
+            chkconfig --add impi
+        elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+            update-rc.d openipmi defaults
+        elif [ -n "$IS_SLES" ]; then
+            # FIXME - This needs to be verified
+            /usr/lib/lsb/install_initd /etc/init.d/ipmi
+        fi
     fi
 }
 
