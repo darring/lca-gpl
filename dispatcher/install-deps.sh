@@ -31,6 +31,7 @@ laf.sh
 laf-lib.sh
 nmsa_reg.sh
 nmsa_handler.sh
+assetinfo.sh
 EOF
 )
 
