@@ -53,6 +53,12 @@ check_req_progs() {
 trace "asset_test: Checking program requirements..."
 check_req_progs
 _STATUS=$?
-if [
+if [ "${_STATUS}" -eq "0" ]; then
+    trace "asset_test: assetinfo program requirements found..."
+    exit 0
+else
+    trace "asset_test: Missing one or more required programs, assetinfo not set up..."
+    exit 1
+fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
