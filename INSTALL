@@ -511,3 +511,14 @@ works is as follows:
 
             * - The test scripts must exit with a "0" for the post-install
             script to be run. All other exit codes are considered errors.
+
+            * - The test scripts will be ran *after* the installation of the
+            client agent proper. Thus, they can depend upon the helper and
+            globals, as well as other dispatcher libraries. However, the post-
+            install scripts will run as a sub-process to the main installer,
+            thus care must be given when utilizing library calls from within
+            them.
+
+            * - The test scripts have a hard requirement to be /bin/sh (DASH,
+            or ASH) compatible. This means they must avoid bash-isms (even
+            though on some systems BASH will actually be /bin/sh).
