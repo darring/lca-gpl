@@ -1,9 +1,13 @@
 #!/bin/bash
 
 ### BEGIN INIT INFO
-# Required-Start: $local_fs $syslog ipmidrv
-# Short-Description: asset collection script
-# Description: asset collection script
+# Provides:             assetinfo
+# Required-Start:       $local_fs $syslog ipmidrv
+# Required-Stop:        $local_fs $syslog ipmidrv
+# Default-Start:        2 3 4 5
+# Default-Stop:
+# Short-Description:    asset collection script
+# Description:          asset collection script
 ### END INIT INFO
 
 # RHEL information
