@@ -16,9 +16,9 @@ DCMITOOL=/usr/local/bin/dcmitool
 DMIDECODE=/usr/sbin/dmidecode
 
 FUNCT_ARRAY=("turbo" "hyperthreading" "vt" "vt-d" "Xd" "UUID" "c6state" "c2c4state"
-             "nmver" "dcmiver" "eist" "dimmslots" "dimmspop" "ramtotal" "dimm" 
-			 "sr-iov" "niccount" "nicspeed" "fibercount" "fiberspeed" "sol"
-	         "remote" "hdcount" "raid" "oem")
+             "nmver" "dcmiver" "eist" "dimmslots" "dimmspop" "ramtotal" "dimm"
+             "sr-iov" "niccount" "nicspeed" "fibercount" "fiberspeed" "sol"
+             "remote" "hdcount" "raid" "oem")
 
 printstart() {
  echo "<Attributes>"
