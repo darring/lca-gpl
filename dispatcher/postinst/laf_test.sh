@@ -112,7 +112,7 @@ if [ "${_STATUS}" -eq "0" ]; then
         fi
     fi
 else
-    trace "laf_test: Missing one or more require programs, LAF/NMSA not set up..."
+    trace "laf_test: Missing one or more required programs, LAF/NMSA not set up..."
     exit 1
 fi
 

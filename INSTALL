@@ -467,17 +467,47 @@ over these scripts, what they do, and how to extend them.
 
         So there is our very long explanation for a very tiny file.
 
-6.c) Platform-specific post-install scripts
+6.c) Post-install scripts
 
-    Certain distributions need some platform-specific post-installation fixes
-to overcome differences or limitations which they have that other distributions
-do not have. Because of this, a post-install script sequence was added to the
-installation process.
+    The linux client agent dispatcher installer provides a post installation
+script feature for handling any addition post-install tasks that are needed. It
+is currently used for post-install distribution configuration as well as client
+agent optional feature setup and installation. The way the post-install process
+works is as follows:
 
-    After installation is complete, the installer searches the installed client
-agent's home directory for a "postinst" sub-directory, and there it looks for a
-script which is named after the platform it currently is running on (specified
-by the $PLATFORM_NAME variable as defined in the helper.sh include, see the
-API_Notes.txt document for more information). If a named script is found, it
-will execute it post-install, thus giving us any chance to make right any
-platform-specific problems that might arise during the install.
+        1) The installer checks the install-deps.sh definition of the
+        POSTINST_SCRIPT variable. This variable defines a linkage between an
+        individual post-install script and the test determining if that script
+        needs to be run.
+
+        Here is an example:
+
+            POSTINST_SCRIPTS=$(cat <<EOF
+                xenclient.sh:xen_test.sh
+                install_laf.sh:laf_test.sh
+                install_asset.sh:asset_test.sh
+            EOF
+            )
+
+        The first entry in each linkage is the post-install script. The second
+        entry is the test script. Thus, the first line (which deals with
+        post-install configuration needed on Xen Client systems),
+
+                xenclient.sh:xen_test.sh
+
+        shows that the post-install script "xenclient.sh" requires a successful
+        exit status ("0") from "xen_test.sh".
+
+        2) The post-install scripts are copied to the installation directory.
+        The test scripts are not installed.
+
+        3) Each post-install test is ran, if it returns success (exit code "0")
+        then the post-install script is run.
+
+    It is important to note a few items:
+
+            * - Both the post-install scripts and their associated tests are
+            intended to *only* be ran by the installer.
+
+            * - The test scripts must exit with a "0" for the post-install
+            script to be run. All other exit codes are considered errors.
