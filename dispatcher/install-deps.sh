@@ -52,6 +52,7 @@ clientagent-helper.sh:/usr/bin:-lf
 eil_steward.sh:/etc/init.d:-f
 update-checker.sh:/etc/cron.hourly:-f
 nmsa_handler.sh:/etc/init.d:-f
+assetinfo.sh:/etc/init.d:-f
 EOF
 )
 
