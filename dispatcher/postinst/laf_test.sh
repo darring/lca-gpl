@@ -81,7 +81,7 @@ check_init() {
     return $RET_VAL
 }
 
-# TODO - This test script should output a filesystem toggle that indicates to
+# This test script should output a filesystem toggle that indicates to
 #   the steward whether to run the NMSA process
 trace "laf_test: Checking program requirements..."
 check_req_progs
