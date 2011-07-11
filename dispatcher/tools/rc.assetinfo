@@ -205,7 +205,7 @@ oem() { #<OEMInventory><Bios>1.5</Bios><BMC>2.11</BMC></OEMInventory>
  echo -n "<BMC>"
  ver=` $IPMITOOL mc info | grep Firmware | grep -v Aux | awk '{print $4}'`
  echo -n "$ver"
- echo "<BMC>"
+ echo "</BMC>"
  
  echo "</OEMInventory>"
 }
