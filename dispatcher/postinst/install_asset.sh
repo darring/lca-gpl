@@ -27,17 +27,27 @@ clean_init() {
     fi
 }
 
-install_files() {
-}
-
 setup_init() {
+    if [ -n "$IS_RHEL" ]; then
+        chkconfig --add assetinfo.sh
+    elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+        update-rc.d assetinfo.sh defaults
+    elif [ -n "$IS_SLES" ]; then
+        /usr/lib/lsb/install_initd /etc/init.d/assetinfo.sh
+    elif [ -n "$IS_ESX" ]; then
+        # Yay! Manual labor!
+        mkdir -p /etc/rc.local.d/
+        ln -s /etc/init.d/assetinfo.sh /etc/rc.local.d/assetinfo.sh
+    else
+        # Undefined thing! This is very very bad!
+        echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
+        echo "Check your installation logs and your distribution and try again!" 2>&1 | tee $ERROR_LOG_FILE
+        echo "assetinfo is NOT functioning properly!" 2>&1 | tee $ERROR_LOG_FILE
+    fi
 }
 
-# Clean up previous work (if any)
+# Clean up previous work (if any), then setup
 clean_init
-
-# Perform our install
-install_files
 setup_init
 
 # vim:set ai et sts=4 sw=4 tw=80:
