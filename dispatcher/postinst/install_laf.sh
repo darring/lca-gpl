@@ -109,6 +109,8 @@ setup_init() {
             /usr/lib/lsb/install_initd /etc/init.d/ipmi
         fi
     fi
+
+    /etc/init.d/nmsa_handler.sh start
 }
 
 # Clean up any previous installation, setup for new installation and install
