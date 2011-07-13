@@ -101,7 +101,7 @@ setup_init() {
     # Apparently, we need to make sure ipmi is added as well
     if [ -e "$NMSA_TOGGLE" ]; then
         if [ -n "$IS_RHEL" ]; then
-            chkconfig --add impi
+            chkconfig --add ipmi
         elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
             update-rc.d openipmi defaults
         elif [ -n "$IS_SLES" ]; then
