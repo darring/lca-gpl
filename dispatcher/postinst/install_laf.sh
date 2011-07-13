@@ -12,7 +12,9 @@
 
 INSTALL_CWD=$1
 
-INSTALL_DIR=/opt/intel/eil/laf
+LAF_INSTALL_DIR=/opt/intel/eil/laf
+
+NMSA_TOGGLE="/opt/intel/eil/clientagent/home/.nmsa_enable"
 
 CREATE_DIR=$(cat <<EOF
 bin
@@ -32,27 +34,24 @@ EOF
 clean_up() {
     for DIR in $CREATE_DIR
     do
-        rm -f $INSTALL_DIR/$DIR/*
-        rmdir --ignore-fail-on-non-empty $INSTALL_DIR/$DIR
+        rm -f $LAF_INSTALL_DIR/$DIR/*
+        rmdir --ignore-fail-on-non-empty $LAF_INSTALL_DIR/$DIR
     done
 
-    rmdir --ignore-fail-on-non-empty $INSTALL_DIR
+    rmdir --ignore-fail-on-non-empty $LAF_INSTALL_DIR
 }
 
 clean_init() {
     if [ -e "/etc/init.d/nmsa_handler.sh" ]; then
+        /etc/init.d/nmsa_handler.sh stop
         if [ -n "$IS_RHEL" ]; then
-            /etc/init.d/nmsa_handler.sh stop
             chkconfig --del nmsa_handler.sh
         elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
-            /etc/init.d/nmsa_handler.sh stop
             update-rc.d -f nmsa_handler.sh remove
         elif [ -n "$IS_SLES" ]; then
-            /etc/init.d/nmsa_handler.sh stop
             /usr/lib/lsb/remove_initd /etc/init.d/nmsa_handler.sh
         elif [ -n "$IS_ESX" ]; then
             # This is silly, just reboot the system :-P
-            /etc/init.d/nmsa_handler.sh stop
             rm -f /etc/init.d/nmsa_handler.sh
             rm -f /etc/rc.local.d/nmsa_handler.sh
         fi
@@ -60,13 +59,13 @@ clean_init() {
 }
 
 create_dir() {
-    if [ ! -d $INSTALL_DIR ]; then
-        mkdir -p $INSTALL_DIR
+    if [ ! -d $LAF_INSTALL_DIR ]; then
+        mkdir -p $LAF_INSTALL_DIR
     fi
 
     for DIR in $CREATE_DIR
     do
-        mkdir -p $INSTALL_DIR/$DIR
+        mkdir -p $LAF_INSTALL_DIR/$DIR
     done
 }
 
@@ -74,10 +73,10 @@ install_files() {
     for FILE_TO_INSTALL in $INSTALL_FILES
     do
         cp -f ${INSTALL_CWD}/tools/${FILE_TO_INSTALL} \
-                ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
+                ${LAF_INSTALL_DIR}/bin/${FILE_TO_INSTALL}
 
         # TODO - Any permisions or ownership necessary here?
-        chown root.root ${INSTALL_DIR}/bin/${FILE_TO_INSTALL}
+        chown root.root ${LAF_INSTALL_DIR}/bin/${FILE_TO_INSTALL}
     done
 }
 
@@ -97,6 +96,18 @@ setup_init() {
         echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
         echo "Check your installation logs and your distribution and try again!" 2>&1 | tee $ERROR_LOG_FILE
         echo "NMSA Handler is NOT functioning properly!" 2>&1 | tee $ERROR_LOG_FILE
+    fi
+
+    # Apparently, we need to make sure ipmi is added as well
+    if [ -e "$NMSA_TOGGLE" ]; then
+        if [ -n "$IS_RHEL" ]; then
+            chkconfig --add impi
+        elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
+            update-rc.d openipmi defaults
+        elif [ -n "$IS_SLES" ]; then
+            # FIXME - This needs to be verified
+            /usr/lib/lsb/install_initd /etc/init.d/ipmi
+        fi
     fi
 }
 

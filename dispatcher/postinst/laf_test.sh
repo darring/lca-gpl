@@ -64,8 +64,14 @@ check_init() {
     elif [ -n "$IS_DEB" ] || [ -n "$IS_ANGSTROM" ]; then
         trace "laf_test: detected a DEB or ANGSTROM derived distro..."
         if [ -e "/etc/init.d/ipmievd" ]; then
-            trace "laf_test: ipmi init found, starting"
+            trace "laf_test: ipmievd init found, starting"
             /etc/init.d/ipmievd start
+            RET_VAL=0
+        fi
+        # Since we may have both, this isn't either/or
+        if [ -e "/etc/init.d/openipmi" ]; then
+            trace "laf_test: openipmi init found, starting"
+            /etc/init.d/openipmi start
             RET_VAL=0
         fi
     else
@@ -75,7 +81,7 @@ check_init() {
     return $RET_VAL
 }
 
-# TODO - This test script should output a filesystem toggle that indicates to
+# This test script should output a filesystem toggle that indicates to
 #   the steward whether to run the NMSA process
 trace "laf_test: Checking program requirements..."
 check_req_progs
@@ -106,7 +112,7 @@ if [ "${_STATUS}" -eq "0" ]; then
         fi
     fi
 else
-    trace "laf_test: Missing one or more require programs, LAF/NMSA not set up..."
+    trace "laf_test: Missing one or more required programs, LAF/NMSA not set up..."
     exit 1
 fi
 
