@@ -148,7 +148,7 @@ class NMSA_Master:
                         log = ""
                         for line in workload_out:
                             log = log + line
-                        encoded_log = urllib.urlencode([('log', "nmsa_handler-%s-%s" % (datestamp, log))])
+                        encoded_log = urllib2.urlencode([('log', "nmsa_handler-%s-%s" % (datestamp, log))])
                         uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&%s" % (self.__getIfInfo()[0], sid, output[0], encoded_log)
 
                         try:
