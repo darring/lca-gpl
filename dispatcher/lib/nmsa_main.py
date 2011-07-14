@@ -150,7 +150,7 @@ class NMSA_Master:
                         for line in workload_out:
                             log = log + line
                         encoded_log = urllib.urlencode([('log', "nmsa_handler-%s-%s" % (datestamp, log))])
-                        uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&%s" % (self.__getIfInfo()[0], sid, output[0], encoded_log)
+                        uri = "http://nmsa01/nmsa/client_push.php?mac=%s&sid=%s&comp=%s&%s" % (self.__getIfInfo()[0], sid, "%0D".join(output), encoded_log)
 
                         try:
                             stream = urllib2.urlopen(uri)
