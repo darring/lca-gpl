@@ -5,6 +5,17 @@ The Linux Client Agent version 4.3.0.1 (d20110718) is now in production. This
 release includes Node Manager support (via NMSA), machine asset collection, and
 other improvements.
 
+New OS provisions of currently supported Linux distros will automatically get
+this version. Existing Linux provisions can be upgraded manually via a number
+of ways:
+
+        *) Running the update check script (as root) at
+        /opt/intel/eil/clientagent/tools/update-checker.sh
+
+        *) Having the Portal issue an upgrade command (I am not certain if
+        the current production release of the Portal has this option integrated
+        yet. If it does, the Linux Client Agent will accept it.)
+
 ** NODE MANAGER SUPPORT
 
 The Linux client agent can now interact with the EIL Test Automation Framework
