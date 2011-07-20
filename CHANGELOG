@@ -87,3 +87,10 @@
 - Add NMSA Handler wrapper daemon
 - NMSA handler init scripts
 - Add laf scripts
+
+* Wed Jul 20 2011 - Sam Hart <hartsn@gmail.com>
+- NMSA handler functionality complete
+- Relay functionality integrated with the NMSA handler
+- laf scripts revised and finalized
+- Post-installation methods now include checks
+- Tag 4.3.0.1.d20110718 for production release
