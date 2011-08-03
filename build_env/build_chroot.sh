@@ -2,7 +2,8 @@
 
 # build_chroot.sh
 # ---------------
-# A tool to build a chroot in Ubuntu/Debian for building the EIL Linux agent
+# A tool to build a chroot in Ubuntu/Debian or SuSE-based systems for building
+# the EIL Linux agent
 
 MY_CWD=`pwd`
 
@@ -18,7 +19,7 @@ fi
 
 # Check we're running debian/ubuntu
 if [ ! -f "/etc/debian_version" ]; then
-    cat <<EOF
+#     cat <<EOF
 
  This script must be run in a Debian-derived distribution (such as Ubuntu)!
 
@@ -30,6 +31,35 @@ EOF
 
 exit 1
 fi
+
+deb_build() {
+    CHROOT_PATH=$1
+    debootstrap lucid ${CHROOT_PATH}
+
+    # copy our items over into the chroot
+    cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
+    cp -fv setup_env.sh ${CHROOT_PATH}/root/.
+    chmod a+x ${CHROOT_PATH}/root/setup_env.sh
+
+    # Mount our dev and proc
+    mount --bind /proc ${CHROOT_PATH}/proc
+    mount --bind /dev ${CHROOT_PATH}/dev
+
+    # Make sure we have universe and multiverse in our sources list
+    echo "deb http://archive.ubuntu.com/ubuntu lucid universe" \
+        >> ${CHROOT_PATH}/etc/apt/sources.list
+    echo "deb http://archive.ubuntu.com/ubuntu lucid multiverse" \
+        >> ${CHROOT_PATH}/etc/apt/sources.list
+
+    # run the setup_env from the chroot
+    echo "#!/bin/sh" >> ${CHROOT_PATH}/root/run_once.sh
+    echo "cd /root" >> ${CHROOT_PATH}/root/run_once.sh
+    echo "./setup_env.sh" >> ${CHROOT_PATH}/root/run_once.sh
+
+    chmod a+x ${CHROOT_PATH}/root/run_once.sh
+
+    chroot ${CHROOT_PATH} /root/run_once.sh
+}
 
 # Get our chroot path
 if [ -n "$1" ]; then
