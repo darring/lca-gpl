@@ -73,6 +73,22 @@ deb_build() {
     chroot ${CHROOT_PATH} /root/run_once.sh
 }
 
+suse_build() {
+    CHROOT_PATH=$1
+
+    if [ ! -d "$CHROOT_PATH" ]; then
+        mkdir -p ${CHROOT_PATH}
+    fi
+
+    zypper --root ${CHROOT_PATH} addrepo \
+        http://download.opensuse.org/distribution/11.3/repo/oss/ repo-oss
+    zypper --root ${CHROOT_PATH} addrepo \
+        http://download.opensuse.org/distribution/11.3/repo/non-oss/ repo-non-oss
+    zypper --root ${CHROOT_PATH} addrepo \
+        http://download.opensuse.org/update/11.3/ repo-update
+    zypper --root ${CHROOT_PATH} --gpg-auto-import-keys -n install zypper
+}
+
 # Get our chroot path
 if [ -n "$1" ]; then
     # determine which distro we're running
