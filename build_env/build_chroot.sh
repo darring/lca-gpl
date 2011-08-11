@@ -104,13 +104,13 @@ suse_build() {
         install --auto-agree-with-licenses zypper
 
     # copy our items over into the chroot
-    #cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
-    #cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
-    #chmod a+x ${CHROOT_PATH}/root/setup_env.sh
+    cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
+    cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
+    chmod a+x ${CHROOT_PATH}/root/setup_env.sh
 
     cp /etc/resolv.conf ${CHROOT_PATH}/etc/.
 
-    echo "run_setupenv $CHROOT_PATH"
+    run_setupenv $CHROOT_PATH
 }
 
 # Get our chroot path
