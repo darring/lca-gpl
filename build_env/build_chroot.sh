@@ -78,7 +78,7 @@ if [ -n "$1" ]; then
     # determine which distro we're running
     if [ -f "/etc/debian_version" ]; then
         deb_build "${1}"
-    else if [ ! -f "/etc/SuSE-release" ];
+    elif [ ! -f "/etc/SuSE-release" ]; then
         suse_build "${1}"
     else
         error_wrongDistro
