@@ -9,13 +9,35 @@ MY_CWD=`pwd`
 
 # We default to 'lucid', or Ubuntu 10.04. If you want to update that, feel free
 # just know that you will need to make sure everything else works.
-DISTRO="lucid"
+DEB_DISTRO="lucid"
 
 # Must be run as root
 if [ "$(id -u)" != "0" ]; then
     echo "This script must be run as root!"
     exit 1
 fi
+
+error_wrongDistro() {
+cat <<EOF
+
+ This script must be run in a Debian-derived distribution (such as Ubuntu) or
+ in an openSUSE-derived distribution!
+
+ If you wish to build the EIL Linux client agent in another distribution, please
+ see the BUILD_ENV text file and the source for this script to find the proper
+ dependencies necessary to set up your build environment!
+
+EOF
+}
+
+error_missingPath() {
+cat <<EOF
+
+ Script requires a path agument for where the chroot will be located. Please
+ run the script again with a path argument!
+
+EOF
+}
 
 trace() {
     DATESTAMP=$(date +'%Y-%m-%d %H:%M:%S %Z')
@@ -24,7 +46,7 @@ trace() {
 
 deb_build() {
     CHROOT_PATH=$1
-    debootstrap lucid ${CHROOT_PATH}
+    debootstrap ${DEB_DISTRO} ${CHROOT_PATH}
 
     # copy our items over into the chroot
     cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
@@ -36,9 +58,9 @@ deb_build() {
     mount --bind /dev ${CHROOT_PATH}/dev
 
     # Make sure we have universe and multiverse in our sources list
-    echo "deb http://archive.ubuntu.com/ubuntu lucid universe" \
+    echo "deb http://archive.ubuntu.com/ubuntu ${DEB_DISTRO} universe" \
         >> ${CHROOT_PATH}/etc/apt/sources.list
-    echo "deb http://archive.ubuntu.com/ubuntu lucid multiverse" \
+    echo "deb http://archive.ubuntu.com/ubuntu ${DEB_DISTRO} multiverse" \
         >> ${CHROOT_PATH}/etc/apt/sources.list
 
     # run the setup_env from the chroot
@@ -57,18 +79,9 @@ if [ -n "$1" ]; then
     if [ -f "/etc/debian_version" ]; then
         deb_build "${1}"
     else if [ ! -f "/etc/SuSE-release" ];
+        suse_build "${1}"
     else
-        cat <<EOF
-
- This script must be run in a Debian-derived distribution (such as Ubuntu) or
- in an openSUSE-derived distribution!
-
- If you wish to build the EIL Linux client agent in another distribution, please
- see the BUILD_ENV text file and the source for this script to find the proper
- dependencies necessary to set up your build environment!
-
-EOF
-
+        error_wrongDistro
         exit 1
     fi
     cat <<EOF
@@ -79,13 +92,7 @@ EOF
 EOF
 
 else
-    cat <<EOF
-
- Script requires a path agument for where the chroot will be located. Please
- run the script again with a path argument!
-
-EOF
-
+    error_missingPath
 fi
 
 # vim:set ai et sts=4 sw=4 tw=80:
