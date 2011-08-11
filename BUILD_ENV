@@ -66,7 +66,7 @@ different ways, so they are both included for completeness. There may be a way
 to reduce these requirements down a single parser, but it is left up to later
 developers on the project to find out if this is the case.
 
-2) Building in a Debian/Ubuntu or install
+2) Building in a Debian/Ubuntu install
 
 2.a) Building in a chroot
 
