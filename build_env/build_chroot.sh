@@ -93,7 +93,7 @@ suse_build() {
         http://download.opensuse.org/distribution/${SUSE_DISTRO}/repo/non-oss/ repo-non-oss
     zypper --root ${CHROOT_PATH} addrepo \
         http://download.opensuse.org/update/${SUSE_DISTRO}/ repo-update
-    zypper --root /home/del-chroot/ --gpg-auto-import-keys -n \
+    zypper --root ${CHROOT_PATH} --gpg-auto-import-keys -n \
         install --auto-agree-with-licenses zypper
 
     # copy our items over into the chroot
