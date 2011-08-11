@@ -97,9 +97,9 @@ suse_build() {
         install --auto-agree-with-licenses zypper
 
     # copy our items over into the chroot
-    cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
-    cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
-    chmod a+x ${CHROOT_PATH}/root/setup_env.sh
+    #cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
+    #cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
+    #chmod a+x ${CHROOT_PATH}/root/setup_env.sh
 
     # Mount our dev and proc
     mount --bind /proc ${CHROOT_PATH}/proc
