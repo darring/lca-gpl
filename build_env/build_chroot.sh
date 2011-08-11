@@ -98,7 +98,7 @@ suse_build() {
     mount --bind /proc ${CHROOT_PATH}/proc
     mount --bind /dev ${CHROOT_PATH}/dev
 
-    zypper --root /home/del-chroot/ --gpg-auto-import-keys -n \
+    zypper --root ${CHROOT_PATH} --gpg-auto-import-keys -n \
         install --auto-agree-with-licenses zypper
 
     # copy our items over into the chroot
