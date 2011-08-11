@@ -105,7 +105,7 @@ suse_build() {
     mount --bind /proc ${CHROOT_PATH}/proc
     mount --bind /dev ${CHROOT_PATH}/dev
 
-    run_setupenv $CHROOT_PATH
+    echo "run_setupenv $CHROOT_PATH"
 }
 
 # Get our chroot path
