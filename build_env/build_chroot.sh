@@ -11,6 +11,8 @@ MY_CWD=`pwd`
 # just know that you will need to make sure everything else works.
 DEB_DISTRO="lucid"
 
+SUSE_DISTRO="11.3"
+
 # Must be run as root
 if [ "$(id -u)" != "0" ]; then
     echo "This script must be run as root!"
@@ -44,13 +46,25 @@ trace() {
     echo "${DATESTAMP} : ${*}"
 }
 
+run_setupenv() {
+    local CHROOT_PATH=$1
+    # run the setup_env from the chroot
+    echo "#!/bin/sh" >> ${CHROOT_PATH}/root/run_once.sh
+    echo "cd /root" >> ${CHROOT_PATH}/root/run_once.sh
+    echo "./setup_env.sh" >> ${CHROOT_PATH}/root/run_once.sh
+
+    chmod a+x ${CHROOT_PATH}/root/run_once.sh
+
+    chroot ${CHROOT_PATH} /root/run_once.sh
+}
+
 deb_build() {
-    CHROOT_PATH=$1
+    local CHROOT_PATH=$1
     debootstrap ${DEB_DISTRO} ${CHROOT_PATH}
 
     # copy our items over into the chroot
     cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
-    cp -fv setup_env.sh ${CHROOT_PATH}/root/.
+    cp -fv deb_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
     chmod a+x ${CHROOT_PATH}/root/setup_env.sh
 
     # Mount our dev and proc
@@ -63,30 +77,35 @@ deb_build() {
     echo "deb http://archive.ubuntu.com/ubuntu ${DEB_DISTRO} multiverse" \
         >> ${CHROOT_PATH}/etc/apt/sources.list
 
-    # run the setup_env from the chroot
-    echo "#!/bin/sh" >> ${CHROOT_PATH}/root/run_once.sh
-    echo "cd /root" >> ${CHROOT_PATH}/root/run_once.sh
-    echo "./setup_env.sh" >> ${CHROOT_PATH}/root/run_once.sh
-
-    chmod a+x ${CHROOT_PATH}/root/run_once.sh
-
-    chroot ${CHROOT_PATH} /root/run_once.sh
+    run_setupenv $CHROOT_PATH
 }
 
 suse_build() {
-    CHROOT_PATH=$1
+    local CHROOT_PATH=$1
 
     if [ ! -d "$CHROOT_PATH" ]; then
         mkdir -p ${CHROOT_PATH}
     fi
 
     zypper --root ${CHROOT_PATH} addrepo \
-        http://download.opensuse.org/distribution/11.3/repo/oss/ repo-oss
+        http://download.opensuse.org/distribution/${SUSE_DISTRO}/repo/oss/ repo-oss
     zypper --root ${CHROOT_PATH} addrepo \
-        http://download.opensuse.org/distribution/11.3/repo/non-oss/ repo-non-oss
+        http://download.opensuse.org/distribution/${SUSE_DISTRO}/repo/non-oss/ repo-non-oss
     zypper --root ${CHROOT_PATH} addrepo \
-        http://download.opensuse.org/update/11.3/ repo-update
-    zypper --root ${CHROOT_PATH} --gpg-auto-import-keys -n install zypper
+        http://download.opensuse.org/update/${SUSE_DISTRO}/ repo-update
+    zypper --root /home/del-chroot/ --gpg-auto-import-keys -n \
+        install --auto-agree-with-licenses zypper
+
+    # copy our items over into the chroot
+    cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
+    cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
+    chmod a+x ${CHROOT_PATH}/root/setup_env.sh
+
+    # Mount our dev and proc
+    mount --bind /proc ${CHROOT_PATH}/proc
+    mount --bind /dev ${CHROOT_PATH}/dev
+
+    run_setupenv $CHROOT_PATH
 }
 
 # Get our chroot path
