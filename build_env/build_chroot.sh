@@ -126,7 +126,7 @@ if [ -n "$1" ]; then
     fi
     cat <<EOF
 
- Your chroot environment at "${CHROOT_PATH}" is now set up and ready for active
+ Your chroot environment at "${1}" is now set up and ready for active
  development!
 
 EOF
