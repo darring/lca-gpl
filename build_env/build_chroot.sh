@@ -93,17 +93,18 @@ suse_build() {
         http://download.opensuse.org/distribution/${SUSE_DISTRO}/repo/non-oss/ repo-non-oss
     zypper --root ${CHROOT_PATH} addrepo \
         http://download.opensuse.org/update/${SUSE_DISTRO}/ repo-update
-    zypper --root ${CHROOT_PATH} --gpg-auto-import-keys -n \
+
+    # Mount our dev and proc
+    mount --bind /proc ${CHROOT_PATH}/proc
+    mount --bind /dev ${CHROOT_PATH}/dev
+
+    zypper --root /home/del-chroot/ --gpg-auto-import-keys -n \
         install --auto-agree-with-licenses zypper
 
     # copy our items over into the chroot
     #cp -frv gsoap-2.8 ${CHROOT_PATH}/root/.
     #cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
     #chmod a+x ${CHROOT_PATH}/root/setup_env.sh
-
-    # Mount our dev and proc
-    mount --bind /proc ${CHROOT_PATH}/proc
-    mount --bind /dev ${CHROOT_PATH}/dev
 
     echo "run_setupenv $CHROOT_PATH"
 }
