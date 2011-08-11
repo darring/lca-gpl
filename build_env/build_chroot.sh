@@ -108,6 +108,8 @@ suse_build() {
     #cp -fv suse_setup_env.sh ${CHROOT_PATH}/root/setup_env.sh
     #chmod a+x ${CHROOT_PATH}/root/setup_env.sh
 
+    cp /etc/resolv.conf ${CHROOT_PATH}/etc/.
+
     echo "run_setupenv $CHROOT_PATH"
 }
 
