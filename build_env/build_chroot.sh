@@ -95,6 +95,8 @@ suse_build() {
         http://download.opensuse.org/update/${SUSE_DISTRO}/ repo-update
 
     # Mount our dev and proc
+    mkdir -p ${CHROOT_PATH}/proc
+    mkdir -p ${CHROOT_PATH}/dev
     mount --bind /proc ${CHROOT_PATH}/proc
     mount --bind /dev ${CHROOT_PATH}/dev
 
