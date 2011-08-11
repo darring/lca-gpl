@@ -17,6 +17,7 @@ less
 make
 nano
 perl
+libopenssl-devel
 EOF
 )
 
@@ -72,7 +73,17 @@ cat <<EOF
 
 EOF
 
-zypper install ${ALL_RPMS}
+zypper -n install --auto-agree-with-licenses ${ALL_RPMS}
+
+cat <<EOF
+
+ Setting up gSOAP sources in a tmp build directory...
+
+EOF
+
+TMP_BASE=`mktemp -d`
+cp -frv gsoap-2.8 ${TMP_BASE}/.
+cd ${TMP_BASE}/gsoap-2.8/
 
 cat <<EOF
 
@@ -84,8 +95,24 @@ EOF
 
 read -p "Press [Enter] to continue : "
 
+aclocal
+autoconf
+automake
+
 chmod a+x configure
 
 ./configure
+make
+
+# Cleanup
+
+cat <<EOF
+
+ Done... cleaning up...
+
+EOF
+
+cd $MY_CWD
+rm -fr ${TMP_BASE}
 
 # vim:set ai et sts=4 sw=4 tw=80:
