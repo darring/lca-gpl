@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# setup_env.sh
-# ------------
+# deb_setup_env.sh
+# ----------------
 # A tool to setup the build environment (Ubuntu/Debian specific)
 
 # Make sure that (if in Ubuntu) the 'Universe' and 'Multiverse' are enabled in
