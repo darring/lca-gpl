@@ -137,6 +137,15 @@ uninstall_everything() {
         /etc/init.d/eil_steward.sh stop
         rm -f /etc/init.d/eil_steward.sh
         rm -f /etc/rc.local.d/eil_steward.sh
+    elif [ -n "$IS_SLACK" ]; then
+        /etc/init.d/eil_steward.sh stop
+        rm -f /etc/rc.d/rc3.d/S99eil_steward.sh
+        rm -f /etc/rc.d/rc3.d/K99eil_steward.sh
+        rm -f /etc/init.d/eil_steward.sh
+    else
+        # failing all else, we just get rid of the standard location
+        /etc/init.d/eil_steward.sh stop
+        rm -f /etc/init.d/eil_steward.sh
     fi
 
     # uninstall the tools
