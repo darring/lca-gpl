@@ -365,6 +365,10 @@ elif [ -n "$IS_ESX" ]; then
     # Yay! Manual labor!
     mkdir -p /etc/rc.local.d/
     ln -s /etc/init.d/eil_steward.sh /etc/rc.local.d/eil_steward.sh
+elif [ -n "$IS_SLACK" ]; then
+    # MOAR MANUAL LABOR! But at least we have sys-v and persistence!
+    ln -s /etc/init.d/eil_steward.sh /etc/rc.d/rc3.d/S99eil_steward.sh
+    ln -s /etc/init.d/eil_steward.sh /etc/rc.d/rc3.d/K99eil_steward.sh
 else
     # Undefined thing! This is very very bad!
     echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE

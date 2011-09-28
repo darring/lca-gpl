@@ -70,6 +70,11 @@ find_specific_angstrom() {
 # Given we're running a slackware derived distribution, determine more exactly
 # what we're running.
 find_specific_slack() {
+    if [ -f "/etc/slax-version" ]; then
+        PLATFORM_NAME="slax"
+    else
+        PLATFORM_NAME="slackware"
+    fi
 }
 
 if [ -f "/etc/debian_version" ]; then
