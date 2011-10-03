@@ -4,7 +4,7 @@
 
 # This tool is to be called when the steward has detected a TCP error from a
 # SOAP connection (e.g., it has tried to connect to CCMS, and a general TCP
-# error was the result). This tool well determine what the problem was, and try
+# error was the result). This tool will determine what the problem was, and try
 # to fix it.
 
 # The setward binary
