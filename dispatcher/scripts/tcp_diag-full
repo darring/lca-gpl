@@ -61,6 +61,8 @@ re_up() {
         /etc/init.d/network start
     elif [ -n "$IS_SLES" ]; then
         /etc/init.d/network restart
+    elif [ -n "$IS_SLACK" ]; then
+        /etc/rc.d/rc.inet1 restart
     else
         # Okay, we really shouldn't be here, but just in case, we fall back
         # on the old *nix standby's of ifdown/ifup

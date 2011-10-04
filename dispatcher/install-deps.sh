@@ -132,6 +132,8 @@ ubuntu_tcp_diag:tcp_diag-full
 rhel_tcp_diag:tcp_diag-full
 suse_tcp_diag:tcp_diag-full
 centos_tcp_diag:tcp_diag-full
+slackware_tcp_diag:tcp_diag-full
+slax_tcp_diag:tcp_diag-full
 xen_tcp_diag:tcp_diag-xen
 esx_tcp_diag:tcp_diag-light
 esxi_tcp_diag:tcp_diag-light
