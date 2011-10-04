@@ -95,9 +95,13 @@
 - Post-installation methods now include checks
 - Tag 4.3.0.1.d20110718 for production release
 
-* Fri Aug 12 - Sam Hart <hartsn@gmail.com>
+* Fri Aug 12 2011 - Sam Hart <hartsn@gmail.com>
 - Add openSuSE/SLED/SLES support to build scripts
 - Use the improved chroot wrapper, chw
 
-* Wed Sep 28 - Sam Hart <hartsn@gmail.com>
+* Wed Sep 28 2011 - Sam Hart <hartsn@gmail.com>
 - Add slackware support to dispatcher and installer.
+
+* Tue Oct 4 2011 - Sam Hart <hartsn@gmail.com>
+- Add slackware support to the TCP diagnostics script
+- Add slackware install dependencies
