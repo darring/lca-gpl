@@ -125,6 +125,8 @@ centos_reboot:reboot-noloop
 xen_reboot:reboot-noloop
 esx_reboot:reboot
 esxi_reboot:reboot
+slackware_reboot:reboot
+slax_reboot:reboot
 xenclient_reboot:reboot
 ubuntu_tcp_diag:tcp_diag-full
 rhel_tcp_diag:tcp_diag-full
@@ -142,6 +144,8 @@ xen_asset_refresh:asset_refresh
 esx_asset_refresh:asset_refresh
 esxi_asset_refresh:asset_refresh
 xenclient_asset_refresh:asset_refresh
+slax_asset_refresh:asset_refresh
+slackware_asset_refresh:asset_refresh
 ubuntu_client_update:client_update
 rhel_client_update:client_update
 suse_client_update:client_update
@@ -150,6 +154,8 @@ xen_client_update:client_update
 esx_client_update:client_update
 esxi_client_update:client_update
 xenclient_client_update:client_update
+slackware_client_update:client_update
+slax_client_update:client_update
 EOF
 )
 
