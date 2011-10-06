@@ -38,6 +38,9 @@ setup_init() {
         # Yay! Manual labor!
         mkdir -p /etc/rc.local.d/
         ln -s /etc/init.d/assetinfo.sh /etc/rc.local.d/assetinfo.sh
+    elif [ -n "$IS_SLACK" ]; then
+        ln -s /etc/init.d/assetinfo.sh /etc/rc.d/rc3.d/S98assetinfo.sh
+        ln -s /etc/init.d/assetinfo.sh /etc/rc.d/rc3.d/K98assetinfo.sh
     else
         # Undefined thing! This is very very bad!
         echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
