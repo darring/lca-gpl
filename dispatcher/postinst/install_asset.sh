@@ -23,6 +23,9 @@ clean_init() {
             # This is silly, just reboot the system :-P
             rm -f /etc/init.d/assetinfo.sh
             rm -f /etc/rc.local.d/assetinfo.sh
+        elif [ -n "$IS_SLACK" ]; then
+            rm -f /etc/init.d/assetinfo.sh
+            rm -f /etc/rc.d/rc3.d/K98assetinfo.sh
         fi
     fi
 }

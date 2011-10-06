@@ -54,6 +54,9 @@ clean_init() {
             # This is silly, just reboot the system :-P
             rm -f /etc/init.d/nmsa_handler.sh
             rm -f /etc/rc.local.d/nmsa_handler.sh
+        elif [ -n "$IS_SLACK" ]; then
+            rm -f /etc/init.d/nmsa_handler.sh
+            rm -f /etc/rc.d/rc3.d/K98nmsa_handler.sh
         fi
     fi
 }
@@ -91,6 +94,9 @@ setup_init() {
         # Yay! Manual labor!
         mkdir -p /etc/rc.local.d/
         ln -s /etc/init.d/nmsa_handler.sh /etc/rc.local.d/nmsa_handler.sh
+    elif [ -n "$IS_SLACK" ]; then
+        ln -s /etc/init.d/nmsa_handler.sh /etc/rc.d/rc3.d/S98nmsa_handler.sh
+        ln -s /etc/init.d/nmsa_handler.sh /etc/rc.d/rc3.d/K98nmsa_handler.sh
     else
         # Undefined thing! This is very very bad!
         echo "ERROR SETTING UP RC SCRIPTS! COULD NOT IDENTIFY DISTRIBUTION!" 2>&1 | tee $ERROR_LOG_FILE
