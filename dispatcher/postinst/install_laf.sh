@@ -52,10 +52,8 @@ clean_init() {
             /usr/lib/lsb/remove_initd /etc/init.d/nmsa_handler.sh
         elif [ -n "$IS_ESX" ]; then
             # This is silly, just reboot the system :-P
-            rm -f /etc/init.d/nmsa_handler.sh
             rm -f /etc/rc.local.d/nmsa_handler.sh
         elif [ -n "$IS_SLACK" ]; then
-            rm -f /etc/init.d/nmsa_handler.sh
             rm -f /etc/rc.d/rc3.d/K98nmsa_handler.sh
         fi
     fi
