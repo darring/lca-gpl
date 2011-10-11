@@ -32,7 +32,7 @@ EIL_VERSION_DEF=-D 'EIL_VERSION_TEXT="$(EIL_VERSION_TEXT)"'
 # send all requests to an echo server on localhost
 #
 # See steward/lib_steward/EIL_defines.h for more information
-CCMS_SERVER_DEF=-D 'CCMS_DEV_SERVER'
+CCMS_SERVER_DEF=-D 'CCMS_PRO_SERVER'
 
 # gSOAP includes
 GSOAP_INCLUDES=-I/usr/local/share/gsoap/plugin/
