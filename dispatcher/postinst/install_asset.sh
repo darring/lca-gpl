@@ -24,6 +24,7 @@ clean_init() {
             rm -f /etc/rc.local.d/assetinfo.sh
         elif [ -n "$IS_SLACK" ]; then
             rm -f /etc/rc.d/rc3.d/K98assetinfo.sh
+            rm -f /etc/rc.d/rc3.d/S98assetinfo.sh
         fi
     fi
 }
