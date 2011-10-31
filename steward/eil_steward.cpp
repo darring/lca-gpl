@@ -346,6 +346,7 @@ int main(int argc, char *argv[])
             issuedCommand.Command = AGENT_UPDATE;
             S_STATE = S_STATE_Running;
             logger.QuickLog("Caught SIGUSR2, running an upgrade request...");
+        }
         else if(S_STATE == S_STATE_AssetDoneReboot) {
             issuedCommand.ReturnState = COMMAND_SUCCESS; // collection image
             issuedCommand.Command = ASSET_DONE_REBOOT;
