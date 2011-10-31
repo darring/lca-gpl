@@ -98,6 +98,7 @@ root.eil:tcp_diag-light
 root.eil:tcp_diag-xen
 root.eil:asset_refresh
 root.eil:client_update
+root.eil:asset_done_reboot
 EOF
 )
 
@@ -158,6 +159,7 @@ esxi_client_update:client_update
 xenclient_client_update:client_update
 slackware_client_update:client_update
 slax_client_update:client_update
+slax_asset_done_reboot:asset_done_reboot
 EOF
 )
 

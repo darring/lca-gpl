@@ -40,6 +40,7 @@ enum StewardState
     S_STATE_Shutdown,
     S_STATE_Terminate,
     S_STATE_RefreshAsset,
+    S_STATE_AssetDoneReboot,
     S_STATE_Upgrade,
 };
 

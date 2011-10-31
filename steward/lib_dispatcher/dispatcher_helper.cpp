@@ -93,6 +93,10 @@ void DispatcherHelper::ExecuteCommand(CCMS_Command *commandIssued)
 
                 runDispatcher();
                 break;
+	    case ASSET_DONE_REBOOT:
+	        logger->QuickLog("DispatcherHelper> Agent asset done reboot requested");
+	        writeCommandDirectory("asset_done_reboot");
+	        runDdispatcher();
             case AGENT_UPDATE:
                 logger->QuickLog("DispatcherHelper> Agent update command requested");
 

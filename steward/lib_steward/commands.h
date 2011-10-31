@@ -18,6 +18,7 @@ enum CCMS_CommandIssued
     TCP_DIAGNOSE,
     AGENT_UPDATE,
     ASSET_REFRESH,
+    ASSET_DONE_REBOOT,
 };
 
 //! The command structure issued from CCMS

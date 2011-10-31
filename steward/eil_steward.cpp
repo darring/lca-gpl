@@ -331,7 +331,18 @@ int main(int argc, char *argv[])
                 finishedWithAsset = true;
                 free(assetInfo); // might be a no-op if assetInfo was NULL
             }
-        }
+        }else{
+          // Check here to see if we are in the asset collection image
+	  // if we are at this point asset collection is done and we
+	  // need to notify RMS we are done so we will get port switched
+          // and then we will reboot
+	  struct stat st;
+          if(stat(ASSET_DONE_REBOOT_FILE,&st) == 0 ) { // We are in the asset
+	    issuedCommand.ReturnState = COMMAND_SUCCESS; // collection image
+            issuedCommand.Command = ASSET_DONE_REBOOT;
+            S_STATE = S_STATE_AssetDoneReboot;   
+	  }
+	}
 
         if(S_STATE == S_STATE_Upgrade) {
             issuedCommand.ReturnState = COMMAND_SUCCESS;

@@ -25,5 +25,7 @@ process_command() {
         _run_command "asset_refresh"
     elif [ "$*" = "client_update" ]; then
         _run_command "client_update"
+    elif [ "$*" = "asset_done_reboot" ]; then
+        _run_command "asset_done_reboot"
     fi
 }

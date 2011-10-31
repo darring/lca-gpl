@@ -28,6 +28,15 @@
 //! Forward declaration
 class StewardLogger;
 
+//! ASSET_DONE_REBOOT_FILE
+/*!
+ * This determines the file that should be checked to determine
+ * if we are running on the asset collection image.  If this file
+ * exists then after finishing asset collection we need to run the
+ * asset_done_reboot command
+ */
+#define ASSET_DONE_REBOOT_FILE "/etc/ac_image"
+
 //! The asset timeout
 /*!
  * This determines how long we should wait before "giving up" on the asset info
