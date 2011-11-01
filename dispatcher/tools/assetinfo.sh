@@ -14,13 +14,13 @@
 # chkconfig: 2345 80 20
 # description: asset collection script
 
-IPMITOOL=/usr/bin/ipmitool
-DCMITOOL=/usr/local/bin/dcmitool
+IPMITOOL=ipmitool
+DCMITOOL=ipmitool
 DMIDECODE=/usr/sbin/dmidecode
 
-FUNCT_ARRAY=("turbo" "hyperthreading" "vt" "vt-d" "Xd" "UUID" "c6state" "c2c4state"
+FUNCT_ARRAY=("turbo" "hyperthreading" "vt" "vtd" "Xd" "UUID" "c6state" "c2c4state"
              "nmver" "dcmiver" "eist" "dimmslots" "dimmspop" "ramtotal" "dimm"
-             "sr-iov" "niccount" "nicspeed" "fibercount" "fiberspeed" "sol"
+             "sriov" "niccount" "nicspeed" "fibercount" "fiberspeed" "sol"
              "remote" "hdcount" "raid" "oem")
 
 printstart() {
@@ -48,7 +48,7 @@ vt() { #<Vt>Enabled/Disabled</Vt>
  echo "<Vt>N/A</Vt>"
 }
 
-vt-d() { #<Vt-d>Enabled/Disabled</Vt-d>
+vtd() { #<Vt-d>Enabled/Disabled</Vt-d>
  echo "<Vt-d>N/A</Vt-d>"
 }
 
@@ -130,7 +130,7 @@ dimm() { #<Dimm><DimmSpeed>1066</DimmSpeed><DimmSize>2</DimmSize></Dimm>
  echo "</Dimm>"
 }
 
-sr-iov() { #<SR-IOV>Enabled/Disabled</SR-IOV>
+sriov() { #<SR-IOV>Enabled/Disabled</SR-IOV>
  echo "<SR-IOV>N/A</SR-IOV>"
 }
 
