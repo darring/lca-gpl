@@ -35,7 +35,7 @@ class StewardLogger;
  * exists then after finishing asset collection we need to run the
  * asset_done_reboot command
  */
-#define ASSET_DONE_REBOOT_FILE "/etc/ac_image"
+#define ASSET_DONE_REBOOT_FILE "/etc/ca_toggles/ac_image"
 
 //! The asset timeout
 /*!
