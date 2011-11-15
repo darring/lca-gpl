@@ -14,6 +14,10 @@ Table of Contents
         2.c.3) Date functions
         2.c.4) Network functions
     2.d) logger.sh
+3) System Toggles
+    3.a) Locations and meanings of the toggles
+        3.a.1) Toggles in /etc/ca_toggles
+        3.a.2) Other toggles
 ------------------------------------------------------------------------------
 1) Overview
 
@@ -165,3 +169,31 @@ client agent's error logs from an external application, you would call the
 logger.sh script with the following parameters:
 
     logger.sh --err Error during operation FOO
+
+3) System Toggles
+
+    There are several system-wide toggles which affect the behavior of the
+various components of the client agent. This section defines what they are and
+what they mean.
+
+3.a) Locations and meanings of the toggles
+
+3.a.1) Toggles in /etc/ca_toggles
+
+    Most toggles for the client agent can be found in /etc/ca_toggles. These
+toggles are as follows:
+
+        * /etc/ca_toggles/no_init
+            This determines that a system should not have the client agent
+            components start at boot. During the installation process, a post-
+            install script will check for this and disable the init scripts.
+
+        * /etc/ca_toggles/ac_image
+            This determines that an install is for an asset collection image.
+            When a new system is added to the cloud, the client agent needs to
+            run, collect asset information on the system and then report that
+            information to CCMS. Once this is done, the system should reboot
+            for normal provisioning. This toggle should be set on the asset
+            collection image to trigger this.
+
+3.a.2) Other toggles
