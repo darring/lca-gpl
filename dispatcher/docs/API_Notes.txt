@@ -197,3 +197,8 @@ toggles are as follows:
             collection image to trigger this.
 
 3.a.2) Other toggles
+
+        * /opt/intel/eil/clientagent/home/.nmsa_enable
+            This determines whether or not NMSA is to be enabled. This is
+            automatically set during installation, but you can override it
+            by removing or touching this file.
