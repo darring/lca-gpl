@@ -12,6 +12,8 @@
 # THIS MUST ONLY BE RUN BY THE DISPATCHER INSTALL SCRIPT
 
 disable_init() {
+    trace "noinit_setup- Disabling the init scripts"
+
     # uninstall the rc files
     if [ -n "$IS_RHEL" ]; then
         /etc/init.d/eil_steward.sh stop

@@ -169,6 +169,7 @@ POSTINST_SCRIPTS=$(cat <<EOF
 xenclient.sh:xen_test.sh
 install_laf.sh:laf_test.sh
 install_asset.sh:asset_test.sh
+noinit_setup.sh:noinit_test.sh
 EOF
 )
 
