@@ -60,10 +60,10 @@ class HandlerDaemon(Daemon):
                 self.__debug_level = logging.CRITICAL
             elif log_level == 1:
                 self.__debug_level = logging.ERROR
+            elif log_level == 2:
+                self.__debug_level = logging.INFO
             elif log_level == 3:
                 self.__debug_level = logging.WARNING
-            elif log_level == 4:
-                self.__debug_level = logging.INFO
             else:
                 self.__debug_level = logging.DEBUG
 
