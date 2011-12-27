@@ -16,8 +16,8 @@ NMSA_IP="10.4.0.123"
 unset IS_STAGING IS_RELEASE EIL_LATEST EIL_AUTO INSTALL_TOOL IS_DEV IS_PRO || true
 
 # Uncomment whichever of the following is correct for this install
-IS_STAGING=yes
-#IS_RELEASE=yes
+#IS_STAGING=yes
+IS_RELEASE=yes
 
 # Uncomment the following to determine whether we're using development or
 # production servers
