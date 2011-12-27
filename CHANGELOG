@@ -105,3 +105,11 @@
 * Tue Oct 4 2011 - Sam Hart <hartsn@gmail.com>
 - Add slackware support to the TCP diagnostics script
 - Add slackware install dependencies
+
+* Tue Dec 27 2011 - Sam Hart <hartsn@gmail.com>
+- Asset collection scripts updated
+- Slax integration complete
+- New command ASSET_DONE_REBOOT
+- Toggles for LCA moved to /etc
+- Updated notes for toggles
+- Add support for "NOINIT" systems
