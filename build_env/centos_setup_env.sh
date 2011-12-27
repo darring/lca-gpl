@@ -17,6 +17,7 @@ less
 make
 nano
 perl
+glibc-static
 EOF
 )
 
