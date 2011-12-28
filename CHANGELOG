@@ -113,3 +113,6 @@
 - Toggles for LCA moved to /etc
 - Updated notes for toggles
 - Add support for "NOINIT" systems
+
+* Wed Dec 28 2011 - Sam Hart <hartsn@gmail.com>
+- Added CentOS/RHEL build support
